@@ -1,0 +1,303 @@
+package NGCP::Schema::billing::Result::orders;
+use Sipwise::Base;
+use MooseX::NonMoose;
+our $VERSION = '1.000';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+extends 'DBIx::Class::Core';
+
+
+__PACKAGE__->table("orders");
+
+
+__PACKAGE__->add_columns(
+  "id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_auto_increment => 1,
+    is_nullable => 0,
+  },
+  "reseller_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 1,
+  },
+  "customer_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 1,
+  },
+  "delivery_contact_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 1,
+  },
+  "type",
+  { data_type => "varchar", is_nullable => 1, size => 31 },
+  "state",
+  {
+    data_type => "enum",
+    default_value => "init",
+    extra => { list => ["init", "transact", "failed", "success"] },
+    is_nullable => 0,
+  },
+  "value",
+  { data_type => "integer", is_nullable => 1 },
+  "shipping_costs",
+  { data_type => "integer", is_nullable => 1 },
+  "invoice_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 1,
+  },
+  "modify_timestamp",
+  {
+    data_type => "timestamp",
+    datetime_undef_if_invalid => 1,
+    default_value => \"current_timestamp",
+    is_nullable => 0,
+  },
+  "create_timestamp",
+  {
+    data_type => "timestamp",
+    datetime_undef_if_invalid => 1,
+    default_value => "0000-00-00 00:00:00",
+    is_nullable => 0,
+  },
+  "complete_timestamp",
+  {
+    data_type => "timestamp",
+    datetime_undef_if_invalid => 1,
+    default_value => "0000-00-00 00:00:00",
+    is_nullable => 0,
+  },
+);
+
+
+__PACKAGE__->set_primary_key("id");
+
+
+__PACKAGE__->has_many(
+  "contracts",
+  "NGCP::Schema::billing::Result::contracts",
+  { "foreign.order_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->belongs_to(
+  "customer",
+  "NGCP::Schema::billing::Result::customers",
+  { id => "customer_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
+);
+
+
+__PACKAGE__->belongs_to(
+  "delivery_contact",
+  "NGCP::Schema::billing::Result::contacts",
+  { id => "delivery_contact_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
+);
+
+
+__PACKAGE__->belongs_to(
+  "invoice",
+  "NGCP::Schema::billing::Result::invoices",
+  { id => "invoice_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
+);
+
+
+__PACKAGE__->has_many(
+  "order_payments",
+  "NGCP::Schema::billing::Result::order_payments",
+  { "foreign.order_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->belongs_to(
+  "reseller",
+  "NGCP::Schema::billing::Result::resellers",
+  { id => "reseller_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
+);
+=encoding UTF-8
+
+=head1 NAME
+
+NGCP::Schema::billing::Result::orders
+
+=head1 TABLE: C<orders>
+
+=head1 ACCESSORS
+
+=head2 id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_auto_increment: 1
+  is_nullable: 0
+
+=head2 reseller_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_foreign_key: 1
+  is_nullable: 1
+
+=head2 customer_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_foreign_key: 1
+  is_nullable: 1
+
+=head2 delivery_contact_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_foreign_key: 1
+  is_nullable: 1
+
+=head2 type
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 31
+
+=head2 state
+
+  data_type: 'enum'
+  default_value: 'init'
+  extra: {list => ["init","transact","failed","success"]}
+  is_nullable: 0
+
+=head2 value
+
+  data_type: 'integer'
+  is_nullable: 1
+
+=head2 shipping_costs
+
+  data_type: 'integer'
+  is_nullable: 1
+
+=head2 invoice_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_foreign_key: 1
+  is_nullable: 1
+
+=head2 modify_timestamp
+
+  data_type: 'timestamp'
+  datetime_undef_if_invalid: 1
+  default_value: current_timestamp
+  is_nullable: 0
+
+=head2 create_timestamp
+
+  data_type: 'timestamp'
+  datetime_undef_if_invalid: 1
+  default_value: '0000-00-00 00:00:00'
+  is_nullable: 0
+
+=head2 complete_timestamp
+
+  data_type: 'timestamp'
+  datetime_undef_if_invalid: 1
+  default_value: '0000-00-00 00:00:00'
+  is_nullable: 0
+
+=head1 PRIMARY KEY
+
+=over 4
+
+=item * L</id>
+
+=back
+
+=head1 RELATIONS
+
+=head2 contracts
+
+Type: has_many
+
+Related object: L<NGCP::Schema::billing::Result::contracts>
+
+=head2 customer
+
+Type: belongs_to
+
+Related object: L<NGCP::Schema::billing::Result::customers>
+
+=head2 delivery_contact
+
+Type: belongs_to
+
+Related object: L<NGCP::Schema::billing::Result::contacts>
+
+=head2 invoice
+
+Type: belongs_to
+
+Related object: L<NGCP::Schema::billing::Result::invoices>
+
+=head2 order_payments
+
+Type: has_many
+
+Related object: L<NGCP::Schema::billing::Result::order_payments>
+
+=head2 reseller
+
+Type: belongs_to
+
+Related object: L<NGCP::Schema::billing::Result::resellers>
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-05 17:12:47
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:6TGqYmluDQ+Igvag2UbDWA
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+__PACKAGE__->meta->make_immutable;
+1;

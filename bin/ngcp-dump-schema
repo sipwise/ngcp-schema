@@ -1,0 +1,61 @@
+#!/usr/bin/perl
+use Sipwise::Base;
+use DBIx::Class::Schema::Loader qw(make_schema_at);
+use File::Path qw(make_path);
+use Quantum::Superpositions qw(any);
+
+my $dump_dir = 'lib';
+make_path $dump_dir;
+
+for my $db (qw(accounting billing carrier kamailio ngcp provisioning sipstats)) {
+    make_schema_at(
+        "NGCP::Schema::$db",
+        {
+            col_collision_map => 'column_%s',
+            dump_directory => $dump_dir,
+            filter_generated_code => sub {
+                my ($type, $class, $text) = @_;
+                my (@source, @pod);
+                my $in_pod = 0;
+                for my $line (split /(?<=\n)/, $text) {
+                    next if $line eq any(
+                        "use utf8;\n",
+                        "use strict;\n",
+                        "use warnings;\n",
+                        "use Moose;\n",
+                        "use MooseX::NonMoose;\n",
+                        "use MooseX::MarkAsMethods autoclean => 1;\n",
+                    );
+                    if ($line =~ /^=head/) {
+                        $in_pod = 1;
+                    }
+                    if ($line =~ /^=cut/) {
+                        $in_pod = 0;
+                        next;
+                    }
+                    if ($in_pod) {
+                        push @pod, $line;
+                    } else {
+                        push @source, $line;
+                    }
+                }
+                my $package = shift @source;
+                @source = (
+                    $package,
+                    "use Sipwise::Base;\n",
+                    ($package =~ /::Result::/ ? "use MooseX::NonMoose;\n" : ()),
+                    "our \$VERSION = '1.000';\n",
+                    @source,
+                );
+                @pod = ("=encoding UTF-8\n\n", @pod, "=cut\n") if @pod;
+                return join '', @source, @pod;
+            },
+            moniker_map => λ{ $_[0] },
+            quiet => 1,
+            use_moose => 1,
+        },
+        [
+            "dbi:mysql:dbname=$db", 'root'
+        ],
+    );
+}
