@@ -5,11 +5,16 @@ my $builder = Module::Build->new(
     dist_author       => 'Lars Dieckow <ldieckow@sipwise.com>',
     dist_version_from => 'lib/NGCP/Schema.pm',
     requires          => {
+        'aliased'                     => 0,
         'DBIx::Class::Schema::Loader' => 0,
         'File::Path'                  => 0,
+        'MooseX::FileAttribute'       => 0,
         'MooseX::NonMoose'            => 0,
         'NGCP'                        => 0,
         'Quantum::Superpositions'     => 0,
+        'Regexp::Common'              => 0,
+        'Regexp::IPv6'                => 0,
+        'Throwable::Error'            => 0,
     },
     add_to_cleanup => ['NGCP-Schema-*'],
 );
