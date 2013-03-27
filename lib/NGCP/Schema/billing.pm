@@ -71,7 +71,7 @@ method get_domain($reseller_id, $domain) {
             }
         )->all
     };
-    for my $status qw(active locked terminated) {
+    for my $status (qw(active locked terminated)) {
         $return{subscribers}{$status} = 0 unless exists $return{subscribers}{$status};
     }
     return \%return;
