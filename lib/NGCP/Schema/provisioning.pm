@@ -91,7 +91,6 @@ method delete_domain($data) {
         description => 'Client.Syntax.MalformedDomain',
         message => "malformed domain '$data->{domain}' in request",
     }) unless NGCP::Schema->new->check_domain({domain => $data->{domain}});
-    }) unless NGCP::Schema->new->check_domain({domain => $data->{domain}});
     $self->txn_do(λ{
         my $domainid = $self->_get_domain_id($data->{domain});
         $self->resultset('voip_domains')->search(
