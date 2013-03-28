@@ -25,22 +25,24 @@ has('provisioning', is => 'rw', isa => 'NGCP::Schema::provisioning', lazy => 1, 
 method get_domain($reseller_id, $domain) {
     my %return;
     $return{domain} = $domain;
-    $return{id} = $self->resultset('domains')->search(
-        {
-            domain => $domain,
-            defined($reseller_id)
-                ? (
-                    'domain_resellers.domain_id' => {-ident => 'me.id'},
-                    'domain_resellers.reseller_id' => $reseller_id,
-                )
-                : ()
-        },
-        {
-            join   => 'domain_resellers',
-            select => [{distinct => ['me.id']}],
-            as     => ['id'],
-        }
-    )->single->id;
+    try {
+        $return{id} = $self->resultset('domains')->search(
+            {
+                domain => $domain,
+                defined($reseller_id)
+                    ? (
+                        'domain_resellers.domain_id' => {-ident => 'me.id'},
+                        'domain_resellers.reseller_id' => $reseller_id,
+                    )
+                    : ()
+            },
+            {
+                join   => 'domain_resellers',
+                select => [{distinct => ['me.id']}],
+                as     => ['id'],
+            }
+        )->single->id;
+    };
     Exception->throw({
         description => 'Client.Voip.NoSuchDomain',
         message => "unknown domain '$domain'",
@@ -95,7 +97,11 @@ method create_domain($data, $reseller_id?) {
 # /FIXME
     $self->txn_do(λ{
         # just to verify the domain does not exist for the reseller
-        if (defined $self->get_domain($reseller_id, $data->{domain})) {
+        my $dbdom;
+        try {
+            $dbdom = $self->get_domain($reseller_id, $data->{domain});
+        };
+        if (defined $dbdom) {
             Exception->throw({
                 description => 'Client.Voip.ExistingDomain',
                 message => "domain '$data->{domain}' already exists in the billing database",
@@ -106,7 +112,9 @@ method create_domain($data, $reseller_id?) {
         # this forces domains to be unique!
         # we need this to simplify our overall data structure a bit
         # at least our voip_dom_preferences are partially depending on it
-        my $dbdom = $self->get_domain(undef, $data->{domain});
+        try {
+            $dbdom = $self->get_domain(undef, $data->{domain});
+        };
         if (defined $dbdom) {
             Exception->throw({
                 description => 'Client.Voip.ExistingDomain',
@@ -130,7 +138,11 @@ method create_domain($data, $reseller_id?) {
         }
         # domain may already exist in provisioning DB if another reseller uses it
         my $provisioning = $self->provisioning;
-        if ($provisioning->get_domain({domain => $data->{domain}})) {
+        my $dom;
+        try {
+            $dom = $provisioning->get_domain({domain => $data->{domain}});
+        };
+        if (defined $dom) {
             $provisioning->update_domain($data);
         } else {
             $provisioning->create_domain($data);

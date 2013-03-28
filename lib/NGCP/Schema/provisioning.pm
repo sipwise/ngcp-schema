@@ -19,7 +19,10 @@ use aliased 'NGCP::Schema::Exception';
 has('validator', is => 'rw', isa => 'NGCP::Schema', lazy => 1, default => sub { return NGCP::Schema->new; });
 
 method _get_domain_id($domain) {
-    my $domainid = $self->resultset('voip_domains')->search({domain => $domain})->first->id;
+    my $domainid;
+    try {
+        $domainid = $self->resultset('voip_domains')->search({domain => $domain})->first->id;
+    };
     Exception->throw({
         description => 'Client.Voip.NoSuchDomain',
         message => "domain '$domain' does not exist",
