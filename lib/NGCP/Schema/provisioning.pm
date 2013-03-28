@@ -17,7 +17,7 @@ use NGCP::Schema qw();
 use aliased 'NGCP::Schema::Exception';
 
 method _get_domain_id($domain) {
-    my $domainid = $self->resultset('voip_domains')->search(id => $domain)->first->id;
+    my $domainid = $self->resultset('voip_domains')->search({domain => $domain})->first->id;
     Exception->throw({
         description => 'Client.Voip.NoSuchDomain',
         message => "domain '$domain' does not exist",
@@ -63,7 +63,7 @@ method get_domain($data) {
         description => 'Client.Syntax.MalformedDomain',
         message => "malformed domain '$data->{domain}' in request",
     }) unless NGCP::Schema->new->check_domain({domain => $data->{domain}});
-    return $self->resultset('voip_domains')->search(id => $self->_get_domain_id($data->{domain}));
+    return $self->resultset('voip_domains')->search({id => $self->_get_domain_id($data->{domain})});
 }
 
 method update_domain($data) {
