@@ -63,7 +63,7 @@ method get_domain($data) {
     Exception->throw({
         description => 'Client.Syntax.MissingParam',
         message => "missing parameter 'domain' in request",
-    }) unless exists $$data{domain};
+    }) unless exists $data->{domain};
     Exception->throw({
         description => 'Client.Syntax.MalformedDomain',
         message => "malformed domain '$data->{domain}' in request",
