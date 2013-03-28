@@ -40,7 +40,7 @@ method check_domain($data) {
     $self->validate($data, ['domain']);
     my $domain = $data->{domain};
     return 1 if $domain =~ /^(?:[a-z0-9]+(?:-[a-z0-9]+)*\.)+[a-z]+$/i;
-    return 1 if $self->config->{allow_ip_as_domain}
+    return 1 if $self->config->config->{allow_ip_as_domain}
         and ($self->check_ip4({ip4 => $domain}) || $self->check_ip6_brackets({ip6brackets => $domain}));
     return;
 }
