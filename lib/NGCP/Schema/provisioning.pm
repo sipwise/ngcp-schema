@@ -16,6 +16,8 @@ __PACKAGE__->load_namespaces;
 use NGCP::Schema qw();
 use aliased 'NGCP::Schema::Exception';
 
+has('validator', is => 'rw', isa => 'NGCP::Schema', lazy => 1, default => sub { return NGCP::Schema->new; });
+
 method _get_domain_id($domain) {
     my $domainid = $self->resultset('voip_domains')->search({domain => $domain})->first->id;
     Exception->throw({
@@ -35,7 +37,7 @@ method create_domain($data) {
     Exception->throw({
         description => 'Client.Syntax.MalformedDomain',
         message => "malformed domain '$data->{domain}' in request",
-    }) unless NGCP::Schema->new->check_domain({domain => $data->{domain}});
+    }) unless $self->validator->check_domain({domain => $data->{domain}});
 # /FIXME
 
     $self->txn_do(λ{
@@ -62,7 +64,7 @@ method get_domain($data) {
     Exception->throw({
         description => 'Client.Syntax.MalformedDomain',
         message => "malformed domain '$data->{domain}' in request",
-    }) unless NGCP::Schema->new->check_domain({domain => $data->{domain}});
+    }) unless $self->validator->check_domain({domain => $data->{domain}});
     return $self->resultset('voip_domains')->search({id => $self->_get_domain_id($data->{domain})});
 }
 
@@ -74,7 +76,7 @@ method update_domain($data) {
     Exception->throw({
         description => 'Client.Syntax.MalformedDomain',
         message => "malformed domain '$data->{domain}' in request",
-    }) unless NGCP::Schema->new->check_domain({domain => $data->{domain}});
+    }) unless $self->validator->check_domain({domain => $data->{domain}});
     $self->txn_do(λ{
         my $domainid = $self->_get_domain_id($data->{domain});
     });
@@ -90,7 +92,7 @@ method delete_domain($data) {
     Exception->throw({
         description => 'Client.Syntax.MalformedDomain',
         message => "malformed domain '$data->{domain}' in request",
-    }) unless NGCP::Schema->new->check_domain({domain => $data->{domain}});
+    }) unless $self->validator->check_domain({domain => $data->{domain}});
     $self->txn_do(λ{
         my $domainid = $self->_get_domain_id($data->{domain});
         $self->resultset('voip_domains')->search(

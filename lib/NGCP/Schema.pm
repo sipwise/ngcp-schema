@@ -7,7 +7,7 @@ use Regexp::IPv6 qw($IPv6_re);
 
 our $VERSION = '1.000';
 
-has('config', is => 'ro', lazy => 1, default => sub { NGCP::Schema::Config->new->config });
+has('config', is => 'rw', lazy => 1, default => sub { NGCP::Schema::Config->new->config });
 
 method validate($data, $mandatory_params, $optional_params?) {
     Exception->throw({

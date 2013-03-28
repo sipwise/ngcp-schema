@@ -17,6 +17,11 @@ use NGCP::Schema qw();
 use NGCP::Schema::provisioning qw();
 use aliased 'NGCP::Schema::Exception';
 
+has('validator', is => 'rw', isa => 'NGCP::Schema', lazy => 1, default => sub { return NGCP::Schema->new; });
+has('provisioning', is => 'rw', isa => 'NGCP::Schema::provisioning', lazy => 1, default => sub {
+    return NGCP::Schema::provisioning->connect;
+});
+
 method get_domain($reseller_id, $domain) {
     my %return;
     $return{domain} = $domain;
@@ -86,7 +91,7 @@ method create_domain($data, $reseller_id?) {
     Exception->throw({
         description => 'Client.Syntax.MalformedDomain',
         message => "malformed domain '$data->{domain}' in request",
-    }) unless NGCP::Schema->new->check_domain({domain => $data->{domain}});
+    }) unless $self->validator->check_domain({domain => $data->{domain}});
 # /FIXME
     $self->txn_do(λ{
         # just to verify the domain does not exist for the reseller
@@ -124,7 +129,7 @@ method create_domain($data, $reseller_id?) {
             }) if defined $reseller_id;
         }
         # domain may already exist in provisioning DB if another reseller uses it
-        my $provisioning = NGCP::Schema::provisioning->connect;
+        my $provisioning = $self->provisioning;
         if ($provisioning->get_domain({domain => $data->{domain}})) {
             $provisioning->update_domain($data);
         } else {
@@ -142,7 +147,7 @@ method delete_domain($data, $reseller_id) {
     Exception->throw({
         description => 'Client.Syntax.MalformedDomain',
         message => "malformed domain '$data->{domain}' in request",
-    }) unless NGCP::Schema->new->check_domain({domain => $data->{domain}});
+    }) unless $self->validator->check_domain({domain => $data->{domain}});
     $self->txn_do(λ{
         my $remaining_resellers = $self->delete_domain($reseller_id, $data->{domain});
         unless ($remaining_resellers) {
