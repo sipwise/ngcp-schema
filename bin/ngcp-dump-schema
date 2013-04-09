@@ -2,17 +2,30 @@
 use Sipwise::Base;
 use DBIx::Class::Schema::Loader qw(make_schema_at);
 use File::Path qw(make_path);
+use Getopt::Long qw(GetOptions);
 use Quantum::Superpositions qw(any);
+use Pod::Usage qw(pod2usage);
 
-my $dump_dir = 'lib';
-make_path $dump_dir;
+my %opt = (
+    dump_directory => 'lib',
+);
+
+GetOptions(\%opt, 'dump_directory:s', 'overwrite_modifications', 'version=s', 'help|?', 'man')
+    or die 'could not process command-line options';
+
+pod2usage(-exitval => 1) if $opt{help};
+pod2usage(-exitval => 0, -verbose => 2) if $opt{man};
+pod2usage unless $opt{version};
+
+make_path $opt{dump_directory};
 
 for my $db (qw(accounting billing carrier kamailio ngcp provisioning sipstats)) {
     make_schema_at(
         "NGCP::Schema::$db",
         {
+            overwrite_modifications => $opt{overwrite_modifications},
             col_collision_map => 'column_%s',
-            dump_directory => $dump_dir,
+            dump_directory => $opt{dump_directory},
             filter_generated_code => sub {
                 my ($type, $class, $text) = @_;
                 my (@source, @pod);
@@ -44,7 +57,7 @@ for my $db (qw(accounting billing carrier kamailio ngcp provisioning sipstats)) 
                     $package,
                     "use Sipwise::Base;\n",
                     ($package =~ /::Result::/ ? "use MooseX::NonMoose;\n" : ()),
-                    "our \$VERSION = '1.000';\n",
+                    "our \$VERSION = '$opt{version}';\n",
                     @source,
                 );
                 @pod = ("=encoding UTF-8\n\n", @pod, "=cut\n") if @pod;
@@ -59,3 +72,49 @@ for my $db (qw(accounting billing carrier kamailio ngcp provisioning sipstats)) 
         ],
     );
 }
+
+__END__
+
+=encoding UTF-8
+
+=head1 NAME
+
+ncgp-dump-schema - recreate schema files from live database definition
+
+=head1 SYNOPSIS
+
+    perl bin/ncgp-dump-schema --version='1.000'
+
+=head2 Options
+
+    --dump_directory            output location, default 'lib'
+    --overwrite_modifications   whether to dicard changes in generated code
+    --version                   (required) version for dumped schema classes
+    --help                      brief help message
+    --man                       full documentation
+
+=head1 OPTIONS
+
+=head2 C<--dump_directory>
+
+Directory name for the output, default is F<lib>.
+
+=head2 C<--overwrite_modifications>
+
+(boolean) See L<DBIx::Class::Schema::Loader::Base/overwrite_modifications>,
+default is false. Use with care, since this is a potentially destructive
+operation, only apply to a working copy in a known safe fall-back state.
+
+=head2 C<--version>
+
+(required) Version for the dumped classes. Increase the version when
+incompatible changes are done, e.g. adding a table. See L<Perl::Version> for
+the notion and L<Sipwise::CodingStandards/"versions"> for guidance.
+
+=head2 C<--help>
+
+Print a brief help message and exits.
+
+=head2 C<--man>
+
+Prints the manual page and exits.
