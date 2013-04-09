@@ -1,7 +1,7 @@
 package NGCP::Schema::billing::Result::billing_fees_history;
 use Sipwise::Base;
 use MooseX::NonMoose;
-our $VERSION = '1.000';
+our $VERSION = '1.001';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -38,8 +38,17 @@ __PACKAGE__->add_columns(
     is_foreign_key => 1,
     is_nullable => 1,
   },
+  "source",
+  { data_type => "varchar", default_value => ".", is_nullable => 0, size => 255 },
   "destination",
   { data_type => "varchar", is_nullable => 0, size => 255 },
+  "direction",
+  {
+    data_type => "enum",
+    default_value => "out",
+    extra => { list => ["in", "out"] },
+    is_nullable => 0,
+  },
   "type",
   {
     data_type => "enum",
@@ -152,11 +161,25 @@ NGCP::Schema::billing::Result::billing_fees_history
   is_foreign_key: 1
   is_nullable: 1
 
+=head2 source
+
+  data_type: 'varchar'
+  default_value: '.'
+  is_nullable: 0
+  size: 255
+
 =head2 destination
 
   data_type: 'varchar'
   is_nullable: 0
   size: 255
+
+=head2 direction
+
+  data_type: 'enum'
+  default_value: 'out'
+  extra: {list => ["in","out"]}
+  is_nullable: 0
 
 =head2 type
 
@@ -248,8 +271,8 @@ Related object: L<NGCP::Schema::billing::Result::billing_zones_history>
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-05 17:12:46
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:e5P+NuayyMen2ukZlXAazA
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:44
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:MMt6wWsX8L2m+p6HxGUFWQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

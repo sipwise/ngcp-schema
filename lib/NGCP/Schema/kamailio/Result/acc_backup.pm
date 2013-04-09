@@ -1,7 +1,7 @@
 package NGCP::Schema::kamailio::Result::acc_backup;
 use Sipwise::Base;
 use MooseX::NonMoose;
-our $VERSION = '1.000';
+our $VERSION = '1.001';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -189,8 +189,8 @@ NGCP::Schema::kamailio::Result::acc_backup
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-05 17:13:06
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:xOUce1zjrcziYrqHMjSnRQ
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:57
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:nvEURbNyxW00hoXMDRcWDw
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

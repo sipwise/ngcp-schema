@@ -1,7 +1,7 @@
 package NGCP::Schema::accounting::Result::acc;
 use Sipwise::Base;
 use MooseX::NonMoose;
-our $VERSION = '1.000';
+our $VERSION = '1.001';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -189,8 +189,8 @@ NGCP::Schema::accounting::Result::acc
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-05 17:12:32
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:WBU6oWZxMUyyvRxEK8JXkw
+# Created by DBIx::Class::Schema::Loader v0.07025 @ 2013-04-09 12:30:37
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:xeA6MKKfGSojXRMYQVBNAg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

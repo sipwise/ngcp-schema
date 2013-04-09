@@ -1,7 +1,7 @@
 package NGCP::Schema::billing::Result::billing_fees;
 use Sipwise::Base;
 use MooseX::NonMoose;
-our $VERSION = '1.000';
+our $VERSION = '1.001';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -36,8 +36,17 @@ __PACKAGE__->add_columns(
     is_foreign_key => 1,
     is_nullable => 1,
   },
+  "source",
+  { data_type => "varchar", default_value => ".", is_nullable => 0, size => 255 },
   "destination",
   { data_type => "varchar", is_nullable => 0, size => 255 },
+  "direction",
+  {
+    data_type => "enum",
+    default_value => "out",
+    extra => { list => ["in", "out"] },
+    is_nullable => 0,
+  },
   "type",
   {
     data_type => "enum",
@@ -87,12 +96,6 @@ __PACKAGE__->add_columns(
 
 
 __PACKAGE__->set_primary_key("id");
-
-
-__PACKAGE__->add_unique_constraint(
-  "profdestype_idx",
-  ["billing_profile_id", "destination", "type"],
-);
 
 
 __PACKAGE__->has_many(
@@ -153,11 +156,25 @@ NGCP::Schema::billing::Result::billing_fees
   is_foreign_key: 1
   is_nullable: 1
 
+=head2 source
+
+  data_type: 'varchar'
+  default_value: '.'
+  is_nullable: 0
+  size: 255
+
 =head2 destination
 
   data_type: 'varchar'
   is_nullable: 0
   size: 255
+
+=head2 direction
+
+  data_type: 'enum'
+  default_value: 'out'
+  extra: {list => ["in","out"]}
+  is_nullable: 0
 
 =head2 type
 
@@ -232,20 +249,6 @@ NGCP::Schema::billing::Result::billing_fees
 
 =back
 
-=head1 UNIQUE CONSTRAINTS
-
-=head2 C<profdestype_idx>
-
-=over 4
-
-=item * L</billing_profile_id>
-
-=item * L</destination>
-
-=item * L</type>
-
-=back
-
 =head1 RELATIONS
 
 =head2 billing_fees_histories
@@ -269,8 +272,8 @@ Related object: L<NGCP::Schema::billing::Result::billing_zones>
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-05 17:12:46
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:BcdPTk3zOHg+ey/voZYahg
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:44
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:17Tfco+5X2RpSNYKHdyBAA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

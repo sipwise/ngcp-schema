@@ -1,7 +1,7 @@
 package NGCP::Schema::accounting::Result::prepaid_costs;
 use Sipwise::Base;
 use MooseX::NonMoose;
-our $VERSION = '1.000';
+our $VERSION = '1.001';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -91,8 +91,8 @@ NGCP::Schema::accounting::Result::prepaid_costs
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-05 17:12:33
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:qhLui54hmrUYmOoeOwr+cw
+# Created by DBIx::Class::Schema::Loader v0.07025 @ 2013-04-09 12:30:38
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:2+OTlixP/26U3+pI8eH/Ig
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

@@ -1,4 +1,4 @@
-package NGCP::Schema::provisioning::Result::xmlgroups;
+package NGCP::Schema::provisioning::Result::voip_sound_groups;
 use Sipwise::Base;
 use MooseX::NonMoose;
 our $VERSION = '1.001';
@@ -11,7 +11,7 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
-__PACKAGE__->table("xmlgroups");
+__PACKAGE__->table("voip_sound_groups");
 
 
 __PACKAGE__->add_columns(
@@ -23,7 +23,7 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
   },
   "name",
-  { data_type => "varchar", is_nullable => 0, size => 32 },
+  { data_type => "varchar", is_nullable => 0, size => 255 },
 );
 
 
@@ -31,8 +31,8 @@ __PACKAGE__->set_primary_key("id");
 
 
 __PACKAGE__->has_many(
-  "xmlhostgroups",
-  "NGCP::Schema::provisioning::Result::xmlhostgroups",
+  "voip_sounds_handles",
+  "NGCP::Schema::provisioning::Result::voip_sound_handles",
   { "foreign.group_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -40,9 +40,9 @@ __PACKAGE__->has_many(
 
 =head1 NAME
 
-NGCP::Schema::provisioning::Result::xmlgroups
+NGCP::Schema::provisioning::Result::voip_sound_groups
 
-=head1 TABLE: C<xmlgroups>
+=head1 TABLE: C<voip_sound_groups>
 
 =head1 ACCESSORS
 
@@ -57,7 +57,7 @@ NGCP::Schema::provisioning::Result::xmlgroups
 
   data_type: 'varchar'
   is_nullable: 0
-  size: 32
+  size: 255
 
 =head1 PRIMARY KEY
 
@@ -69,17 +69,17 @@ NGCP::Schema::provisioning::Result::xmlgroups
 
 =head1 RELATIONS
 
-=head2 xmlhostgroups
+=head2 voip_sounds_handles
 
 Type: has_many
 
-Related object: L<NGCP::Schema::provisioning::Result::xmlhostgroups>
+Related object: L<NGCP::Schema::provisioning::Result::voip_sound_handles>
 
 =cut
 
 
 # Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:34:08
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ucvvk+FI4dH3DsIlBheBlQ
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:FPx2AvOYdXuNKpCy8/gS8w
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

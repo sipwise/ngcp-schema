@@ -1,7 +1,7 @@
 package NGCP::Schema::provisioning::Result::voip_cc_mappings;
 use Sipwise::Base;
 use MooseX::NonMoose;
-our $VERSION = '1.000';
+our $VERSION = '1.001';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -95,8 +95,8 @@ Related object: L<NGCP::Schema::provisioning::Result::voip_subscribers>
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-05 17:13:35
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:43nnNdcepZsZ9juHXZDgAg
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:34:07
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:OolkExIfAfgs0kNyKbpfrw
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

@@ -1,7 +1,7 @@
 package NGCP::Schema::kamailio::Result::rls_presentity;
 use Sipwise::Base;
 use MooseX::NonMoose;
-our $VERSION = '1.000';
+our $VERSION = '1.001';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -129,8 +129,8 @@ NGCP::Schema::kamailio::Result::rls_presentity
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-05 17:13:07
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:sbH4CMNqhw8xPRmNa6HkUg
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:57
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:kFex2TM0pGe9YlkLOvaYTg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

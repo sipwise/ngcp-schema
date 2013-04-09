@@ -1,7 +1,7 @@
 package NGCP::Schema::accounting::Result::cdr;
 use Sipwise::Base;
 use MooseX::NonMoose;
-our $VERSION = '1.000';
+our $VERSION = '1.001';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -109,29 +109,53 @@ __PACKAGE__->add_columns(
   { data_type => "decimal", is_nullable => 0, size => [13, 3] },
   "call_id",
   { data_type => "varchar", is_nullable => 0, size => 255 },
-  "carrier_cost",
+  "source_carrier_cost",
   { data_type => "decimal", is_nullable => 1, size => [10, 2] },
-  "reseller_cost",
+  "source_reseller_cost",
   { data_type => "decimal", is_nullable => 1, size => [10, 2] },
-  "customer_cost",
+  "source_customer_cost",
   { data_type => "decimal", is_nullable => 1, size => [10, 2] },
-  "carrier_free_time",
+  "source_carrier_free_time",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
-  "reseller_free_time",
+  "source_reseller_free_time",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
-  "customer_free_time",
+  "source_customer_free_time",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
-  "carrier_billing_fee_id",
+  "source_carrier_billing_fee_id",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
-  "reseller_billing_fee_id",
+  "source_reseller_billing_fee_id",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
-  "customer_billing_fee_id",
+  "source_customer_billing_fee_id",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
-  "carrier_billing_zone_id",
+  "source_carrier_billing_zone_id",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
-  "reseller_billing_zone_id",
+  "source_reseller_billing_zone_id",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
-  "customer_billing_zone_id",
+  "source_customer_billing_zone_id",
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
+  "destination_carrier_cost",
+  { data_type => "decimal", is_nullable => 1, size => [10, 2] },
+  "destination_reseller_cost",
+  { data_type => "decimal", is_nullable => 1, size => [10, 2] },
+  "destination_customer_cost",
+  { data_type => "decimal", is_nullable => 1, size => [10, 2] },
+  "destination_carrier_free_time",
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
+  "destination_reseller_free_time",
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
+  "destination_customer_free_time",
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
+  "destination_carrier_billing_fee_id",
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
+  "destination_reseller_billing_fee_id",
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
+  "destination_customer_billing_fee_id",
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
+  "destination_carrier_billing_zone_id",
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
+  "destination_reseller_billing_zone_id",
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
+  "destination_customer_billing_zone_id",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
   "frag_carrier_onpeak",
   { data_type => "tinyint", is_nullable => 1 },
@@ -380,73 +404,145 @@ NGCP::Schema::accounting::Result::cdr
   is_nullable: 0
   size: 255
 
-=head2 carrier_cost
+=head2 source_carrier_cost
 
   data_type: 'decimal'
   is_nullable: 1
   size: [10,2]
 
-=head2 reseller_cost
+=head2 source_reseller_cost
 
   data_type: 'decimal'
   is_nullable: 1
   size: [10,2]
 
-=head2 customer_cost
+=head2 source_customer_cost
 
   data_type: 'decimal'
   is_nullable: 1
   size: [10,2]
 
-=head2 carrier_free_time
+=head2 source_carrier_free_time
 
   data_type: 'integer'
   extra: {unsigned => 1}
   is_nullable: 1
 
-=head2 reseller_free_time
+=head2 source_reseller_free_time
 
   data_type: 'integer'
   extra: {unsigned => 1}
   is_nullable: 1
 
-=head2 customer_free_time
+=head2 source_customer_free_time
 
   data_type: 'integer'
   extra: {unsigned => 1}
   is_nullable: 1
 
-=head2 carrier_billing_fee_id
+=head2 source_carrier_billing_fee_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
   is_nullable: 1
 
-=head2 reseller_billing_fee_id
+=head2 source_reseller_billing_fee_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
   is_nullable: 1
 
-=head2 customer_billing_fee_id
+=head2 source_customer_billing_fee_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
   is_nullable: 1
 
-=head2 carrier_billing_zone_id
+=head2 source_carrier_billing_zone_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
   is_nullable: 1
 
-=head2 reseller_billing_zone_id
+=head2 source_reseller_billing_zone_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
   is_nullable: 1
 
-=head2 customer_billing_zone_id
+=head2 source_customer_billing_zone_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 destination_carrier_cost
+
+  data_type: 'decimal'
+  is_nullable: 1
+  size: [10,2]
+
+=head2 destination_reseller_cost
+
+  data_type: 'decimal'
+  is_nullable: 1
+  size: [10,2]
+
+=head2 destination_customer_cost
+
+  data_type: 'decimal'
+  is_nullable: 1
+  size: [10,2]
+
+=head2 destination_carrier_free_time
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 destination_reseller_free_time
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 destination_customer_free_time
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 destination_carrier_billing_fee_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 destination_reseller_billing_fee_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 destination_customer_billing_fee_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 destination_carrier_billing_zone_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 destination_reseller_billing_zone_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 destination_customer_billing_zone_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
@@ -516,8 +612,8 @@ NGCP::Schema::accounting::Result::cdr
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-05 17:12:33
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:d7Lt2OCihnsuWqpZG4ik2A
+# Created by DBIx::Class::Schema::Loader v0.07025 @ 2013-04-09 12:30:37
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:y8EO3S6Wb5iq+jma9M+SWA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

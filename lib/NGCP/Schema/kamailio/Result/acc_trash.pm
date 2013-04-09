@@ -1,7 +1,7 @@
 package NGCP::Schema::kamailio::Result::acc_trash;
 use Sipwise::Base;
 use MooseX::NonMoose;
-our $VERSION = '1.000';
+our $VERSION = '1.001';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -189,8 +189,8 @@ NGCP::Schema::kamailio::Result::acc_trash
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-05 17:13:06
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:W3Eh/IC3/D4n3YnRsL6vlA
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:57
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ga7m/PW4l7j33qgKZrlK+g
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

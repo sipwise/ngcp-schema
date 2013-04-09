@@ -1,7 +1,7 @@
 package NGCP::Schema::billing::Result::contracts;
 use Sipwise::Base;
 use MooseX::NonMoose;
-our $VERSION = '1.000';
+our $VERSION = '1.001';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -123,6 +123,14 @@ __PACKAGE__->belongs_to(
 __PACKAGE__->has_many(
   "contract_balances",
   "NGCP::Schema::billing::Result::contract_balances",
+  { "foreign.contract_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->might_have(
+  "contract_fraud_preference",
+  "NGCP::Schema::billing::Result::contract_fraud_preferences",
   { "foreign.contract_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -299,6 +307,12 @@ Type: has_many
 
 Related object: L<NGCP::Schema::billing::Result::contract_balances>
 
+=head2 contract_fraud_preference
+
+Type: might_have
+
+Related object: L<NGCP::Schema::billing::Result::contract_fraud_preferences>
+
 =head2 contract_registers
 
 Type: has_many
@@ -332,8 +346,8 @@ Related object: L<NGCP::Schema::billing::Result::voip_subscribers>
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-05 17:12:46
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:d1xOUxPPJ4iKqGYb9W8+GA
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:44
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:1OHlRe5ZIGZXOarl9tdd5w
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

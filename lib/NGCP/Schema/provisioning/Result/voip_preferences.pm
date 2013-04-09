@@ -1,7 +1,7 @@
 package NGCP::Schema::provisioning::Result::voip_preferences;
 use Sipwise::Base;
 use MooseX::NonMoose;
-our $VERSION = '1.000';
+our $VERSION = '1.001';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -20,6 +20,13 @@ __PACKAGE__->add_columns(
     data_type => "integer",
     extra => { unsigned => 1 },
     is_auto_increment => 1,
+    is_nullable => 0,
+  },
+  "voip_preference_groups_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
     is_nullable => 0,
   },
   "attribute",
@@ -78,6 +85,14 @@ __PACKAGE__->has_many(
 );
 
 
+__PACKAGE__->belongs_to(
+  "voip_preference_group",
+  "NGCP::Schema::provisioning::Result::voip_preference_groups",
+  { id => "voip_preference_groups_id" },
+  { is_deferrable => 1, on_delete => "RESTRICT", on_update => "CASCADE" },
+);
+
+
 __PACKAGE__->has_many(
   "voip_preferences_enums",
   "NGCP::Schema::provisioning::Result::voip_preferences_enum",
@@ -107,6 +122,13 @@ NGCP::Schema::provisioning::Result::voip_preferences
   data_type: 'integer'
   extra: {unsigned => 1}
   is_auto_increment: 1
+  is_nullable: 0
+
+=head2 voip_preference_groups_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_foreign_key: 1
   is_nullable: 0
 
 =head2 attribute
@@ -207,6 +229,12 @@ Type: has_many
 
 Related object: L<NGCP::Schema::provisioning::Result::voip_peer_preferences>
 
+=head2 voip_preference_group
+
+Type: belongs_to
+
+Related object: L<NGCP::Schema::provisioning::Result::voip_preference_groups>
+
 =head2 voip_preferences_enums
 
 Type: has_many
@@ -222,8 +250,8 @@ Related object: L<NGCP::Schema::provisioning::Result::voip_usr_preferences>
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-05 17:13:36
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:nTXS0lnMB6gIJjvfedRDvA
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:34:08
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:nTr3KVXmXwsIQnBhlndOHg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
