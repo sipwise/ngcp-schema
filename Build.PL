@@ -22,6 +22,12 @@ my $builder = Module::Build->new(
         'Throwable::Error'            => 0,
         'XML::Simple'                 => 0,
     },
+    test_requires => {
+        'Module::Runtime' => 0,
+        'Sipwise::Base' => 0,
+        'Test::Fatal' => 0,
+        'Test::More' => 0,
+    },
     add_to_cleanup => ['NGCP-Schema-*'],
 );
 $builder->create_build_script;
