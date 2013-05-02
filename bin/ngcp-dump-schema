@@ -64,6 +64,10 @@ for my $db (qw(accounting billing carrier kamailio ngcp provisioning sipstats)) 
                 return join '', @source, @pod;
             },
             moniker_map => λ{ $_[0] },
+            col_accessor_map => sub {
+                my ($column) = @_;
+                return $CLASS->can($column) ? "column_$column" : $column;
+            },
             quiet => 1,
             use_moose => 1,
         },
