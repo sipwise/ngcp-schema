@@ -52,7 +52,7 @@ method create_domain($data) {
     }) unless $self->validator->check_domain({domain => $data->{domain}});
 # /FIXME
 
-    $self->txn_do(λ{
+    $self->txn_do(sub {
         # FIXME ack-basswards exception check: abused for control flow
         eval {
             $self->_get_domain_id($data->{domain});
@@ -88,7 +88,7 @@ method update_domain($data) {
         description => 'Client.Syntax.MalformedDomain',
         message => "malformed domain '$data->{domain}' in request",
     }) unless $self->validator->check_domain({domain => $data->{domain}});
-    $self->txn_do(λ{
+    $self->txn_do(sub {
         my $domainid = $self->_get_domain_id($data->{domain});
     });
     return;
@@ -103,7 +103,7 @@ method delete_domain($data) {
         description => 'Client.Syntax.MalformedDomain',
         message => "malformed domain '$data->{domain}' in request",
     }) unless $self->validator->check_domain({domain => $data->{domain}});
-    $self->txn_do(λ{
+    $self->txn_do(sub {
         my $domainid = $self->_get_domain_id($data->{domain});
         $self->resultset('voip_domains')->search(
             {},

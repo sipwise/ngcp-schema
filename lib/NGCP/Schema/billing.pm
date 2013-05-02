@@ -104,7 +104,7 @@ method create_domain($data, $reseller_id?) {
         message => "malformed domain '$data->{domain}' in request",
     }) unless $self->validator->check_domain({domain => $data->{domain}});
 # /FIXME
-    $self->txn_do(λ{
+    $self->txn_do(sub {
         # just to verify the domain does not exist for the reseller
         my $dbdom;
         try {
@@ -169,7 +169,7 @@ method delete_domain($data, $reseller_id) {
         description => 'Client.Syntax.MalformedDomain',
         message => "malformed domain '$data->{domain}' in request",
     }) unless $self->validator->check_domain({domain => $data->{domain}});
-    $self->txn_do(λ{
+    $self->txn_do(sub {
         my $remaining_resellers = $self->delete_domain($reseller_id, $data->{domain});
         unless ($remaining_resellers) {
             # just to verify the domain exists
@@ -218,7 +218,7 @@ method delete_domain($data, $reseller_id) {
                     message => 'reseller_id empty in domain delete, still we have a persisting domain reseller.',
                 }) unless $reseller_id;
                 # Oooops! Breaks data encapsulation heinously! :o/
-                $self->storage->dbh_do(λ{
+                $self->storage->dbh_do(sub {
                     my (undef, $dbh, @bind) = @_;
                     $dbh->do(
                         'DELETE FROM provisioning.pvs

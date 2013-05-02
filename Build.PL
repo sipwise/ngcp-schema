@@ -18,7 +18,7 @@ my $builder = Module::Build->new(
         'Pod::Usage'                  => 0,
         'Regexp::Common'              => 0,
         'Regexp::IPv6'                => 0,
-        'Sipwise::Base'               => 0,
+        'Sipwise::Base'               => '1.002',
         'Throwable::Error'            => 0,
         'XML::Simple'                 => 0,
     },
