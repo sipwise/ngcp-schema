@@ -55,8 +55,6 @@ method create_domain($data) {
         });
         $self->resultset('voip_domains')->create({domain => $data->{domain}});
     });
-    # FIXME what does this do in the model?
-    # FIXME $self->_sip_domain_reload;
     return;
 }
 
@@ -84,8 +82,6 @@ method update_domain($data) {
     $self->txn_do(λ{
         my $domainid = $self->_get_domain_id($data->{domain});
     });
-    # FIXME what does this do in the model?
-    # FIXME $self->_sip_domain_reload;
     return;
 }
 
@@ -107,7 +103,6 @@ method delete_domain($data) {
             }
         )->delete_all;
     });
-    $self->_sip_domain_reload;
     return;
 }
 
