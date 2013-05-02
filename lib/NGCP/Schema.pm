@@ -7,7 +7,9 @@ use Regexp::IPv6 qw($IPv6_re);
 
 our $VERSION = '1.000';
 
-has('config', is => 'rw', lazy => 1, default => sub { NGCP::Schema::Config->new->config });
+has('config', is => 'rw', isa => 'NGCP::Schema::Config', lazy => 1, default => sub {
+    return NGCP::Schema::Config->instance;
+});
 
 method validate($data, $mandatory_params, $optional_params?) {
     Exception->throw({
@@ -40,7 +42,7 @@ method check_domain($data) {
     $self->validate($data, ['domain']);
     my $domain = $data->{domain};
     return 1 if $domain =~ /^(?:[a-z0-9]+(?:-[a-z0-9]+)*\.)+[a-z]+$/i;
-    return 1 if $self->config->config->{allow_ip_as_domain}
+    return 1 if $self->config->as_hash->{allow_ip_as_domain}
         and ($self->check_ip4({ip4 => $domain}) || $self->check_ip6_brackets({ip6brackets => $domain}));
     return;
 }

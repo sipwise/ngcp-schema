@@ -2,12 +2,13 @@ package NGCP::Schema::Config;
 use Sipwise::Base;
 use Log::Log4perl qw();
 use MooseX::FileAttribute qw(has_file);
+use MooseX::Singleton qw(has);
 use XML::Simple qw();
 
 our $VERSION = '1.000';
 
 has_file('config_file', is => 'rw', required => 1, default => '/etc/ngcp-ossbss/provisioning.conf');
-has('config', isa => 'HashRef', is => 'rw', lazy => 1, default => method {
+has('as_hash', isa => 'HashRef', is => 'rw', lazy => 1, default => method {
     return $self->check_config(XML::Simple->new->XMLin($self->config_file->stringify, ForceArray => 0));
 });
 

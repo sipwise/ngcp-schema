@@ -13,10 +13,19 @@ __PACKAGE__->load_namespaces;
 # Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:34:07
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:9CSthIxIDhU92F42rZZoQQ
 
+use MooseX::ClassAttribute qw(class_has);
 use NGCP::Schema qw();
 use aliased 'NGCP::Schema::Exception';
 
+class_has('config', is => 'rw', isa => 'NGCP::Schema::Config', lazy => 1, default => sub {
+    return NGCP::Schema::Config->instance;
+});
 has('validator', is => 'rw', isa => 'NGCP::Schema', lazy => 1, default => sub { return NGCP::Schema->new; });
+
+method connection {
+    my %connect_info = %{ $self->config->as_hash->{provisioningdb} };
+    $self->SUPER::connection(@connect_info{qw(dsn username password)});
+}
 
 method _get_domain_id($domain) {
     my $domainid;
