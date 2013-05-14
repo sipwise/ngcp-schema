@@ -11,6 +11,9 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
+__PACKAGE__->load_components("InflateColumn::DateTime");
+
+
 __PACKAGE__->table("messages");
 
 
@@ -47,7 +50,12 @@ __PACKAGE__->add_columns(
   "payload",
   { data_type => "blob", is_nullable => 0 },
   "method",
-  { data_type => "varchar", is_nullable => 0, size => 20 },
+  {
+    accessor => "column_method",
+    data_type => "varchar",
+    is_nullable => 0,
+    size => 20,
+  },
   "cseq_method",
   { data_type => "varchar", is_nullable => 0, size => 16 },
   "call_id",
@@ -69,6 +77,14 @@ __PACKAGE__->set_primary_key("id");
 =head1 NAME
 
 NGCP::Schema::sipstats::Result::messages
+
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
+=back
 
 =head1 TABLE: C<messages>
 
@@ -130,6 +146,7 @@ NGCP::Schema::sipstats::Result::messages
 
 =head2 method
 
+  accessor: 'column_method'
   data_type: 'varchar'
   is_nullable: 0
   size: 20
@@ -181,8 +198,8 @@ NGCP::Schema::sipstats::Result::messages
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:34:11
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Zf45hwF5XpL0mNnGszsFGQ
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:23
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:QqFjkAn33sqz0Q+ldibicg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

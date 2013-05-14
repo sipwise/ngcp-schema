@@ -11,6 +11,9 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
+__PACKAGE__->load_components("InflateColumn::DateTime");
+
+
 __PACKAGE__->table("customers");
 
 
@@ -59,6 +62,14 @@ __PACKAGE__->has_many(
 =head1 NAME
 
 NGCP::Schema::carrier::Result::customers
+
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
+=back
 
 =head1 TABLE: C<customers>
 
@@ -132,8 +143,8 @@ Related object: L<NGCP::Schema::carrier::Result::orders>
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:48
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:+goR14iFMAhvkYSWvT0OyA
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:03
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:4FqPE3wVqTd6HjZ02SElsQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

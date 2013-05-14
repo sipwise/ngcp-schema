@@ -11,6 +11,9 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
+__PACKAGE__->load_components("InflateColumn::DateTime");
+
+
 __PACKAGE__->table("dbaliases");
 
 
@@ -42,6 +45,14 @@ __PACKAGE__->add_unique_constraint("alias_idx", ["alias_username", "alias_domain
 =head1 NAME
 
 NGCP::Schema::kamailio::Result::dbaliases
+
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
+=back
 
 =head1 TABLE: C<dbaliases>
 
@@ -105,8 +116,8 @@ NGCP::Schema::kamailio::Result::dbaliases
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:57
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:chWlOJ4bwLVdFGIkAP6gAA
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:11
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:bT5hN1RhXVNm4yhJtn+MrA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

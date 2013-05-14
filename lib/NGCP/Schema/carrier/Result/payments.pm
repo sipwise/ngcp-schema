@@ -11,6 +11,9 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
+__PACKAGE__->load_components("InflateColumn::DateTime");
+
+
 __PACKAGE__->table("payments");
 
 
@@ -72,6 +75,14 @@ __PACKAGE__->belongs_to(
 
 NGCP::Schema::carrier::Result::payments
 
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
+=back
+
 =head1 TABLE: C<payments>
 
 =head1 ACCESSORS
@@ -122,8 +133,8 @@ Related object: L<NGCP::Schema::carrier::Result::orders>
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:48
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:4DugdrtlyCXaAQ/+BDLBCg
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:03
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:vX8z+Mrdx/fqvdqAt+YmGw
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

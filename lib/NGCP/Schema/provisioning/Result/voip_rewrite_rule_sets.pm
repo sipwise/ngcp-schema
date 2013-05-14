@@ -11,6 +11,9 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
+__PACKAGE__->load_components("InflateColumn::DateTime");
+
+
 __PACKAGE__->table("voip_rewrite_rule_sets");
 
 
@@ -54,6 +57,14 @@ __PACKAGE__->has_many(
 =head1 NAME
 
 NGCP::Schema::provisioning::Result::voip_rewrite_rule_sets
+
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
+=back
 
 =head1 TABLE: C<voip_rewrite_rule_sets>
 
@@ -131,8 +142,8 @@ Related object: L<NGCP::Schema::provisioning::Result::voip_rewrite_rules>
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:34:08
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:/OMATBJMDoN5B1x9rhj8BQ
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:20
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:E83+aO7pKNeQcmn4u1IF8w
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

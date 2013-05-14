@@ -11,6 +11,9 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
+__PACKAGE__->load_components("InflateColumn::DateTime");
+
+
 __PACKAGE__->table("language_strings");
 
 
@@ -40,6 +43,14 @@ __PACKAGE__->add_unique_constraint("codelang_idx", ["code", "language"]);
 =head1 NAME
 
 NGCP::Schema::provisioning::Result::language_strings
+
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
+=back
 
 =head1 TABLE: C<language_strings>
 
@@ -92,8 +103,8 @@ NGCP::Schema::provisioning::Result::language_strings
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:34:07
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:w43uSwdHmSZu6SABFnAm2w
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:20
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:uSX1gDYwad7MmF9oillCvg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

@@ -11,6 +11,9 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
+__PACKAGE__->load_components("InflateColumn::DateTime");
+
+
 __PACKAGE__->table("voip_allowed_ip_groups");
 
 
@@ -38,6 +41,14 @@ __PACKAGE__->add_unique_constraint("groupnet_idx", ["group_id", "ipnet"]);
 =head1 NAME
 
 NGCP::Schema::provisioning::Result::voip_allowed_ip_groups
+
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
+=back
 
 =head1 TABLE: C<voip_allowed_ip_groups>
 
@@ -85,8 +96,8 @@ NGCP::Schema::provisioning::Result::voip_allowed_ip_groups
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:34:07
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:x0X3sb59k+Ww/pLKlufO9g
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:20
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:LX2NyQ5kfuJE67K93vo50g
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

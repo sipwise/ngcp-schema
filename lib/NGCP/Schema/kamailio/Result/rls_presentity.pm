@@ -11,6 +11,9 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
+__PACKAGE__->load_components("InflateColumn::DateTime");
+
+
 __PACKAGE__->table("rls_presentity");
 
 
@@ -50,6 +53,14 @@ __PACKAGE__->add_unique_constraint("rls_presentity_idx", ["rlsubs_did", "resourc
 =head1 NAME
 
 NGCP::Schema::kamailio::Result::rls_presentity
+
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
+=back
 
 =head1 TABLE: C<rls_presentity>
 
@@ -129,8 +140,8 @@ NGCP::Schema::kamailio::Result::rls_presentity
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:57
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:kFex2TM0pGe9YlkLOvaYTg
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:12
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ft4JN9aN8zHIf6vPR3eysg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

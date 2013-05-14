@@ -11,6 +11,9 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
+__PACKAGE__->load_components("InflateColumn::DateTime");
+
+
 __PACKAGE__->table("voicemail_users");
 
 
@@ -108,6 +111,14 @@ __PACKAGE__->has_many(
 =head1 NAME
 
 NGCP::Schema::kamailio::Result::voicemail_users
+
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
+=back
 
 =head1 TABLE: C<voicemail_users>
 
@@ -306,8 +317,8 @@ Related object: L<NGCP::Schema::kamailio::Result::voicemail_spool>
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:57
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:t2nMV+q2yJDl8wC4lDURRA
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:12
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:mUIbxiu60zmQx2ZNw3rQvw
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

@@ -11,6 +11,9 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
+__PACKAGE__->load_components("InflateColumn::DateTime");
+
+
 __PACKAGE__->table("lcr_gw");
 
 
@@ -27,7 +30,7 @@ __PACKAGE__->add_columns(
   "gw_name",
   { data_type => "varchar", is_nullable => 1, size => 128 },
   "ip_addr",
-  { data_type => "varchar", is_nullable => 0, size => 64 },
+  { data_type => "varchar", is_nullable => 1, size => 50 },
   "hostname",
   { data_type => "varchar", is_nullable => 1, size => 64 },
   "port",
@@ -79,6 +82,14 @@ __PACKAGE__->has_many(
 
 NGCP::Schema::kamailio::Result::lcr_gw
 
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
+=back
+
 =head1 TABLE: C<lcr_gw>
 
 =head1 ACCESSORS
@@ -105,8 +116,8 @@ NGCP::Schema::kamailio::Result::lcr_gw
 =head2 ip_addr
 
   data_type: 'varchar'
-  is_nullable: 0
-  size: 64
+  is_nullable: 1
+  size: 50
 
 =head2 hostname
 
@@ -216,8 +227,8 @@ Related object: L<NGCP::Schema::kamailio::Result::lcr_rule_target>
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:57
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:l8+6RRLZ4C8OXgomamtk6Q
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:11
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:vccxYatUPFzjaEtMjTY4xQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

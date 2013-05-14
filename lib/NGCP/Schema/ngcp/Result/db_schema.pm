@@ -11,6 +11,9 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
+__PACKAGE__->load_components("InflateColumn::DateTime");
+
+
 __PACKAGE__->table("db_schema");
 
 
@@ -45,6 +48,14 @@ __PACKAGE__->add_unique_constraint("rev_idx", ["revision", "node"]);
 =head1 NAME
 
 NGCP::Schema::ngcp::Result::db_schema
+
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
+=back
 
 =head1 TABLE: C<db_schema>
 
@@ -99,8 +110,8 @@ NGCP::Schema::ngcp::Result::db_schema
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:59
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:0jkeFitaE8buJ6wyvR/gjg
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:14
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:6utrm37mYB/OUIjRr02RsQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

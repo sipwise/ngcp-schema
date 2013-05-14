@@ -11,6 +11,9 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
+__PACKAGE__->load_components("InflateColumn::DateTime");
+
+
 __PACKAGE__->table("active_watchers");
 
 
@@ -87,6 +90,14 @@ __PACKAGE__->add_unique_constraint("active_watchers_idx", ["callid", "to_tag", "
 =head1 NAME
 
 NGCP::Schema::kamailio::Result::active_watchers
+
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
+=back
 
 =head1 TABLE: C<active_watchers>
 
@@ -263,8 +274,8 @@ NGCP::Schema::kamailio::Result::active_watchers
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:57
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:rJsRtAFfyNiQlWUlJg5YUQ
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:11
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:bpjVrVHrNeP3K2AVa59/Zg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

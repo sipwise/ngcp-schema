@@ -11,6 +11,9 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
+__PACKAGE__->load_components("InflateColumn::DateTime");
+
+
 __PACKAGE__->table("domain_attrs");
 
 
@@ -49,6 +52,14 @@ __PACKAGE__->add_unique_constraint("domain_attrs_idx", ["did", "name", "value"])
 =head1 NAME
 
 NGCP::Schema::kamailio::Result::domain_attrs
+
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
+=back
 
 =head1 TABLE: C<domain_attrs>
 
@@ -117,8 +128,8 @@ NGCP::Schema::kamailio::Result::domain_attrs
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:57
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:q9D8s6W9nXBpDEopWK3t4A
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:11
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:UCZki7sGNJnffPgFCBRk1w
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

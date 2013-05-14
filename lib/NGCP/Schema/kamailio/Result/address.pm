@@ -11,6 +11,9 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
+__PACKAGE__->load_components("InflateColumn::DateTime");
+
+
 __PACKAGE__->table("address");
 
 
@@ -30,7 +33,7 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
   },
   "ip_addr",
-  { data_type => "varchar", is_nullable => 0, size => 48 },
+  { data_type => "varchar", is_nullable => 0, size => 50 },
   "mask",
   { data_type => "integer", default_value => 32, is_nullable => 0 },
   "port",
@@ -51,6 +54,14 @@ __PACKAGE__->set_primary_key("id");
 =head1 NAME
 
 NGCP::Schema::kamailio::Result::address
+
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
+=back
 
 =head1 TABLE: C<address>
 
@@ -74,7 +85,7 @@ NGCP::Schema::kamailio::Result::address
 
   data_type: 'varchar'
   is_nullable: 0
-  size: 48
+  size: 50
 
 =head2 mask
 
@@ -106,8 +117,8 @@ NGCP::Schema::kamailio::Result::address
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:57
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:FzVsu1DuqdKe4hHoA5iy+w
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:11
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:2AiRx5PnGWfHeS58iGMXow
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

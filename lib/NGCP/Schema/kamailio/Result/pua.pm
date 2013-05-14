@@ -11,6 +11,9 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
+__PACKAGE__->load_components("InflateColumn::DateTime");
+
+
 __PACKAGE__->table("pua");
 
 
@@ -70,6 +73,14 @@ __PACKAGE__->add_unique_constraint("pua_idx", ["etag", "tuple_id", "call_id", "f
 =head1 NAME
 
 NGCP::Schema::kamailio::Result::pua
+
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
+=back
 
 =head1 TABLE: C<pua>
 
@@ -209,8 +220,8 @@ NGCP::Schema::kamailio::Result::pua
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:57
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:PwzSfAAwCNqZeBHF3gzdjA
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:12
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:t8pMgKFpJoehTl/444EIow
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

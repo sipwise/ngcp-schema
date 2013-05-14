@@ -11,6 +11,9 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
+__PACKAGE__->load_components("InflateColumn::DateTime");
+
+
 __PACKAGE__->table("location");
 
 
@@ -31,12 +34,12 @@ __PACKAGE__->add_columns(
   "received",
   { data_type => "varchar", is_nullable => 1, size => 128 },
   "path",
-  { data_type => "varchar", is_nullable => 1, size => 128 },
+  { data_type => "varchar", is_nullable => 1, size => 512 },
   "expires",
   {
     data_type => "datetime",
     datetime_undef_if_invalid => 1,
-    default_value => "2020-05-28 21:32:15",
+    default_value => "2030-05-28 21:32:15",
     is_nullable => 0,
   },
   "q",
@@ -82,11 +85,22 @@ __PACKAGE__->add_columns(
 
 
 __PACKAGE__->set_primary_key("id");
+
+
+__PACKAGE__->add_unique_constraint("ruid_idx", ["ruid"]);
 =encoding UTF-8
 
 =head1 NAME
 
 NGCP::Schema::kamailio::Result::location
+
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
+=back
 
 =head1 TABLE: C<location>
 
@@ -129,13 +143,13 @@ NGCP::Schema::kamailio::Result::location
 
   data_type: 'varchar'
   is_nullable: 1
-  size: 128
+  size: 512
 
 =head2 expires
 
   data_type: 'datetime'
   datetime_undef_if_invalid: 1
-  default_value: '2020-05-28 21:32:15'
+  default_value: '2030-05-28 21:32:15'
   is_nullable: 0
 
 =head2 q
@@ -222,11 +236,21 @@ NGCP::Schema::kamailio::Result::location
 
 =back
 
+=head1 UNIQUE CONSTRAINTS
+
+=head2 C<ruid_idx>
+
+=over 4
+
+=item * L</ruid>
+
+=back
+
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:57
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:e5LTgkNP8CpScaGr8oMVOg
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:11
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:M7R8Iv6SHVHu3q9TfZ9LkA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

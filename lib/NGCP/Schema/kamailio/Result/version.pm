@@ -11,6 +11,9 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
+__PACKAGE__->load_components("InflateColumn::DateTime");
+
+
 __PACKAGE__->table("version");
 
 
@@ -25,11 +28,22 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
   },
 );
+
+
+__PACKAGE__->add_unique_constraint("table_name_idx", ["table_name"]);
 =encoding UTF-8
 
 =head1 NAME
 
 NGCP::Schema::kamailio::Result::version
+
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
+=back
 
 =head1 TABLE: C<version>
 
@@ -48,11 +62,21 @@ NGCP::Schema::kamailio::Result::version
   extra: {unsigned => 1}
   is_nullable: 0
 
+=head1 UNIQUE CONSTRAINTS
+
+=head2 C<table_name_idx>
+
+=over 4
+
+=item * L</table_name>
+
+=back
+
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:57
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:MpY4hrcmWbp51+1FjU1DXg
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:12
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:E/MQULVYjsXaxiJu3C7l5g
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
