@@ -4,6 +4,24 @@
 
 Changes - Revision history for NGCP-Schema
 
+=head2 1.001  2013-05-14
+
+=over
+
+=item add L<DBIx::Class::InflateColumn::DateTime> to classes
+
+=item simple test for checking consistency of moniker naming against the
+database
+
+=item column accessors that collide with built-in/autoboxed methods are
+prefixed with C<column_>
+
+=item domain handling
+
+=item port configuration and exception handling from ossbss
+
+=back
+
 =head2 1.000  2013-02-05
 
 Initial release.

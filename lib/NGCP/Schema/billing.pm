@@ -294,7 +294,7 @@ NGCP::Schema::billing - billing schema
 
 =head1 VERSION
 
-This document describes NGCP::Schema::billing version 1.000
+This document describes NGCP::Schema::billing version 1.001
 
 =head1 SYNOPSIS
 

@@ -127,7 +127,7 @@ NGCP::Schema::provisioning - provisioning schema
 
 =head1 VERSION
 
-This document describes NGCP::Schema::provisioning version 1.000
+This document describes NGCP::Schema::provisioning version 1.001
 
 =head1 SYNOPSIS
 
