@@ -68,6 +68,7 @@ for my $db (qw(accounting billing carrier kamailio ngcp provisioning sipstats)) 
                 my ($column) = @_;
                 return $CLASS->can($column) ? "column_$column" : $column;
             },
+            components => [qw(InflateColumn::DateTime)],
             quiet => 1,
             use_moose => 1,
         },
