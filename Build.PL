@@ -6,6 +6,7 @@ my $builder = Module::Build->new(
     dist_version_from => 'lib/NGCP/Schema.pm',
     requires          => {
         'aliased'                     => 0,
+        'DBD::mysql'                  => 0,
         'DBIx::Class::Schema::Loader' => 0,
         'File::Path'                  => 0,
         'Getopt::Long'                => 0,
