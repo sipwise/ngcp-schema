@@ -7,6 +7,7 @@ my $builder = Module::Build->new(
     requires          => {
         'aliased'                     => 0,
         'DBD::mysql'                  => 0,
+        'DBIx::Class::EncodedColumn'  => 0,
         'DBIx::Class::Schema::Loader' => 0,
         'File::Path'                  => 0,
         'Getopt::Long'                => 0,

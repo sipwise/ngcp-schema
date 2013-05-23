@@ -11,7 +11,7 @@ our $VERSION = '1.001';
 extends 'DBIx::Class::Core';
 
 
-__PACKAGE__->load_components("InflateColumn::DateTime");
+__PACKAGE__->load_components("InflateColumn::DateTime", "EncodedColumn");
 
 
 __PACKAGE__->table("admins");
@@ -35,7 +35,15 @@ __PACKAGE__->add_columns(
   "login",
   { data_type => "varchar", is_nullable => 0, size => 31 },
   "md5pass",
-  { data_type => "char", is_nullable => 1, size => 32 },
+  {
+    data_type => "char",
+    is_nullable => 1,
+    size => 32,
+    encode_column => 1,
+    encode_class  => 'Digest',
+    encode_args   => {algorithm => 'MD5', format => 'hex'},
+    encode_check_method => 'check_password',
+  },
   "is_master",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "is_superuser",
