@@ -17,7 +17,7 @@ for my $class_name (qw(
     ok(my $class = use_module("NGCP::Schema::$class_name"), "+ load $class_name");
     ok(my $schema = $class->connect, "+ connect $class_name");
     for my $source (sort $schema->sources) {
-        ok(!exception { $schema->resultset($source)->first }, "select $source");
+        ok(!exception { $schema->resultset($source)->first }, "select $class_name.$source");
     }
 }
 
