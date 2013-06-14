@@ -27,8 +27,7 @@ has('provisioning', is => 'rw', isa => 'NGCP::Schema::provisioning', lazy => 1, 
 });
 
 method connection {
-    my %connect_info = %{ $self->config->as_hash->{billingdb} };
-    $self->SUPER::connection(@connect_info{qw(dsn username password)});
+    $self->SUPER::connection($self->config->as_hash->{billingdb});
 }
 
 method get_domain($reseller_id, $domain) {

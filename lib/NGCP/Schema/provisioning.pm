@@ -23,8 +23,7 @@ class_has('config', is => 'rw', isa => 'NGCP::Schema::Config', lazy => 1, defaul
 has('validator', is => 'rw', isa => 'NGCP::Schema', lazy => 1, default => sub { return NGCP::Schema->new; });
 
 method connection {
-    my %connect_info = %{ $self->config->as_hash->{provisioningdb} };
-    $self->SUPER::connection(@connect_info{qw(dsn username password)});
+    $self->SUPER::connection($self->config->as_hash->{provisioningdb});
 }
 
 method _get_domain_id($domain) {

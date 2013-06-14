@@ -20,8 +20,7 @@ class_has('config', is => 'rw', isa => 'NGCP::Schema::Config', lazy => 1, defaul
 });
 
 method connection {
-    my %connect_info = %{ $self->config->as_hash->{accountingdb} };
-    $self->SUPER::connection(@connect_info{qw(dsn username password)});
+    $self->SUPER::connection($self->config->as_hash->{accountingdb});
 }
 
 __PACKAGE__->meta->make_immutable(inline_constructor => 0);
