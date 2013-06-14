@@ -5,7 +5,7 @@ use MooseX::FileAttribute qw(has_file);
 use MooseX::Singleton qw(has);
 use XML::Simple qw();
 
-our $VERSION = '1.001';
+our $VERSION = '1.002';
 
 has_file('config_file', is => 'rw', required => 1, default => '/etc/ngcp-ossbss/provisioning.conf');
 has('as_hash', isa => 'HashRef', is => 'rw', lazy => 1, default => method {
@@ -53,7 +53,7 @@ NGCP::Schema::Config - configuration class
 
 =head1 VERSION
 
-This document describes NGCP::Schema::Config version 1.001
+This document describes NGCP::Schema::Config version 1.002
 
 =head1 SYNOPSIS
 

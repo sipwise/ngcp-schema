@@ -1,7 +1,7 @@
 package NGCP::Schema::kamailio::Result::uid_domain;
 use Sipwise::Base;
 use MooseX::NonMoose;
-our $VERSION = '1.001';
+our $VERSION = '1.002';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE

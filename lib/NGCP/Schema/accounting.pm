@@ -1,6 +1,6 @@
 package NGCP::Schema::accounting;
 use Sipwise::Base;
-our $VERSION = '1.001';
+our $VERSION = '1.002';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE

@@ -1,6 +1,6 @@
 package NGCP::Schema::provisioning;
 use Sipwise::Base;
-our $VERSION = '1.001';
+our $VERSION = '1.002';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -126,7 +126,7 @@ NGCP::Schema::provisioning - provisioning schema
 
 =head1 VERSION
 
-This document describes NGCP::Schema::provisioning version 1.001
+This document describes NGCP::Schema::provisioning version 1.002
 
 =head1 SYNOPSIS
 

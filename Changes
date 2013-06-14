@@ -4,6 +4,16 @@
 
 Changes - Revision history for NGCP-Schema
 
+=head2 1.002  2013-06-14
+
+=over
+
+=item relax connect_info for passed-through DBI attributes
+
+=item automatically encode password columns
+
+=back
+
 =head2 1.001  2013-05-14
 
 =over
