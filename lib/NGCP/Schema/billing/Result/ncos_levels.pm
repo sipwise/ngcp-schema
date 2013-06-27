@@ -1,7 +1,8 @@
 package NGCP::Schema::billing::Result::ncos_levels;
 use Sipwise::Base;
 use MooseX::NonMoose;
-our $VERSION = '1.002';
+use Scalar::Util qw(blessed);
+our $VERSION = '1.003';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -11,7 +12,7 @@ our $VERSION = '1.002';
 extends 'DBIx::Class::Core';
 
 
-__PACKAGE__->load_components("InflateColumn::DateTime");
+__PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
 
 __PACKAGE__->table("ncos_levels");
@@ -81,6 +82,12 @@ __PACKAGE__->belongs_to(
     on_update     => "CASCADE",
   },
 );
+sub TO_JSON {
+    my ($self) = @_;
+    return {
+        map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
+    };
+}
 =encoding UTF-8
 
 =head1 NAME
@@ -92,6 +99,8 @@ NGCP::Schema::billing::Result::ncos_levels
 =over 4
 
 =item * L<DBIx::Class::InflateColumn::DateTime>
+
+=item * L<DBIx::Class::Helper::Row::ToJSON>
 
 =back
 
@@ -180,8 +189,8 @@ Related object: L<NGCP::Schema::billing::Result::resellers>
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:00
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:IsORiLD9bnbuvYPVSksfbQ
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-27 12:51:47
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:o/iMN7CPlUuTqhp514feZg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

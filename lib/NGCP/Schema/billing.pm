@@ -1,6 +1,6 @@
 package NGCP::Schema::billing;
 use Sipwise::Base;
-our $VERSION = '1.002';
+our $VERSION = '1.003';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -10,8 +10,8 @@ extends 'DBIx::Class::Schema';
 __PACKAGE__->load_namespaces;
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:44
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:pFNyB1lQTWbvEckC6oqjJw
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-27 12:51:46
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:DHRR5lVe8fUgAfjVktxnZw
 
 use MooseX::ClassAttribute qw(class_has);
 use NGCP::Schema qw();
@@ -293,7 +293,7 @@ NGCP::Schema::billing - billing schema
 
 =head1 VERSION
 
-This document describes NGCP::Schema::billing version 1.002
+This document describes NGCP::Schema::billing version 1.003
 
 =head1 SYNOPSIS
 

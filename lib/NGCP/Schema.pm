@@ -5,7 +5,7 @@ use NGCP::Schema::Config qw();
 use Regexp::Common qw(net);
 use Regexp::IPv6 qw($IPv6_re);
 
-our $VERSION = '1.002';
+our $VERSION = '1.003';
 
 has('config', is => 'rw', isa => 'NGCP::Schema::Config', lazy => 1, default => sub {
     return NGCP::Schema::Config->instance;
@@ -83,7 +83,7 @@ NGCP::Schema - DBIC-derived ORM schema classes
 
 =head1 VERSION
 
-This document describes NGCP::Schema version 1.002
+This document describes NGCP::Schema version 1.003
 
 =head1 SYNOPSIS
 

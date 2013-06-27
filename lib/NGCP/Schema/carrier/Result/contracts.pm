@@ -1,7 +1,8 @@
 package NGCP::Schema::carrier::Result::contracts;
 use Sipwise::Base;
 use MooseX::NonMoose;
-our $VERSION = '1.002';
+use Scalar::Util qw(blessed);
+our $VERSION = '1.003';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -11,7 +12,7 @@ our $VERSION = '1.002';
 extends 'DBIx::Class::Core';
 
 
-__PACKAGE__->load_components("InflateColumn::DateTime");
+__PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
 
 __PACKAGE__->table("contracts");
@@ -74,6 +75,12 @@ __PACKAGE__->has_many(
   { "foreign.contract_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+sub TO_JSON {
+    my ($self) = @_;
+    return {
+        map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
+    };
+}
 =encoding UTF-8
 
 =head1 NAME
@@ -85,6 +92,8 @@ NGCP::Schema::carrier::Result::contracts
 =over 4
 
 =item * L<DBIx::Class::InflateColumn::DateTime>
+
+=item * L<DBIx::Class::Helper::Row::ToJSON>
 
 =back
 
@@ -165,8 +174,8 @@ Related object: L<NGCP::Schema::carrier::Result::subscribers>
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:03
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:d46IgTNumWEXAVJx03BzmA
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-27 12:51:50
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:MWXcuL3FRPTIc4QJ5Rwkbg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

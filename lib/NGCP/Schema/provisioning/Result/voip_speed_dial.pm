@@ -1,7 +1,8 @@
 package NGCP::Schema::provisioning::Result::voip_speed_dial;
 use Sipwise::Base;
 use MooseX::NonMoose;
-our $VERSION = '1.002';
+use Scalar::Util qw(blessed);
+our $VERSION = '1.003';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -11,7 +12,7 @@ our $VERSION = '1.002';
 extends 'DBIx::Class::Core';
 
 
-__PACKAGE__->load_components("InflateColumn::DateTime");
+__PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
 
 __PACKAGE__->table("voip_speed_dial");
@@ -51,6 +52,12 @@ __PACKAGE__->belongs_to(
   { id => "subscriber_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
+sub TO_JSON {
+    my ($self) = @_;
+    return {
+        map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
+    };
+}
 =encoding UTF-8
 
 =head1 NAME
@@ -62,6 +69,8 @@ NGCP::Schema::provisioning::Result::voip_speed_dial
 =over 4
 
 =item * L<DBIx::Class::InflateColumn::DateTime>
+
+=item * L<DBIx::Class::Helper::Row::ToJSON>
 
 =back
 
@@ -126,8 +135,8 @@ Related object: L<NGCP::Schema::provisioning::Result::voip_subscribers>
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-14 16:26:21
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:F+xfg6OSNfJRxz2QfmA4pg
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-27 12:52:09
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:TXpCogBmg346/hOMGjScag
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

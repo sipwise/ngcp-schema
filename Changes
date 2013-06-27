@@ -4,6 +4,10 @@
 
 Changes - Revision history for NGCP-Schema
 
+=head2 1.003  2013-06-27
+
+add component for JSON serialisation hooks
+
 =head2 1.002  2013-06-14
 
 =over

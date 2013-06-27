@@ -1,6 +1,6 @@
 package NGCP::Schema::kamailio;
 use Sipwise::Base;
-our $VERSION = '1.002';
+our $VERSION = '1.003';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -10,8 +10,8 @@ extends 'DBIx::Class::Schema';
 __PACKAGE__->load_namespaces;
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-04-09 12:33:56
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:F+YCA+y1IL8DMrefBOhpIg
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-27 12:51:58
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:tnyRnnaNxwcR9xtrvrlVEw
 
 use MooseX::ClassAttribute qw(class_has);
 
