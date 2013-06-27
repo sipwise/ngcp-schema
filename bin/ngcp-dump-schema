@@ -6,6 +6,15 @@ use Getopt::Long qw(GetOptions);
 use Quantum::Superpositions qw(any);
 use Pod::Usage qw(pod2usage);
 
+my $result_class_code = <<'END';
+sub TO_JSON {
+    my ($self) = @_;
+    return {
+        map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
+    };
+}
+END
+
 my %opt = (
     dump_directory => 'lib',
 );
@@ -56,9 +65,10 @@ for my $db (qw(accounting billing carrier kamailio ngcp provisioning sipstats)) 
                 @source = (
                     $package,
                     "use Sipwise::Base;\n",
-                    ($package =~ /::Result::/ ? "use MooseX::NonMoose;\n" : ()),
+                    ($package =~ /::Result::/ ? "use MooseX::NonMoose;\nuse Scalar::Util qw(blessed);\n" : ()),
                     "our \$VERSION = '$opt{version}';\n",
                     @source,
+                    ($package =~ /::Result::/ ? $result_class_code : ()),
                 );
                 @pod = ("=encoding UTF-8\n\n", @pod, "=cut\n") if @pod;
                 return join '', @source, @pod;
@@ -68,7 +78,7 @@ for my $db (qw(accounting billing carrier kamailio ngcp provisioning sipstats)) 
                 my ($column) = @_;
                 return $CLASS->can($column) ? "column_$column" : $column;
             },
-            components => [qw(InflateColumn::DateTime)],
+            components => [qw(InflateColumn::DateTime Helper::Row::ToJSON)],
             quiet => 1,
             use_moose => 1,
         },
