@@ -1,5 +1,5 @@
 Source: ngcp-schema
-Section: admin
+Section: perl
 Priority: extra
 Maintainer: Sipwise Development Team <support@sipwise.com>
 Build-Depends: debhelper (>= 8),
