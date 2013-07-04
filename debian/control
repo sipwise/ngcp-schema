@@ -4,6 +4,7 @@ Priority: extra
 Maintainer: Sipwise Development Team <support@sipwise.com>
 Build-Depends: debhelper (>= 8),
                libaliased-perl,
+               libcarp-fix-1-25-perl,
                libdata-serializer-perl,
                libdbd-mysql-perl,
                libdbix-class-encodedcolumn-perl,
