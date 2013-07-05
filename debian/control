@@ -49,5 +49,4 @@ Homepage: http://sipwise.com/
 Package: ngcp-schema
 Architecture: all
 Depends: ${misc:Depends}
-Description: TODO
- TODO
+Description: DBIC-derived ORM schema classes
