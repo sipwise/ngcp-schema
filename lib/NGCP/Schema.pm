@@ -4,12 +4,20 @@ use aliased 'NGCP::Schema::Exception';
 use NGCP::Schema::Config qw();
 use Regexp::Common qw(net);
 use Regexp::IPv6 qw($IPv6_re);
+use MooseX::ClassAttribute qw(class_has);
+extends 'DBIx::Class::Schema';
 
 our $VERSION = '1.003';
 
-has('config', is => 'rw', isa => 'NGCP::Schema::Config', lazy => 1, default => sub {
+__PACKAGE__->load_namespaces;
+
+class_has('config', is => 'rw', isa => 'NGCP::Schema::Config', lazy => 1, default => sub {
     return NGCP::Schema::Config->instance;
 });
+
+method connection {
+    $self->SUPER::connection($self->config->as_hash->{database});
+}
 
 method validate($data, $mandatory_params, $optional_params?) {
     Exception->throw({
@@ -105,6 +113,23 @@ L<NGCP::Schema::kamailio>,
 L<NGCP::Schema::ngcp>,
 L<NGCP::Schema::provisioning>,
 L<NGCP::Schema::sipstats>.
+
+=head1 INCOMPATIBILITIES
+
+Version 2 moves the result classes of all tables into one namespace. This means the following table names collide:
+
+    accounting.acc_backup       kamailio.acc_backup
+    accounting.acc_trash        kamailio.acc_trash
+    accounting.acc              kamailio.acc
+    accounting.mark             sipstats.mark
+    billing.contracts           carrier.contracts
+    billing.customers           carrier.customers
+    billing.orders              carrier.orders
+    billing.payments            carrier.payments
+    billing.voip_subscribers    provisioning.voip_subscribers
+
+This is solved by prefixing the result class name I<on the right-hand side only> with the database name and an
+underscore, e.g. table C<provisioning.voip_subscribers> becomes the result class <provisioning_voip_subscribers>.
 
 =head1 BUGS AND LIMITATIONS
 
