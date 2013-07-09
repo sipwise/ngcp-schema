@@ -235,5 +235,13 @@ Related object: L<NGCP::Schema::Result::voip_numbers>
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
+
+__PACKAGE__->might_have(
+  "provisioning_voip_subscriber",
+  'NGCP::Schema::Result::provisioning_voip_subscribers',
+  { 'foreign.uuid' => 'self.uuid' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 __PACKAGE__->meta->make_immutable;
 1;

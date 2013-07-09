@@ -7,7 +7,7 @@ use Regexp::IPv6 qw($IPv6_re);
 use MooseX::ClassAttribute qw(class_has);
 extends 'DBIx::Class::Schema';
 
-our $VERSION = '1.003';
+our $VERSION = '1.004';
 
 __PACKAGE__->load_namespaces;
 
