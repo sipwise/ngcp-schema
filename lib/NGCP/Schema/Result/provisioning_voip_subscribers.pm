@@ -424,6 +424,13 @@ __PACKAGE__->has_one(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->belongs_to(
+  "contract",
+  "NGCP::Schema::Result::contracts",
+  { 'foreign.id' => 'self.account_id' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 
 __PACKAGE__->meta->make_immutable;
 1;
