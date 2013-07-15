@@ -4,6 +4,16 @@
 
 Changes - Revision history for NGCP-Schema
 
+=head2 2.000  2013-07-15
+
+=over
+
+=item result classes in a single namespace (see L<NGCP::Schema/INCOMPATIBILITIES)
+
+=item unify access to tables through configuration item C<ngcp_connect_info>
+
+=back
+
 =head2 1.003  2013-06-27
 
 add component for JSON serialisation hooks

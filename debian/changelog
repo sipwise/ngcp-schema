@@ -1,3 +1,17 @@
+ngcp-schema (2.000) unstable; urgency=low
+
+  * result classes in a single namespace (see "INCOMPATIBILITIES" in NGCP::Schema)
+
+  * unify access to tables through configuration item `ngcp_connect_info`
+
+  -- Lars Dieckow <ldieckow@sipwise.com>  Mon, 15 Jul 2013 16:13:34 +0200
+
+ngcp-schema (1.003) unstable; urgency=low
+
+  * add component for JSON serialisation hooks
+
+  -- Lars Dieckow <ldieckow@sipwise.com>  Thu, 27 Jun 2013 13:27:57 +0200
+
 ngcp-schema (1.002) unstable; urgency=low
 
   * Initial release.

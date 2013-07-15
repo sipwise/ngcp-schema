@@ -2,7 +2,7 @@ package NGCP::Schema::Result::voip_number_block_resellers;
 use Sipwise::Base;
 use MooseX::NonMoose;
 use Scalar::Util qw(blessed);
-our $VERSION = '1.003';
+our $VERSION = '2.000';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
