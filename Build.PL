@@ -9,6 +9,7 @@ my $builder = Module::Build->new(
         'DateTime::Format::MySQL'     => 0, #required by DBIx::Class
         'DBD::mysql'                  => 0,
         'DBIx::Class::EncodedColumn'  => 0,
+        'DBIx::Class::Helper::ResultSet' => 0,
         'DBIx::Class::Helper::Row::ToJSON' => 0,
         'DBIx::Class::Schema::Loader' => 0,
         'File::Path'                  => 0,

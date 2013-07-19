@@ -9,7 +9,9 @@ extends 'DBIx::Class::Schema';
 
 our $VERSION = '2.000';
 
-__PACKAGE__->load_namespaces;
+__PACKAGE__->load_namespaces(
+    default_resultset_class => 'ResultSet',
+);
 
 class_has('config', is => 'rw', isa => 'NGCP::Schema::Config', lazy => 1, default => sub {
     return NGCP::Schema::Config->instance;
