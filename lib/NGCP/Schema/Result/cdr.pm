@@ -12,7 +12,11 @@ our $VERSION = '2.000';
 extends 'DBIx::Class::Core';
 
 
-__PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
+__PACKAGE__->load_components(
+    "InflateColumn::DateTime",
+    "Helper::Row::ToJSON",
+    "+NGCP::Schema::InflateColumn::DateTime::EpochMilli",
+);
 
 
 __PACKAGE__->table("accounting.cdr");
@@ -635,7 +639,13 @@ NGCP::Schema::Result::cdr
 # Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-27 12:51:39
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:rNMfsyIh9LAGJGoe/or06w
 
+for my $col (qw/init_time start_time/) {
+    if(__PACKAGE__->has_column($col)) {
+        __PACKAGE__->remove_column($col);
+        __PACKAGE__->add_column($col =>
+            { data_type => "decimal", is_nullable => 0, size => [13, 3], inflate_datetime => 'epoch_milli' }
+        );
+    }
+}
 
-# You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;
-1;

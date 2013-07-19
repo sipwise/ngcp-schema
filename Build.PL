@@ -6,6 +6,7 @@ my $builder = Module::Build->new(
     dist_version_from => 'lib/NGCP/Schema.pm',
     requires          => {
         'aliased'                     => 0,
+        'DateTime'                    => 0,
         'DateTime::Format::MySQL'     => 0, #required by DBIx::Class
         'DBD::mysql'                  => 0,
         'DBIx::Class::EncodedColumn'  => 0,
