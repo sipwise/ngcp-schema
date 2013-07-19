@@ -1,3 +1,11 @@
+ngcp-schema (2.001) unstable; urgency=low
+
+  * load DBIx::Class::Helper::ResultSet for SetOperations/union method
+
+  * inflation of epoch with milliseconds data type
+
+ -- Lars Dieckow <ldieckow@sipwise.com>  Fri, 19 Jul 2013 16:15:10 +0200
+
 ngcp-schema (2.000) unstable; urgency=low
 
   * result classes in a single namespace (see "INCOMPATIBILITIES" in NGCP::Schema)

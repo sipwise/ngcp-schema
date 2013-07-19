@@ -2,7 +2,7 @@ package NGCP::Schema::Result::cfg_schema;
 use Sipwise::Base;
 use MooseX::NonMoose;
 use Scalar::Util qw(blessed);
-our $VERSION = '2.000';
+our $VERSION = '2.001';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
