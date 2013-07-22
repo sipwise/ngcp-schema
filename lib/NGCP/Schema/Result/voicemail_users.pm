@@ -330,6 +330,12 @@ Related object: L<NGCP::Schema::Result::voicemail_spool>
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:K1FVw9YTkzSlwWUQoPe/1A
 
 
-# You can replace this text with custom code or comments, and it will be preserved on regeneration
+__PACKAGE__->belongs_to(
+  "provisioning_voip_subscriber",
+  "NGCP::Schema::Result::provisioning_voip_subscribers",
+  { "foreign.uuid" => "self.customer_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 __PACKAGE__->meta->make_immutable;
 1;

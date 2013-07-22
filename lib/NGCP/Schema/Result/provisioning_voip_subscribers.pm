@@ -431,6 +431,12 @@ __PACKAGE__->belongs_to(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->has_one(
+  "voicemail_user",
+  "NGCP::Schema::Result::voicemail_users",
+  { "foreign.customer_id" => "self.uuid" },
+  { cascade_copy => 1, cascade_delete => 1 },
+);
 
 __PACKAGE__->meta->make_immutable;
 1;
