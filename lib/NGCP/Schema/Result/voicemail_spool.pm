@@ -12,7 +12,11 @@ our $VERSION = '2.001';
 extends 'DBIx::Class::Core';
 
 
-__PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
+__PACKAGE__->load_components(
+    "InflateColumn::DateTime", 
+    "Helper::Row::ToJSON", 
+    "+NGCP::Schema::InflateColumn::DateTime::EpochString",
+);
 
 
 __PACKAGE__->table("kamailio.voicemail_spool");
@@ -192,7 +196,14 @@ Related object: L<NGCP::Schema::Result::voicemail_users>
 # Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-27 12:51:59
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:pVE7vFt85S24avmUm7FIMg
 
+for my $col (qw/origtime/) {
+    if(__PACKAGE__->has_column($col)) {
+        __PACKAGE__->remove_column($col);
+        __PACKAGE__->add_column($col =>
+            { data_type => "varchar", is_nullable => 0, inflate_datetime => 'epoch_string' }
+        );
+    }
+}
 
-# You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;
 1;
