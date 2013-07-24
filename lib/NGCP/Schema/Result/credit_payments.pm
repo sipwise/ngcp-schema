@@ -2,7 +2,7 @@ package NGCP::Schema::Result::credit_payments;
 use Sipwise::Base;
 use MooseX::NonMoose;
 use Scalar::Util qw(blessed);
-our $VERSION = '2.001';
+our $VERSION = '2.002';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE

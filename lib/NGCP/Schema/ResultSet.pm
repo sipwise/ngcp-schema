@@ -2,6 +2,6 @@ package NGCP::Schema::ResultSet;
 use Sipwise::Base;
 extends 'DBIx::Class::ResultSet';
 
-our $VERSION = '2.001';
+our $VERSION = '2.002';
 
 __PACKAGE__->load_components('Helper::ResultSet');

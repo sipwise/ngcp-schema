@@ -4,6 +4,10 @@
 
 Changes - Revision history for NGCP-Schema
 
+=head2 2.002  2013-07-24
+
+inflation of epoch stored as string
+
 =head2 2.001  2013-07-19
 
 =over
