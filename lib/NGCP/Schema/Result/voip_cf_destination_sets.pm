@@ -2,7 +2,7 @@ package NGCP::Schema::Result::voip_cf_destination_sets;
 use Sipwise::Base;
 use MooseX::NonMoose;
 use Scalar::Util qw(blessed);
-our $VERSION = '2.002';
+our $VERSION = '2.003';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE

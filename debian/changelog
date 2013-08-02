@@ -1,3 +1,9 @@
+ngcp-schema (2.003) unstable; urgency=low
+
+  * relicense GPL3+
+
+ -- Lars Dieckow <ldieckow@sipwise.com>  Fri, 02 Aug 2013 18:21:41 +0200
+
 ngcp-schema (2.002) unstable; urgency=low
 
   * inflation of epoch stored as string
