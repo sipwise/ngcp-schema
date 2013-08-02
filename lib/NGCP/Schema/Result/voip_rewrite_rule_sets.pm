@@ -26,6 +26,13 @@ __PACKAGE__->add_columns(
     is_auto_increment => 1,
     is_nullable => 0,
   },
+  "reseller_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 0,
+  },
   "name",
   { data_type => "varchar", is_nullable => 0, size => 32 },
   "description",
@@ -52,6 +59,12 @@ __PACKAGE__->has_many(
   "NGCP::Schema::Result::voip_rewrite_rules",
   { "foreign.set_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
+);
+__PACKAGE__->belongs_to(
+  "reseller",
+  "NGCP::Schema::Result::resellers",
+  { id => "reseller_id" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 sub TO_JSON {
     my ($self) = @_;

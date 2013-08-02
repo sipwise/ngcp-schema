@@ -45,6 +45,8 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "peer_pref",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "expose_to_customer",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "modify_timestamp",
   {
     data_type => "timestamp",
@@ -53,6 +55,8 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
   },
   "internal",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "expose_to_customer",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "data_type",
   {
@@ -195,6 +199,12 @@ NGCP::Schema::Result::voip_preferences
   is_nullable: 0
 
 =head2 internal
+
+  data_type: 'tinyint'
+  default_value: 0
+  is_nullable: 0
+
+=head2 expose_to_customer
 
   data_type: 'tinyint'
   default_value: 0

@@ -33,13 +33,6 @@ __PACKAGE__->add_columns(
     is_foreign_key => 1,
     is_nullable => 1,
   },
-  "reseller_id",
-  {
-    data_type => "integer",
-    extra => { unsigned => 1 },
-    is_foreign_key => 1,
-    is_nullable => 1,
-  },
   "contact_id",
   {
     data_type => "integer",
@@ -93,14 +86,6 @@ __PACKAGE__->add_columns(
 
 
 __PACKAGE__->set_primary_key("id");
-
-
-__PACKAGE__->might_have(
-  "active_reseller",
-  "NGCP::Schema::Result::resellers",
-  { "foreign.contract_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
 
 
 __PACKAGE__->has_many(
@@ -174,19 +159,6 @@ __PACKAGE__->belongs_to(
 );
 
 
-__PACKAGE__->belongs_to(
-  "reseller",
-  "NGCP::Schema::Result::resellers",
-  { id => "reseller_id" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "CASCADE",
-    on_update     => "CASCADE",
-  },
-);
-
-
 __PACKAGE__->has_many(
   "voip_subscribers",
   "NGCP::Schema::Result::voip_subscribers",
@@ -227,13 +199,6 @@ NGCP::Schema::Result::contracts
   is_nullable: 0
 
 =head2 customer_id
-
-  data_type: 'integer'
-  extra: {unsigned => 1}
-  is_foreign_key: 1
-  is_nullable: 1
-
-=head2 reseller_id
 
   data_type: 'integer'
   extra: {unsigned => 1}

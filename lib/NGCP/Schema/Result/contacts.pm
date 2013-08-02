@@ -26,6 +26,13 @@ __PACKAGE__->add_columns(
     is_auto_increment => 1,
     is_nullable => 0,
   },
+  "reseller_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 1,
+  },
   "gender",
   {
     data_type => "enum",
@@ -76,6 +83,19 @@ __PACKAGE__->add_columns(
 
 
 __PACKAGE__->set_primary_key("id");
+
+
+__PACKAGE__->belongs_to(
+  "reseller",
+  "NGCP::Schema::Result::resellers",
+  { id => "reseller_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
+);
 
 
 __PACKAGE__->has_many(
@@ -148,6 +168,13 @@ NGCP::Schema::Result::contacts
   extra: {unsigned => 1}
   is_auto_increment: 1
   is_nullable: 0
+
+=head2 reseller_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_foreign_key: 1
+  is_nullable: 1
 
 =head2 gender
 

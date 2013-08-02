@@ -57,6 +57,14 @@ __PACKAGE__->has_many(
   { "foreign.group_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+
+__PACKAGE__->belongs_to(
+  "contract",
+  "NGCP::Schema::Result::contracts",
+  { "foreign.id" => "self.peering_contract_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {

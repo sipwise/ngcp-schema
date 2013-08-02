@@ -79,14 +79,6 @@ __PACKAGE__->belongs_to(
 
 
 __PACKAGE__->has_many(
-  "contracts",
-  "NGCP::Schema::Result::contracts",
-  { "foreign.reseller_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-
-__PACKAGE__->has_many(
   "customers",
   "NGCP::Schema::Result::customers",
   { "foreign.reseller_id" => "self.id" },
@@ -148,6 +140,21 @@ __PACKAGE__->has_many(
   { "foreign.reseller_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+
+__PACKAGE__->has_many(
+  "voip_sound_sets",
+  "NGCP::Schema::Result::voip_sound_sets",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
+  "voip_rewrite_rule_sets",
+  "NGCP::Schema::Result::billing_profiles",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
@@ -244,12 +251,6 @@ Related object: L<NGCP::Schema::Result::billing_profiles>
 =head2 contract
 
 Type: belongs_to
-
-Related object: L<NGCP::Schema::Result::contracts>
-
-=head2 contracts
-
-Type: has_many
 
 Related object: L<NGCP::Schema::Result::contracts>
 
