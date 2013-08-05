@@ -25,6 +25,20 @@ __PACKAGE__->add_columns(
   { data_type => "bigint", extra => { unsigned => 1 }, is_nullable => 0 },
 );
 
+__PACKAGE__->belongs_to(
+  "packet",
+  "NGCP::Schema::Result::packets",
+  { id => "packet" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+
+__PACKAGE__->belongs_to(
+  "message",
+  "NGCP::Schema::Result::messages",
+  { id => "message" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
 
 __PACKAGE__->set_primary_key("message", "packet");
 sub TO_JSON {

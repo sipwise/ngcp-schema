@@ -12,7 +12,10 @@ our $VERSION = '2.003';
 extends 'DBIx::Class::Core';
 
 
-__PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
+__PACKAGE__->load_components(
+  "InflateColumn::DateTime", 
+  "Helper::Row::ToJSON",
+);
 
 
 __PACKAGE__->table("sipstats.messages");
@@ -71,6 +74,12 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 0, size => 255 },
 );
 
+__PACKAGE__->has_many(
+  "message_packets",
+  "NGCP::Schema::Result::message_packets",
+  { "foreign.message" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
 
 __PACKAGE__->set_primary_key("id");
 sub TO_JSON {
@@ -210,7 +219,5 @@ NGCP::Schema::Result::messages
 # Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-27 12:52:12
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:bYbdYKBz9w7LgX1fXS2wzQ
 
-
-# You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;
 1;

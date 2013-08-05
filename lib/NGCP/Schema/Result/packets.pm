@@ -40,6 +40,12 @@ __PACKAGE__->add_columns(
   { data_type => "blob", is_nullable => 0 },
 );
 
+__PACKAGE__->has_many(
+  "message_packets",
+  "NGCP::Schema::Result::message_packets",
+  { "foreign.packet" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
 
 __PACKAGE__->set_primary_key("id");
 sub TO_JSON {
