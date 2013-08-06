@@ -15,6 +15,7 @@ extends 'DBIx::Class::Core';
 __PACKAGE__->load_components(
   "InflateColumn::DateTime", 
   "Helper::Row::ToJSON",
+  "+NGCP::Schema::InflateColumn::DateTime::EpochMicro",
 );
 
 
@@ -218,6 +219,15 @@ NGCP::Schema::Result::messages
 
 # Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-27 12:52:12
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:bYbdYKBz9w7LgX1fXS2wzQ
+
+for my $col (qw/timestamp/) {
+    if(__PACKAGE__->has_column($col)) {
+        __PACKAGE__->remove_column($col);
+        __PACKAGE__->add_column($col =>
+            { data_type => "decimal", is_nullable => 0, size => [17, 6], inflate_datetime => 'epoch_micro' }
+        );
+    }
+}
 
 __PACKAGE__->meta->make_immutable;
 1;
