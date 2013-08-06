@@ -4,6 +4,10 @@
 
 Changes - Revision history for NGCP-Schema
 
+=head2 2.004  2013-08-06
+
+deflate messages timestamp to micro precision
+
 =head2 2.003  2013-08-02
 
 relicense GPL3+

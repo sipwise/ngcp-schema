@@ -2,7 +2,7 @@ package NGCP::Schema::Result::acc_trash;
 use Sipwise::Base;
 use MooseX::NonMoose;
 use Scalar::Util qw(blessed);
-our $VERSION = '2.003';
+our $VERSION = '2.004';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE

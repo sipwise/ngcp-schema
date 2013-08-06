@@ -1,3 +1,9 @@
+ngcp-schema (2.004) unstable; urgency=low
+
+  * deflate messages timestamp to micro precision
+
+ -- Lars Dieckow <ldieckow@sipwise.com>  Tue, 06 Aug 2013 15:55:14 +0200
+
 ngcp-schema (2.003) unstable; urgency=low
 
   * relicense GPL3+
