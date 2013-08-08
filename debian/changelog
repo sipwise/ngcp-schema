@@ -1,3 +1,9 @@
+ngcp-schema (2.004+ramoptimized) unstable; urgency=low
+
+  * [70be76f] Remove unnecessary kamailio result sources.
+
+ -- Andreas Granig <agranig@sipwise.com>  Thu, 08 Aug 2013 19:13:59 +0200
+
 ngcp-schema (2.004) unstable; urgency=low
 
   * deflate messages timestamp to micro precision
