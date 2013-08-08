@@ -91,3 +91,4 @@ Depends: libaliased-perl,
          ${misc:Depends},
          ${perl:Depends}
 Description: DBIC-derived ORM schema classes
+ This package provides schema classes for the NGCP databases.
