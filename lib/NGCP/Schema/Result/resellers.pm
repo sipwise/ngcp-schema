@@ -150,7 +150,7 @@ __PACKAGE__->has_many(
 
 __PACKAGE__->has_many(
   "voip_rewrite_rule_sets",
-  "NGCP::Schema::Result::billing_profiles",
+  "NGCP::Schema::Result::voip_rewrite_rule_sets",
   { "foreign.reseller_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -301,6 +301,12 @@ Related object: L<NGCP::Schema::Result::voip_number_block_resellers>
 Type: has_many
 
 Related object: L<NGCP::Schema::Result::voip_numbers>
+
+=head2 voip_rewrite_rule_sets
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::voip_rewrite_rule_sets>
 
 =cut
 

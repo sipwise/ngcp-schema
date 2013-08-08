@@ -161,6 +161,12 @@ Type: has_many
 
 Related object: L<NGCP::Schema::Result::voip_rewrite_rules>
 
+=head2 reseller
+
+Type: belongs_to
+
+Related object: L<NGCP::Schema::Result::resellers>
+
 =cut
 
 
