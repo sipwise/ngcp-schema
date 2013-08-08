@@ -1,6 +1,7 @@
 package NGCP::Schema;
 use Sipwise::Base;
 use aliased 'NGCP::Schema::Exception';
+use Module::Runtime qw(use_module);
 use NGCP::Schema::Config qw();
 use Regexp::Common qw(net);
 use Regexp::IPv6 qw($IPv6_re);
@@ -9,16 +10,23 @@ extends 'DBIx::Class::Schema';
 
 our $VERSION = '2.004';
 
-__PACKAGE__->load_namespaces(
-    default_resultset_class => 'ResultSet',
-);
-
 class_has('config', is => 'rw', isa => 'NGCP::Schema::Config', lazy => 1, default => sub {
     return NGCP::Schema::Config->instance;
 });
 
+$CLASS->register_sources('admins');
+
 method connection {
     $self->SUPER::connection($self->config->as_hash->{ngcp_connect_info});
+}
+
+sub register_sources {
+    my ($self, @source_names) = @_;
+    for my $source_name (@source_names) {
+        my $module_name = "NGCP::Schema::Result::$source_name";
+        use_module($module_name);
+        $self->register_class($source_name => $module_name);
+    }
 }
 
 method validate($data, $mandatory_params, $optional_params?) {

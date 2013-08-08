@@ -15,6 +15,7 @@ my $builder = Module::Build->new(
         'DBIx::Class::Schema::Loader' => 0,
         'File::Path'                  => 0,
         'Getopt::Long'                => 0,
+        'Module::Runtime'             => 0,
         'MooseX::ClassAttribute'      => 0,
         'MooseX::FileAttribute'       => 0,
         'MooseX::NonMoose'            => 0,
