@@ -40,13 +40,6 @@ __PACKAGE__->add_columns(
     is_foreign_key => 1,
     is_nullable => 0,
   },
-  "number_id",
-  {
-    data_type => "integer",
-    extra => { unsigned => 1 },
-    is_foreign_key => 1,
-    is_nullable => 1,
-  },
   "name",
   { data_type => "varchar", is_nullable => 0, size => 255 },
   "extension",
@@ -73,13 +66,6 @@ __PACKAGE__->belongs_to(
   "contract",
   "NGCP::Schema::Result::contracts",
   { id => "contract_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-__PACKAGE__->belongs_to(
-  "voip_number",
-  "NGCP::Schema::Result::voip_numbers",
-  { id => "number_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
