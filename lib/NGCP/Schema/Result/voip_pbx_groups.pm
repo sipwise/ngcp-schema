@@ -33,6 +33,13 @@ __PACKAGE__->add_columns(
     is_foreign_key => 1,
     is_nullable => 0,
   },
+  "subscriber_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 0,
+  },
   "number_id",
   {
     data_type => "integer",
@@ -73,6 +80,13 @@ __PACKAGE__->belongs_to(
   "voip_number",
   "NGCP::Schema::Result::voip_numbers",
   { id => "number_id" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+__PACKAGE__->belongs_to(
+  "provisioning_voip_subscriber",
+  "NGCP::Schema::Result::provisioning_voip_subscribers",
+  { id => "subscriber_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
