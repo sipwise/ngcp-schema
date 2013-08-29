@@ -47,10 +47,10 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 127 },
   "webpassword",
   { data_type => "varchar", is_nullable => 1, size => 40 },
-  "autoconf_displayname",
-  { data_type => "varchar", is_nullable => 1, size => 255 },
-  "autoconf_group_id",
+  "pbx_group_id",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
+  "is_pbx_group",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "modify_timestamp",
   {
     data_type => "timestamp",
@@ -182,6 +182,14 @@ __PACKAGE__->has_many(
   { "foreign.subscriber_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+
+__PACKAGE__->belongs_to(
+  "voip_pbx_group",
+  "NGCP::Schema::Result::voip_pbx_groups",
+  { 'foreign.id' => 'self.pbx_group_id' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {

@@ -165,6 +165,14 @@ __PACKAGE__->has_many(
   { "foreign.contract_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+
+__PACKAGE__->has_many(
+  "voip_pbx_groups",
+  "NGCP::Schema::Result::voip_pbx_groups",
+  { "foreign.contract_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
