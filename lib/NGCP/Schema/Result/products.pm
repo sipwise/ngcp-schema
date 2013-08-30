@@ -41,9 +41,8 @@ __PACKAGE__->add_columns(
         "sippeering",
         "pstnpeering",
         "reseller",
-        "voip",
-        "hardware",
-        "auxiliary",
+        "sipaccount",
+        "pbxaccount",
       ],
     },
     is_nullable => 0,
@@ -152,7 +151,7 @@ NGCP::Schema::Result::products
 =head2 class
 
   data_type: 'enum'
-  extra: {list => ["sippeering","pstnpeering","reseller","voip","hardware","auxiliary"]}
+  extra: {list => ["sippeering","pstnpeering","reseller","sipaccount","pbxaccount"]}
   is_nullable: 0
 
 =head2 handle
