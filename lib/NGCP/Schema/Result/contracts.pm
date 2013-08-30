@@ -336,6 +336,12 @@ Type: has_many
 
 Related object: L<NGCP::Schema::Result::voip_subscribers>
 
+=head2 voip_pbx_groups
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::voip_pbx_groups>
+
 =cut
 
 

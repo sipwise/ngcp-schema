@@ -95,19 +95,17 @@ sub TO_JSON {
 
 =head1 NAME
 
-NGCP::Schema::Result::provisioning_voip_subscribers
+NGCP::Schema::Result::voip_pbx_groups
 
 =head1 COMPONENTS LOADED
 
 =over 4
 
-=item * L<DBIx::Class::InflateColumn::DateTime>
-
 =item * L<DBIx::Class::Helper::Row::ToJSON>
 
 =back
 
-=head1 TABLE: C<provisioning.voip_subscribers>
+=head1 TABLE: C<provisioning.voip_pbx_groups>
 
 =head1 ACCESSORS
 
@@ -118,79 +116,43 @@ NGCP::Schema::Result::provisioning_voip_subscribers
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 username
-
-  data_type: 'varchar'
-  is_nullable: 0
-  size: 127
-
-=head2 domain_id
+=head2 contract_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 uuid
-
-  data_type: 'char'
-  is_nullable: 0
-  size: 36
-
-=head2 password
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 40
-
-=head2 admin
-
-  data_type: 'tinyint'
-  default_value: 0
-  is_nullable: 0
-
-=head2 account_id
+=head2 subscriber_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
-  is_nullable: 1
+  is_foreign_key: 1
+  is_nullable: 0
 
-=head2 webusername
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 127
-
-=head2 webpassword
+=head2 name
 
   data_type: 'varchar'
-  is_nullable: 1
-  size: 40
-
-=head2 autoconf_displayname
-
-  data_type: 'varchar'
-  is_nullable: 1
+  is_nullable: 0
   size: 255
 
-=head2 autoconf_group_id
+=head2 extension
+
+  data_type: 'varchar'
+  is_nullable: 0
+  size: 255
+
+=head2 hunt_policy
+
+  data_type: 'enum'
+  default_value: 'serial'
+  extra: {list => ["serial","parallel"]}
+  is_nullable: 0
+
+=head2 hunt_policy_timeout
 
   data_type: 'integer'
   extra: {unsigned => 1}
-  is_nullable: 1
-
-=head2 modify_timestamp
-
-  data_type: 'timestamp'
-  datetime_undef_if_invalid: 1
-  default_value: current_timestamp
-  is_nullable: 0
-
-=head2 create_timestamp
-
-  data_type: 'timestamp'
-  datetime_undef_if_invalid: 1
-  default_value: '0000-00-00 00:00:00'
   is_nullable: 0
 
 =head1 PRIMARY KEY
@@ -201,115 +163,25 @@ NGCP::Schema::Result::provisioning_voip_subscribers
 
 =back
 
-=head1 UNIQUE CONSTRAINTS
-
-=head2 C<user_dom_idx>
-
-=over 4
-
-=item * L</username>
-
-=item * L</domain_id>
-
-=back
-
-=head2 C<uuid_idx>
-
-=over 4
-
-=item * L</uuid>
-
-=back
-
-=head2 C<webuser_dom_idx>
-
-=over 4
-
-=item * L</webusername>
-
-=item * L</domain_id>
-
-=back
-
 =head1 RELATIONS
 
-=head2 domain
+=head2 contract
 
 Type: belongs_to
 
-Related object: L<NGCP::Schema::Result::voip_domains>
+Related object: L<NGCP::Schema::Result::contracts>
 
-=head2 voip_cc_mappings
+=head2 provisioning_voip_subscriber
 
-Type: has_many
+Type: belongs_to
 
-Related object: L<NGCP::Schema::Result::voip_cc_mappings>
+Related object: L<NGCP::Schema::Result::provisioning_voip_subscribers>
 
-=head2 voip_cf_destination_sets
-
-Type: has_many
-
-Related object: L<NGCP::Schema::Result::voip_cf_destination_sets>
-
-=head2 voip_cf_mappings
+=head2 provisioning_voip_subscribers
 
 Type: has_many
 
-Related object: L<NGCP::Schema::Result::voip_cf_mappings>
-
-=head2 voip_cf_time_sets
-
-Type: has_many
-
-Related object: L<NGCP::Schema::Result::voip_cf_time_sets>
-
-=head2 voip_contacts
-
-Type: has_many
-
-Related object: L<NGCP::Schema::Result::voip_contacts>
-
-=head2 voip_dbaliases
-
-Type: has_many
-
-Related object: L<NGCP::Schema::Result::voip_dbaliases>
-
-=head2 voip_fax_destinations
-
-Type: has_many
-
-Related object: L<NGCP::Schema::Result::voip_fax_destinations>
-
-=head2 voip_fax_preference
-
-Type: might_have
-
-Related object: L<NGCP::Schema::Result::voip_fax_preferences>
-
-=head2 voip_reminder
-
-Type: might_have
-
-Related object: L<NGCP::Schema::Result::voip_reminder>
-
-=head2 voip_speed_dials
-
-Type: has_many
-
-Related object: L<NGCP::Schema::Result::voip_speed_dial>
-
-=head2 voip_trusted_sources
-
-Type: has_many
-
-Related object: L<NGCP::Schema::Result::voip_trusted_sources>
-
-=head2 voip_usr_preferences
-
-Type: has_many
-
-Related object: L<NGCP::Schema::Result::voip_usr_preferences>
+Related object: L<NGCP::Schema::Result::provisioning_voip_subscribers>
 
 =cut
 

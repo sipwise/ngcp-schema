@@ -272,13 +272,13 @@ NGCP::Schema::Result::provisioning_voip_subscribers
   is_nullable: 1
   size: 40
 
-=head2 autoconf_displayname
+=head2 is_pbx_group
 
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 255
+  data_type: 'tinyint'
+  is_nullable: 0
+  default_value: 0
 
-=head2 autoconf_group_id
+=head2 pbx_group_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
@@ -415,6 +415,12 @@ Related object: L<NGCP::Schema::Result::voip_trusted_sources>
 Type: has_many
 
 Related object: L<NGCP::Schema::Result::voip_usr_preferences>
+
+=head2 voip_pbx_group
+
+Type: belongs_to
+
+Related object: L<NGCP::Schema::Result::voip_pbx_groups>
 
 =cut
 
