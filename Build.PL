@@ -4,6 +4,7 @@ my $builder = Module::Build->new(
     license           => 'GPL_3',
     dist_author       => 'Lars Dieckow <ldieckow@sipwise.com>',
     dist_version_from => 'lib/NGCP/Schema.pm',
+    share_dir         => 'share',
     requires          => {
         'aliased'                     => 0,
         'DateTime'                    => 0,
