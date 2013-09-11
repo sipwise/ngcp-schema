@@ -2,7 +2,7 @@ package NGCP::Schema::Exception;
 use Sipwise::Base;
 use namespace::sweep;
 
-our $VERSION = '2.004';
+our $VERSION = '2.005';
 
 extends 'Throwable::Error';
 has('description', is => 'ro', isa => 'Str', required => 1);
@@ -20,7 +20,7 @@ NGCP::Schema::Exception - exceptions that work like ossbss mydie
 
 =head1 VERSION
 
-This document describes NGCP::Schema::Exception version 2.004
+This document describes NGCP::Schema::Exception version 2.005
 
 =head1 SYNOPSIS
 
