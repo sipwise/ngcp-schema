@@ -190,6 +190,13 @@ __PACKAGE__->belongs_to(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->has_many(
+  "autoprov_field_devices",
+  "NGCP::Schema::Result::autoprov_field_devices",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
