@@ -51,6 +51,8 @@ __PACKAGE__->add_columns(
   },
   "sync_params",
   { data_type => "varchar", is_nullable => 1, size => 255 },
+  "security_handler",
+  { data_type => "varchar", is_nullable => 1, size => 255 },
 
 );
 

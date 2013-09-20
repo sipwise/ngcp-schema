@@ -42,6 +42,10 @@ __PACKAGE__->add_columns(
   },
   "identifier",
   { data_type => "varchar", is_nullable => 0, size => 255 },
+  "bootstrapped",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "insecure_transfer",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
 );
 
 
