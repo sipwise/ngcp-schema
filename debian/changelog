@@ -1,3 +1,11 @@
+ngcp-schema (2.006) unstable; urgency=low
+
+  * [73bd5d8] Add PBX autoprovisioning tables.
+  * [049c0e5] Add PBX device sync fields.
+  * [1c92e2c] Add PBX device security flags.
+
+ -- Andreas Granig <agranig@sipwise.com>  Fri, 20 Sep 2013 11:46:24 +0200
+
 ngcp-schema (2.005) unstable; urgency=low
 
   * Add pbx group table and pbx related fields/rels

@@ -2,7 +2,7 @@ package NGCP::Schema::Result::voip_dbaliases;
 use Sipwise::Base;
 use MooseX::NonMoose;
 use Scalar::Util qw(blessed);
-our $VERSION = '2.005';
+our $VERSION = '2.006';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
