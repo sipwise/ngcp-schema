@@ -41,7 +41,7 @@ __PACKAGE__->add_columns(
   "callerid",
   { data_type => "varchar", default_value => "", is_nullable => 1, size => 255 },
   "origtime",
-  { data_type => "varchar", default_value => "", is_nullable => 1, size => 16 },
+  { data_type => "varchar", default_value => "", is_nullable => 1, size => 16, inflate_datetime => 'epoch_string' },
   "duration",
   { data_type => "varchar", default_value => "", is_nullable => 1, size => 16 },
   "mailboxuser",
