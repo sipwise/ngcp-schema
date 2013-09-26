@@ -87,6 +87,13 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
+__PACKAGE__->belongs_to(
+  "voip_subscriber",
+  "NGCP::Schema::Result::voip_subscribers",
+  { uuid => "uuid" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 
 __PACKAGE__->has_many(
   "voip_cc_mappings",
