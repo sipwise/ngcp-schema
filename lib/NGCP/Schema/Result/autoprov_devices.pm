@@ -82,6 +82,13 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->has_many(
+  "autoprov_device_line_ranges",
+  "NGCP::Schema::Result::autoprov_device_line_ranges",
+  { "foreign.device_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 __PACKAGE__->set_primary_key("id");
 sub TO_JSON {
     my ($self) = @_;

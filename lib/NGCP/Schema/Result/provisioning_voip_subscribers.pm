@@ -198,8 +198,8 @@ __PACKAGE__->belongs_to(
 );
 
 __PACKAGE__->has_many(
-  "autoprov_field_devices",
-  "NGCP::Schema::Result::autoprov_field_devices",
+  "autoprov_field_device_lines",
+  "NGCP::Schema::Result::autoprov_field_device_lines",
   { "foreign.subscriber_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
