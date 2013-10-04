@@ -80,8 +80,8 @@ __PACKAGE__->belongs_to(
 );
 
 __PACKAGE__->belongs_to(
-  "autoconf_device_line_range",
-  "NGCP::Schema::Result::autoconf_device_line_ranges",
+  "autoprov_device_line_range",
+  "NGCP::Schema::Result::autoprov_device_line_ranges",
   { id => "linerange_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
