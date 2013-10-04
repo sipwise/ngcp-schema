@@ -4,4 +4,5 @@ extends 'DBIx::Class::ResultSet';
 
 our $VERSION = '2.006';
 
-__PACKAGE__->load_components('Helper::ResultSet');
+__PACKAGE__->load_components('Helper::ResultSet::SetOperations');
+
