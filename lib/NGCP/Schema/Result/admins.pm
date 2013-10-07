@@ -49,12 +49,15 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "lawful_intercept",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "ssl_client_m_serial",
+  { data_type => "bigint", extra => { unsigned => 1 }, is_nullable => 1 },
 );
 
 __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->add_unique_constraint("login_idx", ["login"]);
 
+__PACKAGE__->add_unique_constraint("ssl_client_m_serial_UNIQUE", ["ssl_client_m_serial"]);
 
 __PACKAGE__->belongs_to(
   "reseller",
@@ -166,6 +169,12 @@ NGCP::Schema::Result::admins
   default_value: 0
   is_nullable: 0
 
+=head2 ssl_client_m_serial
+
+  data_type: 'bigint'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
 =head1 PRIMARY KEY
 
 =over 4
@@ -181,6 +190,14 @@ NGCP::Schema::Result::admins
 =over 4
 
 =item * L</login>
+
+=back
+
+=head2 C<ssl_client_m_serial_UNIQUE>
+
+=over 4
+
+=item * L</ssl_client_m_serial>
 
 =back
 
