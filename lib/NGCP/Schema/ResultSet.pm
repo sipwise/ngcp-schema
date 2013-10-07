@@ -4,4 +4,8 @@ extends 'DBIx::Class::ResultSet';
 
 our $VERSION = '2.004';
 
-__PACKAGE__->load_components('Helper::ResultSet');
+__PACKAGE__->load_components(
+   'Helper::ResultSet::IgnoreWantarray',
+   'Helper::ResultSet::SetOperations',
+   );
+
