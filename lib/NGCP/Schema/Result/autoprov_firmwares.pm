@@ -33,6 +33,8 @@ __PACKAGE__->add_columns(
     is_foreign_key => 1,
     is_nullable => 0,
   },
+  "version",
+  { data_type => "varchar", is_nullable => 1, size => 255 },
   "filename",
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "data",
