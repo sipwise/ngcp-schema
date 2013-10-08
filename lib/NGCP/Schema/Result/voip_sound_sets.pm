@@ -28,6 +28,12 @@ __PACKAGE__->add_columns(
     is_foreign_key => 1,
     is_nullable => 0,
   },
+  "contract_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_nullable => 1,
+  },
   "name",
   { data_type => "varchar", is_nullable => 1, size => 256 },
   "description",
@@ -44,12 +50,21 @@ __PACKAGE__->has_many(
   { "foreign.set_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+
 __PACKAGE__->belongs_to(
   "reseller",
   "NGCP::Schema::Result::resellers",
   { id => "reseller_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
+
+__PACKAGE__->belongs_to(
+  "contract",
+  "NGCP::Schema::Result::contracts",
+  { 'foreign.id' => 'self.contract_id' },
+  { 'join_type' => 'left', is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
