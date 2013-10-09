@@ -1,22 +1,12 @@
 package NGCP::Schema::Result::resellers;
-use Sipwise::Base;
-use MooseX::NonMoose;
 use Scalar::Util qw(blessed);
+use parent 'DBIx::Class::Core';
+
 our $VERSION = '2.006';
-
-# Created by DBIx::Class::Schema::Loader
-# DO NOT MODIFY THE FIRST PART OF THIS FILE
-
-
-
-extends 'DBIx::Class::Core';
-
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
-
 __PACKAGE__->table("billing.resellers");
-
 
 __PACKAGE__->add_columns(
   "id",
@@ -44,15 +34,11 @@ __PACKAGE__->add_columns(
   },
 );
 
-
 __PACKAGE__->set_primary_key("id");
-
 
 __PACKAGE__->add_unique_constraint("contractid_idx", ["contract_id"]);
 
-
 __PACKAGE__->add_unique_constraint("name_idx", ["name"]);
-
 
 __PACKAGE__->has_many(
   "admins",
@@ -61,14 +47,12 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-
 __PACKAGE__->has_many(
   "billing_profiles",
   "NGCP::Schema::Result::billing_profiles",
   { "foreign.reseller_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
-
 
 __PACKAGE__->belongs_to(
   "contract",
@@ -77,14 +61,12 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-
 __PACKAGE__->has_many(
   "customers",
   "NGCP::Schema::Result::customers",
   { "foreign.reseller_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
-
 
 __PACKAGE__->has_many(
   "domain_resellers",
@@ -93,14 +75,12 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-
 __PACKAGE__->has_many(
   "ncos_levels",
   "NGCP::Schema::Result::ncos_levels",
   { "foreign.reseller_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
-
 
 __PACKAGE__->has_many(
   "orders",
@@ -109,14 +89,12 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-
 __PACKAGE__->has_many(
   "products",
   "NGCP::Schema::Result::products",
   { "foreign.reseller_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
-
 
 __PACKAGE__->has_many(
   "voip_intercepts",
@@ -125,14 +103,12 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-
 __PACKAGE__->has_many(
   "voip_number_block_resellers",
   "NGCP::Schema::Result::voip_number_block_resellers",
   { "foreign.reseller_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
-
 
 __PACKAGE__->has_many(
   "voip_numbers",
@@ -168,6 +144,10 @@ sub TO_JSON {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
+
+1;
+__END__
+
 =encoding UTF-8
 
 =head1 NAME
@@ -308,14 +288,3 @@ Related object: L<NGCP::Schema::Result::voip_number_block_resellers>
 Type: has_many
 
 Related object: L<NGCP::Schema::Result::voip_numbers>
-
-=cut
-
-
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-27 12:51:47
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:jwPBSCFSUgONmOLVp+SO+w
-
-
-# You can replace this text with custom code or comments, and it will be preserved on regeneration
-__PACKAGE__->meta->make_immutable;
-1;

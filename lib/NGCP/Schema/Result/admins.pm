@@ -1,22 +1,12 @@
 package NGCP::Schema::Result::admins;
-use Sipwise::Base;
-use MooseX::NonMoose;
 use Scalar::Util qw(blessed);
+use parent 'DBIx::Class::Core';
+
 our $VERSION = '2.006';
-
-# Created by DBIx::Class::Schema::Loader
-# DO NOT MODIFY THE FIRST PART OF THIS FILE
-
-
-
-extends 'DBIx::Class::Core';
-
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON", "EncodedColumn");
 
-
 __PACKAGE__->table("billing.admins");
-
 
 __PACKAGE__->add_columns(
   "id",
@@ -61,9 +51,7 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
 );
 
-
 __PACKAGE__->set_primary_key("id");
-
 
 __PACKAGE__->add_unique_constraint("login_idx", ["login"]);
 
@@ -79,12 +67,17 @@ __PACKAGE__->belongs_to(
     on_update     => "CASCADE",
   },
 );
+
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
+
+1;
+__END__
+
 =encoding UTF-8
 
 =head1 NAME
@@ -198,14 +191,3 @@ NGCP::Schema::Result::admins
 Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::resellers>
-
-=cut
-
-
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-27 12:51:46
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:HtK2drQTRWUtkxH5uEqh9g
-
-
-# You can replace this text with custom code or comments, and it will be preserved on regeneration
-__PACKAGE__->meta->make_immutable;
-1;
