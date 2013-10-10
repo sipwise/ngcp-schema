@@ -40,7 +40,7 @@ __PACKAGE__->add_columns(
   "street",
   { data_type => "varchar", is_nullable => 1, size => 127 },
   "postcode",
-  { data_type => "integer", is_nullable => 1 },
+  { data_type => "varchar", is_nullable => 1, size => 16 },
   "city",
   { data_type => "varchar", is_nullable => 1, size => 127 },
   "country",
