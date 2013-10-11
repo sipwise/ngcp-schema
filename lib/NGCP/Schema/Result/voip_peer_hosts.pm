@@ -35,6 +35,8 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", extra => { unsigned => 1 }, is_nullable => 1 },
   "weight",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "via_route",
+  { data_type => "varchar", is_nullable => 1, size => 256 },
   "via_lb",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
 );
