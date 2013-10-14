@@ -37,6 +37,8 @@ __PACKAGE__->add_columns(
   { data_type => "char", is_nullable => 0, size => 36 },
   "choice",
   { data_type => "tinyint", is_nullable => 0 },
+  "destination",
+  { data_type => "varchar", is_nullable => 0, size => 256 },
 );
 
 
