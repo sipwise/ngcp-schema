@@ -1,3 +1,10 @@
+ngcp-schema (2.004+ramoptimized.2) unstable; urgency=low
+
+  [ Gerhard Jungwirth ]
+  * [2b5c4e9] MT#4135 Only load certain Helper::ResultSet::*
+
+ -- Andrew Pogrebennyk <apogrebennyk@sipwise.com>  Mon, 14 Oct 2013 18:06:04 +0200
+
 ngcp-schema (2.004+ramoptimized) unstable; urgency=low
 
   * [70be76f] Remove unnecessary kamailio result sources.
