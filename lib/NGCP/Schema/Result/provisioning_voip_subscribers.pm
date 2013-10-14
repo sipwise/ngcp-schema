@@ -200,7 +200,7 @@ __PACKAGE__->has_one(
 
 __PACKAGE__->has_many(
   "voip_pbx_autoattendants",
-  "NGCP::Schema::provisioning::Result::voip_pbx_autoattendants",
+  "NGCP::Schema::Result::voip_pbx_autoattendants",
   { "foreign.subscriber_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
