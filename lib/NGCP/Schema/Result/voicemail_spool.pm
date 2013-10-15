@@ -1,8 +1,16 @@
 package NGCP::Schema::Result::voicemail_spool;
+use Sipwise::Base;
+use MooseX::NonMoose;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.006';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+extends 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components(
     "InflateColumn::DateTime", 
@@ -10,7 +18,9 @@ __PACKAGE__->load_components(
     "+NGCP::Schema::InflateColumn::DateTime::EpochString",
 );
 
+
 __PACKAGE__->table("kamailio.voicemail_spool");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -48,7 +58,9 @@ __PACKAGE__->add_columns(
   { data_type => "longblob", is_nullable => 1 },
 );
 
+
 __PACKAGE__->set_primary_key("id");
+
 
 __PACKAGE__->belongs_to(
   "mailboxuser",
@@ -61,26 +73,12 @@ __PACKAGE__->belongs_to(
     on_update     => "CASCADE",
   },
 );
-
-for my $col (qw/origtime/) {
-    if(__PACKAGE__->has_column($col)) {
-        __PACKAGE__->remove_column($col);
-        __PACKAGE__->add_column($col =>
-            { data_type => "varchar", is_nullable => 0, inflate_datetime => 'epoch_string' }
-        );
-    }
-}
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -191,3 +189,21 @@ NGCP::Schema::Result::voicemail_spool
 Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::voicemail_users>
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-27 12:51:59
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:pVE7vFt85S24avmUm7FIMg
+
+for my $col (qw/origtime/) {
+    if(__PACKAGE__->has_column($col)) {
+        __PACKAGE__->remove_column($col);
+        __PACKAGE__->add_column($col =>
+            { data_type => "varchar", is_nullable => 0, inflate_datetime => 'epoch_string' }
+        );
+    }
+}
+
+__PACKAGE__->meta->make_immutable;
+1;

@@ -1,16 +1,26 @@
 package NGCP::Schema::Result::messages;
+use Sipwise::Base;
+use MooseX::NonMoose;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.006';
 
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+extends 'DBIx::Class::Core';
+
+
 __PACKAGE__->load_components(
-  "InflateColumn::DateTime",
+  "InflateColumn::DateTime", 
   "Helper::Row::ToJSON",
   "+NGCP::Schema::InflateColumn::DateTime::EpochMicro",
 );
 
+
 __PACKAGE__->table("sipstats.messages");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -73,26 +83,12 @@ __PACKAGE__->has_many(
 );
 
 __PACKAGE__->set_primary_key("id");
-
-for my $col (qw/timestamp/) {
-    if(__PACKAGE__->has_column($col)) {
-        __PACKAGE__->remove_column($col);
-        __PACKAGE__->add_column($col =>
-            { data_type => "decimal", is_nullable => 0, size => [17, 6], inflate_datetime => 'epoch_micro' }
-        );
-    }
-}
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -217,3 +213,21 @@ NGCP::Schema::Result::messages
 =item * L</id>
 
 =back
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-27 12:52:12
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:bYbdYKBz9w7LgX1fXS2wzQ
+
+for my $col (qw/timestamp/) {
+    if(__PACKAGE__->has_column($col)) {
+        __PACKAGE__->remove_column($col);
+        __PACKAGE__->add_column($col =>
+            { data_type => "decimal", is_nullable => 0, size => [17, 6], inflate_datetime => 'epoch_micro' }
+        );
+    }
+}
+
+__PACKAGE__->meta->make_immutable;
+1;

@@ -1,12 +1,22 @@
 package NGCP::Schema::Result::ncos_pattern_list;
+use Sipwise::Base;
+use MooseX::NonMoose;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.006';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+extends 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("billing.ncos_pattern_list");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -29,9 +39,12 @@ __PACKAGE__->add_columns(
   { data_type => "text", is_nullable => 1 },
 );
 
+
 __PACKAGE__->set_primary_key("id");
 
+
 __PACKAGE__->add_unique_constraint("levpat_idx", ["ncos_level_id", "pattern"]);
+
 
 __PACKAGE__->belongs_to(
   "ncos_level",
@@ -39,17 +52,12 @@ __PACKAGE__->belongs_to(
   { id => "ncos_level_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -122,3 +130,14 @@ NGCP::Schema::Result::ncos_pattern_list
 Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::ncos_levels>
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-27 12:51:47
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:l/bo1cbK1S2QD528GlpRTg
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+__PACKAGE__->meta->make_immutable;
+1;
