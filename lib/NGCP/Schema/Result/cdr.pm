@@ -1,16 +1,8 @@
 package NGCP::Schema::Result::cdr;
-use Sipwise::Base;
-use MooseX::NonMoose;
 use Scalar::Util qw(blessed);
+use parent 'DBIx::Class::Core';
+
 our $VERSION = '2.006';
-
-# Created by DBIx::Class::Schema::Loader
-# DO NOT MODIFY THE FIRST PART OF THIS FILE
-
-
-
-extends 'DBIx::Class::Core';
-
 
 __PACKAGE__->load_components(
     "InflateColumn::DateTime",
@@ -18,9 +10,7 @@ __PACKAGE__->load_components(
     "+NGCP::Schema::InflateColumn::DateTime::EpochMilli",
 );
 
-
 __PACKAGE__->table("accounting.cdr");
-
 
 __PACKAGE__->add_columns(
   "id",
@@ -208,14 +198,27 @@ __PACKAGE__->add_columns(
   },
 );
 
-
 __PACKAGE__->set_primary_key("id");
+
+for my $col (qw/init_time start_time/) {
+    if(__PACKAGE__->has_column($col)) {
+        __PACKAGE__->remove_column($col);
+        __PACKAGE__->add_column($col =>
+            { data_type => "decimal", is_nullable => 0, size => [13, 3], inflate_datetime => 'epoch_milli' }
+        );
+    }
+}
+
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
+
+1;
+__END__
+
 =encoding UTF-8
 
 =head1 NAME
@@ -632,20 +635,3 @@ NGCP::Schema::Result::cdr
 =item * L</id>
 
 =back
-
-=cut
-
-
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-06-27 12:51:39
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:rNMfsyIh9LAGJGoe/or06w
-
-for my $col (qw/init_time start_time/) {
-    if(__PACKAGE__->has_column($col)) {
-        __PACKAGE__->remove_column($col);
-        __PACKAGE__->add_column($col =>
-            { data_type => "decimal", is_nullable => 0, size => [13, 3], inflate_datetime => 'epoch_milli' }
-        );
-    }
-}
-
-__PACKAGE__->meta->make_immutable;
