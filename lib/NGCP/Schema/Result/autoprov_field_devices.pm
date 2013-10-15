@@ -1,5 +1,4 @@
 package NGCP::Schema::Result::autoprov_field_devices;
-use Sipwise::Base;
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 

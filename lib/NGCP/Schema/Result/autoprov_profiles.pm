@@ -1,5 +1,4 @@
 package NGCP::Schema::Result::autoprov_profiles;
-use Sipwise::Base;
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 

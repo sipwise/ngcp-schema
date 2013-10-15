@@ -1,15 +1,11 @@
 package NGCP::Schema::Result::voip_pbx_autoattendants;
-use Sipwise::Base;
-use MooseX::NonMoose;
 use Scalar::Util qw(blessed);
 our $VERSION = '2.006';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
 
-
-
-extends 'DBIx::Class::Core';
+use parent 'DBIx::Class::Core';
 
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
@@ -127,5 +123,4 @@ Related object: L<NGCP::Schema::provisioning::Result::voip_subscribers>
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
-__PACKAGE__->meta->make_immutable;
 1;
