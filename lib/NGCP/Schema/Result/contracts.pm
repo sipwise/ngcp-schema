@@ -72,6 +72,12 @@ __PACKAGE__->add_columns(
     datetime_undef_if_invalid => 1,
     is_nullable => 1,
   },
+  "max_subscribers",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_nullable => 1,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
