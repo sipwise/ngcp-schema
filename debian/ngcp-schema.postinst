@@ -1,0 +1,37 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+  configure)
+    if [ -x /etc/init.d/ngcp-panel ] ; then
+      if [ -x "$(which invoke-rc.d 2>/dev/null)" ]; then
+        echo  "Force-reloading ngcp-panel to handle schema changes"
+        invoke-rc.d ngcp-panel force-reload || exit $?
+      else
+        echo  "Force-reloading ngcp-panel to handle schema changes"
+        /etc/init.d/ngcp-panel force-reload || exit $?
+      fi
+    fi
+
+    if [ -x /etc/init.d/ngcp-www-csc ] ; then
+      if [ -x "$(which invoke-rc.d 2>/dev/null)" ]; then
+        echo  "Force-reloading ngcp-www-csc to handle schema changes"
+        invoke-rc.d ngcp-www-csc force-reload || exit $?
+      else
+        echo  "Force-reloading ngcp-www-csc to handle schema changes"
+        /etc/init.d/ngcp-www-csc force-reload || exit $?
+      fi
+    fi
+    ;;
+
+  abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+  *)
+    echo "postinst of ngcp-schema called with unknown argument \`$1'" >&2
+    exit 1
+    ;;
+esac
+
+exit 0
