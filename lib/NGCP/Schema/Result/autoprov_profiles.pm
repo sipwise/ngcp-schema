@@ -16,13 +16,6 @@ __PACKAGE__->add_columns(
     is_auto_increment => 1,
     is_nullable => 0,
   },
-  "firmware_id",
-  {
-    data_type => "integer",
-    extra => { unsigned => 1 },
-    is_foreign_key => 1,
-    is_nullable => 1,
-  },
   "config_id",
   {
     data_type => "integer",
@@ -41,18 +34,6 @@ __PACKAGE__->belongs_to(
   "NGCP::Schema::Result::autoprov_configs",
   { id => "config_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-__PACKAGE__->belongs_to(
-  "firmware",
-  "NGCP::Schema::Result::autoprov_firmwares",
-  { id => "firmware_id" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "CASCADE",
-    on_update     => "CASCADE",
-  },
 );
 
 sub TO_JSON {
