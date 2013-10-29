@@ -1,3 +1,35 @@
+ngcp-schema (2.007) unstable; urgency=low
+
+  [ Andreas Granig ]
+  * [17229b3] Add label column to voip_subscribers table.
+  * [056ee6e] Deflate voicemail origtime column.
+  * [2d1ceac] Add relation from provisioning sub to billing sub.
+  * [f2430c7] MT#3977 Add schema to support PBX multiline config
+  * [3c8a66d] MT#3977 Fix wrong relationship name.
+  * [04e4447] MT#3977 Add PBX firmware version column.
+  * [fac4678] MT#4025 Link contract and sound set tables.
+  * [536250c] MT#4145 Change contacts.postcode to varchar.
+  * [aea75bc] MT#3997 Add via_route column to voip_peer_hosts.
+  * [d379e10] MT#4007 Add voip_pbx_autoattendants schema.
+  * [e312c53] MT#4007 Add destination to autoattendant.
+  * [75b9b92] MT#4007 Fix autoattendant relation for subscriber.
+  * [b5362d6] MT#4225 Align new schemas to optimized approach.
+  * [d3eee10] MT#3971 Add max_subscribers column to contracts.
+  * [7b86c0f] MT#4685 Don't tie firmware to profile.
+
+  [ Gerhard Jungwirth ]
+  * [506817e] Only load Helper::ResultSet::SetOperations instead of all
+  * [37a15cd] MT#4135 Only load certain Helper::ResultSet::*
+
+  [ Lars Dieckow ]
+  * [7325ac6] MT#4225 remove nugatory modules to save memory
+  * [95cdd13] MT#4123 warning gone in newer version
+
+  [ Michael Prokop ]
+  * [2f4b037] MT#4419 Web server should be restarted on ngcp-schema package upgrades
+
+ -- Andreas Granig <agranig@sipwise.com>  Tue, 29 Oct 2013 11:52:43 +0100
+
 ngcp-schema (2.006) unstable; urgency=low
 
   * [73bd5d8] Add PBX autoprovisioning tables.

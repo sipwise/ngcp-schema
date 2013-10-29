@@ -2,7 +2,7 @@ package NGCP::Schema::Result::billing_fees_history;
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 
-our $VERSION = '2.006';
+our $VERSION = '2.007';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 

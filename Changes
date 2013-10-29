@@ -4,6 +4,26 @@
 
 Changes - Revision history for NGCP-Schema
 
+=head2 2.007  2013-10-29
+
+=over
+
+=item Add label column to voip_subscribers table.
+=item Add relation from provisioning sub to billing sub.
+=item MT#3977 Add schema to support PBX multiline config
+=item MT#3977 Add PBX firmware version column.
+=item MT#4025 Link contract and sound set tables.
+=item MT#4225 remove nugatory modules to save memory
+=item MT#4135 Only load certain Helper::ResultSet::*
+=item MT#4145 Change contacts.postcode to varchar.
+=item MT#4123 warning gone in newer version
+=item MT#3997 Add via_route column to voip_peer_hosts.
+=item MT#4007 Add voip_pbx_autoattendants schema.
+=item MT#3971 Add max_subscribers column to contracts.
+=item MT#4685 Don't tie firmware to profile.
+
+=back
+
 =head2 2.006  2013-09-20
 
 =over
