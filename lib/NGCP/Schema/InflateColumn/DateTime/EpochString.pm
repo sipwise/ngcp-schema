@@ -33,7 +33,8 @@ sub _inflate_to_datetime {
         unless $info->{ data_type } eq "varchar" 
 		|| (exists $info->{ inflate_datetime } 
 		&& $info->{ inflate_datetime } eq 'epoch_string');
-    return DateTime->from_epoch( epoch => int($value) );
+    my $tz = DateTime::TimeZone->new( name => 'local' );
+    return DateTime->from_epoch(epoch => $value, time_zone => $tz);
 }
 
 sub _deflate_from_datetime {
