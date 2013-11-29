@@ -33,7 +33,8 @@ sub _inflate_to_datetime {
       unless $info->{data_type} eq "decimal"
           || (exists $info->{inflate_datetime}
           && $info->{inflate_datetime} eq 'epoch_micro');
-    return DateTime->from_epoch(epoch => $value);
+    my $tz = DateTime::TimeZone->new( name => 'local' );
+    return DateTime->from_epoch(epoch => $value, time_zone => $tz);
 }
 
 sub _deflate_from_datetime {
