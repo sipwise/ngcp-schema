@@ -32,6 +32,8 @@ __PACKAGE__->add_columns(
     is_foreign_key => 1,
     is_nullable => 0,
   },
+  "is_primary",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
 );
 
 __PACKAGE__->set_primary_key("id");
