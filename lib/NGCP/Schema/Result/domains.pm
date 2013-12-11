@@ -38,6 +38,13 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->has_one(
+  "provisioning_voip_domain",
+  "NGCP::Schema::Result::voip_domains",
+  { "foreign.domain" => "self.domain" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
