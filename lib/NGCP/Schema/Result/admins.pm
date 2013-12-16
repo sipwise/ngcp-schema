@@ -51,6 +51,8 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "ssl_client_m_serial",
   { data_type => "bigint", extra => { unsigned => 1 }, is_nullable => 1 },
+  "ssl_client_certificate",
+  { data_type => "text", is_nullable => 1 },
 );
 
 __PACKAGE__->set_primary_key("id");
