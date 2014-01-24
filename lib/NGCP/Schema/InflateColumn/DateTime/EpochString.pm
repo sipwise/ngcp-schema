@@ -4,7 +4,7 @@ use DateTime qw();
 
 extends 'DBIx::Class';
 
-our $VERSION = '2.007';
+our $VERSION = '2.009';
 
 __PACKAGE__->load_components( qw( InflateColumn::DateTime ) );
 

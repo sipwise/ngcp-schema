@@ -2,7 +2,7 @@ package NGCP::Schema::Result::language_strings;
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 
-our $VERSION = '2.007';
+our $VERSION = '2.009';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 

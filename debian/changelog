@@ -1,3 +1,9 @@
+ngcp-schema (2.009) unstable; urgency=low
+
+  * [375389a] MT#3917 Inflate db timestamps to localtime
+
+ -- Gerhard Jungwirth <gjungwirth@sipwise.com>  Fri, 24 Jan 2014 15:08:25 +0100
+
 ngcp-schema (2.008) unstable; urgency=low
 
   [ Andreas Granig ]
