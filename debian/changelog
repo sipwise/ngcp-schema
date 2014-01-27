@@ -1,3 +1,18 @@
+ngcp-schema (3.000) unstable; urgency=low
+
+  [ Lars Dieckow ]
+  * [9329d86] MT#3927 certificate management
+
+  [ Gerhard Jungwirth ]
+  * [90d6b22] MT#3917 Inflate db timestamps to localtime
+
+  [ Andreas Granig ]
+  * [11e1e4a] MT#5101 Add is_primary flag for voip_dbaliases.
+  * [876f2f7] MT#5349 Add dom relation from billing to prov.
+  * [15b23fa] MT#5199 Store client cert in DB.
+
+ -- Alexander Lutay <alutay@sipwise.com>  Mon, 27 Jan 2014 11:41:58 +0100
+
 ngcp-schema (2.008) unstable; urgency=low
 
   [ Andreas Granig ]
