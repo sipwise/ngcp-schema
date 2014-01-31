@@ -30,7 +30,7 @@ sub add_columns {
 sub _inflate_to_datetime {
     my( $self, $value, $info, @rest ) = @_;
     return $self->next::method( $value, $info, @rest )
-        unless $info->{ data_type } eq "varchar" 
+        unless $info->{ data_type } eq "varchar" ||  $info->{ data_type } eq "integer" 
 		|| (exists $info->{ inflate_datetime } 
 		&& $info->{ inflate_datetime } eq 'epoch_string');
     my $tz = DateTime::TimeZone->new( name => 'local' );

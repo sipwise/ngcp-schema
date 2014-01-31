@@ -4,7 +4,11 @@ use parent 'DBIx::Class::Core';
 
 our $VERSION = '2.007';
 
-__PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
+__PACKAGE__->load_components(
+    "InflateColumn::DateTime",
+    "Helper::Row::ToJSON",
+    "+NGCP::Schema::InflateColumn::DateTime::EpochString",
+);
 
 __PACKAGE__->table("kamailio.fax_journal");
 
@@ -29,6 +33,7 @@ __PACKAGE__->add_columns(
     default_value => 0,
     extra => { unsigned => 1 },
     is_nullable => 0,
+    inflate_datetime => 'epoch_string',
   },
   "duration",
   {
