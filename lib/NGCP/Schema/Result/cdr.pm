@@ -208,7 +208,17 @@ for my $col (qw/init_time start_time/) {
         );
     }
 }
-
+__PACKAGE__->belongs_to(
+  "source_customer_billing_zones_history",
+  "NGCP::Schema::Result::billing_zones_history",
+  { "bz_id" => "source_customer_billing_zone_id"  },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "SET NULL",
+    on_update     => "NO ACTION",
+  },
+);
 sub TO_JSON {
     my ($self) = @_;
     return {
