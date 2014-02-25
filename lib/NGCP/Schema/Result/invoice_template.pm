@@ -62,6 +62,9 @@ sub TO_JSON {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
+1;
+__END__
+
 =encoding UTF-8
 
 =head1 NAME
