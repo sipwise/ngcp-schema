@@ -1,11 +1,9 @@
-ngcp-schema (3.000+0~mr3.2.1) unstable; urgency=low
+ngcp-schema (3.0.1.0+0~mr3.2.1.0) unstable; urgency=low
 
   [ Andreas Granig ]
   * [1a5bc5b] MT#5083 Fix fax_journal timestamp format
 
-  [ Sipwise Jenkins Builder ]
-
- -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Sat, 01 Feb 2014 19:53:13 +0100
+ -- Alexander Lutay <alutay@sipwise.com>  Fri, 21 Mar 2014 14:26:39 +0100
 
 ngcp-schema (3.000) unstable; urgency=low
 
