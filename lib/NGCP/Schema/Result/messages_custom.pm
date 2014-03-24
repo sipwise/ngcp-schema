@@ -23,7 +23,9 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
   },
   "timestamp",
-  { data_type => "decimal", is_nullable => 0, size => [17, 6] },
+  { data_type => "decimal", is_nullable => 0, size => [17, 6], inflate_datetime => 'epoch_micro' },
+  "min_timestamp",
+  { data_type => "decimal", is_nullable => 0, size => [17, 6], inflate_datetime => 'epoch_micro' },
   "protocol",
   {
     data_type => "enum",
@@ -69,15 +71,6 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
-for my $col (qw/timestamp/) {
-    if(__PACKAGE__->has_column($col)) {
-        __PACKAGE__->remove_column($col);
-        __PACKAGE__->add_column($col =>
-            { data_type => "decimal", is_nullable => 0, size => [17, 6], inflate_datetime => 'epoch_micro' }
-        );
-    }
-}
-
 sub TO_JSON {
     my ($self) = @_;
     return {
@@ -88,7 +81,7 @@ sub TO_JSON {
 __PACKAGE__->result_source_instance->is_virtual(1);
 
 __PACKAGE__->result_source_instance->view_definition("
-SELECT m.* FROM
+SELECT min(m.timestamp) as min_timestamp, m.* FROM
 (
 (
 SELECT  DISTINCT ( call_id )
