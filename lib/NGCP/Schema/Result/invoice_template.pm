@@ -38,15 +38,37 @@ __PACKAGE__->add_columns(
   { data_type => "mediumblob", is_nullable => 1 },
   "base64_previewed",
   { data_type => "mediumblob", is_nullable => 1 },
+  "name",
+  { data_type => "varchar", is_nullable => 0, size => 255 },
+  "x_title",
+  { data_type => "mediumint", default_value => 0, is_nullable => 0 },
+  "y_title",
+  { data_type => "mediumint", default_value => 0, is_nullable => 0 },
+  "rows_title",
+  { data_type => "mediumint", default_value => 0, is_nullable => 0 },
+  "x_mid",
+  { data_type => "mediumint", default_value => 0, is_nullable => 0 },
+  "y_mid",
+  { data_type => "mediumint", default_value => 0, is_nullable => 0 },
+  "rows_mid",
+  { data_type => "mediumint", default_value => 0, is_nullable => 0 },
+  "x_last",
+  { data_type => "mediumint", default_value => 0, is_nullable => 0 },
+  "y_last",
+  { data_type => "mediumint", default_value => 0, is_nullable => 0 },
+  "rows_last",
+  { data_type => "mediumint", default_value => 0, is_nullable => 0 },
 );
 
 
 __PACKAGE__->set_primary_key("id");
 
 
-__PACKAGE__->add_unique_constraint(
-  "invoice_template_reseller_active_UNIQUE",
-  ["reseller_id", "is_active"],
+__PACKAGE__->has_many(
+  "invoice_template_resources",
+  "NGCP::Schema::billing::Result::invoice_template_resource",
+  { "foreign.invoice_template_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
 );
 
 
