@@ -7,7 +7,7 @@ use Regexp::IPv6 qw($IPv6_re);
 use MooseX::ClassAttribute qw(class_has);
 extends 'DBIx::Class::Schema';
 
-our $VERSION = '2.009';
+our $VERSION = '2.010';
 
 __PACKAGE__->load_namespaces(
     default_resultset_class => 'ResultSet',
@@ -93,7 +93,7 @@ NGCP::Schema - DBIC-derived ORM schema classes
 
 =head1 VERSION
 
-This document describes NGCP::Schema version 2.009
+This document describes NGCP::Schema version 2.010
 
 =head1 SYNOPSIS
 

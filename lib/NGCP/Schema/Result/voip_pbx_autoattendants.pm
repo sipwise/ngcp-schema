@@ -1,6 +1,6 @@
 package NGCP::Schema::Result::voip_pbx_autoattendants;
 use Scalar::Util qw(blessed);
-our $VERSION = '2.009';
+our $VERSION = '2.010';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE

@@ -1,3 +1,10 @@
+ngcp-schema (2.010) unstable; urgency=low
+
+  * [c6e82ed] MT#4369 custom messages virtualview for sql performance
+  * [1a665b3] MT#4369 select min(timestamp) on custom messages
+
+ -- Gerhard Jungwirth <gjungwirth@sipwise.com>  Fri, 28 Mar 2014 15:05:37 +0100
+
 ngcp-schema (2.009) unstable; urgency=low
 
   * [375389a] MT#3917 Inflate db timestamps to localtime

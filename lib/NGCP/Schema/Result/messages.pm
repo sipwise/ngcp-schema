@@ -2,7 +2,7 @@ package NGCP::Schema::Result::messages;
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 
-our $VERSION = '2.009';
+our $VERSION = '2.010';
 
 __PACKAGE__->load_components(
   "InflateColumn::DateTime",
