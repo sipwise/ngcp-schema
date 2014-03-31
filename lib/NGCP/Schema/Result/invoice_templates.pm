@@ -1,4 +1,4 @@
-package NGCP::Schema::Result::invoice_template;
+package NGCP::Schema::Result::invoice_templates;
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 
@@ -7,7 +7,7 @@ our $VERSION = '2.009';
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
 
-__PACKAGE__->table("billing.invoice_template");
+__PACKAGE__->table("billing.invoice_templates");
 
 
 __PACKAGE__->add_columns(
@@ -66,7 +66,7 @@ __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->has_many(
   "invoice_template_resources",
-  "NGCP::Schema::billing::Result::invoice_template_resource",
+  "NGCP::Schema::billing::Result::invoice_template_resources",
   { "foreign.invoice_template_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -91,7 +91,7 @@ __END__
 
 =head1 NAME
 
-NGCP::Schema::Result::invoice_template
+NGCP::Schema::Result::invoice_templates
 
 =head1 COMPONENTS LOADED
 
@@ -103,7 +103,7 @@ NGCP::Schema::Result::invoice_template
 
 =back
 
-=head1 TABLE: C<invoice_template>
+=head1 TABLE: C<invoice_templates>
 
 =head1 ACCESSORS
 
@@ -149,18 +149,6 @@ NGCP::Schema::Result::invoice_template
 =over 4
 
 =item * L</id>
-
-=back
-
-=head1 UNIQUE CONSTRAINTS
-
-=head2 C<invoice_template_reseller_active_UNIQUE>
-
-=over 4
-
-=item * L</reseller_id>
-
-=item * L</is_active>
 
 =back
 
