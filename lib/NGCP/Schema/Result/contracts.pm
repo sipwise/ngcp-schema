@@ -46,6 +46,8 @@ __PACKAGE__->add_columns(
   },
   "external_id",
   { data_type => "varchar", is_nullable => 1, size => 255 },
+  "send_invoice",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "modify_timestamp",
   {
     data_type => "timestamp",
