@@ -55,7 +55,7 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->belongs_to(
-  "set",
+  "ruleset",
   "NGCP::Schema::Result::voip_rewrite_rule_sets",
   { id => "set_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
@@ -156,7 +156,7 @@ NGCP::Schema::Result::voip_rewrite_rules
 
 =head1 RELATIONS
 
-=head2 set
+=head2 ruleset
 
 Type: belongs_to
 
