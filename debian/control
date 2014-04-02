@@ -43,7 +43,7 @@ Build-Depends: debhelper (>= 8),
                pdl,
                perl-doc,
                wml
-Standards-Version: 3.9.4
+Standards-Version: 3.9.5
 Homepage: http://sipwise.com/
 
 Package: ngcp-schema
