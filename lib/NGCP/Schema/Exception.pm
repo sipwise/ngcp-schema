@@ -8,7 +8,7 @@ extends 'Throwable::Error';
 has('description', is => 'ro', isa => 'Str', required => 1);
 has('context', is => 'ro', isa => 'HashRef', documentation => 'extra data to pass along');
 
-$CLASS->meta->make_immutable(inline_constructor => 0);
+__PACKAGE__->meta->make_immutable(inline_constructor => 0);
 
 __END__
 

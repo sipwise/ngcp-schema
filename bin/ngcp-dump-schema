@@ -76,7 +76,7 @@ for my $db (qw(accounting billing carrier kamailio ngcp provisioning sipstats)) 
             moniker_map => sub { $_[0] },
             col_accessor_map => sub {
                 my ($column) = @_;
-                return $CLASS->can($column) ? "column_$column" : $column;
+                return __PACKAGE__->can($column) ? "column_$column" : $column;
             },
             components => [qw(InflateColumn::DateTime Helper::Row::ToJSON)],
             quiet => 1,

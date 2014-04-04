@@ -41,7 +41,7 @@ method check_config($config) {
     return $config;
 }
 
-$CLASS->meta->make_immutable;
+__PACKAGE__->meta->make_immutable;
 
 __END__
 

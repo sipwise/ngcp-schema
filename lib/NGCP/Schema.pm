@@ -81,7 +81,7 @@ method _check_ip_generic($ip, $flags) {
     return;
 }
 
-$CLASS->meta->make_immutable;
+__PACKAGE__->meta->make_immutable;
 
 __END__
 
