@@ -132,6 +132,13 @@ __PACKAGE__->has_many(
 );
 
 __PACKAGE__->has_many(
+  "voip_subscriber_profiles",
+  "NGCP::Schema::Result::voip_subscriber_profiles",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
   "autoprov_devices",
   "NGCP::Schema::Result::autoprov_devices",
   { "foreign.reseller_id" => "self.id" },
