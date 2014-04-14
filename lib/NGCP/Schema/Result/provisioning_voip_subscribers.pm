@@ -39,6 +39,8 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 40 },
   "pbx_group_id",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
+  "profile_set_id",
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
   "profile_id",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
   "is_pbx_group",
@@ -211,6 +213,13 @@ __PACKAGE__->belongs_to(
   "voip_subscriber_profile",
   "NGCP::Schema::Result::voip_subscriber_profiles",
   { "foreign.id" => "self.profile_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->belongs_to(
+  "voip_subscriber_profile_set",
+  "NGCP::Schema::Result::voip_subscriber_profile_sets",
+  { "foreign.id" => "self.profile_set_id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
