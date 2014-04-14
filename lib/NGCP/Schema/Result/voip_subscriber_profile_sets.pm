@@ -1,4 +1,4 @@
-package NGCP::Schema::Result::voip_subscriber_profiles;
+package NGCP::Schema::Result::voip_subscriber_profile_sets;
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 
@@ -7,7 +7,7 @@ our $VERSION = '2.007';
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
 
-__PACKAGE__->table("provisioning.voip_subscriber_profiles");
+__PACKAGE__->table("provisioning.voip_subscriber_profile_sets");
 
 
 __PACKAGE__->add_columns(
@@ -18,35 +18,33 @@ __PACKAGE__->add_columns(
     is_auto_increment => 1,
     is_nullable => 0,
   },
-  "set_id",
+  "reseller_id",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 0 },
   "name",
   { data_type => "varchar", is_nullable => 0, size => 255 },
   "description",
   { data_type => "varchar", is_nullable => 0, size => 255 },
-  "set_default",
-  { data_type => "tinyint", extra => { unsigned => 1 }, is_nullable => 0 },
 );
 
 
 __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->belongs_to(
-  "profile_set",
-  "NGCP::Schema::Result::voip_subscriber_profile_sets",
-  { id => "set_id" },
+  "reseller",
+  "NGCP::Schema::Result::resellers",
+  { id => "reseller_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
 __PACKAGE__->has_many(
-  "profile_attributes",
-  "NGCP::Schema::Result::voip_subscriber_profile_attributes",
-  { "foreign.profile_id" => "self.id" },
+  "voip_subscriber_profiles",
+  "NGCP::Schema::Result::voip_subscriber_profiles",
+  { "foreign.set_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
 
-__PACKAGE__->add_unique_constraint("vsp_resname_idx", ["set_id", "name"]);
+__PACKAGE__->add_unique_constraint("vsp_resname_idx", ["reseller_id", "name"]);
 sub TO_JSON {
     my ($self) = @_;
     return {
@@ -57,7 +55,7 @@ sub TO_JSON {
 
 =head1 NAME
 
-NGCP::Schema::Result::voip_subscriber_profiles
+NGCP::Schema::Result::voip_subscriber_profile_sets
 
 =head1 COMPONENTS LOADED
 
@@ -69,7 +67,7 @@ NGCP::Schema::Result::voip_subscriber_profiles
 
 =back
 
-=head1 TABLE: C<voip_subscriber_profiles>
+=head1 TABLE: C<voip_subscriber_profile_sets>
 
 =head1 ACCESSORS
 
