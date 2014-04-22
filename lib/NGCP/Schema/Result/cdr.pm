@@ -211,12 +211,24 @@ for my $col (qw/init_time start_time/) {
 __PACKAGE__->belongs_to(
   "source_customer_billing_zones_history",
   "NGCP::Schema::Result::billing_zones_history",
-  { "bz_id" => "source_customer_billing_zone_id"  },
+  { "bz_id" => "source_customer_billing_zone_id" },
   {
     is_deferrable => 1,
     join_type     => "LEFT",
     on_delete     => "SET NULL",
     on_update     => "NO ACTION",
+  },
+);
+
+__PACKAGE__->belongs_to(
+  "source_account",
+  "NGCP::Schema::Result::contracts",
+  { "id" => "source_account_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "SET NULL",
+    on_update     => "UPDATE",
   },
 );
 sub TO_JSON {
