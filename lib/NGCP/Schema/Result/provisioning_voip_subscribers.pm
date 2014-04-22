@@ -39,6 +39,21 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 40 },
   "pbx_group_id",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
+  "pbx_hunt_policy",
+  {
+    data_type => "enum",
+    default_value => "serial",
+    extra => { list => ["serial", "parallel"] },
+    is_nullable => 1,
+  },
+  "pbx_hunt_timeout",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_nullable => 1,
+  },
+  "pbx_extension",
+  { data_type => "varchar", is_nullable => 1, size => 255 },
   "profile_set_id",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
   "profile_id",
@@ -139,6 +154,13 @@ __PACKAGE__->might_have(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->belongs_to(
+  "voip_pbx_group",
+  "NGCP::Schema::Result::voip_subscribers",
+  { "foreign.id" => "self.pbx_group_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 __PACKAGE__->might_have(
   "voip_reminder",
   "NGCP::Schema::Result::voip_reminder",
@@ -164,13 +186,6 @@ __PACKAGE__->has_many(
   "voip_usr_preferences",
   "NGCP::Schema::Result::voip_usr_preferences",
   { "foreign.subscriber_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->belongs_to(
-  "voip_pbx_group",
-  "NGCP::Schema::Result::voip_pbx_groups",
-  { 'foreign.id' => 'self.pbx_group_id' },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
@@ -452,9 +467,3 @@ Related object: L<NGCP::Schema::Result::voip_trusted_sources>
 Type: has_many
 
 Related object: L<NGCP::Schema::Result::voip_usr_preferences>
-
-=head2 voip_pbx_group
-
-Type: belongs_to
-
-Related object: L<NGCP::Schema::Result::voip_pbx_groups>

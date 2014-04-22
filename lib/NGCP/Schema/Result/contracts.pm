@@ -156,13 +156,6 @@ __PACKAGE__->has_many(
 );
 
 __PACKAGE__->has_many(
-  "voip_pbx_groups",
-  "NGCP::Schema::Result::voip_pbx_groups",
-  { "foreign.contract_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
   "autoprov_field_devices",
   "NGCP::Schema::Result::autoprov_field_devices",
   { "foreign.contract_id" => "self.id" },
