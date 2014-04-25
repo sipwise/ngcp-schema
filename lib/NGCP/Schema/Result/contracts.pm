@@ -80,6 +80,18 @@ __PACKAGE__->add_columns(
     extra => { unsigned => 1 },
     is_nullable => 1,
   },
+  "subscriber_email_template_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_nullable => 1,
+  },
+  "passreset_email_template_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_nullable => 1,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -166,6 +178,20 @@ __PACKAGE__->has_many(
   "voip_sound_sets",
   "NGCP::Schema::Result::voip_sound_sets",
   { "foreign.contract_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->belongs_to(
+  "subscriber_email_template",
+  "NGCP::Schema::Result::email_tempaltes",
+  { "foreign.id" => "self.subscriber_email_template_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->belongs_to(
+  "passreset_email_template",
+  "NGCP::Schema::Result::email_tempaltes",
+  { "foreign.id" => "self.subscriber_email_template_id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
