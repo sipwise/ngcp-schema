@@ -50,6 +50,13 @@ __PACKAGE__->add_columns(
   },
   "external_id",
   { data_type => "varchar", is_nullable => 1, size => 255 },
+  "contact_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 1,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -89,10 +96,24 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->has_many(
+  "password_resets",
+  "NGCP::Schema::Result::password_resets",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 __PACKAGE__->might_have(
   "provisioning_voip_subscriber",
   'NGCP::Schema::Result::provisioning_voip_subscribers',
   { 'foreign.uuid' => 'self.uuid' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->belongs_to(
+  "contact",
+  "NGCP::Schema::Result::contacts",
+  { id => "contact_id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
