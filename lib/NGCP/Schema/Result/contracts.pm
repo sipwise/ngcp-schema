@@ -191,7 +191,7 @@ __PACKAGE__->belongs_to(
 __PACKAGE__->belongs_to(
   "passreset_email_template",
   "NGCP::Schema::Result::email_templates",
-  { "foreign.id" => "self.subscriber_email_template_id" },
+  { "foreign.id" => "self.passreset_email_template_id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
