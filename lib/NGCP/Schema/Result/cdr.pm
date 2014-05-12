@@ -198,6 +198,7 @@ __PACKAGE__->add_columns(
   },
 );
 
+
 __PACKAGE__->set_primary_key("id");
 
 for my $col (qw/init_time start_time/) {
@@ -231,6 +232,21 @@ __PACKAGE__->belongs_to(
     on_update     => "UPDATE",
   },
 );
+
+__PACKAGE__->belongs_to(
+  "source_subscriber",
+  "NGCP::Schema::Result::voip_subscribers",
+  { uuid => "source_user_id" },
+  { cascade_copy => 0, cascade_delete => 0, join_type => 'left' }
+);
+
+__PACKAGE__->belongs_to(
+  "destination_subscriber",
+  "NGCP::Schema::Result::voip_subscribers",
+  { uuid => "destination_user_id" },
+  { cascade_copy => 0, cascade_delete => 0, join_type => 'left' }
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
