@@ -1,3 +1,13 @@
+ngcp-schema (3.0.2.1+0~mr3.2.2.1) unstable; urgency=low
+
+  [ Gerhard Jungwirth ]
+  * [eb0da3e] MT#4369 custom messages virtualview for sql performance
+  * [d3a6ab3] MT#4369 select min(timestamp) on custom messages
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Tue, 13 May 2014 12:05:12 +0200
+
 ngcp-schema (3.0.2.0+0~mr3.2.2.0) unstable; urgency=low
 
   * New release.
