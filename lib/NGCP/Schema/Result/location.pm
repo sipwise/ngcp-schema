@@ -78,6 +78,20 @@ __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->add_unique_constraint("ruid_idx", ["ruid"]);
 
+# handle with care, you need to join them together yourself, like:
+# { 'domain.id' => { -ident => 'subscriber.domain_id' } },
+# { join => [ 'subscriber', 'domain' ] }
+__PACKAGE__->belongs_to(
+  "subscriber",
+  "NGCP::Schema::Result::provisioning_voip_subscribers",
+  { "foreign.username" => "self.username" },
+);
+__PACKAGE__->belongs_to(
+  "domain",
+  "NGCP::Schema::Result::voip_domains",
+  { "foreign.domain" => "self.domain" },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
