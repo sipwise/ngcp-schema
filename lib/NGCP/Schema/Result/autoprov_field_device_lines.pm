@@ -37,8 +37,6 @@ __PACKAGE__->add_columns(
     is_foreign_key => 1,
     is_nullable => 0,
   },
-  "linerange_num",
-  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 0 },
   "key_num",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 0 },
   "line_type",
