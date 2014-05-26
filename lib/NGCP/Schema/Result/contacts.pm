@@ -69,6 +69,10 @@ __PACKAGE__->add_columns(
   },
   "faxnumber",
   { data_type => "varchar", is_nullable => 1, size => 31 },
+  "iban",
+  { data_type => "varchar", is_nullable => 1, size => 34 },
+  "bic",
+  { data_type => "varchar", is_nullable => 1, size => 11 },
 );
 
 __PACKAGE__->set_primary_key("id");
