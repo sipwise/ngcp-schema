@@ -1,3 +1,40 @@
+ngcp-schema (3.1.1.0+0~mr3.3.1.0) unstable; urgency=low
+
+  [ Gerhard Jungwirth ]
+  * [21eae2b] MT#4369 custom messages virtualview for sql performance
+  * [1fd77a8] MT#4369 select min(timestamp) on custom messages
+  * [19ea671] MT#6195 fix voip_rewrite_rules relation set
+  * [31dfb3d] MT#6559 remove usage of CLASS
+  * [0857082] MT#3955 Add relation to cdr-billing_zones_history
+
+  [ Irina Peshinskaya ]
+  * [1421bf7] MT#5879 Commit relative to db-cshema commit hash 7246a8d414246d5b07f5957a195dc3c9ffd90272 "Add name column for template. Preparing for "fixed" template, where only position of rows and their amount can be modified. And resources, which may connect one template with some different css."
+  * [e32fc96] MT#5879 Add sign that invoices shoul/shouldn't be sent to email.
+  * [42e801f] MT#5879 Rename invoice template tables to s suffices.
+  * [da4e8bd] MT#5879 Rename invoice template tables to s suffices.
+  * [d598340] MT#5879 Source_account_id relation for accounting.cdr.
+
+  [ Andreas Granig ]
+  * [a9f08ae] MT#6461 Add reseller_brandings relations.
+  * [4c06c4d] MT#6693 Add subscriber profile tables.
+  * [2148479] MT#6693 Add subscriber profile sets.
+  * [21f257e] MT#6693 Rename profile catalog to profile set.
+  * [d5932b5] MT#6693 Move pbx group features to subscriber.
+  * [9546169] MT#6789 Add email template schema.
+  * [7205c14] MT#6789 Add email relation to contracts.
+  * [f6487e6] MT#6789 Add relations for email notification.
+  * [03d38e2] MT#6789 Fix relation for passreset email tmpl
+  * [1ed7a4e] MT#3943 Add cdr relation to subscribers.
+  * [5482b46] MT#7039 Add provisioning relations to location
+  * [a1acf5d] MT#6827 Deprecate linerange_num field.
+
+  [ Michael Prokop ]
+  * [8d0960c] MT#6511 Bump Standards-Version to 3.9.5
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 26 May 2014 15:55:38 +0200
+
 ngcp-schema (3.1.0.0+0~mr3.3.0.0) unstable; urgency=low
 
   [ Irina Peshinskaya ]
