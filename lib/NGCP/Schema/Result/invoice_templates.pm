@@ -74,7 +74,7 @@ __PACKAGE__->has_many(
 
 __PACKAGE__->belongs_to(
   "reseller",
-  "NGCP::Schema::Result::contacts",
+  "NGCP::Schema::Result::resellers",
   { id => "reseller_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
