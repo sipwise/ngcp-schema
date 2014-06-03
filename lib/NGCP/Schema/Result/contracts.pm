@@ -96,6 +96,13 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", extra => { unsigned => 1 }, default_value => 0, is_nullable => 0 },
   "add_vat",
   { data_type => "tinyint", extra => { unsigned => 1 }, default_value => 0, is_nullable => 0 },
+  "invoice_email_template_id",
+  { 
+    data_type => "integer", 
+    extra => { unsigned => 1 }, 
+    is_nullable => 1 
+  },
+
 );
 
 __PACKAGE__->set_primary_key("id");
