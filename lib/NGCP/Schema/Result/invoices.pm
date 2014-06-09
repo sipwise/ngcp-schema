@@ -16,12 +16,27 @@ __PACKAGE__->add_columns(
     is_auto_increment => 1,
     is_nullable => 0,
   },
+  "contract_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 0,
+  },
   "serial",
   { data_type => "varchar", is_nullable => 0, size => 32 },
   "period_start",
-  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 0 },
+  {
+    data_type => "datetime",
+    datetime_undef_if_invalid => 1,
+    is_nullable => 0,
+  },
   "period_end",
-  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 0 },
+  {
+    data_type => "datetime",
+    datetime_undef_if_invalid => 1,
+    is_nullable => 0,
+  },
   "amount_net",
   { data_type => "double precision", default_value => 0, is_nullable => 0 },
   "amount_vat",
@@ -35,6 +50,13 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->add_unique_constraint("serial_idx", ["serial"]);
+
+__PACKAGE__->belongs_to(
+  "contract",
+  "NGCP::Schema::Result::contracts",
+  { id => "contract_id" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
 
 sub TO_JSON {
     my ($self) = @_;

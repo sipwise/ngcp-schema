@@ -63,10 +63,6 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "currency",
   { data_type => "varchar", is_nullable => 1, size => 31 },
-  "vat_rate",
-  { data_type => "tinyint", extra => { unsigned => 1 }, is_nullable => 1 },
-  "vat_included",
-  { data_type => "tinyint", default_value => 1, is_nullable => 0 },
 );
 
 __PACKAGE__->set_primary_key("id");
