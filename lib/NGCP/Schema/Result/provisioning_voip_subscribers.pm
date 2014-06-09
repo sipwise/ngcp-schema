@@ -58,6 +58,8 @@ __PACKAGE__->add_columns(
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
   "profile_id",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
+  "is_pbx_pilot",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "is_pbx_group",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "modify_timestamp",
