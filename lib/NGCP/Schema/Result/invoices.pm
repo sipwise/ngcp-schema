@@ -45,6 +45,9 @@ __PACKAGE__->add_columns(
   { data_type => "double precision", default_value => 0, is_nullable => 0 },
   "data",
   { data_type => "blob", is_nullable => 1 },
+  "sent_date",
+  { data_type => "datetime", is_nullable => 1, datetime_undef_if_invalid => 1, },
+  
 );
 
 __PACKAGE__->set_primary_key("id");
