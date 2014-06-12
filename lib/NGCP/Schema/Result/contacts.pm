@@ -1,7 +1,6 @@
 package NGCP::Schema::Result::contacts;
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
-use Geography::Countries ();#exported by default too
 
 our $VERSION = '2.007';
 
@@ -148,11 +147,6 @@ __PACKAGE__->has_many(
   { "foreign.delivery_contact_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
-
-sub country_name{
-    my ($self) = @_;
-    return scalar Geography::Countries::country( $self->country );
-}
 
 sub TO_JSON {
     my ($self) = @_;
