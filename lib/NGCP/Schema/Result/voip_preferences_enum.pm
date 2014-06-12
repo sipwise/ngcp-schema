@@ -28,6 +28,8 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 0, is_nullable => 1 },
   "peer_pref",
   { data_type => "tinyint", default_value => 0, is_nullable => 1 },
+  "contract_pref",
+  { data_type => "tinyint", default_value => 0, is_nullable => 1 },
   "default_val",
   { data_type => "tinyint", is_nullable => 1 },
 );
