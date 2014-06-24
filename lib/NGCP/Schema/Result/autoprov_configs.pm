@@ -43,7 +43,7 @@ __PACKAGE__->belongs_to(
 __PACKAGE__->has_many(
   "autoprov_profiles",
   "NGCP::Schema::Result::autoprov_profiles",
-  { "foreign.firmware_id" => "self.id" },
+  { "foreign.config_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
