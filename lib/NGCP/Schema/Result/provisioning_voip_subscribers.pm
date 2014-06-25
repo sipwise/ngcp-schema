@@ -43,7 +43,7 @@ __PACKAGE__->add_columns(
   {
     data_type => "enum",
     default_value => "serial",
-    extra => { list => ["serial", "parallel"] },
+    extra => { list => ["serial", "parallel", "random", "circular"] },
     is_nullable => 1,
   },
   "pbx_hunt_timeout",
