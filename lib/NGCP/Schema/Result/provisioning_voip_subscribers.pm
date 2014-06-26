@@ -37,8 +37,6 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 127 },
   "webpassword",
   { data_type => "varchar", is_nullable => 1, size => 40 },
-  "pbx_group_id",
-  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
   "pbx_hunt_policy",
   {
     data_type => "enum",
@@ -156,10 +154,10 @@ __PACKAGE__->might_have(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-__PACKAGE__->belongs_to(
-  "voip_pbx_group",
-  "NGCP::Schema::Result::voip_subscribers",
-  { "foreign.id" => "self.pbx_group_id" },
+__PACKAGE__->has_many(
+  "voip_pbx_groups",
+  "NGCP::Schema::Result::voip_pbx_groups",
+  { "foreign.subscriber_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
