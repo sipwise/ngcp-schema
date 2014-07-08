@@ -92,16 +92,22 @@ __PACKAGE__->add_columns(
     extra => { unsigned => 1 },
     is_nullable => 1,
   },
-  "vat_rate",
-  { data_type => "tinyint", extra => { unsigned => 1 }, default_value => 0, is_nullable => 0 },
-  "add_vat",
-  { data_type => "tinyint", extra => { unsigned => 1 }, default_value => 0, is_nullable => 0 },
   "invoice_email_template_id",
   { 
     data_type => "integer", 
     extra => { unsigned => 1 }, 
     is_nullable => 1 
   },
+  "invoice_template_id",
+  { 
+    data_type => "integer", 
+    extra => { unsigned => 1 }, 
+    is_nullable => 1 
+  },
+  "vat_rate",
+  { data_type => "tinyint", extra => { unsigned => 1 }, default_value => 0, is_nullable => 0 },
+  "add_vat",
+  { data_type => "tinyint", extra => { unsigned => 1 }, default_value => 0, is_nullable => 0 },
 
 );
 
@@ -203,6 +209,20 @@ __PACKAGE__->belongs_to(
   "passreset_email_template",
   "NGCP::Schema::Result::email_templates",
   { "foreign.id" => "self.passreset_email_template_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->belongs_to(
+  "invoice_email_template",
+  "NGCP::Schema::Result::email_templates",
+  { "foreign.id" => "self.invoice_email_template_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->belongs_to(
+  "invoice_template",
+  "NGCP::Schema::Result::invoice_templates",
+  { "foreign.id" => "self.invoice_template_id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
