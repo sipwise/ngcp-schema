@@ -1,3 +1,29 @@
+ngcp-schema (3.2.1.0+0~mr3.4.1.0) unstable; urgency=low
+
+  [ Andreas Granig ]
+  * [5203c51] MT#7199 add iban and bic fields.
+  * [a860b52] MT#5879 Fix reseller relation for invoice tmpl
+  * [3f1ff59] MT#5879 Add VAT number to contacts.
+  * [9a255c4] MT#5879 Cleanup invoice tables and add gpp contact
+  * [0167baa] MT#7377 Add is_pbx_pilot to prov subscriber
+  * [85049c3] MT#5879 Rework invoice-relevant tables.
+  * [0f7460d] MT#7471 Add contract preferences schema.
+  * [9b66a2d] MT#6827 Fix pbx device profile relation.
+  * [e0ca5cf] MT#7679 Add random and circular hunt policies.
+  * [3daadc6] MT#7545 Allow multiple pbx groups per subscriber
+  * [917ce48] MT#7793 Add accounting.events schema.
+
+  [ Irina Peshinskaya ]
+  * [20887f5] MT#5789 Add invoice email template relationship into contracts.
+  * [f5fca08] MT#5879 Add sent marker into invoices and country_name into contacts.
+  * [041207b] MT#5879 Set invoices data column size to 16M.
+  * [5a1a078] MT#5879 Remove country_name wrapper.
+  * [1917f7e] MT#7867 Changes for invoice template per customer.
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Thu, 10 Jul 2014 15:33:18 +0200
+
 ngcp-schema (3.2.0.0+0~mr3.4.0.0) unstable; urgency=low
 
   [ Gerhard Jungwirth ]
