@@ -34,8 +34,6 @@ __PACKAGE__->add_columns(
     extra => { list => ["svg", "html"] },
     is_nullable => 0,
   },
-  "is_active",
-  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "data",
   { data_type => "mediumblob", is_nullable => 1 },
 );
