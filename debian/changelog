@@ -1,3 +1,12 @@
+ngcp-schema (3.2.3.0+0~mr3.4.3.0) unstable; urgency=low
+
+  [ Irka ]
+  * [43ed8a8] MT#8433 Don't clear contract_balances on invoice deletion.
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Fri, 29 Aug 2014 16:02:06 +0200
+
 ngcp-schema (3.2.2.0+0~mr3.4.2.0) unstable; urgency=low
 
   * New release.
