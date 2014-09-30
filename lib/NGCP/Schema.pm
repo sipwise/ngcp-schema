@@ -73,11 +73,12 @@ method check_ip6_brackets($data) {
 }
 
 method _check_ip_generic($ip, $flags) {
-    for ($flags) {
-        when ($_ & 1) {return $ip =~ /^$RE{net}{IPv4}$/;}
-        when ($_ & 2) {return $ip =~ /^$IPv6_re$/;}
-        when ($_ & 4) {return $ip =~ /^\[$IPv6_re\]$/;}
-    }
+    SWITCH: for ($flags) {
+        $_ & 1 && return $ip =~ /^$RE{net}{IPv4}$/;
+        $_ & 2 && return $ip =~ /^$IPv6_re$/;
+        $_ & 4 && return $ip =~ /^\[$IPv6_re\]$/;
+        # default
+    } # SWITCH
     return;
 }
 
