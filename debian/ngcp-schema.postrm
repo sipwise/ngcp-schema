@@ -2,19 +2,7 @@
 
 set -e
 
-if [ -e /etc/default/ngcp-roles ]; then
-  . /etc/default/ngcp-roles
-else
-  NGCP_IS_MGMT="yes"
-fi
-
-do_reload()
-{
-  if [ "${NGCP_IS_MGMT}" != "yes" ]; then
-    echo "no mgmt role detected. Skip ngcp-panel and ngcp-www-csc reloads"
-    return
-  fi
-
+if [ "$1" = "remove" ]; then
   if [ -x /etc/init.d/ngcp-panel ] ; then
     if [ -x "$(which invoke-rc.d 2>/dev/null)" ]; then
       echo  "Force-reloading ngcp-panel to handle schema changes"
@@ -34,10 +22,4 @@ do_reload()
       /etc/init.d/ngcp-www-csc force-reload || exit $?
     fi
   fi
-}
-
-if [ "$1" = "remove" ]; then
-  do_reload
 fi
-
-exit 0
