@@ -70,7 +70,7 @@ __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->belongs_to(
   "customer",
-  "NGCP::Schema::billing::Result::contracts",
+  "NGCP::Schema::Result::contracts",
   { id => "customer_id" },
   {
     is_deferrable => 1,
@@ -83,7 +83,7 @@ __PACKAGE__->belongs_to(
 
 __PACKAGE__->belongs_to(
   "reseller",
-  "NGCP::Schema::billing::Result::resellers",
+  "NGCP::Schema::Result::resellers",
   { id => "reseller_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
@@ -91,7 +91,7 @@ __PACKAGE__->belongs_to(
 
 __PACKAGE__->belongs_to(
   "used_by_subscriber",
-  "NGCP::Schema::billing::Result::voip_subscribers",
+  "NGCP::Schema::Result::voip_subscribers",
   { id => "used_by_subscriber_id" },
   {
     is_deferrable => 1,
