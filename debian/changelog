@@ -1,3 +1,35 @@
+ngcp-schema (3.3.1.0+0~mr3.5.1.0) unstable; urgency=low
+
+  [ Irka ]
+  * [1af2e8b] MT#5879 Clean up code and db from invoice templates activity flag
+  * [b544305] MT#8433 Don't clear contract_balances on invoice deletion.
+  * [d70a8d3] MT#8371 Optimize select actual billing_mappings with virtual view
+
+  [ Andreas Granig ]
+  * [a95679e] MT#8299 Add pbx device model annotations
+  * [030117e] MT#8613 Update voip_intercept schema
+  * [81085d3] MT#9277 Add voucher schema.
+  * [2cc146f] MT#9277 Fix billing voucher schema.
+
+  [ Michael Prokop ]
+  * [c716ff2] MT#7335 Get rid of (build-)dependency on pdl package
+
+  [ Gerhard Jungwirth ]
+  * [9564862] MT#8397 Remove dependency MooseX::FileAttribute
+
+  [ Kirill Solomko ]
+  * [24fb9b5] MT#8547 - Remove smartmatch usage
+
+  [ Victor Seva ]
+  * [4a98f83] MT#7505 Add .gitreview file
+  * [ab489ca] Revert "MT#7505 Add .gitreview file"
+  * [0e62d94] MT#7505 Add .gitreview file
+  * [ddfaf8c] MT#8125 postinst/postrm do not reload if not mgmt
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Thu, 09 Oct 2014 16:46:20 +0200
+
 ngcp-schema (3.3.0.0+0~mr3.5.0.0) unstable; urgency=low
 
   [ Andreas Granig ]
