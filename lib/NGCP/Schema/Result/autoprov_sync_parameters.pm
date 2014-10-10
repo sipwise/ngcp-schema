@@ -19,8 +19,8 @@ __PACKAGE__->add_columns(
   "sync_type",
   {
     data_type => "enum",
-    default_value => "cisco",
-    extra => { list => ["cisco","panasonic","linksys"] },
+    default_value => "http",
+    extra => { list => ["http","ztp_panasonic","ztp_linksys"] },
     is_nullable => 0,
   },   
   "parameter_name",

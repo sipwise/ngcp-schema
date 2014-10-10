@@ -1,4 +1,4 @@
-package NGCP::Schema::Result::autoprov_sync_parameters;
+package NGCP::Schema::Result::autoprov_sync;
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 
@@ -6,7 +6,7 @@ our $VERSION = '2.007';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
-__PACKAGE__->table("provisioning.autoprov_sync_parameters");
+__PACKAGE__->table("provisioning.autoprov_sync");
 
 __PACKAGE__->add_columns(
   "id",
@@ -22,6 +22,13 @@ __PACKAGE__->add_columns(
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 0 },
   "parameter_value",
   { data_type => "varchar", size => 255, is_nullable => 0 },
+  "sync_type",
+  {
+    data_type => "enum",
+    default_value => "http",
+    extra => { list => ["http","ztp_panasonic","ztp_linksys"] },
+    is_nullable => 0,
+  },   
 );
 
 __PACKAGE__->belongs_to(
