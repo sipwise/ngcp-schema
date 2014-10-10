@@ -62,7 +62,7 @@ __END__
 
 =head1 NAME
 
-NGCP::Schema::provisioning::Result::autoprov_sync_cisco
+NGCP::Schema::provisioning::Result::autoprov_sync_parameters
 
 =head1 COMPONENTS LOADED
 

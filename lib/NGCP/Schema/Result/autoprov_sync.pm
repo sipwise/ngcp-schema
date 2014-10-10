@@ -36,8 +36,8 @@ __PACKAGE__->belongs_to(
   }
 );
 __PACKAGE__->belongs_to(
-  "autoprov_sync_parameter",
-  "NGCP::Schema::Result::autoprov_sync_parameter",
+  "autoprov_sync_parameters",
+  "NGCP::Schema::Result::autoprov_sync_parameters",
   { id => "parameter_id" },
   {
     is_deferrable => 1,
@@ -64,7 +64,7 @@ __END__
 
 =head1 NAME
 
-NGCP::Schema::provisioning::Result::autoprov_sync_cisco
+NGCP::Schema::provisioning::Result::autoprov_sync
 
 =head1 COMPONENTS LOADED
 
@@ -88,6 +88,12 @@ NGCP::Schema::provisioning::Result::autoprov_sync_cisco
   is_nullable: 0
 
 =head2 device_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_nullable: 0
+
+=head2 parameter_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
