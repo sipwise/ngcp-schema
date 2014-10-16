@@ -66,7 +66,7 @@ __PACKAGE__->has_many(
 );
 
 __PACKAGE__->has_many(
-  "autoprov_sync_cisco",
+  "autoprov_sync",
   "NGCP::Schema::Result::autoprov_sync_cisco",
   { "foreign.device_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
