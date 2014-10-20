@@ -22,7 +22,7 @@ __PACKAGE__->add_columns(
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 0 },
   "parameter_value",
   { data_type => "varchar", size => 255, is_nullable => 0 },
-  "sync_type",
+  "bootstrap_method",
   {
     data_type => "enum",
     default_value => "http",
