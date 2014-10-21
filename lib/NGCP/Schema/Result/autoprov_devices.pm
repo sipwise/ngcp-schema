@@ -30,6 +30,13 @@ __PACKAGE__->add_columns(
   { data_type => "mediumblob", is_nullable => 1 },
   "mac_image_type",
   { data_type => "varchar", is_nullable => 0, size => 32 },
+  "bootstrap_method",
+  {
+    data_type => "enum",
+    default_value => "http",
+    extra => { list => ["http","ztp_panasonic","ztp_linksys"] },
+    is_nullable => 0,
+  },   
  );
 
 __PACKAGE__->belongs_to(
