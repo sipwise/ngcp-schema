@@ -34,7 +34,7 @@ __PACKAGE__->add_columns(
   {
     data_type => "enum",
     default_value => "http",
-    extra => { list => ["http","ztp_panasonic","ztp_linksys"] },
+    extra => { list => ["http","redirect_panasonic","redirect_linksys"] },
     is_nullable => 0,
   },   
  );

@@ -1,4 +1,4 @@
-package NGCP::Schema::Result::autoprov_sync_parameters;
+package NGCP::Schema::Result::contract_vendor_credentials;
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 
@@ -6,7 +6,7 @@ our $VERSION = '2.007';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
-__PACKAGE__->table("provisioning.autoprov_sync_parameters");
+__PACKAGE__->table("billing.contract_vendor_credentials");
 
 __PACKAGE__->add_columns(
   "id",
@@ -16,37 +16,33 @@ __PACKAGE__->add_columns(
     is_auto_increment => 1,
     is_nullable => 0,
   },
-  "bootstrap_method",
+  "contract_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_nullable => 0,
+  },
+  "vendor",
   {
     data_type => "enum",
     default_value => "http",
     extra => { list => ["http","redirect_panasonic","redirect_linksys"] },
     is_nullable => 0,
-  },   
-  "parameter_name",
-  {
-    data_type => "enum",
-    extra => { list => ["sync_uri","sync_method","sync_params","security_handler"] },
-    is_nullable => 1,
   },
-  "parameter_constraint",
-  { data_type => "varchar", is_nullable => 1, size => 255 },
+  "user",
+  { data_type => "varchar", is_nullable => 0, size => 255 },
+  "password",
+  { data_type => "varchar", is_nullable => 0, size => 255 },
 );
-
-__PACKAGE__->has_many(
-  "autoprov_sync",
-  "NGCP::Schema::Result::autoprov_sync",
-  { id => "parameter_id" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "CASCADE",
-    on_update     => "CASCADE",
-  }
-);
-
 
 __PACKAGE__->set_primary_key("id");
+
+__PACKAGE__->belongs_to(
+  "contract",
+  "NGCP::Schema::Result::contracts",
+  { id => "contract_id" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
 
 sub TO_JSON {
     my ($self) = @_;
@@ -62,7 +58,7 @@ __END__
 
 =head1 NAME
 
-NGCP::Schema::provisioning::Result::autoprov_sync_parameters
+NGCP::Schema::provisioning::Result::contract_vendor_credentials
 
 =head1 COMPONENTS LOADED
 
@@ -74,7 +70,7 @@ NGCP::Schema::provisioning::Result::autoprov_sync_parameters
 
 =back
 
-=head1 TABLE: C<autoprov_sync_cisco>
+=head1 TABLE: C<contract_vendor_credentials>
 
 =head1 ACCESSORS
 
@@ -85,10 +81,11 @@ NGCP::Schema::provisioning::Result::autoprov_sync_parameters
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 device_id
+=head2 contract_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
+  is_foreign_key: 1
   is_nullable: 0
 
 =head1 PRIMARY KEY
@@ -98,3 +95,12 @@ NGCP::Schema::provisioning::Result::autoprov_sync_parameters
 =item * L</id>
 
 =back
+
+=head1 RELATIONS
+
+=head2 contract
+
+Type: belongs_to
+
+Related object: L<NGCP::Schema::provisioning::Result::contracts>
+
