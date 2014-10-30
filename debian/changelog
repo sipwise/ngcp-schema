@@ -1,3 +1,12 @@
+ngcp-schema (3.5.0.0+0~mr3.7.0.0) unstable; urgency=low
+
+  [ Andreas Granig ]
+  * [5bdcf01] MT#9565 Expose cdr src/dst gpp params
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Thu, 30 Oct 2014 17:26:33 +0100
+
 ngcp-schema (3.4.0.0+0~mr3.6.0.0) unstable; urgency=low
 
   [ Irka ]
