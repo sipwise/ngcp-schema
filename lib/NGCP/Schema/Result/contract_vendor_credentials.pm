@@ -25,8 +25,8 @@ __PACKAGE__->add_columns(
   "vendor",
   {
     data_type => "enum",
-    default_value => "http",
-    extra => { list => ["http","redirect_panasonic","redirect_linksys"] },
+    default_value => "panasonic",
+    extra => { list => ["panasonic","linksys","yealink"] },
     is_nullable => 0,
   },
   "user",
