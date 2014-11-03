@@ -198,13 +198,6 @@ __PACKAGE__->has_many(
 );
 
 __PACKAGE__->has_many(
-  "vendor_credentials",
-  "NGCP::Schema::Result::contract_vendor_credentials",
-  { "foreign.contract_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
   "voip_sound_sets",
   "NGCP::Schema::Result::voip_sound_sets",
   { "foreign.contract_id" => "self.id" },

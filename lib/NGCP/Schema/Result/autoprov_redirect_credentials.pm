@@ -1,4 +1,4 @@
-package NGCP::Schema::Result::contract_vendor_credentials;
+package NGCP::Schema::Result::autoprov_redirect_credentials;
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 
@@ -6,7 +6,7 @@ our $VERSION = '2.007';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
-__PACKAGE__->table("billing.contract_vendor_credentials");
+__PACKAGE__->table("provisioning.autoprov_redirect_credentials");
 
 __PACKAGE__->add_columns(
   "id",
@@ -16,17 +16,10 @@ __PACKAGE__->add_columns(
     is_auto_increment => 1,
     is_nullable => 0,
   },
-  "contract_id",
+  "device_id",
   {
     data_type => "integer",
     extra => { unsigned => 1 },
-    is_nullable => 0,
-  },
-  "vendor",
-  {
-    data_type => "enum",
-    default_value => "panasonic",
-    extra => { list => ["panasonic","linksys","yealink"] },
     is_nullable => 0,
   },
   "user",
@@ -38,9 +31,9 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->belongs_to(
-  "contract",
-  "NGCP::Schema::Result::contracts",
-  { id => "contract_id" },
+  "device",
+  "NGCP::Schema::Result::autoprov_devices",
+  { id => "device_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 

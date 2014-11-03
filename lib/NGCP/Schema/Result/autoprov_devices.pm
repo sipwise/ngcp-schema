@@ -79,6 +79,14 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->might_have(
+  "autoprov_redirect_credentials",
+  "NGCP::Schema::Result::autoprov_redirect_credentials",
+  { "foreign.device_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
 __PACKAGE__->set_primary_key("id");
 
 sub TO_JSON {
