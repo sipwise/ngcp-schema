@@ -36,7 +36,7 @@ __PACKAGE__->add_columns(
 __PACKAGE__->has_many(
   "autoprov_sync",
   "NGCP::Schema::Result::autoprov_sync",
-  { id => "parameter_id" },
+  { "foreign.parameter_id" => "self.id" },
   {
     is_deferrable => 1,
     join_type     => "LEFT",

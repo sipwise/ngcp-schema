@@ -37,6 +37,8 @@ __PACKAGE__->add_columns(
     extra => { list => ["http","redirect_panasonic","redirect_linksys"] },
     is_nullable => 0,
   },   
+  "bootstrap_uri",
+  { data_type => "varchar", is_nullable => 0, size => 255 },
  );
 
 __PACKAGE__->belongs_to(
