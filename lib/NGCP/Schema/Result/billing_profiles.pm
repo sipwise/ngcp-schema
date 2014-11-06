@@ -63,6 +63,33 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "currency",
   { data_type => "varchar", is_nullable => 1, size => 31 },
+  "status",
+  {
+    data_type => "enum",
+    default_value => "active",
+    extra => { list => ["active", "terminated"] },
+    is_nullable => 0,
+  },
+  "modify_timestamp",
+  {
+    data_type => "timestamp",
+    datetime_undef_if_invalid => 1,
+    default_value => \"current_timestamp",
+    is_nullable => 0,
+  },
+  "create_timestamp",
+  {
+    data_type => "timestamp",
+    datetime_undef_if_invalid => 1,
+    default_value => "0000-00-00 00:00:00",
+    is_nullable => 0,
+  },
+  "terminate_timestamp",
+  {
+    data_type => "timestamp",
+    datetime_undef_if_invalid => 1,
+    is_nullable => 1,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -272,6 +299,33 @@ NGCP::Schema::Result::billing_profiles
   data_type: 'tinyint'
   default_value: 1
   is_nullable: 0
+
+head2 status
+
+  data_type: 'enum'
+  default_value: 'active'
+  extra: {list => ["pending","active","locked","terminated"]}
+  is_nullable: 0
+
+=head2 modify_timestamp
+
+  data_type: 'timestamp'
+  datetime_undef_if_invalid: 1
+  default_value: current_timestamp
+  is_nullable: 0
+
+=head2 create_timestamp
+
+  data_type: 'timestamp'
+  datetime_undef_if_invalid: 1
+  default_value: '0000-00-00 00:00:00'
+  is_nullable: 0
+
+=head2 terminate_timestamp
+
+  data_type: 'timestamp'
+  datetime_undef_if_invalid: 1
+  is_nullable: 1
 
 =head1 PRIMARY KEY
 

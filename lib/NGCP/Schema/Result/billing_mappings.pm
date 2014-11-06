@@ -73,6 +73,19 @@ __PACKAGE__->belongs_to(
 );
 
 __PACKAGE__->belongs_to(
+  "contract_active",
+  "NGCP::Schema::Result::contracts",
+  sub {
+    my $args = shift;
+    return {
+        "$args->{foreign_alias}.id" => { -ident => "$args->{self_alias}.contract_id" } ,
+        "$args->{foreign_alias}.status" => { '!=' => 'terminated' },
+    };
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+__PACKAGE__->belongs_to(
   "product",
   "NGCP::Schema::Result::products",
   { id => "product_id" },
@@ -171,6 +184,12 @@ Type: belongs_to
 Related object: L<NGCP::Schema::Result::billing_profiles>
 
 =head2 contract
+
+Type: belongs_to
+
+Related object: L<NGCP::Schema::Result::contracts>
+
+=head2 contract_active
 
 Type: belongs_to
 
