@@ -33,6 +33,8 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", extra => { unsigned => 1 }, is_nullable => 0 },
   "usr_pref",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "prof_pref",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "dom_pref",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "peer_pref",
@@ -97,6 +99,13 @@ __PACKAGE__->has_many(
 __PACKAGE__->has_many(
   "voip_usr_preferences",
   "NGCP::Schema::Result::voip_usr_preferences",
+  { "foreign.attribute_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
+  "voip_prof_preferences",
+  "NGCP::Schema::Result::voip_prof_preferences",
   { "foreign.attribute_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );

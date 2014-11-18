@@ -45,6 +45,13 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->has_many(
+  "voip_prof_preferences",
+  "NGCP::Schema::Result::voip_prof_preferences",
+  { "foreign.profile_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 
 __PACKAGE__->add_unique_constraint("vsp_resname_idx", ["set_id", "name"]);
 sub TO_JSON {
