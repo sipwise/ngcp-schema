@@ -37,6 +37,8 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "insecure_transfer",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "encryption_key",
+  { data_type => "varchar", is_nullable => 1, size => 255 },
 );
 
 __PACKAGE__->set_primary_key("id");
