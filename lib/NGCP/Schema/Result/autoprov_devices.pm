@@ -34,7 +34,7 @@ __PACKAGE__->add_columns(
   {
     data_type => "enum",
     default_value => "http",
-    extra => { list => ["http","redirect_panasonic","redirect_yealink"] },
+    extra => { list => ["http","redirect_panasonic","redirect_yealink","redirect_polycom"] },
     is_nullable => 0,
   },   
   "bootstrap_uri",
