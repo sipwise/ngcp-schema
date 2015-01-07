@@ -1,3 +1,34 @@
+ngcp-schema (3.6.0.0+0~mr3.8.0.0) unstable; urgency=low
+
+  [ Irina Peshinskaya ]
+  * [ceea3ff] MT#9177 Version of separate table per sync model.
+  * [722fd5e] MT#9177 Schema for provisioning with centralized table. Draft.
+  * [1e7fd6c] MT#9177 Fix comments for sync tables.
+  * [f61fde4] MT#9177 Clear off table from specific tables schema.
+  * [83f8e08] MT#9177 More generic sync_type and don't use vendor as sync_type marker.
+  * [ed6b6df] MT#9177 Fix for the centralized parameters table
+  * [ec08618] MT#9177 Fix incomplete commit with centralised parameter table
+  * [9701821] MT#9177 Rename sync_type to bootstrap_method
+  * [7959d2b] MT#9177 Add bootstrap_method into device.
+  * [5befb25] MT#9177 Move vendor credentials to db
+  * [6b19d8e] MT#9177 Fix vendors enum for contract credentials.
+  * [17c40c1] MT#9177 Add bootstrap_uri and fix tables relations
+  * [641cbfb] MT#9177 Change linksys to yealink in enums
+  * [5b8a539] MT#10715 Ngcp schema changes for Polycom bootstrap
+
+  [ Andreas Granig ]
+  * [83ed0fe] MT#9177 Rework autoprov vendor credentials.
+  * [5879605] MT#10199 Add subscriber profile preferences.
+  * [a09d9aa] MT#10199 Add subscriber profile preferences.
+  * [7a23695] MT#10587 Add autoprov_field_devices.encryption_key
+
+  [ Kirill Solomko ]
+  * [b712efc] MT#8645 - add billing_profiles status, create_timestamp,           modify_timestamp, terminate_timestamp           add billing_mappings contract_active "belongs_to" relation
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Wed, 07 Jan 2015 21:34:31 +0100
+
 ngcp-schema (3.5.0.0+0~mr3.7.0.0) unstable; urgency=low
 
   [ Andreas Granig ]
