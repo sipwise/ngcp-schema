@@ -161,6 +161,13 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->has_many(
+  "voip_pbx_group_members",
+  "NGCP::Schema::Result::voip_pbx_groups",
+  { "foreign.group_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 __PACKAGE__->might_have(
   "voip_reminder",
   "NGCP::Schema::Result::voip_reminder",
