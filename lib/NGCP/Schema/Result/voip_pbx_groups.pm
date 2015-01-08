@@ -38,28 +38,28 @@ __PACKAGE__->belongs_to(
   "subscriber",
   "NGCP::Schema::Result::provisioning_voip_subscribers",
   { "foreign.id" => "self.subscriber_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+  { cascade_copy => 0, cascade_delete => 0 },
 );
 
 __PACKAGE__->belongs_to(
   "group",
   "NGCP::Schema::Result::provisioning_voip_subscribers",
   { "foreign.id" => "self.group_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+  { cascade_copy => 0, cascade_delete => 0 },
 );
 
 __PACKAGE__->has_many(
   "groups",
   "NGCP::Schema::Result::provisioning_voip_subscribers",
   { "foreign.id" => "self.group_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+  { cascade_copy => 0, cascade_delete => 0 },
 );
 
 __PACKAGE__->has_many(
   "subscribers",
   "NGCP::Schema::Result::provisioning_voip_subscribers",
   { "foreign.id" => "self.subscriber_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+  { cascade_copy => 0, cascade_delete => 0 },
 );
 
 sub TO_JSON {
