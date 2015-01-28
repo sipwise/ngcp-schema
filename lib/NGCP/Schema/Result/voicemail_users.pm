@@ -26,7 +26,7 @@ __PACKAGE__->add_columns(
     size => 63,
   },
   "mailbox",
-  { data_type => "varchar", is_nullable => 0, size => 31 },
+  { data_type => "varchar", is_nullable => 0, size => 64 },
   "password",
   { data_type => "varchar", default_value => 0, is_nullable => 0, size => 31 },
   "fullname",
