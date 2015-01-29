@@ -25,8 +25,8 @@ __PACKAGE__->add_columns(
   "type",
   { 
     data_type => "enum",
-    default_value => "basic",
-    extra => { list => ["basic","extension"] },
+    default_value => "phone",
+    extra => { list => ["phone","extension"] },
     is_nullable => 0,
   },
   "front_image",
