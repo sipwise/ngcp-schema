@@ -46,7 +46,9 @@ __PACKAGE__->add_columns(
   },   
   "bootstrap_uri",
   { data_type => "varchar", is_nullable => 0, size => 255 },
- );
+   "num_extensions",
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
+);
 
 __PACKAGE__->belongs_to(
   "reseller",
