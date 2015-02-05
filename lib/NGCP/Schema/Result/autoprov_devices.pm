@@ -46,7 +46,7 @@ __PACKAGE__->add_columns(
   },   
   "bootstrap_uri",
   { data_type => "varchar", is_nullable => 0, size => 255 },
-   "num_extensions",
+   "extensions_num",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
 );
 
@@ -97,6 +97,18 @@ __PACKAGE__->might_have(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->might_have(
+  "autoprov_extensions_link",
+  "NGCP::Schema::Result::autoprov_device_extensions",
+  { "foreign.device_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+__PACKAGE__->might_have(
+  "autoprov_extension_device_link",
+  "NGCP::Schema::Result::autoprov_device_extensions",
+  { "foreign.extension_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
 
 __PACKAGE__->set_primary_key("id");
 
