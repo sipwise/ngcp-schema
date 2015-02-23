@@ -1,3 +1,12 @@
+ngcp-schema (3.5.1.3+0~mr3.7.1.3) unstable; urgency=low
+
+  [ Irina Peshinskaya ]
+  * [46f8de7] MT#11549 Use view with alias group_concat to search by aliases
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 23 Feb 2015 14:33:32 +0100
+
 ngcp-schema (3.5.1.2+0~mr3.7.1.2) unstable; urgency=low
 
   [ Andreas Granig ]
