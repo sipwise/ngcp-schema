@@ -97,13 +97,13 @@ __PACKAGE__->might_have(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-__PACKAGE__->might_have(
+__PACKAGE__->has_many(
   "autoprov_extensions_link",
   "NGCP::Schema::Result::autoprov_device_extensions",
   { "foreign.device_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
-__PACKAGE__->might_have(
+__PACKAGE__->has_many(
   "autoprov_extension_device_link",
   "NGCP::Schema::Result::autoprov_device_extensions",
   { "foreign.extension_id" => "self.id" },
