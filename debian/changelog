@@ -1,3 +1,12 @@
+ngcp-schema (3.4.2.2+0~mr3.6.2.2) unstable; urgency=low
+
+  [ Irina Peshinskaya ]
+  * [459e95c] MT#11549 Use view with alias group_concat to search by aliases
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 23 Feb 2015 14:33:08 +0100
+
 ngcp-schema (3.4.2.1+0~mr3.6.2.1) unstable; urgency=low
 
   * New release.
