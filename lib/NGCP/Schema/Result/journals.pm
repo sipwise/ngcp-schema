@@ -4,7 +4,9 @@ use parent 'DBIx::Class::Core';
 
 our $VERSION = '2.007';
 
-__PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
+__PACKAGE__->load_components("InflateColumn::DateTime",
+    "Helper::Row::ToJSON",
+    "+NGCP::Schema::InflateColumn::DateTime::EpochMilli",);
 
 __PACKAGE__->table("billing.journals");
 
@@ -16,14 +18,14 @@ __PACKAGE__->add_columns(
     is_auto_increment => 1,
     is_nullable => 0,
   },
-  "type",
+  "operation",
   {
     data_type => "enum",
     default_value => "create",
-    extra => { list => ["crete", "update", "delete"] },
+    extra => { list => ["create", "update", "delete"] },
     is_nullable => 0,
   },
-  "resource",
+  "resource_name",
   { data_type => "varchar", is_nullable => 0, size => 64 },
   "resource_id",
   {
@@ -33,11 +35,29 @@ __PACKAGE__->add_columns(
   },
   "timestamp",
   { data_type => "decimal", is_nullable => 0, size => [13, 3] },
+  "username",
+  { data_type => "varchar", is_nullable => 1, size => 127 },
+  "content_format",
+  {
+    data_type => "enum",
+    default_value => "json",
+    extra => { list => ["storable", "json", "json_deflate", "sereal"] },
+    is_nullable => 0,
+  },
   "content",
   { data_type => "longblob", is_nullable => 1 },
 );
 
 __PACKAGE__->set_primary_key("id");
+
+for my $col (qw/timestamp/) {
+    if(__PACKAGE__->has_column($col)) {
+        __PACKAGE__->remove_column($col);
+        __PACKAGE__->add_column($col =>
+            { data_type => "decimal", is_nullable => 0, size => [13, 3], inflate_datetime => 'epoch_milli' }
+        );
+    }
+}
 
 sub TO_JSON {
     my ($self) = @_;
