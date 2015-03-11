@@ -46,6 +46,12 @@ __PACKAGE__->add_columns(
     extra => { list => ["private", "shared", "blf"] },
     is_nullable => 1,
   },
+  "extension_unit",
+  {
+    data_type => "tinyint",
+    default_value => 0,
+    is_nullable => 0,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
