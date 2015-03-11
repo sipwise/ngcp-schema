@@ -17,11 +17,13 @@ class_has('config', is => 'rw', isa => 'NGCP::Schema::Config', lazy => 1, defaul
     return NGCP::Schema::Config->instance;
 });
 
-method connection {
+sub connection {
+    my ($self) = @_;
     $self->SUPER::connection($self->config->as_hash->{ngcp_connect_info});
 }
 
-method validate($data, $mandatory_params, $optional_params?) {
+sub validate {
+    my ($self, $data, $mandatory_params, $optional_params) = @_;
     Exception->throw({
         description => 'Client.Syntax.MissingParam',
         message => q(missing parameter 'data'),
@@ -48,7 +50,8 @@ method validate($data, $mandatory_params, $optional_params?) {
     return;
 }
 
-method check_domain($data) {
+sub check_domain {
+    my ($self, $data) = @_;
     $self->validate($data, ['domain']);
     my $domain = $data->{domain};
     return 1 if $domain =~ /^(?:[a-z0-9]+(?:-[a-z0-9]+)*\.)+[a-z]+$/i;
@@ -57,22 +60,26 @@ method check_domain($data) {
     return;
 }
 
-method check_ip4($data) {
+sub check_ip4 {
+    my ($self, $data) = @_;
     $self->validate($data, ['ip4']);
     return $self->_check_ip_generic($data->{ip4}, 1);
 }
 
-method check_ip6($data) {
+sub check_ip6 {
+    my ($self, $data) = @_;
     $self->validate($data, ['ip6']);
     return $self->_check_ip_generic($data->{ip6}, 2);
 }
 
-method check_ip6_brackets($data) {
+sub check_ip6_brackets {
+    my ($self, $data) = @_;
     $self->validate($data, ['ip6brackets']);
     return $self->_check_ip_generic($data->{ip6brackets}, 4);
 }
 
-method _check_ip_generic($ip, $flags) {
+sub _check_ip_generic {
+    my ($self, $ip, $flags) = @_;
     SWITCH: for ($flags) {
         $_ & 1 && return $ip =~ /^$RE{net}{IPv4}$/;
         $_ & 2 && return $ip =~ /^$IPv6_re$/;
@@ -83,6 +90,7 @@ method _check_ip_generic($ip, $flags) {
 }
 
 __PACKAGE__->meta->make_immutable;
+1;
 
 __END__
 
