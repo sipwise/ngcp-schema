@@ -1,5 +1,6 @@
 package NGCP::Schema::Exception;
 use Sipwise::Base;
+use Moose qw(extends has);
 use namespace::sweep;
 
 our $VERSION = '2.007';

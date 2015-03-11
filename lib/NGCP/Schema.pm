@@ -4,8 +4,9 @@ use aliased 'NGCP::Schema::Exception';
 use NGCP::Schema::Config qw();
 use Regexp::Common qw(net);
 use Regexp::IPv6 qw($IPv6_re);
+use Moose;
 use MooseX::ClassAttribute qw(class_has);
-extends 'DBIx::Class::Schema';
+use parent 'DBIx::Class::Schema';
 
 our $VERSION = '2.007';
 
