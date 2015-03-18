@@ -1,3 +1,35 @@
+ngcp-schema (3.7.0.0+0~mr4.0.0.0) unstable; urgency=low
+
+  [ Kirill Solomko ]
+  * [f84a0ea] MT#10169 - add voip_peer_hosts.enabled, voip_peer_rules.enabled, voip_rewrite_rules.enabled
+
+  [ Andreas Granig ]
+  * [f6c844d] MT#10883 Fix dependecies for Build.PL
+  * [67989fa] MT#10885 Prevent foreign key deletion by schema.
+  * [2e381bb] MT#10879 Set uuid as mailbox user if no number.
+
+  [ Irina Peshinskaya ]
+  * [232a856] MT#11147 Schema for device model and extension reference
+  * [00fd2b3] MT#11147 Changes for device model-extension reference
+  * [e9588a9] MT#11147 Rename extension type basic to phone
+  * [37778fb] MT#11147 Add num extensions
+  * [fe69f9a] MT#11147 Fix extensions_num field name
+  * [b4e58a7] MT#11549 Use view with alias group_concat to search by aliases
+  * [1fb4179] MT#11147 Fix copy-pasted relationship
+  * [96356de] MT#11549 Use view with alias group_concat to search by aliases
+  * [cefcb12] MT#11147 Link phone to the some extensions of the same model
+  * [368eb45] MT#11549 View is too slowly, use other sql variant, so remove view
+
+  [ Michael Prokop ]
+  * [e457058] MT#9127 Bump Standards-Version to 3.9.6
+
+  [ Rene Krenn ]
+  * [347ff4d] MT#11917 Add journaling table
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Wed, 18 Mar 2015 14:09:34 +0100
+
 ngcp-schema (3.6.0.0+0~mr3.8.0.0) unstable; urgency=low
 
   [ Irina Peshinskaya ]
