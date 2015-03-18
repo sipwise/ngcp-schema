@@ -97,13 +97,6 @@ __PACKAGE__->has_many(
 );
 
 __PACKAGE__->has_many(
-  "voip_subscriber_aliases_csv",
-  "NGCP::Schema::Result::voip_subscriber_aliases_csv",
-  { "foreign.subscriber_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
   "password_resets",
   "NGCP::Schema::Result::password_resets",
   { "foreign.subscriber_id" => "self.id" },
