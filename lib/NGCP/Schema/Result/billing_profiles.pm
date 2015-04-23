@@ -61,6 +61,11 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", extra => { unsigned => 1 }, is_nullable => 1 },
   "fraud_daily_notify",
   { data_type => "varchar", is_nullable => 1, size => 255 },
+  "fraud_use_reseller_rates",
+  {
+    data_type => "tinyint", default_value => 1, is_nullable => 0,
+    extra => { unsigned => 1 },
+  },
   "currency",
   { data_type => "varchar", is_nullable => 1, size => 31 },
   "status",
@@ -281,6 +286,13 @@ NGCP::Schema::Result::billing_profiles
   data_type: 'varchar'
   is_nullable: 1
   size: 255
+
+=head2 fraud_use_reseller_rates
+
+  data_type: 'tinyint'
+  default_value: 0
+  extra: {unsigned => 1}
+  is_nullable: 0
 
 =head2 currency
 
