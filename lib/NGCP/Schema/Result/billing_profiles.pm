@@ -109,6 +109,12 @@ __PACKAGE__->has_many(
   { "foreign.billing_profile_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+__PACKAGE__->has_many(
+  "billing_fees_raw",
+  "NGCP::Schema::Result::billing_fees_raw",
+  { "foreign.billing_profile_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
 
 __PACKAGE__->has_many(
   "billing_mappings",
