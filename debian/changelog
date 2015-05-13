@@ -1,3 +1,12 @@
+ngcp-schema (3.5.2.3+0~mr3.7.2.3) unstable; urgency=low
+
+  [ Andreas Granig ]
+  * [c22df90] MT#12385 Add reseller_id to EDR head.
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Wed, 13 May 2015 18:30:27 +0200
+
 ngcp-schema (3.5.2.2+0~mr3.7.2.2) unstable; urgency=low
 
   [ Irina Peshinskaya ]
