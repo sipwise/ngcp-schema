@@ -62,7 +62,7 @@ select bm.contract_id,max(bm.id) as actual_bm_id from billing.billing_mappings b
         where ( bmm.`end_date` >= ? OR bmm.`end_date` IS NULL ) 
         AND ( bmm.`start_date` <= ? OR bmm.`start_date` IS NULL ) 
         group by bmm.contract_id
-    ) bmm on bm.contract_id=bmm.contract_id and (bm.start_date=bmm.max_start_date or bmm.max_start_date is null) 
+    ) bmm on bm.contract_id=bmm.contract_id and (bm.start_date=bmm.max_start_date or (bmm.max_start_date is null and bm.start_date is null)) 
 group by  bm.contract_id
 ");
 

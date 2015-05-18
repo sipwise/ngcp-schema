@@ -49,6 +49,13 @@ __PACKAGE__->add_columns(
     is_foreign_key => 1,
     is_nullable => 1,
   },
+  "network_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 1,
+  },  
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -89,6 +96,18 @@ __PACKAGE__->belongs_to(
   "product",
   "NGCP::Schema::Result::products",
   { id => "product_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "RESTRICT",
+    on_update     => "CASCADE",
+  },
+);
+
+__PACKAGE__->belongs_to(
+  "network",
+  "NGCP::Schema::Result::billing_networks",
+  { id => "network_id" },
   {
     is_deferrable => 1,
     join_type     => "LEFT",
@@ -166,6 +185,13 @@ NGCP::Schema::Result::billing_mappings
   extra: {unsigned => 1}
   is_foreign_key: 1
   is_nullable: 1
+  
+=head2 network_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_foreign_key: 1
+  is_nullable: 1  
 
 =head1 PRIMARY KEY
 
@@ -200,3 +226,9 @@ Related object: L<NGCP::Schema::Result::contracts>
 Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::products>
+
+=head2 network
+
+Type: belongs_to
+
+Related object: L<NGCP::Schema::Result::billing_networks>
