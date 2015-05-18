@@ -163,6 +163,13 @@ __PACKAGE__->belongs_to(
   },
 );
 
+__PACKAGE__->has_many(
+  "profile_packages",
+  "NGCP::Schema::Result::profile_packages",
+  { "foreign.profile_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
