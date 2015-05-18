@@ -72,7 +72,7 @@ __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->belongs_to(
   "reseller",
-  "NGCP::Schema::billing::Result::resellers",
+  "NGCP::Schema::Result::resellers",
   { id => "reseller_id" },
   {
     is_deferrable => 1,

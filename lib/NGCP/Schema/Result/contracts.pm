@@ -37,6 +37,13 @@ __PACKAGE__->add_columns(
     is_foreign_key => 1,
     is_nullable => 1,
   },
+  "profile_package_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 1,
+  },  
   "status",
   {
     data_type => "enum",
@@ -244,6 +251,18 @@ __PACKAGE__->has_many(
   "NGCP::Schema::Result::voip_contract_preferences",
   { "foreign.contract_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->belongs_to(
+  "profile_package",
+  "NGCP::Schema::Result::profile_packages",
+  { id => "profile_package_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "SET NULL",
+    on_update     => "CASCADE",
+  },
 );
 
 sub TO_JSON {

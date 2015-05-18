@@ -43,7 +43,7 @@ __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->belongs_to(
   "subscriber",
-  "NGCP::Schema::provisioning::Result::voip_subscribers",
+  "NGCP::Schema::Result::voip_subscribers",
   { id => "subscriber_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
