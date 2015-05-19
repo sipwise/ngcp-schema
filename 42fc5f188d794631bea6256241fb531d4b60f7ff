@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_56d141cc",
+        "filename": "lib/NGCP/Schema/Result/billing_networks.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2015-05-19T14:23:20Z",
+      "side": 1,
+      "message": "yes or no?",
+      "revId": "42fc5f188d794631bea6256241fb531d4b60f7ff",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
