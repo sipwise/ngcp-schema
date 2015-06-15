@@ -47,6 +47,8 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 1, is_nullable => 0 },
   "call_data",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "billing_data",
+  { data_type => "tinyint", default_value => 1, is_nullable => 0 },
   "lawful_intercept",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "ssl_client_m_serial",
