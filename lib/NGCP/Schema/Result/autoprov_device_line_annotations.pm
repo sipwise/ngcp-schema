@@ -48,7 +48,7 @@ __PACKAGE__->add_columns(
   {
     data_type => "enum",
     default_value => "top",
-    extra => { list => ["top", "bottom", "left", "right"] },
+    extra => { list => ["top", "bottom", "left", "right", "bottomleft", "bottomright", "topleft", "topright"] },
     is_nullable => 0,
   },
 );
