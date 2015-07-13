@@ -1,3 +1,24 @@
+ngcp-schema (4.0.0.0+0~mr4.0.0.0) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [55180f5] MT#11917 Align journal to db schema
+  * [046f2d8] MT#12643 billing networks
+
+  [ Andreas Granig ]
+  * [2afdeee] MT#12385 Add reseller_id to EDR head.
+  * [2df7fc0] MT#13201 Add billing_data acl to admins
+
+  [ Irina Peshinskaya ]
+  * [8ac49c0] MT#11791 Increase costs precisions to 6 number after point
+  * [3a804ff] MT#7227 Temporary location for not unique billing_fees
+  * [7edb284] MT#13369 Extend enum for lineranges positions
+  * [2082b7c] MT#13531 create link to email_templates for resellers
+
+  [ Kirill Solomko ]
+  * [d69debe] MT#11225 - add billing_profiles.fraud_use_reseller_rates
+
+ -- Alexander Lutay <alutay@sipwise.com>  Mon, 13 Jul 2015 14:26:11 +0200
+
 ngcp-schema (3.7.0.0+0~mr4.0.0.0) unstable; urgency=low
 
   [ Kirill Solomko ]
