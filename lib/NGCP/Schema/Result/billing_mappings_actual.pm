@@ -66,5 +66,14 @@ select bm.contract_id,max(bm.id) as actual_bm_id from billing.billing_mappings b
 group by  bm.contract_id
 ");
 
+#__PACKAGE__->result_source_instance->view_definition("select bma.contract_id, bma.id as actual_bm_id
+#from billing.billing_mappings bma
+#where bma.id = (select bm.id from billing.billing_mappings bm where 
+#( bm.`end_date` >= now() or bm.`end_date` IS NULL ) 
+#and ( bm.`start_date` <= now() or bm.`start_date` IS NULL ) 
+#and bm.contract_id = bma.contract_id
+#order by bm.start_date desc, bm.id desc limit 1)
+#");
+
 1;
 
