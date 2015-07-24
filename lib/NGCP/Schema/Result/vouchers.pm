@@ -34,6 +34,13 @@ __PACKAGE__->add_columns(
     is_foreign_key => 1,
     is_nullable => 1,
   },
+  "package_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 1,
+  },  
   "used_by_subscriber_id",
   {
     data_type => "integer",
@@ -67,6 +74,7 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
+__PACKAGE__->add_unique_constraint("vouchers_rescode_idx", ["reseller_id", "code"]);
 
 __PACKAGE__->belongs_to(
   "customer",
@@ -100,6 +108,19 @@ __PACKAGE__->belongs_to(
     on_update     => "CASCADE",
   },
 );
+
+__PACKAGE__->belongs_to(
+  "profile_package",
+  "NGCP::Schema::Result::profile_packages",
+  { id => "package_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "SET NULL",
+    on_update     => "CASCADE",
+  },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {

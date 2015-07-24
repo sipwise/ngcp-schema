@@ -31,6 +31,10 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 1 },
   "free_time_balance_interval",
   { data_type => "integer", default_value => 0, is_nullable => 0 },
+  "topup_count",
+  { data_type => "integer", default_value => 0, is_nullable => 0 },  
+  "timely_topup_count",
+  { data_type => "integer", default_value => 0, is_nullable => 0 },    
   "start",
   {
     data_type => "datetime",
