@@ -51,8 +51,8 @@ __PACKAGE__->add_columns(
   "balance_interval_start_mode",
   {
     data_type => "enum",
-    default_value => "create",
-    extra => { list => ["create", "1st", "topup"] },
+    default_value => "1st",
+    extra => { list => ["create", "1st", "topup", "topup_interval"] },
     is_nullable => 0,
   },  
   
