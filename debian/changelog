@@ -1,3 +1,14 @@
+ngcp-schema (4.0.1.2+0~mr4.0.1.2) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [a11cd8e] MT#13903 fix invoices-balances relationship
+  * [81459b6] MT#13903 package_id and relationships for vouchers
+  * [e7b1655] MT#13903 model update - 'topup_interval' mode
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Tue, 28 Jul 2015 00:49:54 +0200
+
 ngcp-schema (4.0.1.1+0~mr4.0.1.1) unstable; urgency=medium
 
   * New release.
