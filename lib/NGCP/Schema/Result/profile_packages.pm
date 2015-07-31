@@ -22,13 +22,6 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 0, size => 255 },
   "description",
   { data_type => "varchar", is_nullable => 0, size => 255 },
-  "status",
-  {
-    data_type => "enum",
-    default_value => "active",
-    extra => { list => ["active", "terminated"] },
-    is_nullable => 0,
-  },  
   
   "initial_balance",
   { data_type => "double precision", default_value => 0, is_nullable => 0 },
