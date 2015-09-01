@@ -31,7 +31,7 @@ __PACKAGE__->add_columns(
   {
     data_type => "enum",
     default_value => "month",
-    extra => { list => ["day", "week", "month"] },
+    extra => { list => ["hour", "day", "week", "month"] },
     is_nullable => 0,
   },
   "balance_interval_value",
@@ -67,7 +67,7 @@ __PACKAGE__->add_columns(
   {
     data_type => "enum",
     #default_value => "day",
-    extra => { list => ["day", "week", "month"] },
+    extra => { list => ["hour", "day", "week", "month"] },
     is_nullable => 1,
   },
   "timely_duration_value",
