@@ -54,6 +54,18 @@ __PACKAGE__->add_columns(
     is_foreign_key => 1,
     is_nullable => 1,
   },
+  "underrun_profiles",
+  {
+    data_type => "datetime",
+    datetime_undef_if_invalid => 1,
+    is_nullable => 1,
+  },  
+  "underrun_lock",
+  {
+    data_type => "datetime",
+    datetime_undef_if_invalid => 1,
+    is_nullable => 1,
+  },    
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -168,6 +180,18 @@ NGCP::Schema::Result::contract_balances
   extra: {unsigned => 1}
   is_foreign_key: 1
   is_nullable: 1
+
+=head2 underrun_profiles
+
+  data_type: 'datetime'
+  datetime_undef_if_invalid: 1
+  is_nullable: 0
+
+=head2 underrun_lock
+
+  data_type: 'datetime'
+  datetime_undef_if_invalid: 1
+  is_nullable: 0
 
 =head1 PRIMARY KEY
 
