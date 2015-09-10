@@ -30,6 +30,8 @@ __PACKAGE__->add_columns(
   { data_type => "decimal", is_nullable => 0, size => [13,3] },
   "duration",
   { data_type => "decimal", is_nullable => 0, size => [13,3] },
+  "source",
+  { data_type => "varchar", is_nullable => 1, size => 255 },
   "reported_at",
   {
     data_type => "timestamp",
