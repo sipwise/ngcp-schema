@@ -47,6 +47,20 @@ __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->add_unique_constraint("account_idx", ["username", "domain"]);
 
+__PACKAGE__->belongs_to(
+  "provisioning_voip_subscribers",
+  "NGCP::Schema::Result::provisioning_voip_subscribers",
+  { 'foreign.uuid' => 'self.uuid' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
+  "fax_journal",
+  "NGCP::Schema::Result::fax_journal",
+  { 'foreign.subscriber_id' => 'self.id' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {

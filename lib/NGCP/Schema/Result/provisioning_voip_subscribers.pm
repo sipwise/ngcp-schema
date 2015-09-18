@@ -245,6 +245,13 @@ __PACKAGE__->belongs_to(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->has_many(
+  "kamailio_subscriber",
+  'NGCP::Schema::Result::subscriber',
+  { 'foreign.uuid' => 'self.uuid' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
