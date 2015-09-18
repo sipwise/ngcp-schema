@@ -110,6 +110,13 @@ __PACKAGE__->might_have(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->might_have(
+  "kamailio_subscriber",
+  'NGCP::Schema::Result::kamailio_subscriber',
+  { 'foreign.uuid' => 'self.uuid' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 __PACKAGE__->belongs_to(
   "contact",
   "NGCP::Schema::Result::contacts",
