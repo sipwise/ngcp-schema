@@ -76,6 +76,12 @@ __PACKAGE__->add_columns(
   "filename",
   { data_type => "varchar", default_value => "", is_nullable => 0, size => 255 },
 );
+__PACKAGE__->belongs_to(
+  "subscriber",
+  "NGCP::Schema::Result::subscriber",
+  { 'foreign.id' => 'self.subscriber_id' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
 
 __PACKAGE__->set_primary_key("id");
 
