@@ -252,7 +252,7 @@ for my $col (qw/init_time start_time/) {
 __PACKAGE__->belongs_to(
   "source_customer_billing_zones_history",
   "NGCP::Schema::Result::billing_zones_history",
-  { "bz_id" => "source_customer_billing_zone_id" },
+  { "id" => "source_customer_billing_zone_id" },
   {
     is_deferrable => 1,
     join_type     => "LEFT",
@@ -264,7 +264,7 @@ __PACKAGE__->belongs_to(
 __PACKAGE__->belongs_to(
   "destination_customer_billing_zones_history",
   "NGCP::Schema::Result::billing_zones_history",
-  { "bz_id" => "destination_customer_billing_zone_id" },
+  { "id" => "destination_customer_billing_zone_id" },
   {
     is_deferrable => 1,
     join_type     => "LEFT",
