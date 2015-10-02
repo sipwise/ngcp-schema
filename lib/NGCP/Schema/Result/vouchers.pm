@@ -121,6 +121,13 @@ __PACKAGE__->belongs_to(
   },
 );
 
+__PACKAGE__->has_many(
+  "topup_log",
+  "NGCP::Schema::Result::topup_log",
+  { 'foreign.voucher_id' => 'self.id' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
