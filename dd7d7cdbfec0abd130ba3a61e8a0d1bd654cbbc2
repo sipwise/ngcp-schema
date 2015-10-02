@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6255ed_f981154b",
+        "filename": "lib/NGCP/Schema/Result/profile_packages.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2015-10-02T09:29:59Z",
+      "side": 1,
+      "message": "typo?",
+      "range": {
+        "startLine": 188,
+        "startChar": 13,
+        "endLine": 188,
+        "endChar": 27
+      },
+      "revId": "dd7d7cdbfec0abd130ba3a61e8a0d1bd654cbbc2",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_d9965194",
+        "filename": "lib/NGCP/Schema/Result/topup_log.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2015-10-02T09:29:59Z",
+      "side": 1,
+      "message": "afaik this can be directly written in the apropriate place.\n\nthis style is an artifact from when the schema has automatically deferred from the database schema using some script.",
+      "revId": "dd7d7cdbfec0abd130ba3a61e8a0d1bd654cbbc2",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
