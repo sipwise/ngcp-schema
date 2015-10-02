@@ -34,7 +34,7 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
   },
   "timestamp",
-  { data_type => "decimal", is_nullable => 0, size => [13, 3] },
+  { data_type => "decimal", is_nullable => 0, size => [13, 3], inflate_datetime => 'epoch_milli' },
   "username",
   { data_type => "varchar", is_nullable => 1, size => 127 },
   "content_format",
@@ -49,15 +49,6 @@ __PACKAGE__->add_columns(
 );
 
 __PACKAGE__->set_primary_key("id");
-
-for my $col (qw/timestamp/) {
-    if(__PACKAGE__->has_column($col)) {
-        __PACKAGE__->remove_column($col);
-        __PACKAGE__->add_column($col =>
-            { data_type => "decimal", is_nullable => 0, size => [13, 3], inflate_datetime => 'epoch_milli' }
-        );
-    }
-}
 
 sub TO_JSON {
     my ($self) = @_;

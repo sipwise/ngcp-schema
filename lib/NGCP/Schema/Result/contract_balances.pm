@@ -96,6 +96,20 @@ __PACKAGE__->belongs_to(
   },
 );
 
+__PACKAGE__->has_many(
+  "before_topup_log",
+  "NGCP::Schema::Result::topup_logs",
+  { 'foreign.contract_balance_before_id' => 'self.id' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
+  "after_topup_log",
+  "NGCP::Schema::Result::topup_logs",
+  { 'foreign.contract_balance_after_id' => 'self.id' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {

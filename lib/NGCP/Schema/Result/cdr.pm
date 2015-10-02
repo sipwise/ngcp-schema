@@ -140,9 +140,9 @@ __PACKAGE__->add_columns(
   "call_code",
   { data_type => "char", is_nullable => 0, size => 3 },
   "init_time",
-  { data_type => "decimal", is_nullable => 0, size => [13, 3] },
+  { data_type => "decimal", is_nullable => 0, size => [13, 3], inflate_datetime => 'epoch_milli' },
   "start_time",
-  { data_type => "decimal", is_nullable => 0, size => [13, 3] },
+  { data_type => "decimal", is_nullable => 0, size => [13, 3], inflate_datetime => 'epoch_milli' },
   "duration",
   { data_type => "decimal", is_nullable => 0, size => [13, 3] },
   "call_id",
@@ -241,14 +241,6 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
-for my $col (qw/init_time start_time/) {
-    if(__PACKAGE__->has_column($col)) {
-        __PACKAGE__->remove_column($col);
-        __PACKAGE__->add_column($col =>
-            { data_type => "decimal", is_nullable => 0, size => [13, 3], inflate_datetime => 'epoch_milli' }
-        );
-    }
-}
 __PACKAGE__->belongs_to(
   "source_customer_billing_zones_history",
   "NGCP::Schema::Result::billing_zones_history",
