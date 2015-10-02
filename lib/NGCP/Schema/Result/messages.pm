@@ -21,7 +21,7 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
   },
   "timestamp",
-  { data_type => "decimal", is_nullable => 0, size => [17, 6] },
+  { data_type => "decimal", is_nullable => 0, size => [17, 6], inflate_datetime => 'epoch_micro' },
   "protocol",
   {
     data_type => "enum",
@@ -73,15 +73,6 @@ __PACKAGE__->has_many(
 );
 
 __PACKAGE__->set_primary_key("id");
-
-for my $col (qw/timestamp/) {
-    if(__PACKAGE__->has_column($col)) {
-        __PACKAGE__->remove_column($col);
-        __PACKAGE__->add_column($col =>
-            { data_type => "decimal", is_nullable => 0, size => [17, 6], inflate_datetime => 'epoch_micro' }
-        );
-    }
-}
 
 sub TO_JSON {
     my ($self) = @_;

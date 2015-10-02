@@ -27,7 +27,7 @@ __PACKAGE__->add_columns(
   "callee",
   { data_type => "varchar", is_nullable => 0, size => 255 },
   "start_time",
-  { data_type => "decimal", is_nullable => 0, size => [13,3] },
+  { data_type => "decimal", is_nullable => 0, size => [13,3], inflate_datetime => 'epoch_milli' },
   "duration",
   { data_type => "decimal", is_nullable => 0, size => [13,3] },
   "source",
@@ -42,15 +42,6 @@ __PACKAGE__->add_columns(
 );
 
 __PACKAGE__->set_primary_key("id");
-
-for my $col (qw/start_time/) {
-    if(__PACKAGE__->has_column($col)) {
-        __PACKAGE__->remove_column($col);
-        __PACKAGE__->add_column($col =>
-            { data_type => "decimal", is_nullable => 0, size => [13, 3], inflate_datetime => 'epoch_milli' }
-        );
-    }
-}
 
 __PACKAGE__->add_unique_constraint("mcid_callid_idx", ["call_id"]);
 

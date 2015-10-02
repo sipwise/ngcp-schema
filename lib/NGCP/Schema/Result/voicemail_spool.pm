@@ -62,14 +62,15 @@ __PACKAGE__->belongs_to(
   },
 );
 
-for my $col (qw/origtime/) {
-    if(__PACKAGE__->has_column($col)) {
-        __PACKAGE__->remove_column($col);
-        __PACKAGE__->add_column($col =>
-            { data_type => "varchar", is_nullable => 0, inflate_datetime => 'epoch_string' }
-        );
-    }
-}
+#is_nullable => 0 is changed here! why?
+#for my $col (qw/origtime/) {
+#    if(__PACKAGE__->has_column($col)) {
+#        __PACKAGE__->remove_column($col);
+#        __PACKAGE__->add_column($col =>
+#            { data_type => "varchar", is_nullable => 0, inflate_datetime => 'epoch_string' }
+#        );
+#    }
+#}
 
 sub TO_JSON {
     my ($self) = @_;
