@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6255ed_5c836f56",
+        "filename": "lib/NGCP/Schema/Result/billing_profiles.pm",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2015-10-05T15:48:59Z",
+      "side": 1,
+      "message": "probably make those plural too, (because they are a has-many-relationship)",
+      "revId": "3517a0713dc42c2f55e69119d54dfaad23efa9cd",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_7cb6333f",
+        "filename": "lib/NGCP/Schema/Result/billing_profiles.pm",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2015-10-05T15:48:59Z",
+      "side": 1,
+      "message": "change here\n\nsame goes for the other relations",
+      "revId": "3517a0713dc42c2f55e69119d54dfaad23efa9cd",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
