@@ -1,3 +1,26 @@
+ngcp-schema (4.1.1.0+0~mr4.1.1.0) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [ac57c03] MT#12999 render_schema.pl tool
+  * [2663280] MT#13903 fix invoices-balances relationship
+  * [83e94b3] MT#13903 package_id and relationships for vouchers
+  * [76a9604] MT#13903 model update - 'topup_interval' mode
+  * [048c7bc] MT#14301 remove prof package 'status' field
+  * [8295f2b] MT#14255 add balance underrun detection ts columns
+  * [33142b4] MT#15367 rateomat updates CDRs with zones_history.id, not .bz_id
+  * [09a386f] MT#15477 topup_log resultset
+
+  [ Kirill Solomko ]
+  * [0aff34d] MT#12707 - add malicious_calls schema
+  * [35cafa1] MT#12707 - malicious_calls: add source field
+
+  [ Irina Peshinskaya ]
+  * [4ec4080] MT#14477 Link provisioning.voip_subscribers to kamailio.subscriber
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 12 Oct 2015 15:40:27 +0200
+
 ngcp-schema (4.1.0.0+0~mr4.1.0.0) unstable; urgency=low
 
   * New release.
