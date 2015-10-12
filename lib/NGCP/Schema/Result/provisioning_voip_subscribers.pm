@@ -155,6 +155,34 @@ __PACKAGE__->might_have(
 );
 
 __PACKAGE__->has_many(
+  "voip_fax_journal",
+  "NGCP::Schema::Result::voip_fax_journal",
+  { 'foreign.subscriber_id' => 'self.id' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
+  "voip_mail_to_fax_secret_renew_notify",
+  "NGCP::Schema::Result::voip_mail_to_fax_secret_renew_notify",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
+  "voip_mail_to_fax_acl",
+  "NGCP::Schema::Result::voip_mail_to_fax_acl",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->might_have(
+  "voip_mail_to_fax_preference",
+  "NGCP::Schema::Result::voip_mail_to_fax_preferences",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
   "voip_pbx_groups",
   "NGCP::Schema::Result::voip_pbx_groups",
   { "foreign.subscriber_id" => "self.id" },
@@ -464,6 +492,30 @@ Related object: L<NGCP::Schema::Result::voip_fax_destinations>
 Type: might_have
 
 Related object: L<NGCP::Schema::Result::voip_fax_preferences>
+
+=head2 voip_fax_journal
+
+Type: might_have
+
+Related object: L<NGCP::Schema::Result::voip_fax_journal>
+
+=head2 voip_mail_to_fax_preference
+
+Type: might_have
+
+Related object: L<NGCP::Schema::Result::voip_mail_to_fax_preference>
+
+=head2 voip_mail_to_fax_secret_renew_notify
+
+Type: might_have
+
+Related object: L<NGCP::Schema::Result::voip_mail_to_fax_secret_renew_notify>
+
+=head2 voip_mail_to_fax_acl
+
+Type: might_have
+
+Related object: L<NGCP::Schema::Result::voip_mail_to_fax_acl>
 
 =head2 voip_reminder
 
