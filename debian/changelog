@@ -1,3 +1,12 @@
+ngcp-schema (4.0.1.5+0~mr4.0.1.5) unstable; urgency=medium
+
+  [ Irina Peshinskaya ]
+  * [a5333ab] MT#14477 Link provisioning.voip_subscribers to kamailio.subscriber
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Wed, 14 Oct 2015 12:30:48 +0200
+
 ngcp-schema (4.0.1.4+0~mr4.0.1.4) unstable; urgency=medium
 
   [ Rene Krenn ]
