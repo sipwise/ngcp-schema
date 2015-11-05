@@ -291,6 +291,19 @@ __PACKAGE__->belongs_to(
   { cascade_copy => 0, cascade_delete => 0, join_type => 'left' }
 );
 
+__PACKAGE__->belongs_to(
+  "subscriber",
+  "NGCP::Schema::Result::voip_subscribers",
+  sub {
+    my $args = shift;
+    return { -or => [
+      "$args->{foreign_alias}.uuid" => { -ident => "$args->{self_alias}.destination_user_id" },
+      "$args->{foreign_alias}.uuid" => { -ident => "$args->{self_alias}.source_user_id" },
+    ]};
+  },  
+  { cascade_copy => 0, cascade_delete => 0, join_type => 'left' }
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
