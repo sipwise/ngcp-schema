@@ -1,3 +1,19 @@
+ngcp-schema (4.0.2.1+0~mr4.0.2.1) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [2e8f18d] MT#13903 fix invoices-balances relationship
+  * [5a8106c] MT#13903 package_id and relationships for vouchers
+  * [dd4d517] MT#13903 model update - 'topup_interval' mode
+  * [e02d561] MT#14301 remove prof package 'status' field
+  * [82c2b77] MT#15367 rateomat updates CDRs with zones_history.id, not .bz_id
+
+  [ Irina Peshinskaya ]
+  * [ad94a89] MT#14477 Link provisioning.voip_subscribers to kamailio.subscriber
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 16 Nov 2015 14:34:35 +0100
+
 ngcp-schema (4.0.2.0+0~mr4.0.2.0) unstable; urgency=medium
 
   * New release.
