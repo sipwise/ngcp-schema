@@ -1,12 +1,13 @@
 package NGCP::Schema::Exception;
 use Sipwise::Base;
-use namespace::sweep;
-
+use Moose;
 our $VERSION = '2.007';
 
 extends 'Throwable::Error';
 has('description', is => 'ro', isa => 'Str', required => 1);
 has('context', is => 'ro', isa => 'HashRef', documentation => 'extra data to pass along');
+
+no Moose;
 
 __PACKAGE__->meta->make_immutable(inline_constructor => 0);
 

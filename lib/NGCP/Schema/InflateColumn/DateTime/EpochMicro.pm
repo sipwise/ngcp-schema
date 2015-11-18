@@ -2,7 +2,7 @@ package NGCP::Schema::InflateColumn::DateTime::EpochMicro;
 use Sipwise::Base;
 use DateTime qw();
 
-extends 'DBIx::Class';
+use base 'DBIx::Class';
 
 our $VERSION = '2.007';
 
@@ -45,3 +45,5 @@ sub _deflate_from_datetime {
           && $info->{inflate_datetime} eq 'epoch_micro');
     return $value->epoch;
 }
+
+1;

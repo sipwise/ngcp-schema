@@ -2,7 +2,7 @@ package NGCP::Schema::InflateColumn::DateTime::EpochString;
 use Sipwise::Base;
 use DateTime qw();
 
-extends 'DBIx::Class';
+use base 'DBIx::Class';
 
 our $VERSION = '2.007';
 

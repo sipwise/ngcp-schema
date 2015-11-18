@@ -15,18 +15,21 @@ has 'config_file' => (
     default  => '/etc/ngcp-ossbss/provisioning.conf'
 );
 
-has('as_hash', isa => 'HashRef', is => 'rw', lazy => 1, default => method {
+has('as_hash', isa => 'HashRef', is => 'rw', lazy => 1, default => sub {
+    my ($self) = @_;
     return $self->check_config(XML::Simple->new->XMLin($self->config_file->stringify, ForceArray => 0));
 });
 
-method BUILD {
+sub BUILD {
+    my ($self) = @_;
     die q(can't find config file %s)->sprintf($self->config_file)
         unless -e $self->config_file;
     Log::Log4perl->init_once($self->config->{logconf});
     Log::Log4perl->get_logger($self)->info('using config file "%s"'->sprintf($self->config_file));
 }
 
-method check_config($config) {
+sub check_config {
+    my ($self, $config) = @_;
     $config->{vsc}{actions} = [$config->{vsc}{actions}]
       if defined $config->{vsc}
       and defined $config->{vsc}{actions}
