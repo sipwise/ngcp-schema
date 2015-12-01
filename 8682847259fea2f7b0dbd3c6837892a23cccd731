@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a4e6583_7d309256",
+        "filename": "lib/NGCP/Schema/Result/billing_mappings_actual.pm",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2015-12-01T11:51:23Z",
+      "side": 1,
+      "message": "how is this planned to be used ?",
+      "range": {
+        "startLine": 64,
+        "startChar": 18,
+        "endLine": 64,
+        "endChar": 27
+      },
+      "revId": "8682847259fea2f7b0dbd3c6837892a23cccd731",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
