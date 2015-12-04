@@ -179,6 +179,13 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->might_have(
+  "rtc_user",
+  "NGCP::Schema::Result::rtc_user",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
@@ -329,3 +336,9 @@ Related object: L<NGCP::Schema::Result::voip_number_block_resellers>
 Type: has_many
 
 Related object: L<NGCP::Schema::Result::voip_numbers>
+
+=head2 rtc_user
+
+Type: might_have
+
+Related object: L<NGCP::Schema::Result::rtc_user>

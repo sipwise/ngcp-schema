@@ -252,6 +252,13 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->might_have(
+  "rtc_session",
+  "NGCP::Schema::Result::rtc_session",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
@@ -481,3 +488,9 @@ Related object: L<NGCP::Schema::Result::voip_trusted_sources>
 Type: has_many
 
 Related object: L<NGCP::Schema::Result::voip_usr_preferences>
+
+=head2 rtc_session
+
+Type: might_have
+
+Related object: L<NGCP::Schema::Result::rtc_session>
