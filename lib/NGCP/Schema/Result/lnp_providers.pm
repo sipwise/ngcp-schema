@@ -13,6 +13,8 @@ __PACKAGE__->add_columns(
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 0 },
   "name",
   { data_type => "varchar", is_nullable => 1, size => 255 },
+  "prefix",
+  { data_type => "varchar", is_nullable => 0, size => 32 },
 );
 
 __PACKAGE__->set_primary_key("id");
