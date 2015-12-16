@@ -17,8 +17,12 @@ class_has('config', is => 'rw', isa => 'NGCP::Schema::Config', lazy => 1, defaul
     return NGCP::Schema::Config->instance;
 });
 
-method connection {
-    $self->SUPER::connection($self->config->as_hash->{ngcp_connect_info});
+sub connection {
+    my ($self, $cfg) = @_;
+    unless(defined $cfg->{dsn}) {
+        $cfg = $self->config->as_hash->{ngcp_connect_info};
+    }
+    $self->SUPER::connection($cfg);
 }
 
 method validate($data, $mandatory_params, $optional_params?) {
