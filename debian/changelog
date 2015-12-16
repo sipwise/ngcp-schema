@@ -1,3 +1,23 @@
+ngcp-schema (4.2.1.0+0~mr4.2.1.0) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [94f650f] MT#16171 cdr 'subscriber' relationship with custom join cond
+
+  [ Andreas Granig ]
+  * [ce027db] MT#16465 Remove Moose and others where possible
+  * [2a5e53e] MT#16895 Add prefix to lnp_providers table
+
+  [ Irina Peshinskaya ]
+  * [8682847] MT#16321 More narrow conditions for subquery to improve billing_mappings speed
+
+  [ Gerhard Jungwirth ]
+  * [ba2214f] MT#15883 add rtc tables
+  * [6b1e4c9] MT#15883 add rtc "reverse" relationships
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Wed, 16 Dec 2015 09:25:44 +0100
+
 ngcp-schema (4.2.0.0+0~mr4.2.0.0) unstable; urgency=medium
 
   [ Rene Krenn ]
