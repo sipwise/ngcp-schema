@@ -8,7 +8,7 @@ use parent 'DBIx::Class::Core';
 
 our $VERSION = '2.007';
 
-__PACKAGE__->load_components("Helper::Row::ToJSON", "EncodedColumn");
+__PACKAGE__->load_components("Helper::Row::ToJSON");
 
 __PACKAGE__->table("provisioning.rtc_session");
 
@@ -32,6 +32,12 @@ __PACKAGE__->add_columns(
     data_type => "varchar",
     is_nullable => 0,
     size => 20,
+  },
+  "rtc_network_tag",
+  {
+    data_type => "varchar",
+    is_nullable => 0,
+    size => 45,
   },
 );
 
@@ -60,3 +66,83 @@ sub TO_JSON {
 }
 
 1;
+
+__END__
+
+=encoding UTF-8
+
+=head1 NAME
+
+NGCP::Schema::Result::rtc_session
+
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::Helper::Row::ToJSON>
+
+=back
+
+=head1 TABLE: C<provisioning.rtc_session>
+
+=head1 ACCESSORS
+
+=head2 id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_auto_increment: 1
+  is_nullable: 0
+
+=head2 subscriber_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 rtc_session_id
+
+  data_type: 'varchar'
+  is_nullable: 0
+  size: 20
+
+=head2 rtc_network_tag
+
+  data_type: 'varchar'
+  is_nullable: 0
+  size: 45
+
+=head1 PRIMARY KEY
+
+=over 4
+
+=item * L</id>
+
+=back
+
+=head1 UNIQUE CONSTRAINTS
+
+=head2 C<subscriber_idx>
+
+=over 4
+
+=item * L</subscriber_id>
+
+=back
+
+=head2 C<rtc_session_idx>
+
+=over 4
+
+=item * L</rtc_session_id>
+
+=back
+
+=head1 RELATIONS
+
+=head2 subscriber
+
+Type: belongs_to
+
+Related object: L<NGCP::Schema::Result::provisioning_voip_subscribers>
