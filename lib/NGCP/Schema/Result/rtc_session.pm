@@ -33,6 +33,12 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
     size => 20,
   },
+  "rtc_network_tag",
+  {
+    data_type => "varchar",
+    is_nullable => 0,
+    size => 45,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
