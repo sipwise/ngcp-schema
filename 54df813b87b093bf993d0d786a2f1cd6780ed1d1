@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a6a9dd7_41c4cf91",
+        "filename": "lib/NGCP/Schema/Result/provisioning_voip_subscribers.pm",
+        "patchSetId": 5
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2016-02-03T14:52:42Z",
+      "side": 1,
+      "message": "if we consistently used \"-s\" for has_many here, we can always be sure, whether is gives us a resultset or a single result.",
+      "revId": "54df813b87b093bf993d0d786a2f1cd6780ed1d1",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_61c1d37f",
+        "filename": "lib/NGCP/Schema/Result/provisioning_voip_subscribers.pm",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2016-02-03T14:52:42Z",
+      "side": 1,
+      "message": "here too",
+      "revId": "54df813b87b093bf993d0d786a2f1cd6780ed1d1",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_01bed7ff",
+        "filename": "lib/NGCP/Schema/Result/provisioning_voip_subscribers.pm",
+        "patchSetId": 5
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2016-02-03T14:52:42Z",
+      "side": 1,
+      "message": "and here",
+      "revId": "54df813b87b093bf993d0d786a2f1cd6780ed1d1",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
