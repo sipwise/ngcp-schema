@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a6a9dd7_21c51b5b",
+        "filename": "lib/NGCP/Schema/Result/provisioning_voip_subscribers.pm",
+        "patchSetId": 5
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2016-02-03T16:30:07Z",
+      "side": 1,
+      "message": "valid points thanks!\nadjusted.",
+      "parentUuid": "9a6a9dd7_41c4cf91",
+      "revId": "54df813b87b093bf993d0d786a2f1cd6780ed1d1",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a6a9dd7_61c1d37f",
         "filename": "lib/NGCP/Schema/Result/provisioning_voip_subscribers.pm",
         "patchSetId": 5
