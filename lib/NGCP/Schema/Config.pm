@@ -12,7 +12,7 @@ has 'config_file' => (
     isa      => File,
     required => 1,
     coerce   => 1,
-    default  => '/etc/ngcp-ossbss/provisioning.conf'
+    default  => '/etc/ngcp-panel/provisioning.conf'
 );
 
 has('as_hash', isa => 'HashRef', is => 'rw', lazy => 1, default => sub {
@@ -81,7 +81,7 @@ Reads a configuration file, initialises the logger, provides configuration as st
 =head3 C<config_file>
 
 Type C<MooseX::Types::Path::Class>, B<required> attribute, location of the configuration file. Default is
-C</etc/ngcp-ossbss/provisioning.conf>.
+C</etc/ngcp-panel/provisioning.conf>.
 
 =head3 C<config>
 
