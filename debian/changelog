@@ -1,3 +1,12 @@
+ngcp-schema (4.1.3.0+0~mr4.1.3.0) unstable; urgency=medium
+
+  [ Irina Peshinskaya ]
+  * [796d90c] MT#16321 More narrow conditions for subquery to improve billing_mappings speed
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Tue, 09 Feb 2016 12:14:28 +0100
+
 ngcp-schema (4.1.2.0+0~mr4.1.2.0) unstable; urgency=medium
 
   * New release.
