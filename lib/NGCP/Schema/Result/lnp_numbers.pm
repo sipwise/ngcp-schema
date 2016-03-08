@@ -18,6 +18,8 @@ __PACKAGE__->add_columns(
   },
   "number",
   { data_type => "varchar", is_nullable => 0, size => 31 },
+  "routing_number",
+  { data_type => "varchar", is_nullable => 1, size => 31 },
   "lnp_provider_id",
   {
     data_type => "integer",
