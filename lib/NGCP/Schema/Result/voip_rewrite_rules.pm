@@ -35,7 +35,7 @@ __PACKAGE__->add_columns(
   {
     data_type => "enum",
     default_value => "in",
-    extra => { list => ["in", "out"] },
+    extra => { list => ["in", "out", "lnp"] },
     is_nullable => 0,
   },
   "field",

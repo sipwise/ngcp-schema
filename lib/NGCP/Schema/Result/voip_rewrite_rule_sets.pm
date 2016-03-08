@@ -35,6 +35,10 @@ __PACKAGE__->add_columns(
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
   "callee_out_dpid",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
+  "caller_lnp_dpid",
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
+  "callee_lnp_dpid",
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
 );
 
 __PACKAGE__->set_primary_key("id");
