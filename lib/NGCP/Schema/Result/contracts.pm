@@ -253,6 +253,13 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->has_many(
+  "voip_contract_locations",
+  "NGCP::Schema::Result::voip_contract_locations",
+  { "foreign.contract_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 __PACKAGE__->belongs_to(
   "profile_package",
   "NGCP::Schema::Result::profile_packages",
