@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fad0f9df_a61290b2",
+        "filename": "lib/NGCP/Schema/Result/voip_contract_location_blocks.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2016-03-11T15:08:00Z",
+      "side": 1,
+      "message": "map? isnt it only 1?",
+      "range": {
+        "startLine": 109,
+        "startChar": 29,
+        "endLine": 109,
+        "endChar": 32
+      },
+      "revId": "c01dc8b3bd82905b27baab60ebcf43fdefe96bd8",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
