@@ -22,6 +22,30 @@
       "revId": "c01dc8b3bd82905b27baab60ebcf43fdefe96bd8",
       "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fad0f9df_e9fb8b45",
+        "filename": "lib/NGCP/Schema/Result/voip_contract_location_blocks.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2016-03-14T11:27:04Z",
+      "side": 1,
+      "message": "the part produced by (sprintf( ....)) is an array of hex strings.",
+      "parentUuid": "fad0f9df_a61290b2",
+      "range": {
+        "startLine": 109,
+        "startChar": 29,
+        "endLine": 109,
+        "endChar": 32
+      },
+      "revId": "c01dc8b3bd82905b27baab60ebcf43fdefe96bd8",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
     }
   ]
 }
