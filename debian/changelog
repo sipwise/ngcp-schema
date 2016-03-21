@@ -1,3 +1,30 @@
+ngcp-schema (4.3.1.0+0~mr4.3.1.0) unstable; urgency=medium
+
+  [ Andreas Granig ]
+  * [27f3ff5] MT#16985 Add CentralSchema for interceptions.
+  * [86e4967] MT#16985 Rename CentralDB to RoDB
+  * [e64fd4c] MT#16985 InterceptDB points to pair instead of RO
+  * [956fcfb] MT#16777 Add lnp rwr and lnp routing number
+
+  [ Guillem Jover ]
+  * [00135fa] MT#16473 Convert debian/copyright to machine-readable format
+
+  [ Kirill Solomko ]
+  * [933d3b8] MT#14679 new voip_mail_to_fax tables, new voip_fax_journal table
+  * [a0d1fc2] MT#14675 changed default config to /etc/ngcp-panel/provisioning.conf
+  * [50e273c] MT#18381 added contract_fraud_events virtual table
+  * [c01dc8b] MT#18499 added voip_contract_loctions, voip_contract_location_blocks
+
+  [ Gerhard Jungwirth ]
+  * [322bf00] MT#15883 adapt rtcsessions table
+
+  [ Michael Prokop ]
+  * [84a4f74] MT#17699 Bump Standards-Version to 3.9.7
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 21 Mar 2016 22:26:03 +0100
+
 ngcp-schema (4.3.0.0+0~mr4.3.0.0) unstable; urgency=medium
 
   [ Rene Krenn ]
