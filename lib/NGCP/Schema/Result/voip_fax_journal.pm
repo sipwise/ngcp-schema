@@ -7,7 +7,7 @@ our $VERSION = '2.007';
 __PACKAGE__->load_components(
     "InflateColumn::DateTime",
     "Helper::Row::ToJSON",
-    "+NGCP::Schema::InflateColumn::DateTime::EpochString",
+    "+NGCP::Schema::InflateColumn::DateTime::EpochMilli",
 );
 
 __PACKAGE__->table("provisioning.voip_fax_journal");
