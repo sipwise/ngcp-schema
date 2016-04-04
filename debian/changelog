@@ -1,3 +1,12 @@
+ngcp-schema (4.3.2.0+0~mr4.3.2.0) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [6de9e04] MT#18865 fix inflate_column for voip_fax_journal.time
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 04 Apr 2016 23:32:38 +0200
+
 ngcp-schema (4.3.1.0+0~mr4.3.1.0) unstable; urgency=medium
 
   [ Andreas Granig ]
