@@ -1,3 +1,12 @@
+ngcp-schema (3.6.5.3+0~mr3.8.5.3) unstable; urgency=medium
+
+  [ Irina Peshinskaya ]
+  * [529b892] MT#13531 create link to email_templates for resellers
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Fri, 20 May 2016 07:57:47 +0200
+
 ngcp-schema (3.6.5.2+0~mr3.8.5.2) unstable; urgency=medium
 
   [ Rene Krenn ]
