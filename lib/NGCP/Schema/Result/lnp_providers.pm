@@ -15,6 +15,10 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "prefix",
   { data_type => "varchar", is_nullable => 0, size => 32 },
+  "authoritative",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "skip_rewrite",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
 );
 
 __PACKAGE__->set_primary_key("id");
