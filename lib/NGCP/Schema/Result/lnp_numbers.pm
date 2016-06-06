@@ -43,11 +43,13 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
+__PACKAGE__->add_unique_constraint("l_n_lnpproidnumber_idx", ["lnp_provider_id", "number"]);
+
 __PACKAGE__->belongs_to(
   "lnp_provider",
   "NGCP::Schema::Result::lnp_providers",
   { id => "lnp_provider_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+  { is_deferrable => 1, on_delete => "RESTRICT", on_update => "CASCADE" },
 );
 
 sub TO_JSON {
