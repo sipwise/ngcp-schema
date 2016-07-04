@@ -1,3 +1,9 @@
+ngcp-schema (4.3.3.0+0~mr4.3.3.0) unstable; urgency=medium
+
+  * New release.
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 04 Jul 2016 13:14:23 +0200
+
 ngcp-schema (4.3.2.0+0~mr4.3.2.0) unstable; urgency=medium
 
   [ Kirill Solomko ]
