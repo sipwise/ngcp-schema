@@ -1,3 +1,15 @@
+ngcp-schema (3.6.7.1+0~mr3.8.7.1) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [aa1c811] MT#15367 rateomat updates CDRs with zones_history.id, not .bz_id
+
+  [ Irina Peshinskaya ]
+  * [9ee0ccb] MT#13531 create link to email_templates for resellers
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Thu, 07 Jul 2016 14:13:40 +0200
+
 ngcp-schema (3.6.7.0+0~mr3.8.7.0) unstable; urgency=medium
 
   * New release.
