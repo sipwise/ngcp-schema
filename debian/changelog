@@ -1,3 +1,22 @@
+ngcp-schema (4.6.0.0+0~mr5.0.0.0) unstable; urgency=medium
+
+  [ Andreas Granig ]
+  * [3dae8a8] MT#19457 Add lnp authoritative and skip_rewrite
+  * [bc1cb2b] MT#21543 Add new emergency mapping tables
+
+  [ Gerhard Jungwirth ]
+  * [3693093] MT#19795 rtc_sessions deprecate network tag
+
+  [ Rene Krenn ]
+  * [14c8888] MT#20023 MT#20027 lnp numbers unique constraint and cascade delete restriction
+
+  [ Irina Peshinskaya ]
+  * [6bf5109] MT#21269 Add snom_redirect enum value to the prov tables
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 01 Aug 2016 16:32:58 +0200
+
 ngcp-schema (4.5.0.0+0~mr4.5.0.0) unstable; urgency=medium
 
   [ Kirill Solomko ]
