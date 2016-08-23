@@ -44,6 +44,13 @@ __PACKAGE__->add_columns(
     is_foreign_key => 1,
     is_nullable => 1,
   },
+  "source_set_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 1,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -71,6 +78,18 @@ __PACKAGE__->belongs_to(
   "time_set",
   "NGCP::Schema::Result::voip_cf_time_sets",
   { id => "time_set_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
+);
+
+__PACKAGE__->belongs_to(
+  "source_set",
+  "NGCP::Schema::Result::voip_cf_source_sets",
+  { id => "source_set_id" },
   {
     is_deferrable => 1,
     join_type     => "LEFT",
@@ -144,6 +163,13 @@ NGCP::Schema::Result::voip_cf_mappings
   is_foreign_key: 1
   is_nullable: 1
 
+=head2 source_set_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_foreign_key: 1
+  is_nullable: 1
+
 =head1 PRIMARY KEY
 
 =over 4
@@ -171,3 +197,9 @@ Related object: L<NGCP::Schema::Result::provisioning_voip_subscribers>
 Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::voip_cf_time_sets>
+
+=head2 source_set
+
+Type: belongs_to
+
+Related object: L<NGCP::Schema::Result::voip_cf_source_sets>

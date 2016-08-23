@@ -127,6 +127,13 @@ __PACKAGE__->has_many(
 );
 
 __PACKAGE__->has_many(
+  "voip_cf_source_sets",
+  "NGCP::Schema::Result::voip_cf_source_sets",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
   "voip_contacts",
   "NGCP::Schema::Result::voip_contacts",
   { "foreign.subscriber_id" => "self.id" },
@@ -468,6 +475,12 @@ Related object: L<NGCP::Schema::Result::voip_cf_mappings>
 Type: has_many
 
 Related object: L<NGCP::Schema::Result::voip_cf_time_sets>
+
+=head2 voip_cf_source_sets
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::voip_cf_source_sets>
 
 =head2 voip_contacts
 
