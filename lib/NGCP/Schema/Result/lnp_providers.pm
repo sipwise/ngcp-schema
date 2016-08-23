@@ -29,6 +29,12 @@ __PACKAGE__->has_many(
   { "foreign.lnp_provider_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+__PACKAGE__->has_many(
+  "lnp_numbers_actual",
+  "NGCP::Schema::Result::lnp_numbers_actual",
+  { "foreign.lnp_provider_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
 
 __PACKAGE__->has_many(
   "ncos_lnp_lists",
