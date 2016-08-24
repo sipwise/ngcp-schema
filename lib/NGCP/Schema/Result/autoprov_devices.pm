@@ -61,6 +61,17 @@ __PACKAGE__->belongs_to(
     on_update     => "CASCADE",
   }
 );
+__PACKAGE__->has_many(
+  "voip_dev_preferences",
+  "NGCP::Schema::Result::voip_dev_preferences",
+  { "foreign.device_id" => "self.id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  }
+);
 
 __PACKAGE__->has_many(
   "autoprov_firmwares",
