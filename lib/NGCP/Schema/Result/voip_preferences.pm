@@ -41,6 +41,8 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "dev_pref",
   { data_type => "tinyint", default_value => 0, is_nullable => 1 },
+  "devprof_pref",
+  { data_type => "tinyint", default_value => 0, is_nullable => 1 },
   "expose_to_customer",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "modify_timestamp",
@@ -87,6 +89,13 @@ __PACKAGE__->has_many(
 __PACKAGE__->has_many(
   "voip_dev_preferences",
   "NGCP::Schema::Result::voip_dev_preferences",
+  { "foreign.attribute_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
+  "voip_devprof_preferences",
+  "NGCP::Schema::Result::voip_devprof_preferences",
   { "foreign.attribute_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );

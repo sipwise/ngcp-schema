@@ -1,4 +1,4 @@
-package NGCP::Schema::Result::autoprov_profiles;
+package NGCP::Schema::Result::voip_devprof_preferences;
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 
@@ -6,7 +6,7 @@ our $VERSION = '2.007';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
-__PACKAGE__->table("provisioning.autoprov_profiles");
+__PACKAGE__->table("provisioning.voip_devprof_preferences");
 
 __PACKAGE__->add_columns(
   "id",
@@ -16,36 +16,45 @@ __PACKAGE__->add_columns(
     is_auto_increment => 1,
     is_nullable => 0,
   },
-  "config_id",
+  "profile_id",
   {
     data_type => "integer",
     extra => { unsigned => 1 },
     is_foreign_key => 1,
     is_nullable => 0,
   },
-  "name",
-  { data_type => "varchar", is_nullable => 0, size => 255 },
+  "attribute_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 0,
+  },
+  "value",
+  { data_type => "varchar", is_nullable => 0, size => 128 },
+  "modify_timestamp",
+  {
+    data_type => "timestamp",
+    datetime_undef_if_invalid => 1,
+    default_value => \"current_timestamp",
+    is_nullable => 0,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->belongs_to(
-  "config",
-  "NGCP::Schema::Result::autoprov_configs",
-  { id => "config_id" },
+  "attribute",
+  "NGCP::Schema::Result::voip_preferences",
+  { id => "attribute_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-__PACKAGE__->has_many(
-  "voip_devprof_preferences",
-  "NGCP::Schema::Result::voip_devprof_preferences",
-  { "foreign.profile_id" => "self.id" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "CASCADE",
-    on_update     => "CASCADE",
-  }
+__PACKAGE__->belongs_to(
+  "profile",
+  "NGCP::Schema::Result::autoprov_profiles",
+  { id => "profile_id" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
 sub TO_JSON {
@@ -62,7 +71,7 @@ __END__
 
 =head1 NAME
 
-NGCP::Schema::provisioning::Result::autoprov_profiles
+NGCP::Schema::Result::voip_devprof_preferences
 
 =head1 COMPONENTS LOADED
 
@@ -74,7 +83,7 @@ NGCP::Schema::provisioning::Result::autoprov_profiles
 
 =back
 
-=head1 TABLE: C<autoprov_profiles>
+=head1 TABLE: C<provisioning.voip_devprof_preferences>
 
 =head1 ACCESSORS
 
@@ -85,25 +94,32 @@ NGCP::Schema::provisioning::Result::autoprov_profiles
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 firmware_id
-
-  data_type: 'integer'
-  extra: {unsigned => 1}
-  is_foreign_key: 1
-  is_nullable: 1
-
-=head2 config_id
+=head2 profile_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 name
+=head2 attribute_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 value
 
   data_type: 'varchar'
   is_nullable: 0
-  size: 255
+  size: 128
+
+=head2 modify_timestamp
+
+  data_type: 'timestamp'
+  datetime_undef_if_invalid: 1
+  default_value: current_timestamp
+  is_nullable: 0
 
 =head1 PRIMARY KEY
 
@@ -115,14 +131,14 @@ NGCP::Schema::provisioning::Result::autoprov_profiles
 
 =head1 RELATIONS
 
-=head2 config
+=head2 attribute
 
 Type: belongs_to
 
-Related object: L<NGCP::Schema::provisioning::Result::autoprov_configs>
+Related object: L<NGCP::Schema::Result::voip_preferences>
 
-=head2 firmware
+=head2 device
 
 Type: belongs_to
 
-Related object: L<NGCP::Schema::provisioning::Result::autoprov_firmwares>
+Related object: L<NGCP::Schema::Result::voip_devices>
