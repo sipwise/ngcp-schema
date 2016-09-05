@@ -24,6 +24,8 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "peering_contract_id",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
+  "has_inbound_rules",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -40,6 +42,13 @@ __PACKAGE__->has_many(
 __PACKAGE__->has_many(
   "voip_peer_rules",
   "NGCP::Schema::Result::voip_peer_rules",
+  { "foreign.group_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
+  "voip_peer_inbound_rules",
+  "NGCP::Schema::Result::voip_peer_inbound_rules",
   { "foreign.group_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -143,3 +152,9 @@ Related object: L<NGCP::Schema::Result::voip_peer_hosts>
 Type: has_many
 
 Related object: L<NGCP::Schema::Result::voip_peer_rules>
+
+=head2 voip_peer_inbound_rules
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::voip_peer_inbound_rules>
