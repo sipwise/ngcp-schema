@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3aa7f18b_2fe4263a",
+        "filename": "lib/NGCP/Schema/Result/voip_peer_inbound_rules.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2016-09-05T13:07:45Z",
+      "side": 1,
+      "message": "the doc section does not match the code",
+      "range": {
+        "startLine": 57,
+        "startChar": 1,
+        "endLine": 65,
+        "endChar": 24
+      },
+      "revId": "bc78e34c4637d2682f2f9c67053b8fb21877cabe",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
