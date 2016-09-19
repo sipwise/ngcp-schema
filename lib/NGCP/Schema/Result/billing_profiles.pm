@@ -1,12 +1,21 @@
 package NGCP::Schema::Result::billing_profiles;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("billing.billing_profiles");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -63,8 +72,10 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "fraud_use_reseller_rates",
   {
-    data_type => "tinyint", default_value => 1, is_nullable => 0,
+    data_type => "tinyint",
+    default_value => 0,
     extra => { unsigned => 1 },
+    is_nullable => 1,
   },
   "currency",
   { data_type => "varchar", is_nullable => 1, size => 31 },
@@ -97,11 +108,15 @@ __PACKAGE__->add_columns(
   },
 );
 
+
 __PACKAGE__->set_primary_key("id");
+
 
 __PACKAGE__->add_unique_constraint("reshand_idx", ["reseller_id", "handle"]);
 
+
 __PACKAGE__->add_unique_constraint("resnam_idx", ["reseller_id", "name"]);
+
 
 __PACKAGE__->has_many(
   "billing_fees",
@@ -109,12 +124,7 @@ __PACKAGE__->has_many(
   { "foreign.billing_profile_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
-__PACKAGE__->has_many(
-  "billing_fees_raw",
-  "NGCP::Schema::Result::billing_fees_raw",
-  { "foreign.billing_profile_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
+
 
 __PACKAGE__->has_many(
   "billing_mappings",
@@ -123,12 +133,14 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+
 __PACKAGE__->has_many(
   "billing_peaktime_specials",
   "NGCP::Schema::Result::billing_peaktime_special",
   { "foreign.billing_profile_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+
 
 __PACKAGE__->has_many(
   "billing_peaktime_weekdays",
@@ -137,6 +149,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+
 __PACKAGE__->has_many(
   "billing_zones",
   "NGCP::Schema::Result::billing_zones",
@@ -144,12 +157,22 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+
+__PACKAGE__->has_many(
+  "package_profile_sets",
+  "NGCP::Schema::Result::package_profile_sets",
+  { "foreign.profile_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
 __PACKAGE__->has_many(
   "products",
   "NGCP::Schema::Result::products",
   { "foreign.billing_profile_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+
 
 __PACKAGE__->belongs_to(
   "reseller",
@@ -163,37 +186,27 @@ __PACKAGE__->belongs_to(
   },
 );
 
+
 __PACKAGE__->has_many(
-  "profile_packages",
-  "NGCP::Schema::Result::profile_packages",
-  { "foreign.profile_id" => "self.id" },
+  "topup_log_profiles_after",
+  "NGCP::Schema::Result::topup_log",
+  { "foreign.profile_after_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-__PACKAGE__->has_many(
-  "before_topup_log",
-  "NGCP::Schema::Result::topup_logs",
-  { 'foreign.profile_before_id' => 'self.id' },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
 
 __PACKAGE__->has_many(
-  "after_topup_log",
-  "NGCP::Schema::Result::topup_logs",
-  { 'foreign.profile_after_id' => 'self.id' },
+  "topup_log_profiles_before",
+  "NGCP::Schema::Result::topup_log",
+  { "foreign.profile_before_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -210,7 +223,7 @@ NGCP::Schema::Result::billing_profiles
 
 =back
 
-=head1 TABLE: C<billing.billing_profiles>
+=head1 TABLE: C<billing_profiles>
 
 =head1 ACCESSORS
 
@@ -319,7 +332,7 @@ NGCP::Schema::Result::billing_profiles
   data_type: 'tinyint'
   default_value: 0
   extra: {unsigned => 1}
-  is_nullable: 0
+  is_nullable: 1
 
 =head2 currency
 
@@ -327,23 +340,11 @@ NGCP::Schema::Result::billing_profiles
   is_nullable: 1
   size: 31
 
-=head2 vat_rate
-
-  data_type: 'tinyint'
-  extra: {unsigned => 1}
-  is_nullable: 1
-
-=head2 vat_included
-
-  data_type: 'tinyint'
-  default_value: 1
-  is_nullable: 0
-
-head2 status
+=head2 status
 
   data_type: 'enum'
   default_value: 'active'
-  extra: {list => ["pending","active","locked","terminated"]}
+  extra: {list => ["active","terminated"]}
   is_nullable: 0
 
 =head2 modify_timestamp
@@ -428,6 +429,12 @@ Type: has_many
 
 Related object: L<NGCP::Schema::Result::billing_zones>
 
+=head2 package_profile_sets
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::package_profile_sets>
+
 =head2 products
 
 Type: has_many
@@ -439,3 +446,25 @@ Related object: L<NGCP::Schema::Result::products>
 Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::resellers>
+
+=head2 topup_log_profiles_after
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::topup_log>
+
+=head2 topup_log_profiles_before
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::topup_log>
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:0+gcg9T4WJYmejgMoHwVaQ
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

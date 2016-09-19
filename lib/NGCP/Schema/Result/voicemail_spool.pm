@@ -1,16 +1,21 @@
 package NGCP::Schema::Result::voicemail_spool;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
 
-__PACKAGE__->load_components(
-    "InflateColumn::DateTime", 
-    "Helper::Row::ToJSON", 
-    "+NGCP::Schema::InflateColumn::DateTime::EpochString",
-);
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
+
+__PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
+
 
 __PACKAGE__->table("kamailio.voicemail_spool");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -31,7 +36,7 @@ __PACKAGE__->add_columns(
   "callerid",
   { data_type => "varchar", default_value => "", is_nullable => 1, size => 255 },
   "origtime",
-  { data_type => "varchar", default_value => "", is_nullable => 1, size => 16, inflate_datetime => 'epoch_string' },
+  { data_type => "varchar", default_value => "", is_nullable => 1, size => 16 },
   "duration",
   { data_type => "varchar", default_value => "", is_nullable => 1, size => 16 },
   "mailboxuser",
@@ -46,9 +51,15 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", default_value => "", is_nullable => 1, size => 63 },
   "recording",
   { data_type => "longblob", is_nullable => 1 },
+  "flag",
+  { data_type => "varchar", default_value => "", is_nullable => 1, size => 128 },
+  "msg_id",
+  { data_type => "varchar", is_nullable => 1, size => 40 },
 );
 
+
 __PACKAGE__->set_primary_key("id");
+
 
 __PACKAGE__->belongs_to(
   "mailboxuser",
@@ -61,27 +72,12 @@ __PACKAGE__->belongs_to(
     on_update     => "CASCADE",
   },
 );
-
-#is_nullable => 0 is changed here! why?
-#for my $col (qw/origtime/) {
-#    if(__PACKAGE__->has_column($col)) {
-#        __PACKAGE__->remove_column($col);
-#        __PACKAGE__->add_column($col =>
-#            { data_type => "varchar", is_nullable => 0, inflate_datetime => 'epoch_string' }
-#        );
-#    }
-#}
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -98,7 +94,7 @@ NGCP::Schema::Result::voicemail_spool
 
 =back
 
-=head1 TABLE: C<kamailio.voicemail_spool>
+=head1 TABLE: C<voicemail_spool>
 
 =head1 ACCESSORS
 
@@ -177,6 +173,19 @@ NGCP::Schema::Result::voicemail_spool
   data_type: 'longblob'
   is_nullable: 1
 
+=head2 flag
+
+  data_type: 'varchar'
+  default_value: (empty string)
+  is_nullable: 1
+  size: 128
+
+=head2 msg_id
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 40
+
 =head1 PRIMARY KEY
 
 =over 4
@@ -192,3 +201,13 @@ NGCP::Schema::Result::voicemail_spool
 Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::voicemail_users>
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:44
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:z/BShIGr+ay7cdWanBuZfA
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

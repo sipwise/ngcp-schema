@@ -1,12 +1,21 @@
 package NGCP::Schema::Result::contacts;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("billing.contacts");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -99,7 +108,49 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 255 },
 );
 
+
 __PACKAGE__->set_primary_key("id");
+
+
+__PACKAGE__->has_many(
+  "contracts",
+  "NGCP::Schema::Result::billing_contracts",
+  { "foreign.contact_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "customers_comm_contacts",
+  "NGCP::Schema::Result::billing_customers",
+  { "foreign.comm_contact_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "customers_contacts",
+  "NGCP::Schema::Result::billing_customers",
+  { "foreign.contact_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "customers_tech_contacts",
+  "NGCP::Schema::Result::billing_customers",
+  { "foreign.tech_contact_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "orders",
+  "NGCP::Schema::Result::billing_orders",
+  { "foreign.delivery_contact_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 
 __PACKAGE__->belongs_to(
   "reseller",
@@ -112,52 +163,12 @@ __PACKAGE__->belongs_to(
     on_update     => "CASCADE",
   },
 );
-
-__PACKAGE__->has_many(
-  "contracts",
-  "NGCP::Schema::Result::contracts",
-  { "foreign.contact_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "customers_comm_contacts",
-  "NGCP::Schema::Result::customers",
-  { "foreign.comm_contact_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "customers_contacts",
-  "NGCP::Schema::Result::customers",
-  { "foreign.contact_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "customers_tech_contacts",
-  "NGCP::Schema::Result::customers",
-  { "foreign.tech_contact_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "orders",
-  "NGCP::Schema::Result::orders",
-  { "foreign.delivery_contact_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -174,7 +185,7 @@ NGCP::Schema::Result::contacts
 
 =back
 
-=head1 TABLE: C<billing.contacts>
+=head1 TABLE: C<contacts>
 
 =head1 ACCESSORS
 
@@ -230,8 +241,9 @@ NGCP::Schema::Result::contacts
 
 =head2 postcode
 
-  data_type: 'integer'
+  data_type: 'varchar'
   is_nullable: 1
+  size: 16
 
 =head2 city
 
@@ -289,6 +301,90 @@ NGCP::Schema::Result::contacts
   is_nullable: 1
   size: 31
 
+=head2 iban
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 34
+
+=head2 bic
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 11
+
+=head2 vatnum
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 127
+
+=head2 bankname
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 gpp0
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 gpp1
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 gpp2
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 gpp3
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 gpp4
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 gpp5
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 gpp6
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 gpp7
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 gpp8
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 gpp9
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
 =head1 PRIMARY KEY
 
 =over 4
@@ -303,28 +399,44 @@ NGCP::Schema::Result::contacts
 
 Type: has_many
 
-Related object: L<NGCP::Schema::Result::contracts>
+Related object: L<NGCP::Schema::Result::billing_contracts>
 
 =head2 customers_comm_contacts
 
 Type: has_many
 
-Related object: L<NGCP::Schema::Result::customers>
+Related object: L<NGCP::Schema::Result::billing_customers>
 
 =head2 customers_contacts
 
 Type: has_many
 
-Related object: L<NGCP::Schema::Result::customers>
+Related object: L<NGCP::Schema::Result::billing_customers>
 
 =head2 customers_tech_contacts
 
 Type: has_many
 
-Related object: L<NGCP::Schema::Result::customers>
+Related object: L<NGCP::Schema::Result::billing_customers>
 
 =head2 orders
 
 Type: has_many
 
-Related object: L<NGCP::Schema::Result::orders>
+Related object: L<NGCP::Schema::Result::billing_orders>
+
+=head2 reseller
+
+Type: belongs_to
+
+Related object: L<NGCP::Schema::Result::resellers>
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:X/BMn+eAbo9KTfZR05F5cg
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

@@ -1,17 +1,30 @@
 package NGCP::Schema::Result::billing_network_blocks;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use Math::BigInt;
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("billing.billing_network_blocks");
+
 
 __PACKAGE__->add_columns(
   "id",
-  { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_auto_increment => 1,
+    is_nullable => 0,
+  },
   "network_id",
   {
     data_type => "integer",
@@ -22,104 +35,33 @@ __PACKAGE__->add_columns(
   "ip",
   { data_type => "varchar", is_nullable => 0, size => 39 },
   "mask",
-  { data_type => "tinyint", extra => { unsigned => 1 }, is_nullable => 1 },  
+  { data_type => "tinyint", extra => { unsigned => 1 }, is_nullable => 1 },
   "_ipv4_net_from",
   { data_type => "varbinary", is_nullable => 1, size => 4 },
   "_ipv4_net_to",
-  { data_type => "varbinary", is_nullable => 1, size => 4 },  
+  { data_type => "varbinary", is_nullable => 1, size => 4 },
   "_ipv6_net_from",
   { data_type => "varbinary", is_nullable => 1, size => 16 },
   "_ipv6_net_to",
-  { data_type => "varbinary", is_nullable => 1, size => 16 },  
-
+  { data_type => "varbinary", is_nullable => 1, size => 16 },
 );
+
 
 __PACKAGE__->set_primary_key("id");
 
+
 __PACKAGE__->belongs_to(
-  "billing_network",
+  "network",
   "NGCP::Schema::Result::billing_networks",
-  { "foreign.id" => "self.network_id" },
+  { id => "network_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
-
- __PACKAGE__->inflate_column('_ipv4_net_from', {
-        inflate => sub {
-          my ($data) = @_;
-          _bytes_to_bigint($data,4);
-        },
-        deflate => sub {
-          my ($bigint) = @_;
-          _bigint_to_bytes($bigint,4);
-        },
-    });
- __PACKAGE__->inflate_column('_ipv4_net_to', {
-        inflate => sub {
-          my ($data) = @_;
-          _bytes_to_bigint($data,4);
-        },
-        deflate => sub {
-          my ($bigint) = @_;
-          _bigint_to_bytes($bigint,4);
-        },
-    });    
- __PACKAGE__->inflate_column('_ipv6_net_from', {
-        inflate => sub {
-          my ($data) = @_;
-          _bytes_to_bigint($data,16);
-        },
-        deflate => sub {
-          my ($bigint) = @_;
-          _bigint_to_bytes($bigint,16);
-        },
-    });
- __PACKAGE__->inflate_column('_ipv6_net_to', {
-        inflate => sub {
-          my ($data) = @_;
-          _bytes_to_bigint($data,16);
-        },
-        deflate => sub {
-          my ($bigint) = @_;
-          _bigint_to_bytes($bigint,16);
-        },
-    });  
-
 sub TO_JSON {
     my ($self) = @_;
     return {
-        map { if (blessed($_)) {
-                if ($_->isa('DateTime')) {
-                    $_->datetime;
-                } elsif ($_->isa('Math::BigInt')) {
-                    $_->as_hex();
-                } else {
-                    $_;
-                }
-              } else {
-                $_;
-              }
-            } %{ $self->next::method }
+        map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-sub _bigint_to_bytes {
-    my ($bigint,$size) = @_;
-    return undef if !defined $bigint;
-    #print '>'.sprintf('%0' . 2 * $size . 's',substr($bigint->as_hex(),2)) . "\n";
-    return pack('C' x $size, map { hex($_) } (sprintf('%0' . 2 * $size . 's',substr($bigint->as_hex(),2)) =~ /(..)/g));
-    #print '>' . join('',map { sprintf('%02x',$_) } unpack('C' x $size, $data)) . "\n";
-    #return $data;
-}
-
-sub _bytes_to_bigint {
-    my ($data,$size) = @_;
-    return undef if !defined $data;
-    return Math::BigInt->new('0x' . join('',map { sprintf('%02x',$_) } unpack('C' x $size, $data)))
-}
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -136,14 +78,22 @@ NGCP::Schema::Result::billing_network_blocks
 
 =back
 
-=head1 TABLE: C<billing.billing_network_blocks>
+=head1 TABLE: C<billing_network_blocks>
 
 =head1 ACCESSORS
 
 =head2 id
 
   data_type: 'integer'
+  extra: {unsigned => 1}
   is_auto_increment: 1
+  is_nullable: 0
+
+=head2 network_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_foreign_key: 1
   is_nullable: 0
 
 =head2 ip
@@ -155,7 +105,32 @@ NGCP::Schema::Result::billing_network_blocks
 =head2 mask
 
   data_type: 'tinyint'
-  is_nullable: 0
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 _ipv4_net_from
+
+  data_type: 'varbinary'
+  is_nullable: 1
+  size: 4
+
+=head2 _ipv4_net_to
+
+  data_type: 'varbinary'
+  is_nullable: 1
+  size: 4
+
+=head2 _ipv6_net_from
+
+  data_type: 'varbinary'
+  is_nullable: 1
+  size: 16
+
+=head2 _ipv6_net_to
+
+  data_type: 'varbinary'
+  is_nullable: 1
+  size: 16
 
 =head1 PRIMARY KEY
 
@@ -167,8 +142,18 @@ NGCP::Schema::Result::billing_network_blocks
 
 =head1 RELATIONS
 
-=head2 billing_networks
+=head2 network
 
-Type: has_many
+Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::billing_networks>
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:7vHzERt6w8YPQuO1I6zPTg
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

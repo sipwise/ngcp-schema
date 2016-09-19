@@ -1,12 +1,21 @@
 package NGCP::Schema::Result::provisioning_voip_subscribers;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("provisioning.voip_subscribers");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -37,29 +46,24 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 127 },
   "webpassword",
   { data_type => "varchar", is_nullable => 1, size => 40 },
+  "is_pbx_pilot",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "is_pbx_group",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "pbx_hunt_policy",
   {
     data_type => "enum",
-    default_value => "serial",
     extra => { list => ["serial", "parallel", "random", "circular"] },
     is_nullable => 1,
   },
   "pbx_hunt_timeout",
-  {
-    data_type => "integer",
-    extra => { unsigned => 1 },
-    is_nullable => 1,
-  },
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
   "pbx_extension",
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "profile_set_id",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
   "profile_id",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
-  "is_pbx_pilot",
-  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
-  "is_pbx_group",
-  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "modify_timestamp",
   {
     data_type => "timestamp",
@@ -76,160 +80,18 @@ __PACKAGE__->add_columns(
   },
 );
 
+
 __PACKAGE__->set_primary_key("id");
+
 
 __PACKAGE__->add_unique_constraint("user_dom_idx", ["username", "domain_id"]);
 
+
 __PACKAGE__->add_unique_constraint("uuid_idx", ["uuid"]);
+
 
 __PACKAGE__->add_unique_constraint("webuser_dom_idx", ["webusername", "domain_id"]);
 
-__PACKAGE__->belongs_to(
-  "domain",
-  "NGCP::Schema::Result::voip_domains",
-  { id => "domain_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-__PACKAGE__->belongs_to(
-  "voip_subscriber",
-  "NGCP::Schema::Result::voip_subscribers",
-  { uuid => "uuid" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_cc_mappings",
-  "NGCP::Schema::Result::voip_cc_mappings",
-  { "foreign.uuid" => "self.uuid" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_cf_destination_sets",
-  "NGCP::Schema::Result::voip_cf_destination_sets",
-  { "foreign.subscriber_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_cf_mappings",
-  "NGCP::Schema::Result::voip_cf_mappings",
-  { "foreign.subscriber_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_cf_time_sets",
-  "NGCP::Schema::Result::voip_cf_time_sets",
-  { "foreign.subscriber_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_cf_source_sets",
-  "NGCP::Schema::Result::voip_cf_source_sets",
-  { "foreign.subscriber_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_contacts",
-  "NGCP::Schema::Result::voip_contacts",
-  { "foreign.subscriber_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_dbaliases",
-  "NGCP::Schema::Result::voip_dbaliases",
-  { "foreign.subscriber_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_fax_destinations",
-  "NGCP::Schema::Result::voip_fax_destinations",
-  { "foreign.subscriber_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->might_have(
-  "voip_fax_preference",
-  "NGCP::Schema::Result::voip_fax_preferences",
-  { "foreign.subscriber_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_fax_journals",
-  "NGCP::Schema::Result::voip_fax_journal",
-  { 'foreign.subscriber_id' => 'self.id' },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_mail_to_fax_secrets_renew_notify",
-  "NGCP::Schema::Result::voip_mail_to_fax_secret_renew_notify",
-  { "foreign.subscriber_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_mail_to_fax_acls",
-  "NGCP::Schema::Result::voip_mail_to_fax_acl",
-  { "foreign.subscriber_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->might_have(
-  "voip_mail_to_fax_preference",
-  "NGCP::Schema::Result::voip_mail_to_fax_preferences",
-  { "foreign.subscriber_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_pbx_groups",
-  "NGCP::Schema::Result::voip_pbx_groups",
-  { "foreign.subscriber_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_pbx_group_members",
-  "NGCP::Schema::Result::voip_pbx_groups",
-  { "foreign.group_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->might_have(
-  "voip_reminder",
-  "NGCP::Schema::Result::voip_reminder",
-  { "foreign.subscriber_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_speed_dials",
-  "NGCP::Schema::Result::voip_speed_dial",
-  { "foreign.subscriber_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_trusted_sources",
-  "NGCP::Schema::Result::voip_trusted_sources",
-  { "foreign.subscriber_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_usr_preferences",
-  "NGCP::Schema::Result::voip_usr_preferences",
-  { "foreign.subscriber_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
 
 __PACKAGE__->has_many(
   "autoprov_field_device_lines",
@@ -238,26 +100,126 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-__PACKAGE__->has_one(
-  "voip_subscriber",
-  'NGCP::Schema::Result::voip_subscribers',
-  { 'foreign.uuid' => 'self.uuid' },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
 
 __PACKAGE__->belongs_to(
-  "contract",
-  "NGCP::Schema::Result::contracts",
-  { 'foreign.id' => 'self.account_id' },
+  "domain",
+  "NGCP::Schema::Result::voip_domains",
+  { id => "domain_id" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+
+__PACKAGE__->has_many(
+  "rtc_sessions",
+  "NGCP::Schema::Result::rtc_session",
+  { "foreign.subscriber_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-__PACKAGE__->has_one(
-  "voicemail_user",
-  "NGCP::Schema::Result::voicemail_users",
-  { "foreign.customer_id" => "self.uuid" },
-  { cascade_copy => 1, cascade_delete => 1 },
+
+__PACKAGE__->has_many(
+  "voip_cc_mappings",
+  "NGCP::Schema::Result::voip_cc_mappings",
+  { "foreign.uuid" => "self.uuid" },
+  { cascade_copy => 0, cascade_delete => 0 },
 );
+
+
+__PACKAGE__->has_many(
+  "voip_cf_destination_sets",
+  "NGCP::Schema::Result::voip_cf_destination_sets",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "voip_cf_mappings",
+  "NGCP::Schema::Result::voip_cf_mappings",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "voip_cf_source_sets",
+  "NGCP::Schema::Result::voip_cf_source_sets",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "voip_cf_time_sets",
+  "NGCP::Schema::Result::voip_cf_time_sets",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "voip_contacts",
+  "NGCP::Schema::Result::voip_contacts",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "voip_dbaliases",
+  "NGCP::Schema::Result::voip_dbaliases",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "voip_fax_destinations",
+  "NGCP::Schema::Result::voip_fax_destinations",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "voip_fax_journals",
+  "NGCP::Schema::Result::voip_fax_journal",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->might_have(
+  "voip_fax_preference",
+  "NGCP::Schema::Result::voip_fax_preferences",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "voip_mail_to_fax_acls",
+  "NGCP::Schema::Result::voip_mail_to_fax_acl",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->might_have(
+  "voip_mail_to_fax_preference",
+  "NGCP::Schema::Result::voip_mail_to_fax_preferences",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "voip_mail_to_fax_secrets_renew_notify",
+  "NGCP::Schema::Result::voip_mail_to_fax_secret_renew_notify",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 
 __PACKAGE__->has_many(
   "voip_pbx_autoattendants",
@@ -266,44 +228,51 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-__PACKAGE__->belongs_to(
-  "voip_subscriber_profile",
-  "NGCP::Schema::Result::voip_subscriber_profiles",
-  { "foreign.id" => "self.profile_id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->belongs_to(
-  "voip_subscriber_profile_set",
-  "NGCP::Schema::Result::voip_subscriber_profile_sets",
-  { "foreign.id" => "self.profile_set_id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
 
 __PACKAGE__->has_many(
-  "kamailio_subscriber",
-  'NGCP::Schema::Result::subscriber',
-  { 'foreign.uuid' => 'self.uuid' },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->might_have(
-  "rtc_session",
-  "NGCP::Schema::Result::rtc_session",
+  "voip_pbx_groups",
+  "NGCP::Schema::Result::voip_pbx_groups",
   { "foreign.subscriber_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+
+__PACKAGE__->might_have(
+  "voip_reminder",
+  "NGCP::Schema::Result::voip_reminder",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "voip_speed_dials",
+  "NGCP::Schema::Result::voip_speed_dial",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "voip_trusted_sources",
+  "NGCP::Schema::Result::voip_trusted_sources",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "voip_usr_preferences",
+  "NGCP::Schema::Result::voip_usr_preferences",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -320,7 +289,7 @@ NGCP::Schema::Result::provisioning_voip_subscribers
 
 =back
 
-=head1 TABLE: C<provisioning.voip_subscribers>
+=head1 TABLE: C<voip_subscribers>
 
 =head1 ACCESSORS
 
@@ -380,13 +349,43 @@ NGCP::Schema::Result::provisioning_voip_subscribers
   is_nullable: 1
   size: 40
 
+=head2 is_pbx_pilot
+
+  data_type: 'tinyint'
+  default_value: 0
+  is_nullable: 0
+
 =head2 is_pbx_group
 
   data_type: 'tinyint'
-  is_nullable: 0
   default_value: 0
+  is_nullable: 0
 
-=head2 pbx_group_id
+=head2 pbx_hunt_policy
+
+  data_type: 'enum'
+  extra: {list => ["serial","parallel","random","circular"]}
+  is_nullable: 1
+
+=head2 pbx_hunt_timeout
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 pbx_extension
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 profile_set_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 profile_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
@@ -446,11 +445,23 @@ NGCP::Schema::Result::provisioning_voip_subscribers
 
 =head1 RELATIONS
 
+=head2 autoprov_field_device_lines
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::autoprov_field_device_lines>
+
 =head2 domain
 
 Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::voip_domains>
+
+=head2 rtc_sessions
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::rtc_session>
 
 =head2 voip_cc_mappings
 
@@ -470,17 +481,17 @@ Type: has_many
 
 Related object: L<NGCP::Schema::Result::voip_cf_mappings>
 
-=head2 voip_cf_time_sets
-
-Type: has_many
-
-Related object: L<NGCP::Schema::Result::voip_cf_time_sets>
-
 =head2 voip_cf_source_sets
 
 Type: has_many
 
 Related object: L<NGCP::Schema::Result::voip_cf_source_sets>
+
+=head2 voip_cf_time_sets
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::voip_cf_time_sets>
 
 =head2 voip_contacts
 
@@ -500,17 +511,23 @@ Type: has_many
 
 Related object: L<NGCP::Schema::Result::voip_fax_destinations>
 
+=head2 voip_fax_journals
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::voip_fax_journal>
+
 =head2 voip_fax_preference
 
 Type: might_have
 
 Related object: L<NGCP::Schema::Result::voip_fax_preferences>
 
-=head2 voip_fax_journals
+=head2 voip_mail_to_fax_acls
 
 Type: has_many
 
-Related object: L<NGCP::Schema::Result::voip_fax_journal>
+Related object: L<NGCP::Schema::Result::voip_mail_to_fax_acl>
 
 =head2 voip_mail_to_fax_preference
 
@@ -524,11 +541,17 @@ Type: has_many
 
 Related object: L<NGCP::Schema::Result::voip_mail_to_fax_secret_renew_notify>
 
-=head2 voip_mail_to_fax_acls
+=head2 voip_pbx_autoattendants
 
 Type: has_many
 
-Related object: L<NGCP::Schema::Result::voip_mail_to_fax_acl>
+Related object: L<NGCP::Schema::Result::voip_pbx_autoattendants>
+
+=head2 voip_pbx_groups
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::voip_pbx_groups>
 
 =head2 voip_reminder
 
@@ -554,8 +577,12 @@ Type: has_many
 
 Related object: L<NGCP::Schema::Result::voip_usr_preferences>
 
-=head2 rtc_session
+=cut
 
-Type: might_have
 
-Related object: L<NGCP::Schema::Result::rtc_session>
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:52
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ZfsqM2McIphzCbxo7fvD6Q
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

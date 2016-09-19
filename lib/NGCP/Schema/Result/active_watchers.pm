@@ -1,12 +1,21 @@
 package NGCP::Schema::Result::active_watchers;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("kamailio.active_watchers");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -36,9 +45,9 @@ __PACKAGE__->add_columns(
   "event_id",
   { data_type => "varchar", is_nullable => 1, size => 64 },
   "to_tag",
-  { data_type => "varchar", is_nullable => 0, size => 64 },
+  { data_type => "varchar", is_nullable => 0, size => 128 },
   "from_tag",
-  { data_type => "varchar", is_nullable => 0, size => 64 },
+  { data_type => "varchar", is_nullable => 0, size => 128 },
   "callid",
   { data_type => "varchar", is_nullable => 0, size => 255 },
   "local_cseq",
@@ -69,22 +78,23 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "updated_winfo",
   { data_type => "integer", is_nullable => 0 },
+  "flags",
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
+  "user_agent",
+  { data_type => "varchar", default_value => "", is_nullable => 0, size => 255 },
 );
+
 
 __PACKAGE__->set_primary_key("id");
 
-__PACKAGE__->add_unique_constraint("active_watchers_idx", ["callid", "to_tag", "from_tag"]);
 
+__PACKAGE__->add_unique_constraint("active_watchers_idx", ["callid", "to_tag", "from_tag"]);
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -101,7 +111,7 @@ NGCP::Schema::Result::active_watchers
 
 =back
 
-=head1 TABLE: C<kamailio.active_watchers>
+=head1 TABLE: C<active_watchers>
 
 =head1 ACCESSORS
 
@@ -159,13 +169,13 @@ NGCP::Schema::Result::active_watchers
 
   data_type: 'varchar'
   is_nullable: 0
-  size: 64
+  size: 128
 
 =head2 from_tag
 
   data_type: 'varchar'
   is_nullable: 0
-  size: 64
+  size: 128
 
 =head2 callid
 
@@ -251,6 +261,19 @@ NGCP::Schema::Result::active_watchers
   data_type: 'integer'
   is_nullable: 0
 
+=head2 flags
+
+  data_type: 'integer'
+  default_value: 0
+  is_nullable: 0
+
+=head2 user_agent
+
+  data_type: 'varchar'
+  default_value: (empty string)
+  is_nullable: 0
+  size: 255
+
 =head1 PRIMARY KEY
 
 =over 4
@@ -272,3 +295,13 @@ NGCP::Schema::Result::active_watchers
 =item * L</from_tag>
 
 =back
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:44
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:KdjbjZrGQA4aD/CC8bD34w
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

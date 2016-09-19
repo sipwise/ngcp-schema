@@ -1,12 +1,21 @@
 package NGCP::Schema::Result::xmlhosts;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("provisioning.xmlhosts");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -28,7 +37,9 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 255 },
 );
 
+
 __PACKAGE__->set_primary_key("id");
+
 
 __PACKAGE__->has_many(
   "xmlhostgroups",
@@ -36,17 +47,12 @@ __PACKAGE__->has_many(
   { "foreign.host_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -63,7 +69,7 @@ NGCP::Schema::Result::xmlhosts
 
 =back
 
-=head1 TABLE: C<provisioning.xmlhosts>
+=head1 TABLE: C<xmlhosts>
 
 =head1 ACCESSORS
 
@@ -120,3 +126,13 @@ NGCP::Schema::Result::xmlhosts
 Type: has_many
 
 Related object: L<NGCP::Schema::Result::xmlhostgroups>
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:52
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:sXMJXsb+CgaiMSImQvhRYg
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

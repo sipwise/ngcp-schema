@@ -1,12 +1,21 @@
-package NGCP::Schema::Result::payments;
+package NGCP::Schema::Result::billing_payments;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("billing.payments");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -52,7 +61,9 @@ __PACKAGE__->add_columns(
   },
 );
 
+
 __PACKAGE__->set_primary_key("id");
+
 
 __PACKAGE__->has_many(
   "credit_payments",
@@ -61,28 +72,24 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+
 __PACKAGE__->has_many(
   "order_payments",
   "NGCP::Schema::Result::order_payments",
   { "foreign.payment_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
 
-NGCP::Schema::Result::payments
+NGCP::Schema::Result::billing_payments
 
 =head1 COMPONENTS LOADED
 
@@ -94,7 +101,7 @@ NGCP::Schema::Result::payments
 
 =back
 
-=head1 TABLE: C<billing.payments>
+=head1 TABLE: C<payments>
 
 =head1 ACCESSORS
 
@@ -185,3 +192,13 @@ Related object: L<NGCP::Schema::Result::credit_payments>
 Type: has_many
 
 Related object: L<NGCP::Schema::Result::order_payments>
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:yGiAB5r2uL4CZ4FOGmlwog
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

@@ -6,6 +6,8 @@ use Getopt::Long qw(GetOptions);
 use Quantum::Superpositions qw(any);
 use Pod::Usage qw(pod2usage);
 
+use feature 'state';
+
 my $result_class_code = <<'END';
 sub TO_JSON {
     my ($self) = @_;
@@ -30,7 +32,7 @@ make_path $opt{dump_directory};
 
 for my $db (qw(accounting billing carrier kamailio ngcp provisioning sipstats)) {
     make_schema_at(
-        "NGCP::Schema::$db",
+        "NGCP::Schema",
         {
             overwrite_modifications => $opt{overwrite_modifications},
             col_collision_map => 'column_%s',
@@ -48,6 +50,8 @@ for my $db (qw(accounting billing carrier kamailio ngcp provisioning sipstats)) 
                         "use MooseX::NonMoose;\n",
                         "use MooseX::MarkAsMethods autoclean => 1;\n",
                     );
+                    $line =~ s/^(__PACKAGE__->table\(\")/$1$db./;
+                    # $line =~ s/^use base/use parent/;
                     if ($line =~ /^=head/) {
                         $in_pod = 1;
                     }
@@ -61,11 +65,13 @@ for my $db (qw(accounting billing carrier kamailio ngcp provisioning sipstats)) 
                         push @source, $line;
                     }
                 }
+                # state $count=10;
+                # use DDP use_prototypes=>0; p $text; p(join('', @source)); p(join('', @pod)); die "stop here" if $count-- == 0;
                 my $package = shift @source;
                 @source = (
                     $package,
                     "use Sipwise::Base;\n",
-                    ($package =~ /::Result::/ ? "use MooseX::NonMoose;\nuse Scalar::Util qw(blessed);\n" : ()),
+                    ($package =~ /::Result::/ ? "use Scalar::Util qw(blessed);\n" : ()),
                     "our \$VERSION = '$opt{version}';\n",
                     @source,
                     ($package =~ /::Result::/ ? $result_class_code : ()),
@@ -73,17 +79,25 @@ for my $db (qw(accounting billing carrier kamailio ngcp provisioning sipstats)) 
                 @pod = ("=encoding UTF-8\n\n", @pod, "=cut\n") if @pod;
                 return join '', @source, @pod;
             },
-            moniker_map => sub { $_[0] },
+            moniker_map => sub {
+                    my $tbl = shift;
+                    my %dupes = map { $_ => 1; } qw/acc acc_backup acc_trash contracts customers mark orders payments voip_subscribers/;
+                    #return $tbl eq "voip_subscribers" && $db eq "provisioning" ? "provisioning_voip_subscribers" : $tbl;
+                    if ($dupes{$tbl}) {
+                        return $db."_".$tbl;
+                    } else {
+                        return $tbl;
+                    }
+                },
             col_accessor_map => sub {
                 my ($column) = @_;
                 return __PACKAGE__->can($column) ? "column_$column" : $column;
             },
             components => [qw(InflateColumn::DateTime Helper::Row::ToJSON)],
             quiet => 1,
-            use_moose => 1,
         },
         [
-            "dbi:mysql:dbname=$db", 'root'
+            "dbi:mysql:dbname=$db:host=10.15.20.198", 'root'
         ],
     );
 }

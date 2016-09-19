@@ -1,12 +1,21 @@
 package NGCP::Schema::Result::carrier_payments;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("carrier.payments");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -32,7 +41,9 @@ __PACKAGE__->add_columns(
   },
 );
 
+
 __PACKAGE__->set_primary_key("id");
+
 
 __PACKAGE__->belongs_to(
   "credit",
@@ -46,6 +57,7 @@ __PACKAGE__->belongs_to(
   },
 );
 
+
 __PACKAGE__->belongs_to(
   "order",
   "NGCP::Schema::Result::carrier_orders",
@@ -57,17 +69,12 @@ __PACKAGE__->belongs_to(
     on_update     => "CASCADE",
   },
 );
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -84,7 +91,7 @@ NGCP::Schema::Result::carrier_payments
 
 =back
 
-=head1 TABLE: C<carrier.payments>
+=head1 TABLE: C<payments>
 
 =head1 ACCESSORS
 
@@ -130,3 +137,13 @@ Related object: L<NGCP::Schema::Result::credits>
 Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::carrier_orders>
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:41
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:QPnf5+LydcLQgLOso8vqjg
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

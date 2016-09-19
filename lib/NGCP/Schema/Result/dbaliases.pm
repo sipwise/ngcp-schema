@@ -1,12 +1,21 @@
 package NGCP::Schema::Result::dbaliases;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("kamailio.dbaliases");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -24,22 +33,18 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", default_value => "", is_nullable => 0, size => 64 },
   "domain",
   { data_type => "varchar", default_value => "", is_nullable => 0, size => 64 },
+  "is_primary",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
 );
 
+
 __PACKAGE__->set_primary_key("id");
-
-__PACKAGE__->add_unique_constraint("alias_idx", ["alias_username", "alias_domain"]);
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -56,7 +61,7 @@ NGCP::Schema::Result::dbaliases
 
 =back
 
-=head1 TABLE: C<kamailio.dbaliases>
+=head1 TABLE: C<dbaliases>
 
 =head1 ACCESSORS
 
@@ -95,6 +100,12 @@ NGCP::Schema::Result::dbaliases
   is_nullable: 0
   size: 64
 
+=head2 is_primary
+
+  data_type: 'tinyint'
+  default_value: 0
+  is_nullable: 0
+
 =head1 PRIMARY KEY
 
 =over 4
@@ -103,14 +114,12 @@ NGCP::Schema::Result::dbaliases
 
 =back
 
-=head1 UNIQUE CONSTRAINTS
+=cut
 
-=head2 C<alias_idx>
 
-=over 4
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:44
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:EAuPAYhUdS+naMG0NwjmgQ
 
-=item * L</alias_username>
 
-=item * L</alias_domain>
-
-=back
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

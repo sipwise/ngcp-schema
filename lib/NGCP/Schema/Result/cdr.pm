@@ -1,16 +1,21 @@
 package NGCP::Schema::Result::cdr;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
 
-__PACKAGE__->load_components(
-    "InflateColumn::DateTime",
-    "Helper::Row::ToJSON",
-    "+NGCP::Schema::InflateColumn::DateTime::EpochMilli",
-);
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
+
+__PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
+
 
 __PACKAGE__->table("accounting.cdr");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -72,6 +77,8 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "source_gpp9",
   { data_type => "varchar", is_nullable => 1, size => 255 },
+  "source_lnp_prefix",
+  { data_type => "varchar", default_value => "", is_nullable => 0, size => 255 },
   "destination_user_id",
   { data_type => "char", is_nullable => 0, size => 36 },
   "destination_provider_id",
@@ -117,6 +124,8 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "destination_gpp9",
   { data_type => "varchar", is_nullable => 1, size => 255 },
+  "destination_lnp_prefix",
+  { data_type => "varchar", default_value => "", is_nullable => 0, size => 255 },
   "peer_auth_user",
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "peer_auth_realm",
@@ -140,9 +149,9 @@ __PACKAGE__->add_columns(
   "call_code",
   { data_type => "char", is_nullable => 0, size => 3 },
   "init_time",
-  { data_type => "decimal", is_nullable => 0, size => [13, 3], inflate_datetime => 'epoch_milli' },
+  { data_type => "decimal", is_nullable => 0, size => [13, 3] },
   "start_time",
-  { data_type => "decimal", is_nullable => 0, size => [13, 3], inflate_datetime => 'epoch_milli' },
+  { data_type => "decimal", is_nullable => 0, size => [13, 3] },
   "duration",
   { data_type => "decimal", is_nullable => 0, size => [13, 3] },
   "call_id",
@@ -240,80 +249,12 @@ __PACKAGE__->add_columns(
 
 
 __PACKAGE__->set_primary_key("id");
-
-__PACKAGE__->belongs_to(
-  "source_customer_billing_zones_history",
-  "NGCP::Schema::Result::billing_zones_history",
-  { "id" => "source_customer_billing_zone_id" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "SET NULL",
-    on_update     => "NO ACTION",
-  },
-);
-
-__PACKAGE__->belongs_to(
-  "destination_customer_billing_zones_history",
-  "NGCP::Schema::Result::billing_zones_history",
-  { "id" => "destination_customer_billing_zone_id" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "SET NULL",
-    on_update     => "NO ACTION",
-  },
-);
-
-__PACKAGE__->belongs_to(
-  "source_account",
-  "NGCP::Schema::Result::contracts",
-  { "id" => "source_account_id" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "SET NULL",
-    on_update     => "UPDATE",
-  },
-);
-
-__PACKAGE__->belongs_to(
-  "source_subscriber",
-  "NGCP::Schema::Result::voip_subscribers",
-  { uuid => "source_user_id" },
-  { cascade_copy => 0, cascade_delete => 0, join_type => 'left' }
-);
-
-__PACKAGE__->belongs_to(
-  "destination_subscriber",
-  "NGCP::Schema::Result::voip_subscribers",
-  { uuid => "destination_user_id" },
-  { cascade_copy => 0, cascade_delete => 0, join_type => 'left' }
-);
-
-__PACKAGE__->belongs_to(
-  "subscriber",
-  "NGCP::Schema::Result::voip_subscribers",
-  sub {
-    my $args = shift;
-    return { -or => [
-      "$args->{foreign_alias}.uuid" => { -ident => "$args->{self_alias}.destination_user_id" },
-      "$args->{foreign_alias}.uuid" => { -ident => "$args->{self_alias}.source_user_id" },
-    ]};
-  },  
-  { cascade_copy => 0, cascade_delete => 0, join_type => 'left' }
-);
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -330,7 +271,7 @@ NGCP::Schema::Result::cdr
 
 =back
 
-=head1 TABLE: C<accounting.cdr>
+=head1 TABLE: C<cdr>
 
 =head1 ACCESSORS
 
@@ -409,6 +350,73 @@ NGCP::Schema::Result::cdr
   is_nullable: 0
   size: 64
 
+=head2 source_gpp0
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 source_gpp1
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 source_gpp2
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 source_gpp3
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 source_gpp4
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 source_gpp5
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 source_gpp6
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 source_gpp7
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 source_gpp8
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 source_gpp9
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 source_lnp_prefix
+
+  data_type: 'varchar'
+  default_value: (empty string)
+  is_nullable: 0
+  size: 255
+
 =head2 destination_user_id
 
   data_type: 'char'
@@ -467,6 +475,73 @@ NGCP::Schema::Result::cdr
 =head2 destination_domain_in
 
   data_type: 'varchar'
+  is_nullable: 0
+  size: 255
+
+=head2 destination_gpp0
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 destination_gpp1
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 destination_gpp2
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 destination_gpp3
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 destination_gpp4
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 destination_gpp5
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 destination_gpp6
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 destination_gpp7
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 destination_gpp8
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 destination_gpp9
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 destination_lnp_prefix
+
+  data_type: 'varchar'
+  default_value: (empty string)
   is_nullable: 0
   size: 255
 
@@ -530,19 +605,19 @@ NGCP::Schema::Result::cdr
 
   data_type: 'decimal'
   is_nullable: 1
-  size: [10,2]
+  size: [14,6]
 
 =head2 source_reseller_cost
 
   data_type: 'decimal'
   is_nullable: 1
-  size: [10,2]
+  size: [14,6]
 
 =head2 source_customer_cost
 
   data_type: 'decimal'
   is_nullable: 1
-  size: [10,2]
+  size: [14,6]
 
 =head2 source_carrier_free_time
 
@@ -602,19 +677,19 @@ NGCP::Schema::Result::cdr
 
   data_type: 'decimal'
   is_nullable: 1
-  size: [10,2]
+  size: [14,6]
 
 =head2 destination_reseller_cost
 
   data_type: 'decimal'
   is_nullable: 1
-  size: [10,2]
+  size: [14,6]
 
 =head2 destination_customer_cost
 
   data_type: 'decimal'
   is_nullable: 1
-  size: [10,2]
+  size: [14,6]
 
 =head2 destination_carrier_free_time
 
@@ -730,3 +805,13 @@ NGCP::Schema::Result::cdr
 =item * L</id>
 
 =back
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:34
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:heakWBWNZSc1J22DXja53Q
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

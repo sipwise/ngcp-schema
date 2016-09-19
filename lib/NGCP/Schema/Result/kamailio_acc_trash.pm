@@ -1,12 +1,21 @@
 package NGCP::Schema::Result::kamailio_acc_trash;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("kamailio.acc_trash");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -17,17 +26,11 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
   },
   "method",
-  {
-    accessor => "column_method",
-    data_type => "varchar",
-    default_value => "",
-    is_nullable => 0,
-    size => 16,
-  },
+  { data_type => "varchar", default_value => "", is_nullable => 0, size => 16 },
   "from_tag",
-  { data_type => "varchar", default_value => "", is_nullable => 0, size => 64 },
+  { data_type => "varchar", default_value => "", is_nullable => 0, size => 128 },
   "to_tag",
-  { data_type => "varchar", default_value => "", is_nullable => 0, size => 64 },
+  { data_type => "varchar", default_value => "", is_nullable => 0, size => 128 },
   "callid",
   { data_type => "varchar", default_value => "", is_nullable => 0, size => 255 },
   "sip_code",
@@ -36,7 +39,6 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", default_value => "", is_nullable => 0, size => 128 },
   "time",
   {
-    accessor => "column_time",
     data_type => "datetime",
     datetime_undef_if_invalid => 1,
     is_nullable => 0,
@@ -44,9 +46,9 @@ __PACKAGE__->add_columns(
   "time_hires",
   { data_type => "decimal", is_nullable => 0, size => [13, 3] },
   "src_leg",
-  { data_type => "varchar", is_nullable => 1, size => 2048 },
+  { data_type => "varchar", is_nullable => 1, size => 10240 },
   "dst_leg",
-  { data_type => "varchar", is_nullable => 1, size => 2048 },
+  { data_type => "varchar", is_nullable => 1, size => 10240 },
   "dst_user",
   { data_type => "varchar", default_value => "", is_nullable => 0, size => 64 },
   "dst_ouser",
@@ -59,18 +61,14 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", default_value => "", is_nullable => 0, size => 128 },
 );
 
-__PACKAGE__->set_primary_key("id");
 
+__PACKAGE__->set_primary_key("id");
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -87,7 +85,7 @@ NGCP::Schema::Result::kamailio_acc_trash
 
 =back
 
-=head1 TABLE: C<kamailio.acc_trash>
+=head1 TABLE: C<acc_trash>
 
 =head1 ACCESSORS
 
@@ -100,7 +98,6 @@ NGCP::Schema::Result::kamailio_acc_trash
 
 =head2 method
 
-  accessor: 'column_method'
   data_type: 'varchar'
   default_value: (empty string)
   is_nullable: 0
@@ -111,14 +108,14 @@ NGCP::Schema::Result::kamailio_acc_trash
   data_type: 'varchar'
   default_value: (empty string)
   is_nullable: 0
-  size: 64
+  size: 128
 
 =head2 to_tag
 
   data_type: 'varchar'
   default_value: (empty string)
   is_nullable: 0
-  size: 64
+  size: 128
 
 =head2 callid
 
@@ -143,7 +140,6 @@ NGCP::Schema::Result::kamailio_acc_trash
 
 =head2 time
 
-  accessor: 'column_time'
   data_type: 'datetime'
   datetime_undef_if_invalid: 1
   is_nullable: 0
@@ -158,13 +154,13 @@ NGCP::Schema::Result::kamailio_acc_trash
 
   data_type: 'varchar'
   is_nullable: 1
-  size: 2048
+  size: 10240
 
 =head2 dst_leg
 
   data_type: 'varchar'
   is_nullable: 1
-  size: 2048
+  size: 10240
 
 =head2 dst_user
 
@@ -208,3 +204,13 @@ NGCP::Schema::Result::kamailio_acc_trash
 =item * L</id>
 
 =back
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:44
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:sJVpv6lkxdYlPG55DuMlWg
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

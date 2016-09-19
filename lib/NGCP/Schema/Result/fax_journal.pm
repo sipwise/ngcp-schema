@@ -1,16 +1,21 @@
 package NGCP::Schema::Result::fax_journal;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
 
-__PACKAGE__->load_components(
-    "InflateColumn::DateTime",
-    "Helper::Row::ToJSON",
-    "+NGCP::Schema::InflateColumn::DateTime::EpochString",
-);
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
+
+__PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
+
 
 __PACKAGE__->table("kamailio.fax_journal");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -33,7 +38,6 @@ __PACKAGE__->add_columns(
     default_value => 0,
     extra => { unsigned => 1 },
     is_nullable => 0,
-    inflate_datetime => 'epoch_string',
   },
   "duration",
   {
@@ -76,25 +80,15 @@ __PACKAGE__->add_columns(
   "filename",
   { data_type => "varchar", default_value => "", is_nullable => 0, size => 255 },
 );
-__PACKAGE__->belongs_to(
-  "subscriber",
-  "NGCP::Schema::Result::subscriber",
-  { 'foreign.id' => 'self.subscriber_id' },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
+
 
 __PACKAGE__->set_primary_key("id");
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -111,7 +105,7 @@ NGCP::Schema::Result::fax_journal
 
 =back
 
-=head1 TABLE: C<kamailio.fax_journal>
+=head1 TABLE: C<fax_journal>
 
 =head1 ACCESSORS
 
@@ -212,3 +206,13 @@ NGCP::Schema::Result::fax_journal
 =item * L</id>
 
 =back
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:44
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:UOr58wjXnsHbtGNn0dWVGw
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

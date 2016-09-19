@@ -1,12 +1,21 @@
 package NGCP::Schema::Result::billing_fees;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("billing.billing_fees");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -88,7 +97,21 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
 );
 
+
 __PACKAGE__->set_primary_key("id");
+
+
+__PACKAGE__->add_unique_constraint(
+  "billing_fees_unique",
+  [
+    "billing_profile_id",
+    "source",
+    "destination",
+    "direction",
+    "type",
+  ],
+);
+
 
 __PACKAGE__->has_many(
   "billing_fees_histories",
@@ -97,12 +120,14 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+
 __PACKAGE__->belongs_to(
   "billing_profile",
   "NGCP::Schema::Result::billing_profiles",
   { id => "billing_profile_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
+
 
 __PACKAGE__->belongs_to(
   "billing_zone",
@@ -115,17 +140,12 @@ __PACKAGE__->belongs_to(
     on_update     => "CASCADE",
   },
 );
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -142,7 +162,7 @@ NGCP::Schema::Result::billing_fees
 
 =back
 
-=head1 TABLE: C<billing.billing_fees>
+=head1 TABLE: C<billing_fees>
 
 =head1 ACCESSORS
 
@@ -260,6 +280,24 @@ NGCP::Schema::Result::billing_fees
 
 =back
 
+=head1 UNIQUE CONSTRAINTS
+
+=head2 C<billing_fees_unique>
+
+=over 4
+
+=item * L</billing_profile_id>
+
+=item * L</source>
+
+=item * L</destination>
+
+=item * L</direction>
+
+=item * L</type>
+
+=back
+
 =head1 RELATIONS
 
 =head2 billing_fees_histories
@@ -279,3 +317,13 @@ Related object: L<NGCP::Schema::Result::billing_profiles>
 Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::billing_zones>
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:KKKOsQHu7Z6TJTOKjxyayg
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

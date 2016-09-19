@@ -1,12 +1,21 @@
-package NGCP::Schema::Result::customers;
+package NGCP::Schema::Result::billing_customers;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("billing.customers");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -68,9 +77,12 @@ __PACKAGE__->add_columns(
   },
 );
 
+
 __PACKAGE__->set_primary_key("id");
 
+
 __PACKAGE__->add_unique_constraint("reseller_id", ["reseller_id", "shopuser"]);
+
 
 __PACKAGE__->belongs_to(
   "comm_contact",
@@ -84,6 +96,7 @@ __PACKAGE__->belongs_to(
   },
 );
 
+
 __PACKAGE__->belongs_to(
   "contact",
   "NGCP::Schema::Result::contacts",
@@ -96,12 +109,14 @@ __PACKAGE__->belongs_to(
   },
 );
 
+
 __PACKAGE__->has_many(
   "contracts",
-  "NGCP::Schema::Result::contracts",
+  "NGCP::Schema::Result::billing_contracts",
   { "foreign.customer_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+
 
 __PACKAGE__->has_many(
   "customer_registers",
@@ -110,12 +125,14 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+
 __PACKAGE__->has_many(
   "orders",
-  "NGCP::Schema::Result::orders",
+  "NGCP::Schema::Result::billing_orders",
   { "foreign.customer_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+
 
 __PACKAGE__->belongs_to(
   "reseller",
@@ -129,6 +146,7 @@ __PACKAGE__->belongs_to(
   },
 );
 
+
 __PACKAGE__->belongs_to(
   "tech_contact",
   "NGCP::Schema::Result::contacts",
@@ -140,22 +158,17 @@ __PACKAGE__->belongs_to(
     on_update     => "CASCADE",
   },
 );
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
 
-NGCP::Schema::Result::customers
+NGCP::Schema::Result::billing_customers
 
 =head1 COMPONENTS LOADED
 
@@ -167,7 +180,7 @@ NGCP::Schema::Result::customers
 
 =back
 
-=head1 TABLE: C<billing.customers>
+=head1 TABLE: C<customers>
 
 =head1 ACCESSORS
 
@@ -282,7 +295,7 @@ Related object: L<NGCP::Schema::Result::contacts>
 
 Type: has_many
 
-Related object: L<NGCP::Schema::Result::contracts>
+Related object: L<NGCP::Schema::Result::billing_contracts>
 
 =head2 customer_registers
 
@@ -294,7 +307,7 @@ Related object: L<NGCP::Schema::Result::customer_registers>
 
 Type: has_many
 
-Related object: L<NGCP::Schema::Result::orders>
+Related object: L<NGCP::Schema::Result::billing_orders>
 
 =head2 reseller
 
@@ -307,3 +320,13 @@ Related object: L<NGCP::Schema::Result::resellers>
 Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::contacts>
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:bZcFcZU71/VJu+EVdB6+2g
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

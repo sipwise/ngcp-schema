@@ -1,12 +1,21 @@
 package NGCP::Schema::Result::watchers;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("kamailio.watchers");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -37,23 +46,20 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
 );
 
+
 __PACKAGE__->set_primary_key("id");
+
 
 __PACKAGE__->add_unique_constraint(
   "watcher_idx",
   ["presentity_uri", "watcher_username", "watcher_domain", "event"],
 );
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -70,7 +76,7 @@ NGCP::Schema::Result::watchers
 
 =back
 
-=head1 TABLE: C<kamailio.watchers>
+=head1 TABLE: C<watchers>
 
 =head1 ACCESSORS
 
@@ -145,3 +151,13 @@ NGCP::Schema::Result::watchers
 =item * L</event>
 
 =back
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:44
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:BgAi9rdr5ClXGL8GGXThTQ
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

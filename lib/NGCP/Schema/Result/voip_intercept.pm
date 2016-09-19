@@ -1,10 +1,18 @@
 package NGCP::Schema::Result::voip_intercept;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
 
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
+
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
+
 
 __PACKAGE__->table("billing.voip_intercept");
 
@@ -24,7 +32,7 @@ __PACKAGE__->add_columns(
     is_foreign_key => 1,
     is_nullable => 1,
   },
-  "LIID",
+  "liid",
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
   "number",
   { data_type => "varchar", is_nullable => 1, size => 63 },
@@ -87,5 +95,152 @@ sub TO_JSON {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
+=encoding UTF-8
 
+=head1 NAME
+
+NGCP::Schema::Result::voip_intercept
+
+=head1 COMPONENTS LOADED
+
+=over 4
+
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
+=item * L<DBIx::Class::Helper::Row::ToJSON>
+
+=back
+
+=head1 TABLE: C<voip_intercept>
+
+=head1 ACCESSORS
+
+=head2 id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_auto_increment: 1
+  is_nullable: 0
+
+=head2 reseller_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_foreign_key: 1
+  is_nullable: 1
+
+=head2 liid
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 number
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 63
+
+=head2 cc_required
+
+  data_type: 'tinyint'
+  default_value: 0
+  is_nullable: 0
+
+=head2 delivery_host
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 15
+
+=head2 delivery_port
+
+  data_type: 'smallint'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 delivery_user
+
+  data_type: 'text'
+  is_nullable: 1
+
+=head2 delivery_pass
+
+  data_type: 'text'
+  is_nullable: 1
+
+=head2 modify_timestamp
+
+  data_type: 'timestamp'
+  datetime_undef_if_invalid: 1
+  default_value: current_timestamp
+  is_nullable: 0
+
+=head2 create_timestamp
+
+  data_type: 'timestamp'
+  datetime_undef_if_invalid: 1
+  default_value: '0000-00-00 00:00:00'
+  is_nullable: 0
+
+=head2 deleted
+
+  data_type: 'tinyint'
+  default_value: 0
+  is_nullable: 0
+
+=head2 uuid
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 sip_username
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 sip_domain
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
+
+=head2 cc_delivery_host
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 64
+
+=head2 cc_delivery_port
+
+  data_type: 'smallint'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head1 PRIMARY KEY
+
+=over 4
+
+=item * L</id>
+
+=back
+
+=head1 RELATIONS
+
+=head2 reseller
+
+Type: belongs_to
+
+Related object: L<NGCP::Schema::Result::resellers>
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:pt47HuYW8JnxnMRESCJjhA
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
 1;

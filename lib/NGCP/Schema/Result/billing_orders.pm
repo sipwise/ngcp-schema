@@ -1,12 +1,21 @@
-package NGCP::Schema::Result::orders;
+package NGCP::Schema::Result::billing_orders;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("billing.orders");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -80,18 +89,21 @@ __PACKAGE__->add_columns(
   },
 );
 
+
 __PACKAGE__->set_primary_key("id");
+
 
 __PACKAGE__->has_many(
   "contracts",
-  "NGCP::Schema::Result::contracts",
+  "NGCP::Schema::Result::billing_contracts",
   { "foreign.order_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+
 __PACKAGE__->belongs_to(
   "customer",
-  "NGCP::Schema::Result::customers",
+  "NGCP::Schema::Result::billing_customers",
   { id => "customer_id" },
   {
     is_deferrable => 1,
@@ -100,6 +112,7 @@ __PACKAGE__->belongs_to(
     on_update     => "CASCADE",
   },
 );
+
 
 __PACKAGE__->belongs_to(
   "delivery_contact",
@@ -113,6 +126,7 @@ __PACKAGE__->belongs_to(
   },
 );
 
+
 __PACKAGE__->belongs_to(
   "invoice",
   "NGCP::Schema::Result::invoices",
@@ -125,12 +139,14 @@ __PACKAGE__->belongs_to(
   },
 );
 
+
 __PACKAGE__->has_many(
   "order_payments",
   "NGCP::Schema::Result::order_payments",
   { "foreign.order_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+
 
 __PACKAGE__->belongs_to(
   "reseller",
@@ -143,22 +159,17 @@ __PACKAGE__->belongs_to(
     on_update     => "CASCADE",
   },
 );
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
 
-NGCP::Schema::Result::orders
+NGCP::Schema::Result::billing_orders
 
 =head1 COMPONENTS LOADED
 
@@ -170,7 +181,7 @@ NGCP::Schema::Result::orders
 
 =back
 
-=head1 TABLE: C<billing.orders>
+=head1 TABLE: C<orders>
 
 =head1 ACCESSORS
 
@@ -267,13 +278,13 @@ NGCP::Schema::Result::orders
 
 Type: has_many
 
-Related object: L<NGCP::Schema::Result::contracts>
+Related object: L<NGCP::Schema::Result::billing_contracts>
 
 =head2 customer
 
 Type: belongs_to
 
-Related object: L<NGCP::Schema::Result::customers>
+Related object: L<NGCP::Schema::Result::billing_customers>
 
 =head2 delivery_contact
 
@@ -298,3 +309,13 @@ Related object: L<NGCP::Schema::Result::order_payments>
 Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::resellers>
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:MMogkPe8Vz8znlEC+m+G5g
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

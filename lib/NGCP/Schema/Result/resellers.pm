@@ -1,12 +1,21 @@
 package NGCP::Schema::Result::resellers;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("billing.resellers");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -34,11 +43,15 @@ __PACKAGE__->add_columns(
   },
 );
 
+
 __PACKAGE__->set_primary_key("id");
+
 
 __PACKAGE__->add_unique_constraint("contractid_idx", ["contract_id"]);
 
+
 __PACKAGE__->add_unique_constraint("name_idx", ["name"]);
+
 
 __PACKAGE__->has_many(
   "admins",
@@ -47,123 +60,6 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-__PACKAGE__->has_many(
-  "billing_profiles",
-  "NGCP::Schema::Result::billing_profiles",
-  { "foreign.reseller_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->belongs_to(
-  "contract",
-  "NGCP::Schema::Result::contracts",
-  { id => "contract_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-__PACKAGE__->has_many(
-  "customers",
-  "NGCP::Schema::Result::customers",
-  { "foreign.reseller_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "domain_resellers",
-  "NGCP::Schema::Result::domain_resellers",
-  { "foreign.reseller_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "ncos_levels",
-  "NGCP::Schema::Result::ncos_levels",
-  { "foreign.reseller_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "orders",
-  "NGCP::Schema::Result::orders",
-  { "foreign.reseller_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "products",
-  "NGCP::Schema::Result::products",
-  { "foreign.reseller_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_intercepts",
-  "NGCP::Schema::Result::voip_intercept",
-  { "foreign.reseller_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_number_block_resellers",
-  "NGCP::Schema::Result::voip_number_block_resellers",
-  { "foreign.reseller_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_numbers",
-  "NGCP::Schema::Result::voip_numbers",
-  { "foreign.reseller_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_sound_sets",
-  "NGCP::Schema::Result::voip_sound_sets",
-  { "foreign.reseller_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_rewrite_rule_sets",
-  "NGCP::Schema::Result::voip_rewrite_rule_sets",
-  { "foreign.reseller_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_subscriber_profile_sets",
-  "NGCP::Schema::Result::voip_subscriber_profile_sets",
-  { "foreign.reseller_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "autoprov_devices",
-  "NGCP::Schema::Result::autoprov_devices",
-  { "foreign.reseller_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->might_have(
-  "branding",
-  "NGCP::Schema::Result::reseller_brandings",
-  { "foreign.reseller_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "vouchers",
-  "NGCP::Schema::Result::vouchers",
-  { "foreign.reseller_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-__PACKAGE__->has_many(
-  "email_templates",
-  "NGCP::Schema::Result::vouchers",
-  { "foreign.reseller_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
 
 __PACKAGE__->has_many(
   "billing_networks",
@@ -172,6 +68,87 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+
+__PACKAGE__->has_many(
+  "billing_profiles",
+  "NGCP::Schema::Result::billing_profiles",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "contacts",
+  "NGCP::Schema::Result::contacts",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->belongs_to(
+  "contract",
+  "NGCP::Schema::Result::billing_contracts",
+  { id => "contract_id" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+
+__PACKAGE__->has_many(
+  "customers",
+  "NGCP::Schema::Result::billing_customers",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "domain_resellers",
+  "NGCP::Schema::Result::domain_resellers",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "email_templates",
+  "NGCP::Schema::Result::email_templates",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "invoice_templates",
+  "NGCP::Schema::Result::invoice_templates",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "ncos_levels",
+  "NGCP::Schema::Result::ncos_levels",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "orders",
+  "NGCP::Schema::Result::billing_orders",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "products",
+  "NGCP::Schema::Result::products",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
 __PACKAGE__->has_many(
   "profile_packages",
   "NGCP::Schema::Result::profile_packages",
@@ -179,30 +156,51 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+
 __PACKAGE__->might_have(
-  "rtc_user",
-  "NGCP::Schema::Result::rtc_user",
+  "reseller_branding",
+  "NGCP::Schema::Result::reseller_brandings",
   { "foreign.reseller_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+
 
 __PACKAGE__->has_many(
-  "emergency_containers",
-  "NGCP::Schema::Result::emergency_containers",
+  "voip_intercepts",
+  "NGCP::Schema::Result::voip_intercept",
   { "foreign.reseller_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+
+__PACKAGE__->has_many(
+  "voip_number_block_resellers",
+  "NGCP::Schema::Result::voip_number_block_resellers",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "voip_numbers",
+  "NGCP::Schema::Result::voip_numbers",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "vouchers",
+  "NGCP::Schema::Result::vouchers",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -219,7 +217,7 @@ NGCP::Schema::Result::resellers
 
 =back
 
-=head1 TABLE: C<billing.resellers>
+=head1 TABLE: C<resellers>
 
 =head1 ACCESSORS
 
@@ -284,29 +282,53 @@ Type: has_many
 
 Related object: L<NGCP::Schema::Result::admins>
 
+=head2 billing_networks
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::billing_networks>
+
 =head2 billing_profiles
 
 Type: has_many
 
 Related object: L<NGCP::Schema::Result::billing_profiles>
 
+=head2 contacts
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::contacts>
+
 =head2 contract
 
 Type: belongs_to
 
-Related object: L<NGCP::Schema::Result::contracts>
+Related object: L<NGCP::Schema::Result::billing_contracts>
 
 =head2 customers
 
 Type: has_many
 
-Related object: L<NGCP::Schema::Result::customers>
+Related object: L<NGCP::Schema::Result::billing_customers>
 
 =head2 domain_resellers
 
 Type: has_many
 
 Related object: L<NGCP::Schema::Result::domain_resellers>
+
+=head2 email_templates
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::email_templates>
+
+=head2 invoice_templates
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::invoice_templates>
 
 =head2 ncos_levels
 
@@ -318,13 +340,25 @@ Related object: L<NGCP::Schema::Result::ncos_levels>
 
 Type: has_many
 
-Related object: L<NGCP::Schema::Result::orders>
+Related object: L<NGCP::Schema::Result::billing_orders>
 
 =head2 products
 
 Type: has_many
 
 Related object: L<NGCP::Schema::Result::products>
+
+=head2 profile_packages
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::profile_packages>
+
+=head2 reseller_branding
+
+Type: might_have
+
+Related object: L<NGCP::Schema::Result::reseller_brandings>
 
 =head2 voip_intercepts
 
@@ -344,8 +378,18 @@ Type: has_many
 
 Related object: L<NGCP::Schema::Result::voip_numbers>
 
-=head2 rtc_user
+=head2 vouchers
 
-Type: might_have
+Type: has_many
 
-Related object: L<NGCP::Schema::Result::rtc_user>
+Related object: L<NGCP::Schema::Result::vouchers>
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:4g7uesKVIaSYqgEEcp5OtA
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

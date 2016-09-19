@@ -1,12 +1,21 @@
 package NGCP::Schema::Result::billing_mappings;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("billing.billing_mappings");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -55,10 +64,12 @@ __PACKAGE__->add_columns(
     extra => { unsigned => 1 },
     is_foreign_key => 1,
     is_nullable => 1,
-  },  
+  },
 );
 
+
 __PACKAGE__->set_primary_key("id");
+
 
 __PACKAGE__->belongs_to(
   "billing_profile",
@@ -72,37 +83,14 @@ __PACKAGE__->belongs_to(
   },
 );
 
+
 __PACKAGE__->belongs_to(
   "contract",
-  "NGCP::Schema::Result::contracts",
+  "NGCP::Schema::Result::billing_contracts",
   { id => "contract_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-__PACKAGE__->belongs_to(
-  "contract_active",
-  "NGCP::Schema::Result::contracts",
-  sub {
-    my $args = shift;
-    return {
-        "$args->{foreign_alias}.id" => { -ident => "$args->{self_alias}.contract_id" } ,
-        "$args->{foreign_alias}.status" => { '!=' => 'terminated' },
-    };
-  },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-__PACKAGE__->belongs_to(
-  "product",
-  "NGCP::Schema::Result::products",
-  { id => "product_id" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "RESTRICT",
-    on_update     => "CASCADE",
-  },
-);
 
 __PACKAGE__->belongs_to(
   "network",
@@ -116,16 +104,24 @@ __PACKAGE__->belongs_to(
   },
 );
 
+
+__PACKAGE__->belongs_to(
+  "product",
+  "NGCP::Schema::Result::products",
+  { id => "product_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "RESTRICT",
+    on_update     => "CASCADE",
+  },
+);
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -142,7 +138,7 @@ NGCP::Schema::Result::billing_mappings
 
 =back
 
-=head1 TABLE: C<billing.billing_mappings>
+=head1 TABLE: C<billing_mappings>
 
 =head1 ACCESSORS
 
@@ -185,13 +181,13 @@ NGCP::Schema::Result::billing_mappings
   extra: {unsigned => 1}
   is_foreign_key: 1
   is_nullable: 1
-  
+
 =head2 network_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
   is_foreign_key: 1
-  is_nullable: 1  
+  is_nullable: 1
 
 =head1 PRIMARY KEY
 
@@ -213,13 +209,13 @@ Related object: L<NGCP::Schema::Result::billing_profiles>
 
 Type: belongs_to
 
-Related object: L<NGCP::Schema::Result::contracts>
+Related object: L<NGCP::Schema::Result::billing_contracts>
 
-=head2 contract_active
+=head2 network
 
 Type: belongs_to
 
-Related object: L<NGCP::Schema::Result::contracts>
+Related object: L<NGCP::Schema::Result::billing_networks>
 
 =head2 product
 
@@ -227,8 +223,12 @@ Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::products>
 
-=head2 network
+=cut
 
-Type: belongs_to
 
-Related object: L<NGCP::Schema::Result::billing_networks>
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:wovXh2CfTYSDhlwof7KEKQ
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

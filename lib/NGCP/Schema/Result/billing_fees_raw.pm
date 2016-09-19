@@ -1,12 +1,21 @@
 package NGCP::Schema::Result::billing_fees_raw;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("billing.billing_fees_raw");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -17,19 +26,9 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
   },
   "billing_profile_id",
-  {
-    data_type => "integer",
-    extra => { unsigned => 1 },
-    is_foreign_key => 1,
-    is_nullable => 0,
-  },
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 0 },
   "billing_zone_id",
-  {
-    data_type => "integer",
-    extra => { unsigned => 1 },
-    is_foreign_key => 1,
-    is_nullable => 1,
-  },
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
   "source",
   { data_type => "varchar", default_value => ".", is_nullable => 0, size => 255 },
   "destination",
@@ -88,49 +87,19 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
 );
 
+
 __PACKAGE__->set_primary_key("id");
-
-__PACKAGE__->has_many(
-  "billing_fees",
-  "NGCP::Schema::Result::billing_fees_history",
-  { "foreign.id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->belongs_to(
-  "billing_profile",
-  "NGCP::Schema::Result::billing_profiles",
-  { id => "billing_profile_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-__PACKAGE__->belongs_to(
-  "billing_zone",
-  "NGCP::Schema::Result::billing_zones",
-  { id => "billing_zone_id" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "RESTRICT",
-    on_update     => "CASCADE",
-  },
-);
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
 
-NGCP::Schema::Result::billing_fees
+NGCP::Schema::Result::billing_fees_raw
 
 =head1 COMPONENTS LOADED
 
@@ -142,7 +111,7 @@ NGCP::Schema::Result::billing_fees
 
 =back
 
-=head1 TABLE: C<billing.billing_fees>
+=head1 TABLE: C<billing_fees_raw>
 
 =head1 ACCESSORS
 
@@ -157,14 +126,12 @@ NGCP::Schema::Result::billing_fees
 
   data_type: 'integer'
   extra: {unsigned => 1}
-  is_foreign_key: 1
   is_nullable: 0
 
 =head2 billing_zone_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
-  is_foreign_key: 1
   is_nullable: 1
 
 =head2 source
@@ -260,22 +227,12 @@ NGCP::Schema::Result::billing_fees
 
 =back
 
-=head1 RELATIONS
+=cut
 
-=head2 billing_fees_histories
 
-Type: has_many
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:w4HTUbPJ++UIYlaTw+C5oA
 
-Related object: L<NGCP::Schema::Result::billing_fees_history>
 
-=head2 billing_profile
-
-Type: belongs_to
-
-Related object: L<NGCP::Schema::Result::billing_profiles>
-
-=head2 billing_zone
-
-Type: belongs_to
-
-Related object: L<NGCP::Schema::Result::billing_zones>
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

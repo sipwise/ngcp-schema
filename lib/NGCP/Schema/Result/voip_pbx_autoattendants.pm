@@ -1,11 +1,14 @@
 package NGCP::Schema::Result::voip_pbx_autoattendants;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
 our $VERSION = '2.007';
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
 
-use parent 'DBIx::Class::Core';
+
+
+use base 'DBIx::Class::Core';
 
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
@@ -34,7 +37,7 @@ __PACKAGE__->add_columns(
   "choice",
   { data_type => "tinyint", is_nullable => 0 },
   "destination",
-  { data_type => "varchar", is_nullable => 0, size => 256 },
+  { data_type => "varchar", is_nullable => 0, size => 255 },
 );
 
 
@@ -43,11 +46,10 @@ __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->belongs_to(
   "subscriber",
-  "NGCP::Schema::Result::voip_subscribers",
+  "NGCP::Schema::Result::provisioning_voip_subscribers",
   { id => "subscriber_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
-
 sub TO_JSON {
     my ($self) = @_;
     return {
@@ -58,7 +60,7 @@ sub TO_JSON {
 
 =head1 NAME
 
-NGCP::Schema::provisioning::Result::voip_pbx_autoattendants
+NGCP::Schema::Result::voip_pbx_autoattendants
 
 =head1 COMPONENTS LOADED
 
@@ -99,6 +101,12 @@ NGCP::Schema::provisioning::Result::voip_pbx_autoattendants
   data_type: 'tinyint'
   is_nullable: 0
 
+=head2 destination
+
+  data_type: 'varchar'
+  is_nullable: 0
+  size: 255
+
 =head1 PRIMARY KEY
 
 =over 4
@@ -113,13 +121,13 @@ NGCP::Schema::provisioning::Result::voip_pbx_autoattendants
 
 Type: belongs_to
 
-Related object: L<NGCP::Schema::provisioning::Result::voip_subscribers>
+Related object: L<NGCP::Schema::Result::provisioning_voip_subscribers>
 
 =cut
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-10-14 14:08:29
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:uOk7D6xRi3/TqRyLelv18g
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:52
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Nhqx5XDPP9rcs02iTK2FCQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

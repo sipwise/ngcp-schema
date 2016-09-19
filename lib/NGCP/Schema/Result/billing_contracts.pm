@@ -1,12 +1,21 @@
-package NGCP::Schema::Result::contracts;
+package NGCP::Schema::Result::billing_contracts;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("billing.contracts");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -43,7 +52,7 @@ __PACKAGE__->add_columns(
     extra => { unsigned => 1 },
     is_foreign_key => 1,
     is_nullable => 1,
-  },  
+  },
   "status",
   {
     data_type => "enum",
@@ -53,8 +62,6 @@ __PACKAGE__->add_columns(
   },
   "external_id",
   { data_type => "varchar", is_nullable => 1, size => 255 },
-  "send_invoice",
-  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "modify_timestamp",
   {
     data_type => "timestamp",
@@ -82,43 +89,36 @@ __PACKAGE__->add_columns(
     is_nullable => 1,
   },
   "max_subscribers",
-  {
-    data_type => "integer",
-    extra => { unsigned => 1 },
-    is_nullable => 1,
-  },
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
+  "send_invoice",
+  { data_type => "tinyint", default_value => 1, is_nullable => 0 },
   "subscriber_email_template_id",
-  {
-    data_type => "integer",
-    extra => { unsigned => 1 },
-    is_nullable => 1,
-  },
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
   "passreset_email_template_id",
-  {
-    data_type => "integer",
-    extra => { unsigned => 1 },
-    is_nullable => 1,
-  },
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
   "invoice_email_template_id",
-  { 
-    data_type => "integer", 
-    extra => { unsigned => 1 }, 
-    is_nullable => 1 
-  },
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
   "invoice_template_id",
-  { 
-    data_type => "integer", 
-    extra => { unsigned => 1 }, 
-    is_nullable => 1 
-  },
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
   "vat_rate",
-  { data_type => "tinyint", extra => { unsigned => 1 }, default_value => 0, is_nullable => 0 },
+  {
+    data_type => "tinyint",
+    default_value => 0,
+    extra => { unsigned => 1 },
+    is_nullable => 0,
+  },
   "add_vat",
-  { data_type => "tinyint", extra => { unsigned => 1 }, default_value => 0, is_nullable => 0 },
-
+  {
+    data_type => "tinyint",
+    default_value => 0,
+    extra => { unsigned => 1 },
+    is_nullable => 0,
+  },
 );
 
+
 __PACKAGE__->set_primary_key("id");
+
 
 __PACKAGE__->has_many(
   "billing_mappings",
@@ -126,12 +126,7 @@ __PACKAGE__->has_many(
   { "foreign.contract_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
-__PACKAGE__->has_many(
-  "billing_mappings_actual",
-  "NGCP::Schema::Result::billing_mappings_actual",
-  { "foreign.contract_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
+
 
 __PACKAGE__->belongs_to(
   "contact",
@@ -140,10 +135,11 @@ __PACKAGE__->belongs_to(
   {
     is_deferrable => 1,
     join_type     => "LEFT",
-    on_delete     => "SET NULL",
+    on_delete     => "RESTRICT",
     on_update     => "CASCADE",
   },
 );
+
 
 __PACKAGE__->has_many(
   "contract_balances",
@@ -152,12 +148,14 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+
 __PACKAGE__->might_have(
   "contract_fraud_preference",
   "NGCP::Schema::Result::contract_fraud_preferences",
   { "foreign.contract_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+
 
 __PACKAGE__->has_many(
   "contract_registers",
@@ -166,9 +164,10 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+
 __PACKAGE__->belongs_to(
   "customer",
-  "NGCP::Schema::Result::customers",
+  "NGCP::Schema::Result::billing_customers",
   { id => "customer_id" },
   {
     is_deferrable => 1,
@@ -178,9 +177,18 @@ __PACKAGE__->belongs_to(
   },
 );
 
+
+__PACKAGE__->has_many(
+  "invoices",
+  "NGCP::Schema::Result::invoices",
+  { "foreign.contract_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
 __PACKAGE__->belongs_to(
   "order",
-  "NGCP::Schema::Result::orders",
+  "NGCP::Schema::Result::billing_orders",
   { id => "order_id" },
   {
     is_deferrable => 1,
@@ -190,75 +198,6 @@ __PACKAGE__->belongs_to(
   },
 );
 
-__PACKAGE__->has_many(
-  "voip_subscribers",
-  "NGCP::Schema::Result::voip_subscribers",
-  { "foreign.contract_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "autoprov_field_devices",
-  "NGCP::Schema::Result::autoprov_field_devices",
-  { "foreign.contract_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_sound_sets",
-  "NGCP::Schema::Result::voip_sound_sets",
-  { "foreign.contract_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->belongs_to(
-  "subscriber_email_template",
-  "NGCP::Schema::Result::email_templates",
-  { "foreign.id" => "self.subscriber_email_template_id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->belongs_to(
-  "passreset_email_template",
-  "NGCP::Schema::Result::email_templates",
-  { "foreign.id" => "self.passreset_email_template_id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->belongs_to(
-  "invoice_email_template",
-  "NGCP::Schema::Result::email_templates",
-  { "foreign.id" => "self.invoice_email_template_id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->belongs_to(
-  "invoice_template",
-  "NGCP::Schema::Result::invoice_templates",
-  { "foreign.id" => "self.invoice_template_id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "invoices",
-  "NGCP::Schema::Result::invoices",
-  { "foreign.contract_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_contract_preferences",
-  "NGCP::Schema::Result::voip_contract_preferences",
-  { "foreign.contract_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_contract_locations",
-  "NGCP::Schema::Result::voip_contract_locations",
-  { "foreign.contract_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
 
 __PACKAGE__->belongs_to(
   "profile_package",
@@ -272,28 +211,48 @@ __PACKAGE__->belongs_to(
   },
 );
 
-__PACKAGE__->has_many(
-  "topup_log",
-  "NGCP::Schema::Result::topup_logs",
-  { 'foreign.contract_id' => 'self.id' },
+
+__PACKAGE__->might_have(
+  "reseller",
+  "NGCP::Schema::Result::resellers",
+  { "foreign.contract_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+
+__PACKAGE__->has_many(
+  "topup_logs",
+  "NGCP::Schema::Result::topup_log",
+  { "foreign.contract_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "voip_subscribers",
+  "NGCP::Schema::Result::billing_voip_subscribers",
+  { "foreign.contract_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+__PACKAGE__->has_many(
+  "vouchers",
+  "NGCP::Schema::Result::vouchers",
+  { "foreign.customer_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
 
-NGCP::Schema::Result::contracts
+NGCP::Schema::Result::billing_contracts
 
 =head1 COMPONENTS LOADED
 
@@ -305,7 +264,7 @@ NGCP::Schema::Result::contracts
 
 =back
 
-=head1 TABLE: C<billing.contracts>
+=head1 TABLE: C<contracts>
 
 =head1 ACCESSORS
 
@@ -331,6 +290,13 @@ NGCP::Schema::Result::contracts
   is_nullable: 1
 
 =head2 order_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_foreign_key: 1
+  is_nullable: 1
+
+=head2 profile_package_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
@@ -376,6 +342,56 @@ NGCP::Schema::Result::contracts
   datetime_undef_if_invalid: 1
   is_nullable: 1
 
+=head2 max_subscribers
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 send_invoice
+
+  data_type: 'tinyint'
+  default_value: 1
+  is_nullable: 0
+
+=head2 subscriber_email_template_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 passreset_email_template_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 invoice_email_template_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 invoice_template_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 vat_rate
+
+  data_type: 'tinyint'
+  default_value: 0
+  extra: {unsigned => 1}
+  is_nullable: 0
+
+=head2 add_vat
+
+  data_type: 'tinyint'
+  default_value: 0
+  extra: {unsigned => 1}
+  is_nullable: 0
+
 =head1 PRIMARY KEY
 
 =over 4
@@ -385,12 +401,6 @@ NGCP::Schema::Result::contracts
 =back
 
 =head1 RELATIONS
-
-=head2 active_reseller
-
-Type: might_have
-
-Related object: L<NGCP::Schema::Result::resellers>
 
 =head2 billing_mappings
 
@@ -426,28 +436,56 @@ Related object: L<NGCP::Schema::Result::contract_registers>
 
 Type: belongs_to
 
-Related object: L<NGCP::Schema::Result::customers>
+Related object: L<NGCP::Schema::Result::billing_customers>
+
+=head2 invoices
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::invoices>
 
 =head2 order
 
 Type: belongs_to
 
-Related object: L<NGCP::Schema::Result::orders>
+Related object: L<NGCP::Schema::Result::billing_orders>
 
-=head2 reseller
+=head2 profile_package
 
 Type: belongs_to
 
+Related object: L<NGCP::Schema::Result::profile_packages>
+
+=head2 reseller
+
+Type: might_have
+
 Related object: L<NGCP::Schema::Result::resellers>
+
+=head2 topup_logs
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::topup_log>
 
 =head2 voip_subscribers
 
 Type: has_many
 
-Related object: L<NGCP::Schema::Result::voip_subscribers>
+Related object: L<NGCP::Schema::Result::billing_voip_subscribers>
 
-=head2 voip_pbx_groups
+=head2 vouchers
 
 Type: has_many
 
-Related object: L<NGCP::Schema::Result::voip_pbx_groups>
+Related object: L<NGCP::Schema::Result::vouchers>
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:/ibYWCNb3YLiKnY36ofMjg
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

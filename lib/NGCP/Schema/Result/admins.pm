@@ -1,12 +1,21 @@
 package NGCP::Schema::Result::admins;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
 
-__PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON", "EncodedColumn");
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
+
+__PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
+
 
 __PACKAGE__->table("billing.admins");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -26,15 +35,7 @@ __PACKAGE__->add_columns(
   "login",
   { data_type => "varchar", is_nullable => 0, size => 31 },
   "md5pass",
-  {
-    data_type => "char",
-    is_nullable => 1,
-    size => 32,
-    encode_column => 1,
-    encode_class  => 'Digest',
-    encode_args   => {algorithm => 'MD5', format => 'hex'},
-    encode_check_method => 'check_password',
-  },
+  { data_type => "char", is_nullable => 1, size => 32 },
   "is_master",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "is_superuser",
@@ -57,11 +58,15 @@ __PACKAGE__->add_columns(
   { data_type => "text", is_nullable => 1 },
 );
 
+
 __PACKAGE__->set_primary_key("id");
+
 
 __PACKAGE__->add_unique_constraint("login_idx", ["login"]);
 
+
 __PACKAGE__->add_unique_constraint("ssl_client_m_serial_UNIQUE", ["ssl_client_m_serial"]);
+
 
 __PACKAGE__->belongs_to(
   "reseller",
@@ -74,17 +79,12 @@ __PACKAGE__->belongs_to(
     on_update     => "CASCADE",
   },
 );
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -101,7 +101,7 @@ NGCP::Schema::Result::admins
 
 =back
 
-=head1 TABLE: C<billing.admins>
+=head1 TABLE: C<admins>
 
 =head1 ACCESSORS
 
@@ -167,6 +167,12 @@ NGCP::Schema::Result::admins
   default_value: 0
   is_nullable: 0
 
+=head2 billing_data
+
+  data_type: 'tinyint'
+  default_value: 1
+  is_nullable: 0
+
 =head2 lawful_intercept
 
   data_type: 'tinyint'
@@ -177,6 +183,11 @@ NGCP::Schema::Result::admins
 
   data_type: 'bigint'
   extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 ssl_client_certificate
+
+  data_type: 'text'
   is_nullable: 1
 
 =head1 PRIMARY KEY
@@ -212,3 +223,13 @@ NGCP::Schema::Result::admins
 Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::resellers>
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:fqXJVyg+ITIdCxm3uc9izQ
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

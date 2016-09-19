@@ -1,8 +1,15 @@
 package NGCP::Schema::Result::voip_subscriber_profile_sets;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
@@ -29,12 +36,9 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
-__PACKAGE__->belongs_to(
-  "reseller",
-  "NGCP::Schema::Result::resellers",
-  { id => "reseller_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
+
+__PACKAGE__->add_unique_constraint("vsp_resname_idx", ["reseller_id", "name"]);
+
 
 __PACKAGE__->has_many(
   "voip_subscriber_profiles",
@@ -42,9 +46,6 @@ __PACKAGE__->has_many(
   { "foreign.set_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
-
-
-__PACKAGE__->add_unique_constraint("vsp_resname_idx", ["reseller_id", "name"]);
 sub TO_JSON {
     my ($self) = @_;
     return {
@@ -116,7 +117,20 @@ NGCP::Schema::Result::voip_subscriber_profile_sets
 
 =back
 
+=head1 RELATIONS
+
+=head2 voip_subscriber_profiles
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::voip_subscriber_profiles>
+
 =cut
 
 
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:52
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:NL/Crh+vGTfkRg8MQ+qLHg
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
 1;

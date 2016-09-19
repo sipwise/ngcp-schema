@@ -1,12 +1,21 @@
 package NGCP::Schema::Result::voip_cf_mappings;
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
+
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
+
 __PACKAGE__->table("provisioning.voip_cf_mappings");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -45,15 +54,12 @@ __PACKAGE__->add_columns(
     is_nullable => 1,
   },
   "source_set_id",
-  {
-    data_type => "integer",
-    extra => { unsigned => 1 },
-    is_foreign_key => 1,
-    is_nullable => 1,
-  },
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
 );
 
+
 __PACKAGE__->set_primary_key("id");
+
 
 __PACKAGE__->belongs_to(
   "destination_set",
@@ -67,12 +73,14 @@ __PACKAGE__->belongs_to(
   },
 );
 
+
 __PACKAGE__->belongs_to(
   "subscriber",
   "NGCP::Schema::Result::provisioning_voip_subscribers",
   { id => "subscriber_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
+
 
 __PACKAGE__->belongs_to(
   "time_set",
@@ -85,29 +93,12 @@ __PACKAGE__->belongs_to(
     on_update     => "CASCADE",
   },
 );
-
-__PACKAGE__->belongs_to(
-  "source_set",
-  "NGCP::Schema::Result::voip_cf_source_sets",
-  { id => "source_set_id" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "CASCADE",
-    on_update     => "CASCADE",
-  },
-);
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -124,7 +115,7 @@ NGCP::Schema::Result::voip_cf_mappings
 
 =back
 
-=head1 TABLE: C<provisioning.voip_cf_mappings>
+=head1 TABLE: C<voip_cf_mappings>
 
 =head1 ACCESSORS
 
@@ -167,7 +158,6 @@ NGCP::Schema::Result::voip_cf_mappings
 
   data_type: 'integer'
   extra: {unsigned => 1}
-  is_foreign_key: 1
   is_nullable: 1
 
 =head1 PRIMARY KEY
@@ -198,8 +188,12 @@ Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::voip_cf_time_sets>
 
-=head2 source_set
+=cut
 
-Type: belongs_to
 
-Related object: L<NGCP::Schema::Result::voip_cf_source_sets>
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:52
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:5IfIZ1c08GEoPXeU8r26Sg
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;

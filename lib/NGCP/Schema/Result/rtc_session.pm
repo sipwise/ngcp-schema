@@ -1,16 +1,21 @@
 package NGCP::Schema::Result::rtc_session;
-
-use warnings;
-use strict;
-
+use Sipwise::Base;
 use Scalar::Util qw(blessed);
-use parent 'DBIx::Class::Core';
-
 our $VERSION = '2.007';
 
-__PACKAGE__->load_components("Helper::Row::ToJSON");
+# Created by DBIx::Class::Schema::Loader
+# DO NOT MODIFY THE FIRST PART OF THIS FILE
+
+
+
+use base 'DBIx::Class::Core';
+
+
+__PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
+
 
 __PACKAGE__->table("provisioning.rtc_session");
+
 
 __PACKAGE__->add_columns(
   "id",
@@ -25,51 +30,33 @@ __PACKAGE__->add_columns(
     data_type => "integer",
     extra => { unsigned => 1 },
     is_foreign_key => 1,
-    is_nullable => 1,
+    is_nullable => 0,
   },
   "rtc_session_id",
-  {
-    data_type => "varchar",
-    is_nullable => 0,
-    size => 20,
-  },
+  { data_type => "varchar", is_nullable => 0, size => 36 },
   "rtc_network_tag",
-  {
-    data_type => "varchar",
-    is_nullable => 0,
-    size => 45,
-    default_value => "",
-  },
+  { data_type => "varchar", default_value => "", is_nullable => 0, size => 45 },
 );
+
 
 __PACKAGE__->set_primary_key("id");
 
-__PACKAGE__->add_unique_constraint("subscriber_idx", ["subscriber_id"]);
+
 __PACKAGE__->add_unique_constraint("rtc_session_idx", ["rtc_session_id"]);
+
 
 __PACKAGE__->belongs_to(
   "subscriber",
   "NGCP::Schema::Result::provisioning_voip_subscribers",
   { id => "subscriber_id" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "CASCADE",
-    on_update     => "CASCADE",
-  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
-
 sub TO_JSON {
     my ($self) = @_;
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
 }
-
-1;
-
-__END__
-
 =encoding UTF-8
 
 =head1 NAME
@@ -80,11 +67,13 @@ NGCP::Schema::Result::rtc_session
 
 =over 4
 
+=item * L<DBIx::Class::InflateColumn::DateTime>
+
 =item * L<DBIx::Class::Helper::Row::ToJSON>
 
 =back
 
-=head1 TABLE: C<provisioning.rtc_session>
+=head1 TABLE: C<rtc_session>
 
 =head1 ACCESSORS
 
@@ -106,11 +95,12 @@ NGCP::Schema::Result::rtc_session
 
   data_type: 'varchar'
   is_nullable: 0
-  size: 20
+  size: 36
 
 =head2 rtc_network_tag
 
   data_type: 'varchar'
+  default_value: (empty string)
   is_nullable: 0
   size: 45
 
@@ -123,14 +113,6 @@ NGCP::Schema::Result::rtc_session
 =back
 
 =head1 UNIQUE CONSTRAINTS
-
-=head2 C<subscriber_idx>
-
-=over 4
-
-=item * L</subscriber_id>
-
-=back
 
 =head2 C<rtc_session_idx>
 
@@ -147,3 +129,13 @@ NGCP::Schema::Result::rtc_session
 Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::provisioning_voip_subscribers>
+
+=cut
+
+
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2016-09-20 17:36:52
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:2Tyn531XXoruzfugv0wuOg
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;
