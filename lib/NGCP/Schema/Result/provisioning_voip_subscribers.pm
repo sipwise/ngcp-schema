@@ -99,6 +99,13 @@ __PACKAGE__->belongs_to(
 );
 
 __PACKAGE__->has_many(
+  "upn_rewrite_sets",
+  "NGCP::Schema::Result::upn_rewrite_set",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
   "voip_cc_mappings",
   "NGCP::Schema::Result::voip_cc_mappings",
   { "foreign.uuid" => "self.uuid" },
@@ -451,6 +458,12 @@ NGCP::Schema::Result::provisioning_voip_subscribers
 Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::voip_domains>
+
+=head2 upn_rewrite_sets
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::upn_rewrite_set>
 
 =head2 voip_cc_mappings
 
