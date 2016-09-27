@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_428ff423",
+        "filename": "lib/NGCP/Schema/Result/upn_rewrite_sources.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2016-09-27T11:07:25Z",
+      "side": 1,
+      "message": "better \"rules\" as usual?",
+      "range": {
+        "startLine": 9,
+        "startChar": 45,
+        "endLine": 9,
+        "endChar": 52
+      },
+      "revId": "d1ccff80256264d9995599ae5b9c68e6f1e64b89",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
