@@ -34,6 +34,8 @@ __PACKAGE__->add_columns(
   },
   "local_ac",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "intra_pbx",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "description",
   { data_type => "text", is_nullable => 1 },
 );
@@ -126,6 +128,12 @@ NGCP::Schema::Result::ncos_levels
   is_nullable: 0
 
 =head2 local_ac
+
+  data_type: 'tinyint'
+  default_value: 0
+  is_nullable: 0
+
+=head2 intra_pbx
 
   data_type: 'tinyint'
   default_value: 0
