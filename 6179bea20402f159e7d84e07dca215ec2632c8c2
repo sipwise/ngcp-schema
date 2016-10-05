@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_24dbc1ee",
+        "filename": "lib/NGCP/Schema/Result/lnp_numbers.pm",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2016-10-05T09:12:12Z",
+      "side": 1,
+      "message": "I don\u0027t get this relationship. When I have an lnp_number, then why should I ever get a lnp_numbers_actual?",
+      "revId": "6179bea20402f159e7d84e07dca215ec2632c8c2",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
