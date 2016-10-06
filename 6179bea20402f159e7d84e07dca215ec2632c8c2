@@ -34,6 +34,24 @@
       "revId": "6179bea20402f159e7d84e07dca215ec2632c8c2",
       "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_efb6cddb",
+        "filename": "lib/NGCP/Schema/Result/lnp_numbers.pm",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2016-10-06T13:53:21Z",
+      "side": 1,
+      "message": "the actual relation for \"0 or 1\" would be \"might_have\". but if this is buggy, I understand.\n\nSo if I got this right, if this related object exists, then the given row is the actual one, otherwise it\u0027s an old one, which is currently not used.",
+      "parentUuid": "9a3d3df0_81e27a9d",
+      "revId": "6179bea20402f159e7d84e07dca215ec2632c8c2",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
     }
   ]
 }
