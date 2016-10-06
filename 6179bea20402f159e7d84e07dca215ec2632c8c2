@@ -16,6 +16,24 @@
       "revId": "6179bea20402f159e7d84e07dca215ec2632c8c2",
       "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_81e27a9d",
+        "filename": "lib/NGCP/Schema/Result/lnp_numbers.pm",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2016-10-06T11:26:55Z",
+      "side": 1,
+      "message": "basically a lnp_numbers row can have 0 or 1 lnp_numbers_actual. in this case with inner join typ actually exactly one, as no left join. so has_many here is a relaxed definition.\n\nits the similar situation with biling_mappings_actual.\ni did not tried to change it here yet, but dbix might have a problem to join a relation to a virtualview resultset unless its a has_many relation.",
+      "parentUuid": "9a3d3df0_24dbc1ee",
+      "revId": "6179bea20402f159e7d84e07dca215ec2632c8c2",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
     }
   ]
 }
