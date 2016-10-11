@@ -1,6 +1,8 @@
-package NGCP::Schema::Result::messages_custom;
+﻿package NGCP::Schema::Result::messages_custom;
 use Scalar::Util qw(blessed);
 use base qw/DBIx::Class::Core/;
+use utf8::all;
+use utf8;
 
 our $VERSION = '2.007';
 
@@ -80,19 +82,27 @@ sub TO_JSON {
 
 __PACKAGE__->result_source_instance->is_virtual(1);
 
-__PACKAGE__->result_source_instance->view_definition("
+my $sql_statement = <<END;
 SELECT min(m.timestamp) as min_timestamp, m.* FROM
 (
 (
 SELECT  DISTINCT ( call_id )
   FROM sipstats.messages
-  WHERE caller_uuid LIKE ? OR callee_uuid LIKE ? OR call_id LIKE ?
+  WHERE caller_uuid = ? COLLATE utf8_bin
 ORDER BY timestamp DESC
   LIMIT ?, ?
 )
 ) q JOIN sipstats.messages m ON q.call_id = m.call_id
 GROUP BY call_id
-");
+END
+
+use Encode;
+use DDP use_prototypes=>0; p "there";
+p Encode::is_utf8($sql_statement);
+$sql_statement = Encode::decode_utf8($sql_statement);
+p Encode::is_utf8($sql_statement);
+
+__PACKAGE__->result_source_instance->view_definition($sql_statement);
 
 
 1;
