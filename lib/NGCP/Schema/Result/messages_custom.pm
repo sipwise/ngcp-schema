@@ -86,7 +86,7 @@ SELECT min(m.timestamp) as min_timestamp, m.* FROM
 (
 SELECT  DISTINCT ( call_id )
   FROM sipstats.messages
-  WHERE caller_uuid LIKE ? OR callee_uuid LIKE ? OR call_id LIKE ?
+  WHERE caller_uuid LIKE ? COLLATE utf8_bin OR callee_uuid LIKE ? COLLATE utf8_bin OR call_id LIKE ? COLLATE utf8_bin
 ORDER BY timestamp DESC
   LIMIT ?, ?
 )
