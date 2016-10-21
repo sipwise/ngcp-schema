@@ -176,6 +176,13 @@ __PACKAGE__->has_many(
 );
 
 __PACKAGE__->has_many(
+  "sms_journals",
+  "NGCP::Schema::Result::sms_journal",
+  { 'foreign.subscriber_id' => 'self.id' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
   "voip_mail_to_fax_secrets_renew_notify",
   "NGCP::Schema::Result::voip_mail_to_fax_secret_renew_notify",
   { "foreign.subscriber_id" => "self.id" },
@@ -524,6 +531,12 @@ Related object: L<NGCP::Schema::Result::voip_fax_preferences>
 Type: has_many
 
 Related object: L<NGCP::Schema::Result::voip_fax_journal>
+
+=head2 sms_journals
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::sms_journal>
 
 =head2 voip_mail_to_fax_preference
 
