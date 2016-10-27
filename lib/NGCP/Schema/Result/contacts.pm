@@ -97,6 +97,19 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "gpp9",
   { data_type => "varchar", is_nullable => 1, size => 255 },
+  "terminate_timestamp",
+  {
+    data_type => "timestamp",
+    datetime_undef_if_invalid => 1,
+    is_nullable => 1,
+  },
+  "status",
+  {
+    data_type => "enum",
+    default_value => "active",
+    extra => { list => [ "active", "terminated"] },
+    is_nullable => 0,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
