@@ -39,6 +39,7 @@ __PACKAGE__->add_columns(
     datetime_undef_if_invalid => 1,
     default_value => \"current_timestamp",
     is_nullable => 0,
+    timezone => "local",
   },
   "direction",
   {
