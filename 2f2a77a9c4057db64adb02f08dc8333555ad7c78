@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a494da4_b5ac3037",
+        "filename": "lib/NGCP/Schema/Result/sms_journal.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2016-11-10T12:25:17Z",
+      "side": 1,
+      "message": "if this is becomes the only appearance in resultset files, you might prefer using NGCP::Panel::Utils::DateTime::set_local_tz instead.",
+      "revId": "2f2a77a9c4057db64adb02f08dc8333555ad7c78",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
