@@ -74,11 +74,29 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", default_value => "", is_nullable => 0, size => 255 },
   "sid",
   { data_type => "varchar", is_nullable => 0, size => 255 },
+  "caller_uuid",
+  { data_type => "char", is_nullable => 0, size => 36 },
+  "callee_uuid",
+  { data_type => "char", is_nullable => 0, size => 36 },
 );
 __PACKAGE__->belongs_to(
   "provisioning_voip_subscriber",
   "NGCP::Schema::Result::provisioning_voip_subscribers",
   { 'foreign.id' => 'self.subscriber_id' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->belongs_to(
+  "caller_subscriber",
+  "NGCP::Schema::Result::voip_subscribers",
+  { 'foreign.uuid' => 'self.caller_uuid' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->belongs_to(
+  "callee_subscriber",
+  "NGCP::Schema::Result::voip_subscribers",
+  { 'foreign.uuid' => 'self.callee_uuid' },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
@@ -206,6 +224,18 @@ NGCP::Schema::Result::voip_fax_journal
   data_type: 'varchar'
   is_nullable: 0
   size: 255
+
+=head2 caller_uuid
+
+  data_type: 'char'
+  is_nullable: 1
+  size: 36
+
+=head2 callee_uuid
+
+  data_type: 'char'
+  is_nullable: 1
+  size: 36
 
 
 =head1 PRIMARY KEY
