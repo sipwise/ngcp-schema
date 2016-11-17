@@ -1,3 +1,30 @@
+ngcp-schema (5.0.1.0+0~mr5.0.1.0) unstable; urgency=medium
+
+  [ Andreas Granig ]
+  * [9a24751] TT#3991 Add ncos level flag for intra-pbx calls
+
+  [ Gerhard Jungwirth ]
+  * [a69dfcb] TT#2395 add anumber upn rewrite tables
+  * [d404f40] MT#3591 enable view search utf8 characters
+  * [49d653a] TT#2369 add table sms_journal
+
+  [ Rene Krenn ]
+  * [645635e] MT#20027 porting number history
+  * [4ebb5b9] MT#20639 billing.contacts "status" column
+
+  [ Michael Prokop ]
+  * [41eac74] TT#5446 Build-Depend on libmodule-build-perl to build against stretch
+
+  [ Kirill Solomko ]
+  * [e933215] TT#5549 add voip_fax_journal caller_uuid, caller_uuid
+
+  [ Guillem Jover ]
+  * [d9872bc] TT#6637 Remove unused wml dependency
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Thu, 17 Nov 2016 23:18:10 +0100
+
 ngcp-schema (5.0.0.0+0~mr5.0.0.0) unstable; urgency=medium
 
   [ Gerhard Jungwirth ]
