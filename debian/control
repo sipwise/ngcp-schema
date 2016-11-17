@@ -44,7 +44,6 @@ Build-Depends: debhelper (>= 8),
                libxml-simpleobject-libxml-perl,
                libxml-simpleobject-perl,
                perl-doc,
-               wml
 Standards-Version: 3.9.7
 Homepage: http://sipwise.com/
 
@@ -90,7 +89,6 @@ Depends: libaliased-perl,
          libxml-simpleobject-libxml-perl,
          libxml-simpleobject-perl,
          perl-doc,
-         wml,
          ${misc:Depends},
          ${perl:Depends}
 Description: DBIC-derived ORM schema classes
