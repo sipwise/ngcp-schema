@@ -1,3 +1,12 @@
+ngcp-schema (4.4.2.2+0~mr4.4.2.2) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [8edb418] TT#7169 fix contract_fraud_events virtual sql
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Thu, 24 Nov 2016 16:14:50 +0100
+
 ngcp-schema (4.4.2.1+0~mr4.4.2.1) unstable; urgency=medium
 
   * New release.
