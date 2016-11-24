@@ -1,4 +1,4 @@
-package NGCP::Schema::Result::autoprov_firmwares;
+package NGCP::Schema::Result::autoprov_firmwares_data;
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 
@@ -6,7 +6,7 @@ our $VERSION = '2.007';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
-__PACKAGE__->table("provisioning.autoprov_firmwares");
+__PACKAGE__->table("provisioning.autoprov_firmwares_data");
 
 __PACKAGE__->add_columns(
   "id",
@@ -16,33 +16,24 @@ __PACKAGE__->add_columns(
     is_auto_increment => 1,
     is_nullable => 0,
   },
-  "device_id",
+  "fw_id",
   {
     data_type => "integer",
     extra => { unsigned => 1 },
     is_foreign_key => 1,
     is_nullable => 0,
   },
-  "version",
-  { data_type => "varchar", is_nullable => 1, size => 255 },
-  "filename",
-  { data_type => "varchar", is_nullable => 1, size => 255 },
+  "data",
+  { data_type => "longblob", is_nullable => 0 },
 );
 
 __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->belongs_to(
-  "device",
-  "NGCP::Schema::Result::autoprov_devices",
-  { id => "device_id" },
+  "firmware",
+  "NGCP::Schema::Result::autoprov_firmwares",
+  { id => "fw_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-__PACKAGE__->has_many(
-  "firmware_data",
-  "NGCP::Schema::Result::autoprov_firmwares_data",
-  { "foreign.fw_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
 );
 
 sub TO_JSON {
@@ -82,11 +73,16 @@ NGCP::Schema::provisioning::Result::autoprov_firmwares
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 device_id
+=head2 fw_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
   is_foreign_key: 1
+  is_nullable: 0
+
+=head2 data
+
+  data_type: 'longblob'
   is_nullable: 0
 
 =head1 PRIMARY KEY
@@ -99,8 +95,8 @@ NGCP::Schema::provisioning::Result::autoprov_firmwares
 
 =head1 RELATIONS
 
-=head2 device
+=head2 firmware
 
 Type: belongs_to
 
-Related object: L<NGCP::Schema::provisioning::Result::autoprov_devices>
+Related object: L<NGCP::Schema::provisioning::Result::autoprov_firmwares>
