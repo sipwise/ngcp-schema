@@ -124,7 +124,7 @@ FROM (
         FROM billing.billing_mappings m
         WHERE (m.start_date IS NULL OR m.start_date <= NOW())
           AND (m.end_date IS NULL OR m.end_date >= NOW())
-        GROUP BY 1, 2
+        GROUP BY 1
         ) bm ON bm.contract_id = c.id
   JOIN billing.billing_profiles bp ON bp.id = bm.billing_profile_id
   JOIN billing.contacts n ON n.id = c.contact_id
