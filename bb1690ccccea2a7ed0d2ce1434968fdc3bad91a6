@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba51214e_36d81b1d",
+        "filename": "lib/NGCP/Schema/Result/contract_fraud_events.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2016-11-24T11:50:57Z",
+      "side": 1,
+      "message": "ok so additional sorting by id must be ommitted here for perf reasons.\n\nso what is the impact if there are several mappings starting at the same time, then you could get a random one of those billing mappings, it ends up that not the exact same billing billing profile like rateomat etc. uses will be taken for the fraud params. a plausible impact could exist, if billing networks are to be used. but as this isnt used by anyone yet, and the worst impact would mean wrong fraud settings are used, and we should ignore that for now.",
+      "revId": "bb1690ccccea2a7ed0d2ce1434968fdc3bad91a6",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
