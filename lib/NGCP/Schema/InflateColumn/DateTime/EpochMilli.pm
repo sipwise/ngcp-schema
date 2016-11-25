@@ -43,7 +43,7 @@ sub _deflate_from_datetime {
       unless $info->{data_type} eq "decimal"
           || (exists $info->{inflate_datetime}
           && $info->{inflate_datetime} eq 'epoch_milli');
-    return $value->epoch;
+    return $value->hires_epoch;
 }
 
 1;
