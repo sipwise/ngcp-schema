@@ -125,7 +125,7 @@ __PACKAGE__->add_columns(
   {
     data_type => "enum",
     default_value => "call",
-    extra => { list => ["call", "cfu", "cft", "cfb", "cfna"] },
+    extra => { list => ["call", "cfu", "cft", "cfb", "cfna", "sms", "cfs"] },
     is_nullable => 0,
   },
   "call_status",
@@ -486,7 +486,7 @@ NGCP::Schema::Result::cdr
 
   data_type: 'enum'
   default_value: 'call'
-  extra: {list => ["call","cfu","cft","cfb","cfna"]}
+  extra: {list => ["call","cfu","cft","cfb","cfna", "sms", "cfs"]}
   is_nullable: 0
 
 =head2 call_status

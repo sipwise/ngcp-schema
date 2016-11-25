@@ -43,7 +43,7 @@ __PACKAGE__->add_columns(
   "direction",
   {
     data_type => "enum",
-    extra => { list => ["in", "out" ] },
+    extra => { list => ["in", "out", "forward" ] },
     is_nullable => 0,
   },
   "caller",
