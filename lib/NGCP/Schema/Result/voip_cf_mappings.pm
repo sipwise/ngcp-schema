@@ -27,7 +27,7 @@ __PACKAGE__->add_columns(
   {
     data_type => "enum",
     default_value => "cfu",
-    extra => { list => ["cfu", "cfb", "cfna", "cft"] },
+    extra => { list => ["cfu", "cfb", "cfna", "cft", "cfs"] },
     is_nullable => 0,
   },
   "destination_set_id",
@@ -146,7 +146,7 @@ NGCP::Schema::Result::voip_cf_mappings
 
   data_type: 'enum'
   default_value: 'cfu'
-  extra: {list => ["cfu","cfb","cfna","cft"]}
+  extra: {list => ["cfu","cfb","cfna","cft","cfs"]}
   is_nullable: 0
 
 =head2 destination_set_id
