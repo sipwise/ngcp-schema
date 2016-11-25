@@ -8,6 +8,7 @@ our $VERSION = '2.007';
 __PACKAGE__->load_components(
     "InflateColumn::DateTime",
     "Helper::Row::ToJSON",
+    "+NGCP::Schema::InflateColumn::DateTime::EpochMilli",
 );
 
 __PACKAGE__->table("accounting.events");
@@ -31,7 +32,7 @@ __PACKAGE__->add_columns(
   "new_status",
   { data_type => "varchar", is_nullable => 0, size => 255 },
   "timestamp",
-  { data_type => "decimal", is_nullable => 0, size => [13, 3] },
+  { data_type => "decimal", is_nullable => 0, size => [13, 3], inflate_datetime => 'epoch_milli' },
   "export_status",
   {
     data_type => "enum",
@@ -49,6 +50,7 @@ __PACKAGE__->add_columns(
 
 
 __PACKAGE__->set_primary_key("id");
+
 sub TO_JSON {
     my ($self) = @_;
     return {
