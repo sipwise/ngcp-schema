@@ -34,6 +34,13 @@ __PACKAGE__->add_columns(
     extra => { unsigned => 1 },
     is_nullable => 0,
   },
+  "announcement_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 0 },
+    is_foreign_key => 1,
+    is_nullable => 1,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -43,6 +50,13 @@ __PACKAGE__->belongs_to(
   "NGCP::Schema::Result::voip_cf_destination_sets",
   { id => "destination_set_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+__PACKAGE__->belongs_to(
+  "voip_sound_handles",
+  "NGCP::Schema::Result::voip_sound_handles",
+  { id => "announcement_id" },
+  { is_deferrable => 1, on_delete => "SET NULL", on_update => "CASCADE" },
 );
 
 sub TO_JSON {
