@@ -37,6 +37,12 @@ __PACKAGE__->has_many(
   { "foreign.handle_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+__PACKAGE__->has_many(
+  "voip_cf_destinations",
+  "NGCP::Schema::Result::voip_cf_destinations",
+  { "foreign.announcement_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
 
 sub TO_JSON {
     my ($self) = @_;
