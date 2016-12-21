@@ -1,3 +1,12 @@
+ngcp-schema (5.0.1.2+0~mr5.0.1.2) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [aa564ab] TT#5559 events datetime inflate
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Wed, 21 Dec 2016 12:00:45 +0100
+
 ngcp-schema (5.0.1.1+0~mr5.0.1.1) unstable; urgency=medium
 
   [ Kirill Solomko ]
