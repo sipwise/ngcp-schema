@@ -1,3 +1,13 @@
+ngcp-schema (4.5.2.5+0~mr4.5.2.5) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [94ece04] MT#20639 billing.contacts "status" column
+  * [f34b6a1] TT#5559 events datetime inflate
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Wed, 21 Dec 2016 12:00:30 +0100
+
 ngcp-schema (4.5.2.4+0~mr4.5.2.4) unstable; urgency=medium
 
   [ Kirill Solomko ]
