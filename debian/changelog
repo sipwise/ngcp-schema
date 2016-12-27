@@ -1,3 +1,18 @@
+ngcp-schema (4.5.3.1+0~mr4.5.3.1) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [ee07b28] MT#20027 porting number history
+  * [c6fb377] TT#5559 events datetime inflate
+  * [317842f] MT#20639 billing.contacts "status" column
+
+  [ Kirill Solomko ]
+  * [b50ceea] TT#5549 add voip_fax_journal caller_uuid, caller_uuid
+  * [0cf1997] TT#7169 fix contract_fraud_events virtual sql
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Tue, 27 Dec 2016 11:20:13 +0100
+
 ngcp-schema (4.5.3.0+0~mr4.5.3.0) unstable; urgency=medium
 
   [ Andreas Granig ]
