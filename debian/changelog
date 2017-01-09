@@ -1,3 +1,12 @@
+ngcp-schema (4.5.3.2+0~mr4.5.3.2) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [28a6d88] TT#6735 TT#7030 TT#5850 accountin.events entity-attribute-value models
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 09 Jan 2017 18:43:37 +0100
+
 ngcp-schema (4.5.3.1+0~mr4.5.3.1) unstable; urgency=medium
 
   [ Rene Krenn ]
