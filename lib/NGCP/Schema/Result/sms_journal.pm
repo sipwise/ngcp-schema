@@ -56,6 +56,14 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 0, size => 255 },
   "status",
   { data_type => "varchar", default_value => "", is_nullable => 0, size => 255 },
+  "pcc_status",
+  {
+    data_type => "enum",
+    extra => { list => ["none", "pending", "complete" ] },
+    is_nullable => 0,
+  },
+  "coding",
+  { data_type => "varchar", is_nullable => 0, size => 16 },
 );
 __PACKAGE__->belongs_to(
   "provisioning_voip_subscriber",
