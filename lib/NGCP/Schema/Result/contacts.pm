@@ -110,6 +110,8 @@ __PACKAGE__->add_columns(
     extra => { list => [ "active", "terminated"] },
     is_nullable => 0,
   },
+  "timezone",
+  { data_type => "varchar", is_nullable => 1, size => 255 },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -301,6 +303,12 @@ NGCP::Schema::Result::contacts
   data_type: 'varchar'
   is_nullable: 1
   size: 31
+
+=head2 timezone
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
 
 =head1 PRIMARY KEY
 
