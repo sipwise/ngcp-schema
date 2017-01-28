@@ -110,6 +110,13 @@ __PACKAGE__->might_have(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->might_have(
+  "timezone",
+  'NGCP::Schema::Result::voip_subscriber_timezone',
+  { 'foreign.subscriber_id' => 'self.id' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 __PACKAGE__->belongs_to(
   "contact",
   "NGCP::Schema::Result::contacts",
