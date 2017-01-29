@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fafc7978_f8e6a943",
+        "filename": "lib/NGCP/Schema/Result/contract_timezone.pm",
+        "patchSetId": 9
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2017-01-29T17:14:33Z",
+      "side": 1,
+      "message": "as there are physical database views with the same view def, it might be better to use those.\n\nor, for a timezone col in UI datatables, its imho easier to do it in process_rows.",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 40
+      },
+      "revId": "2918aad96463bffde0ee25a6cbe7e3b97de18d3b",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
