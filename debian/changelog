@@ -1,3 +1,12 @@
+ngcp-schema (3.6.9.1+0~mr3.8.9.1) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [103c381] MT#11225 - add billing_profiles.fraud_use_reseller_rates
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 30 Jan 2017 15:36:20 +0100
+
 ngcp-schema (3.6.9.0+0~mr3.8.9.0) unstable; urgency=medium
 
   * New release.
