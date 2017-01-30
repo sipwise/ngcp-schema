@@ -38,6 +38,7 @@ __PACKAGE__->add_columns(
     'first_non_primary_alias_username_after',
     'pilot_first_non_primary_alias_username_before',
     'pilot_first_non_primary_alias_username_after',
+    'alias_username',
     ] },
     is_nullable => 0,
   },
