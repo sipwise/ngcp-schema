@@ -1,3 +1,28 @@
+ngcp-schema (5.1.1.0+0~mr5.1.1.0) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [bb1690c] TT#7169 fix contract_fraud_events virtual sql
+  * [07ed8a1] TT#5004 add autoprov_firmwares_data schema
+  * [2433052] TT#5826 add contact.timezone, add timezone views
+
+  [ Andreas Granig ]
+  * [fd3f6c6] TT#2371 Add sms forward options
+  * [8ad3620] TT#2371 Add coding and pcc options to sms journal.
+
+  [ Rene Krenn ]
+  * [2c2b196] TT#5559 events datetime inflate
+  * [34b77a6] TT#6735 TT#7030 TT#5850 accountin.events entity-attribute-value models
+  * [1b98bb0] TT#9714 susbcriber first non-prim alias for edr records
+  * [088a407] TT#6735 TT#5850 refactor "profile" events to track number changes
+
+  [ Irina Peshinskaya ]
+  * [e95561a] TT#5954 Add announcement relation to cf destination
+  * [84d5bce] TT#9212 Add grandstream enums
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Fri, 03 Feb 2017 00:39:13 +0100
+
 ngcp-schema (5.1.0.0+0~mr5.1.0.0) unstable; urgency=medium
 
   [ Andreas Granig ]
