@@ -75,10 +75,7 @@ __PACKAGE__->belongs_to(
   "NGCP::Schema::Result::resellers",
   { id => "reseller_id" },
   {
-    is_deferrable => 1,
     join_type     => "LEFT",
-    on_delete     => "CASCADE",
-    on_update     => "CASCADE",
   },
 );
 sub TO_JSON {
