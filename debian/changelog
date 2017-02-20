@@ -1,3 +1,15 @@
+ngcp-schema (5.0.2.1+0~mr5.0.2.1) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [dff38c3] TT#5559 events datetime inflate
+  * [dc73459] TT#6735 TT#7030 TT#5850 accountin.events entity-attribute-value models
+  * [2ee0509] TT#9714 susbcriber first non-prim alias for edr records
+  * [8a41d2b] TT#6735 TT#5850 refactor "profile" events to track number changes
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 20 Feb 2017 21:03:37 +0100
+
 ngcp-schema (5.0.2.0+0~mr5.0.2.0) unstable; urgency=medium
 
   [ Kirill Solomko ]
