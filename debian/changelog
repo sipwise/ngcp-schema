@@ -1,3 +1,15 @@
+ngcp-schema (4.5.4.1+0~mr4.5.4.1) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [293f4aa] TT#6735 TT#7030 TT#5850 accountin.events entity-attribute-value models
+  * [55ad4d1] TT#9714 susbcriber first non-prim alias for edr records
+  * [393e2a1] TT#6735 TT#5850 refactor "profile" events to track number changes
+  * [98e4bea] TT#9850 drop foreign keys of billing.voip_intercept
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 27 Feb 2017 21:31:59 +0100
+
 ngcp-schema (4.5.4.0+0~mr4.5.4.0) unstable; urgency=medium
 
   [ Rene Krenn ]
