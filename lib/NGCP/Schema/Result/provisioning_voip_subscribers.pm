@@ -288,6 +288,13 @@ __PACKAGE__->belongs_to(
 );
 
 __PACKAGE__->belongs_to(
+  "voip_subscriber_profile_left",
+  "NGCP::Schema::Result::voip_subscriber_profiles",
+  { "foreign.id" => "self.profile_id" },
+  { cascade_copy => 0, cascade_delete => 0, join_type => 'left' },
+);
+
+__PACKAGE__->belongs_to(
   "voip_subscriber_profile_set",
   "NGCP::Schema::Result::voip_subscriber_profile_sets",
   { "foreign.id" => "self.profile_set_id" },
