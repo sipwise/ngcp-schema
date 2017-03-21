@@ -1,3 +1,12 @@
+ngcp-schema (4.4.1.2+0~mr4.4.1.2) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [1a5903e] MT#20023 MT#20027 lnp numbers unique constraint and cascade delete restriction
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Tue, 21 Mar 2017 10:58:53 +0100
+
 ngcp-schema (4.4.1.1+0~mr4.4.1.1) unstable; urgency=medium
 
   * New release.
