@@ -45,9 +45,11 @@ case "$1" in
     ;;
 
   *)
-    echo "postinst of ngcp-schema called with unknown argument \`$1'" >&2
+    echo "postinst of ngcp-schema called with unknown argument '$1'" >&2
     exit 1
     ;;
 esac
+
+#DEBHELPER#
 
 exit 0
