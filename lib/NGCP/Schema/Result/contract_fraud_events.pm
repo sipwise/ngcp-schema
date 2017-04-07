@@ -108,13 +108,13 @@ FROM (
     IF (i.interval = 'month',
         IF (cfp.fraud_interval_limit > 0,
             cfp.fraud_interval_lock, bp.fraud_interval_lock),
-        IF (cfp.fraud_daily_lock > 0,
+        IF (cfp.fraud_daily_limit > 0,
             cfp.fraud_daily_lock, bp.fraud_daily_lock)
        ) AS interval_lock,
     IF (i.interval = 'month',
         IF (cfp.fraud_interval_limit > 0,
             cfp.fraud_interval_notify, bp.fraud_interval_notify),
-        IF (cfp.fraud_daily_notify > 0,
+        IF (cfp.fraud_daily_limit > 0,
             cfp.fraud_daily_notify, bp.fraud_daily_notify)
        ) AS interval_notify
   FROM (SELECT IF(? = 'month','month','day') AS 'interval') i,
@@ -147,4 +147,3 @@ HAVING interval_cost >= interval_limit
 ");
 
 1;
-
