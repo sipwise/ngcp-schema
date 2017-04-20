@@ -100,6 +100,13 @@ __PACKAGE__->belongs_to(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->might_have(
+  "voip_fax_data",
+  "NGCP::Schema::Result::voip_fax_data",
+  { 'foreign.sid' => 'self.sid' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 __PACKAGE__->set_primary_key("id");
 
 sub TO_JSON {
