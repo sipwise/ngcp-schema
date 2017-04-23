@@ -33,6 +33,10 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 1, is_nullable => 0 },
   "send_copy",
   { data_type => "tinyint", default_value => 1, is_nullable => 0 },
+  "t38",
+  { data_type => "tinyint", default_value => 1, is_nullable => 0 },
+  "ecm",
+  { data_type => "tinyint", default_value => 1, is_nullable => 0 },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -115,6 +119,18 @@ NGCP::Schema::Result::voip_fax_preferences
   is_nullable: 0
 
 =head2 send_copy
+
+  data_type: 'tinyint'
+  default_value: 1
+  is_nullable: 0
+
+=head2 t38
+
+  data_type: 'tinyint'
+  default_value: 1
+  is_nullable: 0
+
+=head2 ecm
 
   data_type: 'tinyint'
   default_value: 1
