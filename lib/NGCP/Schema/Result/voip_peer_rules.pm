@@ -33,6 +33,8 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 0, size => 255 },
   "enabled",
   { data_type => "tinyint", default_value => 1, is_nullable => 0 },
+  "stopper",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -113,6 +115,18 @@ NGCP::Schema::Result::voip_peer_rules
   data_type: 'varchar'
   is_nullable: 0
   size: 255
+
+=head2 enabled
+
+  data_type: 'tinyint'
+  is_nullable: 0
+  default_value: 1
+
+=head2 stopper
+
+  data_type: 'tinyint'
+  is_nullable: 0
+  default_value: 0
 
 =head1 PRIMARY KEY
 
