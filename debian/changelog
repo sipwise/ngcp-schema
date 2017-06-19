@@ -1,3 +1,12 @@
+ngcp-schema (5.2.2.1+0~mr5.2.2.1) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [3920f7f] TT#14235 fix fraud query empty daily notify and lock
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 19 Jun 2017 15:06:45 +0200
+
 ngcp-schema (5.2.2.0+0~mr5.2.2.0) unstable; urgency=medium
 
   * New release.
