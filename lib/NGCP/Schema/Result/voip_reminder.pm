@@ -32,6 +32,12 @@ __PACKAGE__->add_columns(
     extra => { list => ["never", "weekdays", "always"] },
     is_nullable => 0,
   },
+  "active",
+  {
+    data_type => "tinyint",
+    default_value => 1,
+    is_nullable => 0,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -100,6 +106,12 @@ NGCP::Schema::Result::voip_reminder
   data_type: 'enum'
   default_value: 'never'
   extra: {list => ["never","weekdays","always"]}
+  is_nullable: 0
+
+=head2 active
+
+  data_type: 'tinyint'
+  default_value: 1
   is_nullable: 0
 
 =head1 PRIMARY KEY
