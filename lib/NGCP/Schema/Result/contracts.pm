@@ -115,6 +115,8 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", extra => { unsigned => 1 }, default_value => 0, is_nullable => 0 },
   "add_vat",
   { data_type => "tinyint", extra => { unsigned => 1 }, default_value => 0, is_nullable => 0 },
+  "subadmin_self_admin",
+  { data_type => "tinyint", extra => { unsigned => 1 }, default_value => 0, is_nullable => 0 },
 
 );
 
