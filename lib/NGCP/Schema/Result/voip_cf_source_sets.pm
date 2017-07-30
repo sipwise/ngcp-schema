@@ -25,6 +25,13 @@ __PACKAGE__->add_columns(
   },
   "name",
   { data_type => "varchar", is_nullable => 0, size => 255 },
+  "mode",
+  {
+    data_type => "enum",
+    default_value => "whitelist",
+    extra => { list => ["whitelist", "blacklist"] },
+    is_nullable => 0,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
