@@ -20,6 +20,9 @@ class_has('config', is => 'rw', isa => 'NGCP::Schema::Config', lazy => 1, defaul
 
 sub connection {
     my ($self, $cfg) = @_;
+    if ($cfg->{config_file}) {
+        $self->config->config_file($cfg->{config_file});
+    }
     unless(defined $cfg->{dsn}) {
         $cfg = $self->config->as_hash->{ngcp_connect_info};
     }
