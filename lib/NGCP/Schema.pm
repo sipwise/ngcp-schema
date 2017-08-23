@@ -14,6 +14,9 @@ __PACKAGE__->load_namespaces(
     default_resultset_class => 'ResultSet',
 );
 
+use DBIx::Class::Storage::DBI;
+DBIx::Class::Storage::DBI->datetime_parser_type('NGCP::Schema::Storage::DateTime::Format::MySQL');
+
 class_has('config', is => 'rw', isa => 'NGCP::Schema::Config', lazy => 1, default => sub {
     return NGCP::Schema::Config->instance;
 });
