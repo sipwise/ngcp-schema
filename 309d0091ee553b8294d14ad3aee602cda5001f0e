@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fab399f4_e3754033",
+        "filename": "lib/NGCP/Schema/Storage/DateTime/Format/MySQL.pm",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2017-08-24T08:21:28Z",
+      "side": 1,
+      "message": "misleading, remove please",
+      "range": {
+        "startLine": 14,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 17
+      },
+      "revId": "309d0091ee553b8294d14ad3aee602cda5001f0e",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
