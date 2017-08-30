@@ -315,6 +315,47 @@ __PACKAGE__->might_have(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+
+
+__PACKAGE__->has_many(
+  "sipwise_mam_user",
+  'NGCP::Schema::Result::sipwise_mam',
+  sub {
+    my $args = shift;
+    return {
+        "$args->{foreign_alias}.username" => { '=' => \"concat($args->{self_alias}.username,\"@\",domain.domain)" } ,
+    };
+  },
+  { join_type => 'inner' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
+  "sipwise_mam_with",
+  'NGCP::Schema::Result::sipwise_mam',
+  sub {
+    my $args = shift;
+    return {
+        "$args->{foreign_alias}.with" => { '=' => \"concat($args->{self_alias}.username,\"@\",domain.domain)" } ,
+    };
+  },
+  { join_type => 'inner' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+#__PACKAGE__->belongs_to(
+#  "user",
+#  "NGCP::Schema::Result::provisioning_voip_subscribers",
+#  sub {
+#    my $args = shift;
+#    return {
+#        "$args->{foreign_alias}.username" => { -ident => \"concat($args->{self_alias}.username,'@',domain.domain)" } ,
+#    };
+#  },
+#  { is_deferrable => 1, on_delete => undef, on_update => undef },
+#);
+
+
 sub TO_JSON {
     my ($self) = @_;
     return {
