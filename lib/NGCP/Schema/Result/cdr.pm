@@ -72,6 +72,19 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "source_gpp9",
   { data_type => "varchar", is_nullable => 1, size => 255 },
+
+  "source_lnp_prefix",
+  { data_type => "varchar", is_nullable => 0, size => 255, default_value => "" },
+  "source_lnp_type",
+  {
+    data_type => "enum",
+    default_value => "",
+    extra => { list => ["","fixed","mobile"] },
+    is_nullable => 0,
+  },
+  "source_user_out",
+  { data_type => "varchar", is_nullable => 0, size => 255, default_value => "" },
+
   "destination_user_id",
   { data_type => "char", is_nullable => 0, size => 36 },
   "destination_provider_id",
@@ -117,6 +130,19 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "destination_gpp9",
   { data_type => "varchar", is_nullable => 1, size => 255 },
+
+  "destination_lnp_prefix",
+  { data_type => "varchar", is_nullable => 0, size => 255, default_value => "" },
+  "destination_lnp_type",
+  {
+    data_type => "enum",
+    default_value => "",
+    extra => { list => ["","fixed","mobile"] },
+    is_nullable => 0,
+  },
+  "destination_user_out",
+  { data_type => "varchar", is_nullable => 0, size => 255, default_value => "" },
+
   "peer_auth_user",
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "peer_auth_realm",
