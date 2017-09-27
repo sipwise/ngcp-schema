@@ -236,6 +236,12 @@ __PACKAGE__->add_columns(
     extra => { list => ["unexported", "ok", "failed"] },
     is_nullable => 0,
   },
+  "lnp_type",
+  {
+    data_type => "enum",
+    extra => { list => ["fixed","mobile"] },
+    is_nullable => 1,
+  },
 );
 
 
