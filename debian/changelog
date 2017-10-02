@@ -1,3 +1,18 @@
+ngcp-schema (5.5.1.0+0~mr5.5.1.0) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [36bfc88] TT#19459 add voip_cf_source_sets.mode
+  * [8c8c3fe] TT#18776 add support to use a custom schema config file
+
+  [ Rene Krenn ]
+  * [6dbc911] TT#12311 DateTime::Format::MySQL, safe for leap seconds
+  * [8d433cd] TT#20334 TT#21092 sipwise_mam ResultSet
+  * [4f3b817] TT#22469 TT#22467 TT#22468 lnp number "type" columns
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 02 Oct 2017 23:42:42 +0200
+
 ngcp-schema (5.5.0.0+0~mr5.5.0.0) unstable; urgency=medium
 
   [ Gerhard Jungwirth ]
