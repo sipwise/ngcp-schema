@@ -40,11 +40,7 @@ __PACKAGE__->add_columns(
     is_nullable => 1,
   },
   "type",
-  {
-    data_type => "enum",
-    extra => { list => ["fixed","mobile"] },
-    is_nullable => 1,
-  },
+  { data_type => "varchar", is_nullable => 1, size => 255 },
 );
 
 __PACKAGE__->set_primary_key("id");

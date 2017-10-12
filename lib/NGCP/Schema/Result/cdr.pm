@@ -249,17 +249,9 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
   },
   "source_lnp_type",
-  {
-    data_type => "enum",
-    extra => { list => ["fixed","mobile"] },
-    is_nullable => 1,
-  },
+  { data_type => "varchar", is_nullable => 1, size => 255 },
   "destination_lnp_type",
-  {
-    data_type => "enum",
-    extra => { list => ["fixed","mobile"] },
-    is_nullable => 1,
-  },
+  { data_type => "varchar", is_nullable => 1, size => 255 },
 );
 
 
@@ -324,7 +316,7 @@ __PACKAGE__->belongs_to(
       "$args->{foreign_alias}.uuid" => { -ident => "$args->{self_alias}.destination_user_id" },
       "$args->{foreign_alias}.uuid" => { -ident => "$args->{self_alias}.source_user_id" },
     ]};
-  },  
+  },
   { cascade_copy => 0, cascade_delete => 0, join_type => 'left' }
 );
 
