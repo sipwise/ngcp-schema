@@ -1,35 +1,33 @@
 package NGCP::Schema::Config;
+
 use Sipwise::Base;
-use Log::Log4perl qw();
-use MooseX::Types::Path::Class qw(File);
-use MooseX::Singleton qw(has);
+# use Log::Log4perl qw();
+# use MooseX::Types::Path::Class qw(File);
+# use MooseX::Singleton qw(has);
 use XML::Simple qw();
 
-our $VERSION = '2.007';
-
-has 'config_file' => (
-    is       => 'rw',
-    isa      => File,
-    required => 1,
-    coerce   => 1,
-    default  => '/etc/ngcp-panel/provisioning.conf'
-);
-
-has('as_hash', isa => 'HashRef', is => 'rw', lazy => 1, default => sub {
-    my ($self) = @_;
-    return $self->check_config(XML::Simple->new->XMLin($self->config_file->stringify, ForceArray => 0));
-});
-
-sub BUILD {
-    my ($self) = @_;
-    die q(can't find config file %s)->sprintf($self->config_file)
-        unless -e $self->config_file;
-    Log::Log4perl->init_once($self->config->{logconf});
-    Log::Log4perl->get_logger($self)->info('using config file "%s"'->sprintf($self->config_file));
+sub get_config_filename {
+    return '/etc/ngcp-panel/provisioning.conf';
 }
 
+sub get_config_hash {
+    my ($config_file) = @_;
+    $config_file //= get_config_filename;
+    my $config = XML::Simple->new->XMLin($config_file, ForceArray => 0);
+    my $checked = check_config($config);
+    return $checked;
+}
+
+# sub BUILD {
+#     my ($self) = @_;
+#     die q(can't find config file %s)->sprintf($self->config_file)
+#         unless -e $self->config_file;
+#     Log::Log4perl->init_once($self->config->{logconf});
+#     Log::Log4perl->get_logger($self)->info('using config file "%s"'->sprintf($self->config_file));
+# }
+
 sub check_config {
-    my ($self, $config) = @_;
+    my ($config) = @_;
     $config->{vsc}{actions} = [$config->{vsc}{actions}]
       if defined $config->{vsc}
       and defined $config->{vsc}{actions}
@@ -51,7 +49,7 @@ sub check_config {
     return $config;
 }
 
-__PACKAGE__->meta->make_immutable;
+1;
 
 __END__
 
