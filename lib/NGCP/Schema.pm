@@ -1,12 +1,10 @@
 package NGCP::Schema;
+
 use Sipwise::Base;
-use aliased 'NGCP::Schema::Exception';
 use NGCP::Schema::Config qw();
 use Regexp::Common qw(net);
 use Regexp::IPv6 qw($IPv6_re);
-use Moose;
-use MooseX::ClassAttribute qw(class_has);
-extends 'DBIx::Class::Schema';
+use base 'DBIx::Class::Schema';
 
 our $VERSION = '2.007';
 
@@ -17,45 +15,36 @@ __PACKAGE__->load_namespaces(
 use DBIx::Class::Storage::DBI;
 DBIx::Class::Storage::DBI->datetime_parser_type('NGCP::Schema::Storage::DateTime::Format::MySQL');
 
-class_has('config', is => 'rw', isa => 'NGCP::Schema::Config', lazy => 1, default => sub {
-    return NGCP::Schema::Config->instance;
-});
-
 sub connection {
     my ($self, $cfg) = @_;
+    my $config_file_name;
     if ($cfg->{config_file}) {
-        $self->config->config_file($cfg->{config_file});
+        $config_file_name = $cfg->{config_file};
+    } else {
+        $config_file_name = NGCP::Schema::Config::get_config_filename();
     }
     unless(defined $cfg->{dsn}) {
-        $cfg = $self->config->as_hash->{ngcp_connect_info};
+        my $full_config = NGCP::Schema::Config::get_config_hash($config_file_name);
+        $cfg = $full_config->{ngcp_connect_info};
     }
     $self->SUPER::connection($cfg);
 }
 
 sub validate {
     my ($self, $data, $mandatory_params, $optional_params) = @_;
-    Exception->throw({
-        description => 'Client.Syntax.MissingParam',
-        message => q(missing parameter 'data'),
-    }) unless defined $data;
-    Exception->throw({
-        description => 'Client.Syntax.MalformedParam',
-        message => q(parameter 'data' should be an object/hash, but is '%s')->sprintf(ref $data)
-    }) unless defined eval { %$data };
+    die q(missing parameter 'data')
+        unless defined $data;
+    die q(parameter 'data' should be an object/hash, but is '%s')->sprintf(ref $data)
+        unless defined eval { %$data };
     my %check_data = %$data;
     for my $param (@$mandatory_params) {
-        Exception->throw({
-            description => 'Client.Syntax.MissingParam',
-            message => "missing parameter '$param' in request"
-        }) unless exists $check_data{$param};
+        die "missing parameter '$param' in request"
+            unless exists $check_data{$param};
         delete $check_data{$param};
     }
     foreach my $key (keys %check_data) {
         next if grep { $key eq $_ } @$optional_params;
-        Exception->throw({
-            description => 'Client.Syntax.UnknownParam',
-            message => "unknown parameter '$key'",
-        });
+        die "unknown parameter '$key'";
     }
     return;
 }
@@ -65,7 +54,7 @@ sub check_domain {
     $self->validate($data, ['domain']);
     my $domain = $data->{domain};
     return 1 if $domain =~ /^(?:[a-z0-9]+(?:-[a-z0-9]+)*\.)+[a-z]+$/i;
-    return 1 if $self->config->as_hash->{allow_ip_as_domain}
+    return 1 if NGCP::Schema::Config::get_config_hash->{allow_ip_as_domain}
         and ($self->check_ip4({ip4 => $domain}) || $self->check_ip6_brackets({ip6brackets => $domain}));
     return;
 }
@@ -99,8 +88,6 @@ sub _check_ip_generic {
     return;
 }
 
-__PACKAGE__->meta->make_immutable;
-no Moose;
 1;
 
 __END__
@@ -110,10 +97,6 @@ __END__
 =head1 NAME
 
 NGCP::Schema - DBIC-derived ORM schema classes
-
-=head1 VERSION
-
-This document describes NGCP::Schema version 2.007
 
 =head1 SYNOPSIS
 
@@ -153,15 +136,11 @@ Version 2 moves the result classes of all tables into one namespace. This means 
 This is solved by prefixing the result class name I<on the right-hand side only> with the database name and an
 underscore, e.g. table C<provisioning.voip_subscribers> becomes the result class <provisioning_voip_subscribers>.
 
-=head1 BUGS AND LIMITATIONS
-
-L<https://bugtracker.sipwise.com>
-
 =head1 AUTHOR
 
-Lars Dieckow C<< <ldieckow@sipwise.com> >>
+Sipwise Development Team C<< <support@sipwise.com> >>
 
-=head1 LICENCE
+=head1 LICENSE
 
 This software is Copyright © 2013 by Sipwise GmbH, Austria.
 

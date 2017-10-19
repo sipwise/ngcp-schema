@@ -1,6 +1,7 @@
 package NGCP::Schema::Storage::DateTime::Format::MySQL;
 
 use strict;
+use warnings;
 
 use vars qw ($VERSION);
 
