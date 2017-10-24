@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dab895d6_1b88bf1e",
+        "filename": "lib/NGCP/Schema.pm",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2017-10-24T09:11:33Z",
+      "side": 0,
+      "message": "config has been completely replaced with a simple config loading mechanism. I would say if other components access the  config we fix them and really clean all legacy code here",
+      "parentUuid": "dab895d6_1bf99fe9",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 9
+      },
+      "revId": "37939b5ca19fab53592e0febf88f443401f6f46e",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dab895d6_bbd0b354",
         "filename": "lib/NGCP/Schema/Exception.pm",
         "patchSetId": 3
