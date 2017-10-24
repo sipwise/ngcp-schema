@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dab895d6_1bf99fe9",
+        "filename": "lib/NGCP/Schema.pm",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2017-10-24T08:27:33Z",
+      "side": 0,
+      "message": "maybe better to still provide ordinary getter/setter for it; not sure if it\u0027s expected somewhere? (if not, why does it exist at all)",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 9
+      },
+      "revId": "37939b5ca19fab53592e0febf88f443401f6f46e",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab895d6_bbd0b354",
+        "filename": "lib/NGCP/Schema/Exception.pm",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2017-10-24T08:27:33Z",
+      "side": 0,
+      "message": "if its used in Schema.pm only, and no catch block expects this type/ref somewhere, it could be dropped; on the other hand it could be kept but turned into a regular class, to be on safe side",
+      "range": {
+        "startLine": 1,
+        "startChar": 8,
+        "endLine": 1,
+        "endChar": 32
+      },
+      "revId": "37939b5ca19fab53592e0febf88f443401f6f46e",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
