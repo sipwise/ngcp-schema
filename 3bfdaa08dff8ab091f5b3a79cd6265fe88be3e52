@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dab895d6_841aac15",
+        "filename": "lib/NGCP/Schema/Result/location.pm",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2017-10-27T15:34:48Z",
+      "side": 1,
+      "message": "missing comma",
+      "revId": "3bfdaa08dff8ab091f5b3a79cd6265fe88be3e52",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab895d6_a417b0ec",
+        "filename": "lib/NGCP/Schema/Result/location.pm",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2017-10-27T15:34:48Z",
+      "side": 1,
+      "message": "missing comma",
+      "revId": "3bfdaa08dff8ab091f5b3a79cd6265fe88be3e52",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
