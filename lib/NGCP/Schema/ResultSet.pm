@@ -1,5 +1,5 @@
 package NGCP::Schema::ResultSet;
-use Sipwise::Base;
+use Sipwise::Base '-skip'=>['TryCatch'];
 use base 'DBIx::Class::ResultSet';
 
 our $VERSION = '2.007';

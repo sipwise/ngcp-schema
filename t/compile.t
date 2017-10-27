@@ -1,4 +1,4 @@
-use Sipwise::Base;
+use Sipwise::Base '-skip'=>['TryCatch'];
 use blib 'blib';
 use File::ShareDir qw(dist_file);
 use Module::Runtime qw(use_module);
