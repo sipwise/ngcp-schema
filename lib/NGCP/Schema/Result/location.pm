@@ -4,7 +4,11 @@ use parent 'DBIx::Class::Core';
 
 our $VERSION = '2.007';
 
-__PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
+__PACKAGE__->load_components(
+    "InflateColumn::DateTime",
+    "Helper::Row::ToJSON",
+    "+NGCP::Schema::InflateColumn::DateTime::EpochMilli",
+);
 
 __PACKAGE__->table("kamailio.location");
 
@@ -28,10 +32,11 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 512 },
   "expires",
   {
-    data_type => "datetime",
-    datetime_undef_if_invalid => 1,
-    default_value => "2030-05-28 21:32:15",
+    data_type => "bigint",
+    extra => { unsigned => 1 }
+    default_value => 0,
     is_nullable => 0,
+    inflate_datetime => 'epoch_milli',
   },
   "q",
   {
