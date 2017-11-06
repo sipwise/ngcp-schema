@@ -5,7 +5,7 @@ use warnings;
 
 our $VERSION = '0.06';
 
-use base ("DateTime::Format::MySQL");
+use parent 'DateTime::Format::MySQL';
 
 sub format_time
 {
