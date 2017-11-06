@@ -2,7 +2,7 @@ package NGCP::Schema::InflateColumn::DateTime::EpochMicro;
 use Sipwise::Base '-skip'=>['TryCatch'];
 use DateTime qw();
 
-use base 'DBIx::Class';
+use parent 'DBIx::Class';
 
 our $VERSION = '2.007';
 

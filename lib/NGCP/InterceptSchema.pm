@@ -3,7 +3,7 @@ package NGCP::InterceptSchema;
 use warnings;
 use strict;
 
-use base 'NGCP::Schema';
+use parent 'NGCP::Schema';
 
 our $VERSION = '2.007';
 
