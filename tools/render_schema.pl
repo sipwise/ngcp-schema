@@ -1,11 +1,12 @@
 #!/usr/bin/perl
 
+use strict;
+use warnings;
+
 BEGIN {
     unshift(@INC,'../lib');   
 };
 
-use strict;
-#use warnings;
 use NGCP::Schema;
 #use Storable;
 use Getopt::Long;

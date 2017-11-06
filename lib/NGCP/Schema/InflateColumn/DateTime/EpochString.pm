@@ -1,4 +1,8 @@
 package NGCP::Schema::InflateColumn::DateTime::EpochString;
+
+use strict;
+use warnings;
+
 use Sipwise::Base;
 use DateTime qw();
 

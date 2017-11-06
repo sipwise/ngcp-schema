@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::voip_contract_location_blocks;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use Math::BigInt;
 use parent 'DBIx::Class::Core';

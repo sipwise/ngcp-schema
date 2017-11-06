@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::voip_subscriber_profile_attributes;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 

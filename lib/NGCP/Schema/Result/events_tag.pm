@@ -1,5 +1,8 @@
 package NGCP::Schema::Result::events_tag;
 
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 

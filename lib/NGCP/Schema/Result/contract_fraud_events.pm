@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::contract_fraud_events;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use base qw/DBIx::Class::Core/;
 

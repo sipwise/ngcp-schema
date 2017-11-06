@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::domain;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 

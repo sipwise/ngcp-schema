@@ -1,4 +1,8 @@
 package NGCP::Schema::ResultSet;
+
+use strict;
+use warnings;
+
 use Sipwise::Base;
 use base 'DBIx::Class::ResultSet';
 

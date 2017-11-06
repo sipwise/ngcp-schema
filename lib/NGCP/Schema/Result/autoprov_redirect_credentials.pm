@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::autoprov_redirect_credentials;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 

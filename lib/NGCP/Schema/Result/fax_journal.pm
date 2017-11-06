@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::fax_journal;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 

@@ -1,5 +1,8 @@
 package NGCP::Schema::Config;
 
+use strict;
+use warnings;
+
 use Sipwise::Base;
 use XML::Simple qw();
 

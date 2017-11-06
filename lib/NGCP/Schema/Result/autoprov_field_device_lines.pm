@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::autoprov_field_device_lines;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 

@@ -1,5 +1,8 @@
 #!/usr/bin/perl
 
+use strict;
+use warnings;
+
 use Sipwise::Base;
 use blib 'blib';
 use File::ShareDir qw(dist_file);

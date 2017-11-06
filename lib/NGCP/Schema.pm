@@ -1,5 +1,8 @@
 package NGCP::Schema;
 
+use strict;
+use warnings;
+
 use Sipwise::Base;
 use NGCP::Schema::Config qw();
 use Regexp::Common qw(net);

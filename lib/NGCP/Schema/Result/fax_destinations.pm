@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::fax_destinations;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 
