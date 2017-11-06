@@ -3,9 +3,7 @@ package NGCP::Schema::Storage::DateTime::Format::MySQL;
 use strict;
 use warnings;
 
-use vars qw ($VERSION);
-
-$VERSION = '0.06';
+our $VERSION = '0.06';
 
 use parent 'DateTime::Format::MySQL';
 
