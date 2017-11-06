@@ -1,4 +1,5 @@
 package NGCP::Schema::ResultSet;
+
 use Sipwise::Base '-skip'=>['TryCatch'];
 use parent 'DBIx::Class::ResultSet';
 

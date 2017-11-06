@@ -1,7 +1,7 @@
 package NGCP::InterceptSchema;
 
-use warnings;
 use strict;
+use warnings;
 
 use parent 'NGCP::Schema';
 

@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::voip_pbx_autoattendants;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 our $VERSION = '2.007';
 
