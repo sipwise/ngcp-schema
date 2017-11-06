@@ -1,5 +1,8 @@
 #!/usr/bin/perl
 
+use strict;
+use warnings;
+
 use Module::Build qw();
 
 my $builder = Module::Build->new(

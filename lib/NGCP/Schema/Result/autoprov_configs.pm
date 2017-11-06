@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::autoprov_configs;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 
