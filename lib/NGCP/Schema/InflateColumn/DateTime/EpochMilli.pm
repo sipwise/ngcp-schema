@@ -6,7 +6,7 @@ use warnings;
 use Sipwise::Base '-skip'=>['TryCatch'];
 use DateTime qw();
 
-use base 'DBIx::Class';
+use parent 'DBIx::Class';
 
 our $VERSION = '2.007';
 
