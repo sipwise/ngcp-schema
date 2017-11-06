@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::voip_rwrs_sequence;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 

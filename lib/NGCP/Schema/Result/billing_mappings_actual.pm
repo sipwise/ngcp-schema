@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::billing_mappings_actual;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use base qw/DBIx::Class::Core/;
 

@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::lnp_numbers_actual;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use base qw/DBIx::Class::Core/;
 

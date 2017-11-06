@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::voip_mail_to_fax_acl;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 

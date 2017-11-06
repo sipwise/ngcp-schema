@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::messages_custom;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use base qw/DBIx::Class::Core/;
 

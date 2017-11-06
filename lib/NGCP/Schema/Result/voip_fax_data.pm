@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::voip_fax_data;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 

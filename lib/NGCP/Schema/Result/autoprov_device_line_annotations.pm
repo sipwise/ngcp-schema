@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::autoprov_device_line_annotations;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 

@@ -1,7 +1,10 @@
 #!/usr/bin/perl
 
-use Sipwise::Base '-skip'=>['TryCatch'];
+use strict;
+use warnings;
 use blib 'blib';
+
+use Sipwise::Base '-skip'=>['TryCatch'];
 use File::ShareDir qw(dist_file);
 use Module::Runtime qw(use_module);
 use Test::Fatal qw(exception);

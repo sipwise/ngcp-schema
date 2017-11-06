@@ -1,5 +1,8 @@
 package NGCP::Schema::Config;
 
+use strict;
+use warnings;
+
 use Sipwise::Base '-skip'=>['TryCatch'];
 use XML::Simple qw();
 
