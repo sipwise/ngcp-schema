@@ -7,7 +7,7 @@ use Sipwise::Base;
 use NGCP::Schema::Config qw();
 use Regexp::Common qw(net);
 use Regexp::IPv6 qw($IPv6_re);
-use base 'DBIx::Class::Schema';
+use parent 'DBIx::Class::Schema';
 
 our $VERSION = '2.007';
 

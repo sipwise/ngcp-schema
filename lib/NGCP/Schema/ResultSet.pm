@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Sipwise::Base;
-use base 'DBIx::Class::ResultSet';
+use parent 'DBIx::Class::ResultSet';
 
 our $VERSION = '2.007';
 
