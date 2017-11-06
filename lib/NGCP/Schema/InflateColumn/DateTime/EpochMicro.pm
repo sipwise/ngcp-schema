@@ -1,4 +1,8 @@
 package NGCP::Schema::InflateColumn::DateTime::EpochMicro;
+
+use strict;
+use warnings;
+
 use Sipwise::Base '-skip'=>['TryCatch'];
 use DateTime qw();
 

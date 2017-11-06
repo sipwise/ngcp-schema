@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::voip_peer_inbound_rules;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 

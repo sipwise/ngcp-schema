@@ -1,5 +1,8 @@
 package NGCP::Schema;
 
+use strict;
+use warnings;
+
 use Sipwise::Base '-skip'=>['TryCatch'];
 use NGCP::Schema::Config qw();
 use Regexp::Common qw(net);

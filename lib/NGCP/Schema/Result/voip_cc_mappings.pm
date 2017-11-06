@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::voip_cc_mappings;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 

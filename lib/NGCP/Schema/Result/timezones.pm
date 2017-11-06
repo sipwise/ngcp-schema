@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::timezones;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use parent qw/DBIx::Class::Core/;
 

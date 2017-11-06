@@ -1,4 +1,8 @@
 package NGCP::Schema::Result::billing_fees_history;
+
+use strict;
+use warnings;
+
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 
