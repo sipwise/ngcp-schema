@@ -1,3 +1,5 @@
+#!/usr/bin/perl
+
 use Sipwise::Base;
 use blib 'blib';
 use File::ShareDir qw(dist_file);

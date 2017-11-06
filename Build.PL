@@ -1,4 +1,7 @@
+#!/usr/bin/perl
+
 use Module::Build qw();
+
 my $builder = Module::Build->new(
     module_name       => 'NGCP-Schema',
     license           => 'GPL_3',
