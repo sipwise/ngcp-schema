@@ -104,7 +104,7 @@ sub TO_JSON {
 
 sub _bigint_to_bytes {
     my ($bigint,$size) = @_;
-    return undef if !defined $bigint;
+    return if !defined $bigint;
     #print '>'.sprintf('%0' . 2 * $size . 's',substr($bigint->as_hex(),2)) . "\n";
     return pack('C' x $size, map { hex($_) } (sprintf('%0' . 2 * $size . 's',substr($bigint->as_hex(),2)) =~ /(..)/g));
     #print '>' . join('',map { sprintf('%02x',$_) } unpack('C' x $size, $data)) . "\n";
@@ -113,7 +113,7 @@ sub _bigint_to_bytes {
 
 sub _bytes_to_bigint {
     my ($data,$size) = @_;
-    return undef if !defined $data;
+    return if !defined $data;
     return Math::BigInt->new('0x' . join('',map { sprintf('%02x',$_) } unpack('C' x $size, $data)))
 }
 
