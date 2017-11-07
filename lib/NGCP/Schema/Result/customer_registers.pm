@@ -56,6 +56,10 @@ __END__
 
 NGCP::Schema::Result::customer_registers
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "billing.customer_registers".
+
 =head1 COMPONENTS LOADED
 
 =over 4

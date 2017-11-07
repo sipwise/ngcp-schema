@@ -65,6 +65,10 @@ __END__
 
 NGCP::Schema::Result::sca_subscriptions
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "kamailio.sca_subscriptions".
+
 =head1 COMPONENTS LOADED
 
 =over 4

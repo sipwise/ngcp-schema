@@ -64,6 +64,10 @@ __END__
 
 NGCP::Schema::Result::contract_fraud_preferences
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "billing.contract_fraud_preferences".
+
 =head1 COMPONENTS LOADED
 
 =over 4

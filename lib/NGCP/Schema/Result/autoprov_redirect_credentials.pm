@@ -53,6 +53,10 @@ __END__
 
 NGCP::Schema::provisioning::Result::contract_vendor_credentials
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "provisioning.autoprov_redirect_credentials".
+
 =head1 COMPONENTS LOADED
 
 =over 4

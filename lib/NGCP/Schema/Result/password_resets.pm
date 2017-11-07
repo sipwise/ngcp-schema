@@ -51,6 +51,10 @@ sub TO_JSON {
 
 NGCP::Schema::Result::password_resets
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "billing.password_resets".
+
 =head1 COMPONENTS LOADED
 
 =over 4

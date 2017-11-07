@@ -56,6 +56,10 @@ __END__
 
 NGCP::Schema::Result::billing_peaktime_weekdays
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "billing.billing_peaktime_weekdays".
+
 =head1 COMPONENTS LOADED
 
 =over 4

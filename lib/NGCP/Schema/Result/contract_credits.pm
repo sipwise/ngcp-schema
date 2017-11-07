@@ -82,6 +82,10 @@ __END__
 
 NGCP::Schema::Result::contract_credits
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "billing.contract_credits".
+
 =head1 COMPONENTS LOADED
 
 =over 4

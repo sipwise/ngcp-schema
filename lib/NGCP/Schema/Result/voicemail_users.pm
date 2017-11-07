@@ -119,6 +119,10 @@ __END__
 
 NGCP::Schema::Result::voicemail_users
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "kamailio.voicemail_users".
+
 =head1 COMPONENTS LOADED
 
 =over 4

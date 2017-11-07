@@ -57,6 +57,10 @@ __END__
 
 NGCP::Schema::Result::credits
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "carrier.credits".
+
 =head1 COMPONENTS LOADED
 
 =over 4

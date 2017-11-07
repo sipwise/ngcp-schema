@@ -74,6 +74,10 @@ __END__
 
 NGCP::Schema::Result::carrier_payments
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "carrier.payments".
+
 =head1 COMPONENTS LOADED
 
 =over 4

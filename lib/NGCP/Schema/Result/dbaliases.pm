@@ -46,6 +46,10 @@ __END__
 
 NGCP::Schema::Result::dbaliases
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "kamailio.dbaliases".
+
 =head1 COMPONENTS LOADED
 
 =over 4
