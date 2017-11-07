@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dab895d6_b4d51d45",
+        "filename": "lib/NGCP/Schema/Result/password_resets.pm",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2017-11-07T14:26:39Z",
+      "side": 1,
+      "message": "can we touch the file then?",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 69
+      },
+      "revId": "fc4598e8b80e596efad3d2dc11f9d0b0e6f28fb6",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab895d6_54be8100",
+        "filename": "lib/NGCP/Schema/Result/voip_pbx_autoattendants.pm",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2017-11-07T14:26:39Z",
+      "side": 1,
+      "message": "same as previous one.",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 69
+      },
+      "revId": "fc4598e8b80e596efad3d2dc11f9d0b0e6f28fb6",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
