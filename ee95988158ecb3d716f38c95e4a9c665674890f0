@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dab895d6_b4bfddcf",
+        "filename": "bin/ngcp-dump-schema",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2017-11-07T14:44:34Z",
+      "side": 1,
+      "message": "I\u0027m a friend of having sentences (or at least separate parts that make sense on their own) in one single line, though I\u0027m aware that you\u0027re a fan of \u003c\u003d80 chars per line ;p",
+      "revId": "ee95988158ecb3d716f38c95e4a9c665674890f0",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
