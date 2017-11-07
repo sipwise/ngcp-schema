@@ -83,7 +83,7 @@ sub TO_JSON {
 
 __PACKAGE__->result_source_instance->is_virtual(1);
 
-__PACKAGE__->result_source_instance->view_definition("
+__PACKAGE__->result_source_instance->view_definition(<<SQL);
 SELECT bpinfo.id, bpinfo.reseller_id, bpinfo.interval, bpinfo.type,
        IF (bpinfo.fraud_use_reseller_rates > 0, SUM(cdr.source_reseller_cost),
                                                 SUM(cdr.source_customer_cost)) as interval_cost,
@@ -144,6 +144,6 @@ WHERE CASE WHEN bpinfo.interval = 'month'
   END
 GROUP BY bpinfo.id
 HAVING interval_cost >= interval_limit
-");
+SQL
 
 1;

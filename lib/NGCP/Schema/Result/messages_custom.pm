@@ -80,20 +80,21 @@ sub TO_JSON {
 
 __PACKAGE__->result_source_instance->is_virtual(1);
 
-__PACKAGE__->result_source_instance->view_definition("
-SELECT min(m.timestamp) as min_timestamp, m.* FROM
+__PACKAGE__->result_source_instance->view_definition(<<SQL);
+SELECT MIN(m.timestamp) AS min_timestamp, m.* FROM
 (
 (
-SELECT  DISTINCT ( call_id )
-  FROM sipstats.messages
-  WHERE caller_uuid LIKE ? COLLATE utf8_bin OR callee_uuid LIKE ? COLLATE utf8_bin OR call_id LIKE ? COLLATE utf8_bin
-ORDER BY timestamp DESC
-  LIMIT ?, ?
+    SELECT DISTINCT ( call_id )
+    FROM sipstats.messages
+    WHERE caller_uuid LIKE ? COLLATE utf8_bin
+        OR callee_uuid LIKE ? COLLATE utf8_bin
+        OR call_id LIKE ? COLLATE utf8_bin
+    ORDER BY timestamp DESC
+    LIMIT ?, ?
 )
 ) q JOIN sipstats.messages m ON q.call_id = m.call_id
 GROUP BY call_id
-");
-
+SQL
 
 1;
 

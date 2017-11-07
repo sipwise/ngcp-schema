@@ -62,17 +62,19 @@ __PACKAGE__->result_source_instance->is_virtual(1);
 #  and (n.end is null or n.end >= now())
 #order by length(n.number) desc limit 1
 
-__PACKAGE__->result_source_instance->view_definition("
-select ln.number,max(ln.id) as actual_ln_id from billing.lnp_numbers ln
-    inner join
-        (select lnn.number, max(lnn.start) max_start
-        from billing.lnp_numbers lnn
-        where ( lnn.`end` >= ? OR lnn.`end` IS NULL )
-            AND ( lnn.`start` <= ? OR lnn.`start` IS NULL )
-            AND ( ? is null OR lnn.`number` LIKE ? )
-        group by lnn.number
-    ) lnn on ln.number=lnn.number and (ln.start=lnn.max_start or (lnn.max_start is null and ln.start is null))
-group by ln.number
-");
+__PACKAGE__->result_source_instance->view_definition(<<SQL);
+SELECT ln.number,MAX(ln.id) AS actual_ln_id FROM billing.lnp_numbers ln
+INNER JOIN (
+    SELECT lnn.number, MAX(lnn.start) max_start
+    FROM billing.lnp_numbers lnn
+    WHERE ( lnn.`end` >= ? OR lnn.`end` IS NULL )
+        AND ( lnn.`start` <= ? OR lnn.`start` IS NULL )
+        AND ( ? is null OR lnn.`number` LIKE ? )
+    GROUP BY lnn.number
+) lnn ON ln.number=lnn.number
+    AND (ln.start=lnn.max_start
+        OR (lnn.max_start IS NULL AND ln.start IS NULL))
+GROUP BY ln.number
+SQL
 
 1;
