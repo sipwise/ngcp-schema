@@ -268,7 +268,7 @@ sub _check_relations {
 }
 
 sub _write_dot {
-    open DOT, '>', $dot_filename or die($! . "\n");
+    open my $dot_fh, '>', $dot_filename or die($! . "\n");
     my @title_labels = (NGCP::Schema->meta->{package} . ' ' . NGCP::Schema->schema_version . ' (' . localtime . ')');
     if ((scalar keys %entities_of_interest) > 0) {
         push(@title_labels,'Entities: ' . join(', ',keys %entities_of_interest));
@@ -280,7 +280,7 @@ sub _write_dot {
     my $diagram_title = join("\\n",@title_labels);
     my $fontsize = scalar keys %$entities;
     $fontsize = ($fontsize > 20 ? 60 : ($fontsize > 10 ? 40 : ($fontsize > 5 ? 32 : 24)));
-    print DOT <<PREAMBLE;
+    print { $dot_fh } <<PREAMBLE;
 digraph schema {
 
   labelloc=top;
@@ -334,7 +334,7 @@ PREAMBLE
             $border = 4;
         }
 
-        print DOT $indent . $entity->{node} . ' [shape=plaintext, style="", label=<' .
+        print { $dot_fh } $indent . $entity->{node} . ' [shape=plaintext, style="", label=<' .
             '<table BORDER="' . $border . '" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" bgcolor="' . $node_color . '">' .
               '<tr><td port="title" bgcolor="' . $db_color . '"><font point-size="14">' . $entity->{title} . '</font></td></tr>' .
               '<tr><td port="stereotype" bgcolor="' . $node_color . '"><font point-size="12">' . $entity->{stereotype} . '</font></td></tr>' .
@@ -355,22 +355,22 @@ PREAMBLE
             '</table>' .
         ">];\n";
     }
-    print DOT "\n";
+    print { $dot_fh } "\n";
     foreach my $rel (@$relations) {
         my $self = $entities->{$rel->{self_entity}};
         my $foreign = $entities->{$rel->{foreign_entity}};        
-        print DOT $indent . $self->{node} . ':' . $rel->{name} . (length($self_port_position) > 0 ? ':'.$self_port_position : '') . ' -> ' . $foreign->{node} . ':' . $rel->{foreign_column} . (length($foreign_port_position) > 0 ? ':'.$foreign_port_position : '') . ' [' .
+        print { $dot_fh } $indent . $self->{node} . ':' . $rel->{name} . (length($self_port_position) > 0 ? ':'.$self_port_position : '') . ' -> ' . $foreign->{node} . ':' . $rel->{foreign_column} . (length($foreign_port_position) > 0 ? ':'.$foreign_port_position : '') . ' [' .
             (defined $rel->{self_columns} ? ' headlabel="' . $rel->{self_columns} . '" ': '') .
             (defined $rel->{foreign_columns} ? ' taillabel="' . $rel->{foreign_columns} . '" ': '') .
             ' dir="forward"' .
         "];\n";
     }
     
-    print DOT <<POSTAMBLE;
+    print { $dot_fh } <<POSTAMBLE;
 }
 POSTAMBLE
     
-    close DOT or die($! . "\n");
+    close $dot_fh or die($! . "\n");
     _log(sprintf('%s created',$dot_filename));
 }
 
