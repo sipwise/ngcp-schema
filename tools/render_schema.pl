@@ -113,20 +113,18 @@ sub _load_model {
                 push(@foreign_columns,$foreign);
             }
             @self_columns = map {
-                    if ($_ =~ /^self\./) {
-                        $_ =~ s/^self\.//;
+                    if (m/^self\./) {
+                        s/^self\.//r;
                     } else {
-                        $_ = '\'' . $_ . '\'';
+                        '\'' . $_ . '\'';
                     }
-                    $_;
                 } @self_columns;
             @foreign_columns = map {
-                    if ($_ =~ /^foreign\./) {
-                        $_ =~ s/^foreign\.//;
+                    if (m/^foreign\./) {
+                        s/^foreign\.//r;
                     } else {
-                        $_ = '\'' . $_ . '\'';
+                        '\'' . $_ . '\'';
                     }
-                    $_;
                 } @foreign_columns;
             my $multi = $rel_info->{attrs}->{accessor};
             if ('multi' eq $multi) {
