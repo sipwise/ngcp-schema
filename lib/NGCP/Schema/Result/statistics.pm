@@ -241,6 +241,10 @@ __END__
 
 NGCP::Schema::Result::statistics
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "sipstats.statistics".
+
 =head1 COMPONENTS LOADED
 
 =over 4

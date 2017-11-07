@@ -49,6 +49,10 @@ __END__
 
 NGCP::Schema::Result::domain
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "kamailio.domain".
+
 =head1 COMPONENTS LOADED
 
 =over 4

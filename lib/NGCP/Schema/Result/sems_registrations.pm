@@ -51,6 +51,10 @@ __END__
 
 NGCP::Schema::Result::sems_registrations
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "kamailio.sems_registrations".
+
 =head1 COMPONENTS LOADED
 
 =over 4

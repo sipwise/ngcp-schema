@@ -357,6 +357,10 @@ __END__
 
 NGCP::Schema::Result::provisioning_voip_subscribers
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "provisioning.voip_subscribers".
+
 =head1 COMPONENTS LOADED
 
 =over 4

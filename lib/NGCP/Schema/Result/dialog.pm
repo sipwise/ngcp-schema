@@ -97,6 +97,10 @@ __END__
 
 NGCP::Schema::Result::dialog
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "kamailio.dialog".
+
 =head1 COMPONENTS LOADED
 
 =over 4

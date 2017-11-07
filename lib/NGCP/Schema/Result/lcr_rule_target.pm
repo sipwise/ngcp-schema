@@ -77,6 +77,10 @@ __END__
 
 NGCP::Schema::Result::lcr_rule_target
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "kamailio.lcr_rule_target".
+
 =head1 COMPONENTS LOADED
 
 =over 4

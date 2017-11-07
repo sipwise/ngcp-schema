@@ -66,6 +66,10 @@ __END__
 
 NGCP::Schema::Result::voip_fax_preferences
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "provisioning.voip_fax_preferences".
+
 =head1 COMPONENTS LOADED
 
 =over 4

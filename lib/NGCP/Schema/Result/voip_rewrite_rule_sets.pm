@@ -74,6 +74,10 @@ __END__
 
 NGCP::Schema::Result::voip_rewrite_rule_sets
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "provisioning.voip_rewrite_rule_sets".
+
 =head1 COMPONENTS LOADED
 
 =over 4

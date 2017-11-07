@@ -76,6 +76,10 @@ __END__
 
 NGCP::Schema::Result::rtc_session
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "provisioning.rtc_session".
+
 =head1 COMPONENTS LOADED
 
 =over 4

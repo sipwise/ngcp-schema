@@ -49,6 +49,10 @@ __END__
 
 NGCP::Schema::Result::prepaid_costs
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "accounting.prepaid_costs".
+
 =head1 COMPONENTS LOADED
 
 =over 4

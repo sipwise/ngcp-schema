@@ -33,6 +33,10 @@ __END__
 
 NGCP::Schema::Result::sipstats_mark
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "sipstats.mark".
+
 =head1 COMPONENTS LOADED
 
 =over 4

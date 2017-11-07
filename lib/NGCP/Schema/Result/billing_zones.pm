@@ -76,6 +76,10 @@ __END__
 
 NGCP::Schema::Result::billing_zones
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "billing.billing_zones".
+
 =head1 COMPONENTS LOADED
 
 =over 4

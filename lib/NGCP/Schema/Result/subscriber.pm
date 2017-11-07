@@ -84,6 +84,10 @@ __END__
 
 NGCP::Schema::Result::subscriber
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "kamailio.subscriber".
+
 =head1 COMPONENTS LOADED
 
 =over 4

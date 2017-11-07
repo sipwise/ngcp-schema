@@ -49,6 +49,10 @@ __END__
 
 NGCP::Schema::Result::cfg_schema
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "ngcp.cfg_schema".
+
 =head1 COMPONENTS LOADED
 
 =over 4

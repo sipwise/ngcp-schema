@@ -179,6 +179,10 @@ __END__
 
 NGCP::Schema::Result::contacts
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "billing.contacts".
+
 =head1 COMPONENTS LOADED
 
 =over 4

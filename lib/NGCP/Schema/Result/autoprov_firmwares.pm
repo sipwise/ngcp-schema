@@ -61,6 +61,10 @@ __END__
 
 NGCP::Schema::provisioning::Result::autoprov_firmwares
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "provisioning.autoprov_firmwares".
+
 =head1 COMPONENTS LOADED
 
 =over 4

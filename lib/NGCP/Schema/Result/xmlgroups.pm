@@ -45,6 +45,10 @@ __END__
 
 NGCP::Schema::Result::xmlgroups
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "provisioning.xmlgroups".
+
 =head1 COMPONENTS LOADED
 
 =over 4

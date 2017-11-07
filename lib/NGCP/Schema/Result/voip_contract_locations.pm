@@ -58,6 +58,10 @@ __END__
 
 NGCP::Schema::Result::voip_contract_locations
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "provisioning.voip_contract_locations".
+
 =head1 COMPONENTS LOADED
 
 =over 4
