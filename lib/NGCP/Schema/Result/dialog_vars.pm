@@ -44,6 +44,10 @@ __END__
 
 NGCP::Schema::Result::dialog_vars
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "kamailio.dialog_vars".
+
 =head1 COMPONENTS LOADED
 
 =over 4

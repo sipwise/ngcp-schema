@@ -126,6 +126,10 @@ __END__
 
 NGCP::Schema::Result::billing_network_blocks
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "billing.billing_network_blocks".
+
 =head1 COMPONENTS LOADED
 
 =over 4

@@ -126,6 +126,10 @@ __END__
 
 NGCP::Schema::Result::contract_balances
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "billing.contract_balances".
+
 =head1 COMPONENTS LOADED
 
 =over 4

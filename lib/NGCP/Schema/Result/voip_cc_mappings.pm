@@ -49,6 +49,10 @@ __END__
 
 NGCP::Schema::Result::voip_cc_mappings
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "provisioning.voip_cc_mappings".
+
 =head1 COMPONENTS LOADED
 
 =over 4

@@ -77,6 +77,10 @@ __END__
 
 NGCP::Schema::Result::kamailio_acc_trash
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "kamailio.acc_trash".
+
 =head1 COMPONENTS LOADED
 
 =over 4

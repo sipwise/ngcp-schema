@@ -55,6 +55,10 @@ __END__
 
 NGCP::Schema::Result::packets
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "sipstats.packets".
+
 =head1 COMPONENTS LOADED
 
 =over 4

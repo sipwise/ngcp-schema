@@ -76,6 +76,10 @@ __END__
 
 NGCP::Schema::Result::lnp_numbers
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "billing.lnp_numbers".
+
 =head1 COMPONENTS LOADED
 
 =over 4

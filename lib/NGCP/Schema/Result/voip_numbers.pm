@@ -105,6 +105,10 @@ __END__
 
 NGCP::Schema::Result::voip_numbers
 
+=head1 DESCRIPTION
+
+This module is a schema class for the NGCP database table "billing.voip_numbers".
+
 =head1 COMPONENTS LOADED
 
 =over 4
