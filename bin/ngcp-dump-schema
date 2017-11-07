@@ -98,39 +98,36 @@ ncgp-dump-schema - recreate schema files from live database definition
 
 =head1 SYNOPSIS
 
-    perl bin/ncgp-dump-schema --version='1.000'
+B<ncgp-dump-schema> B<--version>=I<VERSION> [I<option>...]
 
-=head2 Options
+=head1 DESCRIPTION
 
-    --dump_directory            output location, default 'lib'
-    --overwrite_modifications   whether to dicard changes in generated code
-    --version                   (required) version for dumped schema classes
-    --help                      brief help message
-    --man                       full documentation
+This program takes care of recreating schema files from live database
+definitions.
 
 =head1 OPTIONS
 
-=head2 C<--dump_directory>
+=head2 B<--dump_directory>[=I<DIRECTORY>]
 
 Directory name for the output, default is F<lib>.
 
-=head2 C<--overwrite_modifications>
+=head2 B<--overwrite_modifications>
 
 (boolean) See L<DBIx::Class::Schema::Loader::Base/overwrite_modifications>,
 default is false. Use with care, since this is a potentially destructive
 operation, only apply to a working copy in a known safe fall-back state.
 
-=head2 C<--version>
+=head2 B<--version>=I<VERSION>
 
 (required) Version for the dumped classes. Increase the version when
 incompatible changes are done, e.g. adding a table. See L<Perl::Version> for
 the notion and L<Sipwise::CodingStandards/"versions"> for guidance.
 
-=head2 C<--help>
+=head2 B<-?>, B<--help>
 
 Print a brief help message and exits.
 
-=head2 C<--man>
+=head2 B<--man>
 
 Prints the manual page and exits.
 
