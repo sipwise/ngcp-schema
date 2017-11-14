@@ -1,9 +1,9 @@
 Source: ngcp-schema
 Section: perl
-Priority: extra
+Priority: optional
 Maintainer: Sipwise Development Team <support@sipwise.com>
 Build-Depends:
- debhelper (>= 9),
+ debhelper (>= 10),
  libaliased-perl,
  libcarp-fix-1-25-perl,
  libdata-serializer-perl,
