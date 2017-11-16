@@ -124,11 +124,13 @@ FROM (
   FROM (SELECT IF(? = 'month','month','day') AS 'interval') i,
        billing.contracts c
   INNER JOIN (
-        SELECT m.contract_id, m.billing_profile_id, MAX(m.start_date)
-        FROM billing.billing_mappings m
-        WHERE (m.start_date IS NULL OR m.start_date <= NOW())
-          AND (m.end_date IS NULL OR m.end_date >= NOW())
-        GROUP BY 1
+        SELECT m1.contract_id, m1.billing_profile_id
+        FROM billing.billing_mappings m1 JOIN billing.billing_mappings m2
+          ON m1.contract_id = m2.contract_id
+        WHERE (m1.start_date IS NULL OR m1.start_date <= NOW())
+          AND (m1.end_date IS NULL OR m1.end_date >= NOW())
+        GROUP BY m1.contract_id, m1.start_date
+          HAVING m1.start_date = MAX(m2.start_date)
         ) bm ON bm.contract_id = c.id
   JOIN billing.billing_profiles bp ON bp.id = bm.billing_profile_id
   JOIN billing.contacts n ON n.id = c.contact_id
