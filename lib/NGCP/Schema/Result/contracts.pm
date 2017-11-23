@@ -130,12 +130,6 @@ __PACKAGE__->has_many(
   { "foreign.contract_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
-__PACKAGE__->has_many(
-  "billing_mappings_actual",
-  "NGCP::Schema::Result::billing_mappings_actual",
-  { "foreign.contract_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
 
 __PACKAGE__->belongs_to(
   "contact",

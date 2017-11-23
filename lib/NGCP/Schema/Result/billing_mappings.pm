@@ -96,6 +96,7 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
+
 __PACKAGE__->belongs_to(
   "product",
   "NGCP::Schema::Result::products",
