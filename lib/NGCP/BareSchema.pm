@@ -1,4 +1,4 @@
-package NGCP::FaxSchema;
+package NGCP::BareSchema;
 
 use warnings;
 use strict;
@@ -12,23 +12,26 @@ our $VERSION = '2.007';
 # warning: NGCP::Schema::ResultSet is not loaded. Therefore the features Helper::ResultSet::IgnoreWantarray
 #   and Helper::ResultSet::SetOperations are not available here.
 
-__PACKAGE__->load_classes(
-    { 'NGCP::Schema::Result' => [qw/
-        provisioning_voip_subscribers
-        voip_dbaliases
-        voip_domains
-        voip_fax_data
-        voip_fax_destinations
-        voip_fax_journal
-        voip_fax_preferences
-        voip_mail_to_fax_acl
-        voip_mail_to_fax_preferences
-        voip_mail_to_fax_secret_renew_notify
-        voip_subscriber_timezone
-        voip_subscribers
-    /] },
-    #default_resultset_class => 'ResultSet',
-);
+sub import {
+    my ($self, %config) = @_;
+    my $classes = $config{classes} // [];
+
+    __PACKAGE__->load_classes( { 'NGCP::Schema::Result' => $classes } );
+
+        # provisioning_voip_subscribers
+        # voip_dbaliases
+        # voip_domains
+        # voip_fax_data
+        # voip_fax_destinations
+        # voip_fax_journal
+        # voip_fax_preferences
+        # voip_mail_to_fax_acl
+        # voip_mail_to_fax_preferences
+        # voip_mail_to_fax_secret_renew_notify
+        # voip_subscriber_timezone
+        # voip_subscribers
+    return;
+}
 
 # use DBIx::Class::Storage::DBI;
 # DBIx::Class::Storage::DBI->datetime_parser_type('NGCP::Schema::Storage::DateTime::Format::MySQL');
