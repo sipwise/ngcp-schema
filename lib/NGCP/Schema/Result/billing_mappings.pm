@@ -96,6 +96,7 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
+
 __PACKAGE__->belongs_to(
   "product",
   "NGCP::Schema::Result::products",
@@ -118,6 +119,13 @@ __PACKAGE__->belongs_to(
     on_delete     => "RESTRICT",
     on_update     => "CASCADE",
   },
+);
+
+__PACKAGE__->has_one(
+  "billing_mappings_actual",
+  "NGCP::Schema::Result::billing_mappings_actual",
+  { 'foreign.id' => 'self.id' },
+  { join_type => 'INNER', cascade_copy => 0, cascade_delete => 0 },
 );
 
 sub TO_JSON {
