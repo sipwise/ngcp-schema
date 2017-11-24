@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baada198_337e9faf",
+        "filename": "lib/NGCP/Schema/Result/billing_mappings_actual.pm",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2017-11-24T06:24:25Z",
+      "side": 1,
+      "message": "better to omit triggers for virtual view defs?",
+      "range": {
+        "startLine": 50,
+        "startChar": 22,
+        "endLine": 50,
+        "endChar": 30
+      },
+      "revId": "85cc1e9716456078c9bf5f2eed02baa3afab148f",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baada198_734f3793",
+        "filename": "lib/NGCP/Schema/Result/contracts.pm",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2017-11-24T06:24:25Z",
+      "side": 1,
+      "message": "this must be \"many\" afair. multiple actual mappings (same start_time) are a regular case with profile packages.",
+      "range": {
+        "startLine": 134,
+        "startChar": 17,
+        "endLine": 134,
+        "endChar": 20
+      },
+      "revId": "85cc1e9716456078c9bf5f2eed02baa3afab148f",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
