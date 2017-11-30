@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baada198_1ef19bcd",
+        "filename": "lib/NGCP/Schema/ResultSet/contracts.pm",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2017-11-30T15:06:20Z",
+      "side": 1,
+      "message": "ok this is not deterministic (could be any of the eg. 3 showing the same start_date). old code therefor had a max(bm.id) in it (most recently inserted one for such cases).\n\nthis most likely also is causing that test failing..",
+      "range": {
+        "startLine": 32,
+        "startChar": 23,
+        "endLine": 32,
+        "endChar": 25
+      },
+      "revId": "6bc25ec8763797dd74715baafd988774f5b31e12",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
