@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baada198_331a1818",
+        "filename": "lib/NGCP/Schema/Result/voicemail_spool.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2017-11-30T11:30:56Z",
+      "side": 1,
+      "message": "actually I think it is preferred to just use one representation for empty values. So either \"\" or NULL. it will create inconsistencies if both are used. (maybe NOT NULL DEFAULT \"\" would be fine here)",
+      "range": {
+        "startLine": 54,
+        "startChar": 28,
+        "endLine": 54,
+        "endChar": 65
+      },
+      "revId": "858531e3714f530492fc9f3e3bdd556152fc46eb",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
