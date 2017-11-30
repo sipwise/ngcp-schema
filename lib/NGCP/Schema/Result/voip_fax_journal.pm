@@ -82,6 +82,8 @@ __PACKAGE__->add_columns(
   { data_type => "char", is_nullable => 0, size => 36 },
   "callee_uuid",
   { data_type => "char", is_nullable => 0, size => 36 },
+  "call_id",
+  { data_type => "varchar", is_nullable => 1, size => 255 },
 );
 __PACKAGE__->belongs_to(
   "provisioning_voip_subscriber",
@@ -252,6 +254,11 @@ This module is a schema class for the NGCP database table "provisioning.voip_fax
   is_nullable: 1
   size: 36
 
+=head2 call_id
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 255
 
 =head1 PRIMARY KEY
 

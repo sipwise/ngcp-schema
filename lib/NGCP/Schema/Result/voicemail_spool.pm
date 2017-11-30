@@ -50,6 +50,8 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", default_value => "", is_nullable => 1, size => 63 },
   "recording",
   { data_type => "longblob", is_nullable => 1 },
+  "call_id",
+  { data_type => "varchar", default_value => "", is_nullable => 1, size => 255 },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -184,6 +186,13 @@ This module is a schema class for the NGCP database table "kamailio.voicemail_sp
 
   data_type: 'longblob'
   is_nullable: 1
+
+=head2 call_id
+
+  data_type: 'varchar'
+  default_value: (empty string)
+  is_nullable: 1
+  size: 255
 
 =head1 PRIMARY KEY
 
