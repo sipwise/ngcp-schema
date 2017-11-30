@@ -22,6 +22,30 @@
       "revId": "6bc25ec8763797dd74715baafd988774f5b31e12",
       "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baada198_decd6388",
+        "filename": "lib/NGCP/Schema/ResultSet/contracts.pm",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2017-11-30T15:09:07Z",
+      "side": 1,
+      "message": "there are 2 subqueries, not 1\n\nINNER JOIN (SELECT `bm`.`id`, `bm`.`contract_id`\n              FROM `billing`.`billing_mappings` `bm`\n             WHERE ( `bm`.`start_date` \u003c\u003d\u003e (SELECT MAX( `bmm`.`start_date` ) AS `effective_start_date`\n                                              FROM `billing`.`billing_mappings` `bmm`\n                                             WHERE ( (\n                                                        ( `bmm`.`start_date` IS NULL OR `bmm`.`start_date` \u003c\u003d \u0027NOW()\u0027 )\n                                                                AND\n                                                        ( `bmm`.`end_date` IS NULL OR `bmm`.`end_date` \u003e\u003d \u0027NOW()\u0027 )\n                                                       AND `bmm`.`contract_id` \u003d \u0027bm.contract_id\u0027 )\n                                                     )\n                                                   )",
+      "parentUuid": "baada198_1ef19bcd",
+      "range": {
+        "startLine": 32,
+        "startChar": 23,
+        "endLine": 32,
+        "endChar": 25
+      },
+      "revId": "6bc25ec8763797dd74715baafd988774f5b31e12",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
     }
   ]
 }
