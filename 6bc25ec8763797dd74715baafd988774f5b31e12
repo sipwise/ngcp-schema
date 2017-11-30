@@ -46,6 +46,30 @@
       "revId": "6bc25ec8763797dd74715baafd988774f5b31e12",
       "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baada198_1ec8bb73",
+        "filename": "lib/NGCP/Schema/ResultSet/contracts.pm",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2017-11-30T15:10:48Z",
+      "side": 1,
+      "message": "well, where I agree is if there are several identical start_date rows for one contract ? is that even possible and why ?",
+      "parentUuid": "baada198_decd6388",
+      "range": {
+        "startLine": 32,
+        "startChar": 23,
+        "endLine": 32,
+        "endChar": 25
+      },
+      "revId": "6bc25ec8763797dd74715baafd988774f5b31e12",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
     }
   ]
 }
