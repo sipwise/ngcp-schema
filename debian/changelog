@@ -1,3 +1,12 @@
+ngcp-schema (4.5.7.1+0~mr4.5.7.1) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [bcab27e] TT#12311 DateTime::Format::MySQL, safe for leap seconds
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Tue, 19 Dec 2017 15:53:19 +0100
+
 ngcp-schema (4.5.7.0+0~mr4.5.7.0) unstable; urgency=medium
 
   * New release.
