@@ -1,3 +1,12 @@
+ngcp-schema (5.5.4.0+0~mr5.5.4.0) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [93e389c] TT#25053 billing mappings groupwise max for fraudevents
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 12 Feb 2018 12:43:11 +0100
+
 ngcp-schema (5.5.3.0+0~mr5.5.3.0) unstable; urgency=medium
 
   [ Rene Krenn ]
