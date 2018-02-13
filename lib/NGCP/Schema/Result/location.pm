@@ -81,11 +81,22 @@ __PACKAGE__->add_unique_constraint("ruid_idx", ["ruid"]);
 # handle with care, you need to join them together yourself, like:
 # { 'domain.id' => { -ident => 'subscriber.domain_id' } },
 # { join => [ 'subscriber', 'domain' ] }
+# XXX: DEPRECATED!! DON'T USE THIS RELATION ANYMORE
 __PACKAGE__->belongs_to(
   "subscriber",
   "NGCP::Schema::Result::provisioning_voip_subscribers",
   { "foreign.username" => "self.username" },
 );
+
+__PACKAGE__->belongs_to(
+  "kam_subscriber",
+  "NGCP::Schema::Result::subscriber",
+  {
+    "foreign.username" => "self.username",
+    "foreign.domain" => "self.domain",
+  },
+);
+
 __PACKAGE__->belongs_to(
   "domain",
   "NGCP::Schema::Result::voip_domains",
