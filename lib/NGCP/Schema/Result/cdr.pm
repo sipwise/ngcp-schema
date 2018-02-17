@@ -324,6 +324,14 @@ __PACKAGE__->belongs_to(
   { cascade_copy => 0, cascade_delete => 0, join_type => 'left' }
 );
 
+
+__PACKAGE__->might_have(
+  "cdr_mos_data",
+  'NGCP::Schema::Result::cdr_mos_data',
+  { 'foreign.cdr_id' => 'self.id' },
+  { cascade_copy => 0, cascade_delete => 1 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
