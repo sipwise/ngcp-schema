@@ -16,16 +16,16 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
 
   "username",
-  { data_type => "varchar", is_nullable => 1, size => 127 },  
+  { data_type => "varchar", is_nullable => 1, size => 127 },
   "timestamp",
   { data_type => "decimal", is_nullable => 0, size => [13, 3], inflate_datetime => 'epoch_milli' },
 
   "type",
   {
     data_type => "enum",
-    extra => { list => ["cash", "voucher"] },
+    extra => { list => ["cash", "voucher", "set_balance"] },
     is_nullable => 0,
-  },  
+  },
   "outcome",
   {
     data_type => "enum",
@@ -97,9 +97,9 @@ __PACKAGE__->add_columns(
   },
 
   "lock_level_before",
-  { data_type => "tinyint", extra => { unsigned => 1 }, is_nullable => 1 },    
+  { data_type => "tinyint", extra => { unsigned => 1 }, is_nullable => 1 },
   "lock_level_after",
-  { data_type => "tinyint", extra => { unsigned => 1 }, is_nullable => 1 },    
+  { data_type => "tinyint", extra => { unsigned => 1 }, is_nullable => 1 },
 
   "contract_balance_before_id",
   {
@@ -114,7 +114,7 @@ __PACKAGE__->add_columns(
     extra => { unsigned => 1 },
     is_foreign_key => 1,
     is_nullable => 1,
-  },  
+  },
 
   "request_token",
   { data_type => "varchar", is_nullable => 1, size => 255 },
