@@ -29,16 +29,20 @@ __PACKAGE__->add_columns(
   },
   "cash_balance",
   { data_type => "double precision", is_nullable => 1 },
+  "initial_cash_balance",
+  { data_type => "double precision", is_nullable => 1 },
   "cash_balance_interval",
   { data_type => "double precision", default_value => 0, is_nullable => 0 },
   "free_time_balance",
   { data_type => "integer", is_nullable => 1 },
+  "initial_free_time_balance",
+  { data_type => "integer", is_nullable => 1 },
   "free_time_balance_interval",
   { data_type => "integer", default_value => 0, is_nullable => 0 },
   "topup_count",
-  { data_type => "integer", default_value => 0, is_nullable => 0 },  
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "timely_topup_count",
-  { data_type => "integer", default_value => 0, is_nullable => 0 },    
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "start",
   {
     data_type => "datetime",
@@ -63,13 +67,13 @@ __PACKAGE__->add_columns(
     data_type => "datetime",
     datetime_undef_if_invalid => 1,
     is_nullable => 1,
-  },  
+  },
   "underrun_lock",
   {
     data_type => "datetime",
     datetime_undef_if_invalid => 1,
     is_nullable => 1,
-  },    
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
