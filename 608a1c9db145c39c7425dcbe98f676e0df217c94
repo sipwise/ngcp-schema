@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "ba7be1f8_eb30adea",
+        "filename": "lib/NGCP/Schema/Result/cdr_mos_data.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2018-02-19T22:57:11Z",
+      "side": 1,
+      "message": "Yes, overlooked it. Thank you.",
+      "parentUuid": "ba7be1f8_0804277d",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 28
+      },
+      "revId": "608a1c9db145c39c7425dcbe98f676e0df217c94",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_68b5a3cc",
         "filename": "lib/NGCP/Schema/Result/cdr_mos_data.pm",
         "patchSetId": 1
