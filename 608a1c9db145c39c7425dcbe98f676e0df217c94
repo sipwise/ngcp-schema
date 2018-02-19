@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba7be1f8_a8c6bb47",
+        "filename": "lib/NGCP/Schema/Result/cdr_mos_data.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2018-02-19T13:10:23Z",
+      "side": 1,
+      "message": "not really needed here",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 23
+      },
+      "revId": "608a1c9db145c39c7425dcbe98f676e0df217c94",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_0804277d",
+        "filename": "lib/NGCP/Schema/Result/cdr_mos_data.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2018-02-19T13:10:23Z",
+      "side": 1,
+      "message": "I think \"belongs_to\" should not use LEFT as it\u0027s more of an \"RIGHT\" join, \"LEFT\" should be specified in \"has_one\" and \"has_many\" and imho does not make much sense in \"belong_to\".",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 28
+      },
+      "revId": "608a1c9db145c39c7425dcbe98f676e0df217c94",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_68b5a3cc",
+        "filename": "lib/NGCP/Schema/Result/cdr_mos_data.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2018-02-19T13:10:23Z",
+      "side": 1,
+      "message": "CASCADE",
+      "range": {
+        "startLine": 70,
+        "startChar": 22,
+        "endLine": 70,
+        "endChar": 28
+      },
+      "revId": "608a1c9db145c39c7425dcbe98f676e0df217c94",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_88c9f75c",
+        "filename": "lib/NGCP/Schema/Result/cdr_mos_data.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2018-02-19T13:10:23Z",
+      "side": 1,
+      "message": "CASCADE",
+      "range": {
+        "startLine": 71,
+        "startChar": 22,
+        "endLine": 71,
+        "endChar": 31
+      },
+      "revId": "608a1c9db145c39c7425dcbe98f676e0df217c94",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
