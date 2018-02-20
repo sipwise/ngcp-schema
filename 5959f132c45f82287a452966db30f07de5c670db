@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba7be1f8_2b948536",
+        "filename": "lib/NGCP/Schema/Result/cdr_mos_data.pm",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2018-02-20T10:49:15Z",
+      "side": 1,
+      "message": "usually, there should be no need to specify the join_type at all. imo, right join never makes sense here.\n\nfor details see https://metacpan.org/pod/DBIx::Class::Relationship#belongs_to",
+      "revId": "5959f132c45f82287a452966db30f07de5c670db",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
