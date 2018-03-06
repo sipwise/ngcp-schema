@@ -7,6 +7,7 @@ use Regexp::IPv6 qw($IPv6_re);
 use parent 'DBIx::Class::Schema';
 
 our $VERSION = '2.007';
+our $CURRENT_USER_TZ;
 
 __PACKAGE__->load_namespaces(
     default_resultset_class => 'ResultSet',

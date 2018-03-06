@@ -9,7 +9,7 @@ our $VERSION = '2.007';
 use parent 'DBIx::Class::Core';
 
 
-__PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
+__PACKAGE__->load_components("+NGCP::Schema::InflateColumn::DateTime::WithTZ", "Helper::Row::ToJSON");
 
 
 __PACKAGE__->table("provisioning.voip_pbx_autoattendants");
