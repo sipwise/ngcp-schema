@@ -8,7 +8,7 @@ use parent 'DBIx::Class::Core';
 
 our $VERSION = '2.007';
 
-__PACKAGE__->load_components("InflateColumn::DateTime",
+__PACKAGE__->load_components("+NGCP::Schema::InflateColumn::DateTime::WithTZ",
                              "Helper::Row::ToJSON",
                              "+NGCP::Schema::InflateColumn::DateTime::EpochMilli");
 

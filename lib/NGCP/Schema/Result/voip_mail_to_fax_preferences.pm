@@ -8,7 +8,7 @@ use parent 'DBIx::Class::Core';
 
 our $VERSION = '2.007';
 
-__PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
+__PACKAGE__->load_components("+NGCP::Schema::InflateColumn::DateTime::WithTZ", "Helper::Row::ToJSON");
 
 __PACKAGE__->table("provisioning.voip_mail_to_fax_preferences");
 
