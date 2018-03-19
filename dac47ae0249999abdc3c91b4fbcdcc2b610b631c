@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a6ced46_29a009f4",
+        "filename": "lib/NGCP/Schema/Result/contract_phonebook.pm",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2018-03-19T13:19:01Z",
+      "side": 1,
+      "message": "if db unique constraints are to be removed, taking out this should not be forgotten too",
+      "revId": "dac47ae0249999abdc3c91b4fbcdcc2b610b631c",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
