@@ -49,7 +49,7 @@ __PACKAGE__->add_columns(
   {
     data_type => "enum",
     default_value => "1st",
-    extra => { list => ["create", "1st", "topup", "topup_interval"] },
+    extra => { list => ["create", "create_tz", "1st","1st_tz", "topup", "topup_interval"] },
     is_nullable => 0,
   },  
   

@@ -197,6 +197,13 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->might_have(
+  "timezone",
+  'NGCP::Schema::Result::reseller_timezone',
+  { 'foreign.reseller_id' => 'self.id' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
