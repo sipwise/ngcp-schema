@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da9b358b_615bd655",
+        "filename": "lib/NGCP/Schema/Result/contracts.pm",
+        "patchSetId": 3
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2018-03-22T13:54:41Z",
+      "side": 1,
+      "message": "the view always returns a timezone for an existing entry.\nshould be has_one() imho",
+      "range": {
+        "startLine": 286,
+        "startChar": 13,
+        "endLine": 286,
+        "endChar": 23
+      },
+      "revId": "c71fcfe8cdc8fea2f5247e5552fba10f8547af96",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
