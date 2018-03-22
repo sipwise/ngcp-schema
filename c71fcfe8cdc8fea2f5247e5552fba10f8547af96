@@ -22,6 +22,30 @@
       "revId": "c71fcfe8cdc8fea2f5247e5552fba10f8547af96",
       "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9b358b_810c9a43",
+        "filename": "lib/NGCP/Schema/Result/contracts.pm",
+        "patchSetId": 3
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2018-03-22T13:59:22Z",
+      "side": 1,
+      "message": "thats what i did initially, then aligend it to voip_susbcribers",
+      "parentUuid": "da9b358b_615bd655",
+      "range": {
+        "startLine": 286,
+        "startChar": 13,
+        "endLine": 286,
+        "endChar": 23
+      },
+      "revId": "c71fcfe8cdc8fea2f5247e5552fba10f8547af96",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
     }
   ]
 }
