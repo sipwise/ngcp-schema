@@ -1,3 +1,19 @@
+ngcp-schema (6.3.0.0+0~mr6.3.0.0) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [6400b5b] TT#32910 TT#33037 initial cash_balance, free_time_balance
+  * [be9a4c1] TT#34013 expose contract and reseller inherited tz
+
+  [ Irina Peshinskaya ]
+  * [f62bdb9] TT#15059 Add cdr_mos_data table and relationships
+
+  [ Kirill Solomko ]
+  * [4d85d11] TT#14662 add phonebook tables schema
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Tue, 03 Apr 2018 22:31:19 +0200
+
 ngcp-schema (6.2.0.0+0~mr6.2.0.0) unstable; urgency=medium
 
   [ Rene Krenn ]
