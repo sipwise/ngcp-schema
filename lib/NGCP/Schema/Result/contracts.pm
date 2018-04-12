@@ -115,6 +115,13 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", extra => { unsigned => 1 }, default_value => 0, is_nullable => 0 },
   "add_vat",
   { data_type => "tinyint", extra => { unsigned => 1 }, default_value => 0, is_nullable => 0 },
+  "product_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 1,
+  },
 
 );
 
@@ -277,6 +284,25 @@ __PACKAGE__->has_many(
   "NGCP::Schema::Result::topup_logs",
   { 'foreign.contract_id' => 'self.id' },
   { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->might_have(
+  "timezone",
+  'NGCP::Schema::Result::contract_timezone',
+  { 'foreign.contract_id' => 'self.id' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->belongs_to(
+  "product",
+  "NGCP::Schema::Result::products",
+  { id => "product_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "RESTRICT",
+    on_update     => "CASCADE",
+  },
 );
 
 sub TO_JSON {
