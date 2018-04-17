@@ -70,6 +70,8 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 0, size => 16 },
   "pcc_token",
   { data_type => "varchar", is_nullable => 0, size => 64 },
+  "cli",
+  { data_type => "varchar", default_value => "", is_nullable => 0, size => 128 },
 );
 __PACKAGE__->belongs_to(
   "provisioning_voip_subscriber",
