@@ -51,8 +51,8 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 0, is_nullable => 1 },
   "devprof_pref",
   { data_type => "tinyint", default_value => 0, is_nullable => 1 },
-  "expose_to_customer",
-  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "fielddev_pref",
+  { data_type => "tinyint", default_value => 0, is_nullable => 1 },
   "modify_timestamp",
   {
     data_type => "timestamp",
@@ -71,6 +71,8 @@ __PACKAGE__->add_columns(
     is_nullable => 1,
   },
   "read_only",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "customer_defined",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "description",
   { data_type => "text", is_nullable => 1 },
@@ -108,6 +110,13 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->has_many(
+  "voip_fielddev_preferences",
+  "NGCP::Schema::Result::voip_dev_preferences",
+  { "foreign.attribute_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 __PACKAGE__->belongs_to(
   "voip_preference_group",
   "NGCP::Schema::Result::voip_preference_groups",
@@ -140,6 +149,13 @@ __PACKAGE__->has_many(
   "voip_contract_preferences",
   "NGCP::Schema::Result::voip_contract_preferences",
   { "foreign.attribute_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
+  "voip_preference_relations",
+  "NGCP::Schema::Result::voip_preference_relations",
+  { "foreign.voip_preference_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 

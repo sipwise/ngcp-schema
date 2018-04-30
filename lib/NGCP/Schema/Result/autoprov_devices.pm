@@ -118,11 +118,19 @@ __PACKAGE__->has_many(
   { "foreign.device_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+
 __PACKAGE__->has_many(
   "autoprov_extension_device_link",
   "NGCP::Schema::Result::autoprov_device_extensions",
   { "foreign.extension_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
+  "voip_preference_relations",
+  "NGCP::Schema::Result::voip_preference_relations",
+  { "foreign.autoprov_device_id" => "self.id" },
+  { cascade_copy => 1, cascade_delete => 1 },
 );
 
 __PACKAGE__->set_primary_key("id");
