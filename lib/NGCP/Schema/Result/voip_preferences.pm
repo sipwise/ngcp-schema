@@ -72,6 +72,8 @@ __PACKAGE__->add_columns(
   },
   "read_only",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "customer_defined",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "description",
   { data_type => "text", is_nullable => 1 },
 );
@@ -140,6 +142,13 @@ __PACKAGE__->has_many(
   "voip_contract_preferences",
   "NGCP::Schema::Result::voip_contract_preferences",
   { "foreign.attribute_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
+  "voip_preference_relations",
+  "NGCP::Schema::Result::voip_preference_relations",
+  { "foreign.voip_preference_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
