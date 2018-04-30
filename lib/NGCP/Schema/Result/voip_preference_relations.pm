@@ -1,4 +1,4 @@
-package NGCP::Schema::Result::autoprov_field_devices;
+package NGCP::Schema::Result::voip_preference_relations;
 
 use strict;
 use warnings;
@@ -10,7 +10,7 @@ our $VERSION = '2.007';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
-__PACKAGE__->table("provisioning.autoprov_field_devices");
+__PACKAGE__->table("provisioning.voip_preference_relations");
 
 __PACKAGE__->add_columns(
   "id",
@@ -20,60 +20,36 @@ __PACKAGE__->add_columns(
     is_auto_increment => 1,
     is_nullable => 0,
   },
-  "contract_id",
-  {
-    data_type => "integer",
-    extra => { unsigned => 1 },
-    is_nullable => 0,
-  },
-  "profile_id",
+  "voip_preference_id",
   {
     data_type => "integer",
     extra => { unsigned => 1 },
     is_foreign_key => 1,
     is_nullable => 0,
   },
-  "identifier",
-  { data_type => "varchar", is_nullable => 0, size => 255 },
-  "station_name",
-  { data_type => "varchar", is_nullable => 0, size => 255 },
-  "bootstrapped",
-  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
-  "insecure_transfer",
-  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
-  "encryption_key",
-  { data_type => "varchar", is_nullable => 1, size => 255 },
+  "autoprov_devices_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 0,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
-__PACKAGE__->add_unique_constraint("uk_identifier_idx", ["identifier"]);
 
 __PACKAGE__->belongs_to(
-  "profile",
-  "NGCP::Schema::Result::autoprov_profiles",
-  { id => "profile_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+  "autoprov_devices",
+  "NGCP::Schema::Result::autoprov_devices",
+  { "foreign.id" => "self.autoprov_devices_id" },
+  { cascade_copy => 0, cascade_delete => 0, join_type => "left" },
 );
 
 __PACKAGE__->belongs_to(
-  "contract",
-  "NGCP::Schema::Result::contracts",
-  { id => "contract_id" },
+  "voip_preference",
+  "NGCP::Schema::Result::voip_preferences",
+  { "foreign.id" => "self.voip_preference_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-__PACKAGE__->has_many(
-  "autoprov_field_device_lines",
-  "NGCP::Schema::Result::autoprov_field_device_lines",
-  { "foreign.device_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "voip_fielddev_preferences",
-  "NGCP::Schema::Result::voip_fielddev_preferences",
-  { "foreign.device_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
 );
 
 sub TO_JSON {
@@ -90,11 +66,11 @@ __END__
 
 =head1 NAME
 
-NGCP::Schema::provisioning::Result::autoprov_field_devices
+NGCP::Schema::Result::voip_preference_relations
 
 =head1 DESCRIPTION
 
-This module is a schema class for the NGCP database table "provisioning.autoprov_field_devices".
+This module is a schema class for the NGCP database table "provisioning.voip_preference_relations".
 
 =head1 COMPONENTS LOADED
 
@@ -106,7 +82,7 @@ This module is a schema class for the NGCP database table "provisioning.autoprov
 
 =back
 
-=head1 TABLE: C<autoprov_field_devices>
+=head1 TABLE: C<provisioning.voip_preference_relations>
 
 =head1 ACCESSORS
 
@@ -117,25 +93,19 @@ This module is a schema class for the NGCP database table "provisioning.autoprov
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 subscriber_id
+=head2 voip_preference_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 profile_id
+=head2 autoprov_devices_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
   is_foreign_key: 1
-  is_nullable: 0
-
-=head2 identifier
-
-  data_type: 'varchar'
-  is_nullable: 0
-  size: 255
+  is_nullable: 1
 
 =head1 PRIMARY KEY
 
@@ -147,17 +117,17 @@ This module is a schema class for the NGCP database table "provisioning.autoprov
 
 =head1 RELATIONS
 
-=head2 profile
+=head2 voip_preferences
 
 Type: belongs_to
 
-Related object: L<NGCP::Schema::provisioning::Result::autoprov_profiles>
+Related object: L<NGCP::Schema::Result::voip_preferences>
 
-=head2 subscriber
+=head2 autoprov_devices
 
 Type: belongs_to
 
-Related object: L<NGCP::Schema::provisioning::Result::voip_subscribers>
+Related object: L<NGCP::Schema::Result::autoprov_devices>
 
 =head1 AUTHOR
 
