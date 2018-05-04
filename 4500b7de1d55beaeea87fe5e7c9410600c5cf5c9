@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ab451fb_02a1aea9",
+        "filename": "lib/NGCP/Schema/Result/messages_custom.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2018-05-04T11:06:41Z",
+      "side": 0,
+      "message": "hm, he might added that because of his C origins (\"Binary collation compares your string exactly as strcmp() in C would do\") or performance speedup (from what i read right now on stackoverflow)\nuuid and call_id\u0027s shouldnt contain problematic symbols anyway",
+      "range": {
+        "startLine": 92,
+        "startChar": 26,
+        "endLine": 95,
+        "endChar": 42
+      },
+      "revId": "4500b7de1d55beaeea87fe5e7c9410600c5cf5c9",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
