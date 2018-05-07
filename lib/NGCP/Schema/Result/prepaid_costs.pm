@@ -29,6 +29,10 @@ __PACKAGE__->add_columns(
     default_value => \"current_timestamp",
     is_nullable => 0,
   },
+  "source_user_id",
+  { data_type => "char", is_nullable => 0, size => 36 },
+  "destination_user_id",
+  { data_type => "char", is_nullable => 0, size => 36 },
 );
 
 __PACKAGE__->set_primary_key("id");
