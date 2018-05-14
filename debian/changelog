@@ -1,3 +1,14 @@
+ngcp-schema (6.1.3.0+0~mr6.1.3.0) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [5df2272] TT#23271 add uuid columns for accounting.prepaid_cost
+  * [3bd97ca] TT#32910 TT#33037 initial cash_balance, free_time_balance
+  * [082ee1e] TT#35662 move product_id to billing.contracts
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 14 May 2018 23:04:37 +0200
+
 ngcp-schema (6.1.2.0+0~mr6.1.2.0) unstable; urgency=medium
 
   * New release.
