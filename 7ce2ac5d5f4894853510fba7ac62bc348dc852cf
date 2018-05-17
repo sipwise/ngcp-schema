@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "fabf19d9_ee93474e",
+        "filename": "lib/NGCP/Schema/Result/voip_preference_relations.pm",
+        "patchSetId": 12
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2018-05-17T15:47:38Z",
+      "side": 1,
+      "message": "would have been less complicated to have this left out for now?",
+      "revId": "7ce2ac5d5f4894853510fba7ac62bc348dc852cf",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fabf19d9_4ec8f374",
         "filename": "lib/NGCP/Schema/Result/voip_preferences.pm",
         "patchSetId": 12
