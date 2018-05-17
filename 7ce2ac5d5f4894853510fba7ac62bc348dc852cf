@@ -22,6 +22,30 @@
       "revId": "7ce2ac5d5f4894853510fba7ac62bc348dc852cf",
       "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fabf19d9_ae866f11",
+        "filename": "lib/NGCP/Schema/Result/voip_preferences.pm",
+        "patchSetId": 12
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2018-05-17T15:42:42Z",
+      "side": 1,
+      "message": "according to def for eg. voip_prof_preferences above, should be \"has_many\"",
+      "parentUuid": "fabf19d9_4ec8f374",
+      "range": {
+        "startLine": 155,
+        "startChar": 24,
+        "endLine": 155,
+        "endChar": 26
+      },
+      "revId": "7ce2ac5d5f4894853510fba7ac62bc348dc852cf",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
     }
   ]
 }
