@@ -1,3 +1,23 @@
+ngcp-schema (6.4.0.0+0~mr6.4.0.0) unstable; urgency=medium
+
+  [ Guillem Jover ]
+  * [7c65968] TT#26264 Remove maintainer scripts directly calling init scripts
+
+  [ Kirill Solomko ]
+  * [cf9e4b8] TT#35508 add sms.journal cli field
+  * [e7a2900] TT#21400 messages_custom: change COLLATE to utf8mb4_bin
+
+  [ Rene Krenn ]
+  * [4500b7d] TT#35662 move product_id to billing.contracts
+  * [800dfb1] TT#23271 add uuid columns for accounting.prepaid_cost
+
+  [ Irina Peshinskaya ]
+  * [7ce2ac5] TT#36055 Add schema for the field device custom preferences
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Tue, 29 May 2018 10:08:20 +0200
+
 ngcp-schema (6.3.0.0+0~mr6.3.0.0) unstable; urgency=medium
 
   [ Rene Krenn ]
