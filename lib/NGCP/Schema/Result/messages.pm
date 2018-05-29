@@ -76,6 +76,19 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->belongs_to(
+  "voip_subscriber",
+  "NGCP::Schema::Result::voip_subscribers",
+  sub {
+    my $args = shift;
+    return { -or => [
+      "$args->{foreign_alias}.uuid" => { -ident => "$args->{self_alias}.caller_uuid" },
+      "$args->{foreign_alias}.uuid" => { -ident => "$args->{self_alias}.callee_uuid" },
+    ]};
+  },
+  { cascade_copy => 0, cascade_delete => 0, join_type => 'left' }
+);
+
 __PACKAGE__->set_primary_key("id");
 
 sub TO_JSON {
