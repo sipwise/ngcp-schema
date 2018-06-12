@@ -123,20 +123,8 @@ FROM (
        ) AS interval_notify
   FROM (SELECT IF(? = 'month','month','day') AS 'interval') i,
        billing.contracts c
-  INNER JOIN (
-       SELECT bm1.contract_id,MAX(bm1.id) AS id
-       FROM billing.billing_mappings bm1 
-       INNER JOIN (
-              SELECT bm2.contract_id, MAX(bm2.start_date) AS start_date
-              FROM billing.billing_mappings bm2 
-              WHERE (bm2.end_date >= NOW() OR bm2.end_date IS NULL) 
-                     AND (bm2.start_date <= NOW() OR bm2.start_date IS NULL) 
-              GROUP BY bm2.contract_id
-       ) AS max ON bm1.contract_id = max.contract_id AND bm1.start_date <=> max.start_date 
-       GROUP BY bm1.contract_id
-  ) AS bm_actual ON bm_actual.contract_id = c.id
-  JOIN billing.billing_mappings bm ON bm.id = bm_actual.id
-  JOIN billing.billing_profiles bp ON bp.id = bm.billing_profile_id
+  JOIN billing.v_actual_billing_profiles bp_actual ON bp_actual.contract_id = c.id
+  JOIN billing.billing_profiles bp ON bp.id = bp_actual.billing_profile_id
   JOIN billing.contacts n ON n.id = c.contact_id
   JOIN billing.resellers r ON r.id = n.reseller_id
   LEFT JOIN billing.contract_fraud_preferences cfp ON cfp.contract_id = c.id
