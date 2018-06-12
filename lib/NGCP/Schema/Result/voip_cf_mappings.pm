@@ -55,6 +55,13 @@ __PACKAGE__->add_columns(
     is_foreign_key => 1,
     is_nullable => 1,
   },
+  "bnumber_set_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 1,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -94,6 +101,18 @@ __PACKAGE__->belongs_to(
   "source_set",
   "NGCP::Schema::Result::voip_cf_source_sets",
   { id => "source_set_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
+);
+
+__PACKAGE__->belongs_to(
+  "bnumber_set",
+  "NGCP::Schema::Result::voip_cf_bnumber_sets",
+  { id => "bnumber_set_id" },
   {
     is_deferrable => 1,
     join_type     => "LEFT",
@@ -178,6 +197,13 @@ This module is a schema class for the NGCP database table "provisioning.voip_cf_
   is_foreign_key: 1
   is_nullable: 1
 
+=head2 bnumber_set_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_foreign_key: 1
+  is_nullable: 1
+
 =head1 PRIMARY KEY
 
 =over 4
@@ -211,6 +237,12 @@ Related object: L<NGCP::Schema::Result::voip_cf_time_sets>
 Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::voip_cf_source_sets>
+
+=head2 bnumber_set
+
+Type: belongs_to
+
+Related object: L<NGCP::Schema::Result::voip_cf_bnumber_sets>
 
 =head1 AUTHOR
 
