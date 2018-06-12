@@ -145,6 +145,13 @@ __PACKAGE__->has_many(
 );
 
 __PACKAGE__->has_many(
+  "voip_cf_bnumber_sets",
+  "NGCP::Schema::Result::voip_cf_bnumber_sets",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
   "voip_contacts",
   "NGCP::Schema::Result::voip_contacts",
   { "foreign.subscriber_id" => "self.id" },
