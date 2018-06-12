@@ -32,7 +32,7 @@ __PACKAGE__->add_columns(
     default_value => "active",
     extra => { list => ["active", "terminated"] },
     is_nullable => 0,
-  }, 
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -56,7 +56,7 @@ __PACKAGE__->belongs_to(
 
 __PACKAGE__->has_many(
   "billing_mappings",
-  "NGCP::Schema::Result::billing_mappings",
+  "NGCP::Schema::Result::legacy_billing_mappings",
   { "foreign.network_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );

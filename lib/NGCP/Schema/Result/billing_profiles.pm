@@ -124,7 +124,7 @@ __PACKAGE__->has_many(
 
 __PACKAGE__->has_many(
   "billing_mappings",
-  "NGCP::Schema::Result::billing_mappings",
+  "NGCP::Schema::Result::billing_mappings_view",
   { "foreign.billing_profile_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
