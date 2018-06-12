@@ -47,7 +47,7 @@ __PACKAGE__->add_columns(
     extra => { unsigned => 1 },
     is_foreign_key => 1,
     is_nullable => 1,
-  },  
+  },
   "status",
   {
     data_type => "enum",
@@ -104,16 +104,16 @@ __PACKAGE__->add_columns(
     is_nullable => 1,
   },
   "invoice_email_template_id",
-  { 
-    data_type => "integer", 
-    extra => { unsigned => 1 }, 
-    is_nullable => 1 
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_nullable => 1
   },
   "invoice_template_id",
-  { 
-    data_type => "integer", 
-    extra => { unsigned => 1 }, 
-    is_nullable => 1 
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_nullable => 1
   },
   "vat_rate",
   { data_type => "tinyint", extra => { unsigned => 1 }, default_value => 0, is_nullable => 0 },
@@ -133,13 +133,7 @@ __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->has_many(
   "billing_mappings",
-  "NGCP::Schema::Result::billing_mappings",
-  { "foreign.contract_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-__PACKAGE__->has_many(
-  "billing_mappings_actual",
-  "NGCP::Schema::Result::billing_mappings_actual",
+  "NGCP::Schema::Result::billing_mappings_view",
   { "foreign.contract_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -300,6 +294,13 @@ __PACKAGE__->has_many(
 __PACKAGE__->might_have(
   "timezone",
   'NGCP::Schema::Result::contract_timezone',
+  { 'foreign.contract_id' => 'self.id' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->might_have(
+  "actual_billing_profile",
+  'NGCP::Schema::Result::actual_billing_profiles',
   { 'foreign.contract_id' => 'self.id' },
   { cascade_copy => 0, cascade_delete => 0 },
 );
