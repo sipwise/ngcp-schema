@@ -1,3 +1,12 @@
+ngcp-schema (5.5.4.2+0~mr5.5.4.2) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [7223a32] TT#21400 messages_custom: change COLLATE to utf8mb4_bin
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Wed, 13 Jun 2018 22:54:23 +0200
+
 ngcp-schema (5.5.4.1+0~mr5.5.4.1) unstable; urgency=medium
 
   * New release.
