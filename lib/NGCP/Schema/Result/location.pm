@@ -91,10 +91,19 @@ __PACKAGE__->belongs_to(
 __PACKAGE__->belongs_to(
   "kam_subscriber",
   "NGCP::Schema::Result::subscriber",
-  {
-    "foreign.username" => "self.username",
-    "foreign.domain" => "self.domain",
-  },
+    sub {
+        my $args = shift;
+        return [
+            {
+                "$args->{foreign_alias}.username" => { '-ident' => "$args->{self_alias}.username" },
+                "$args->{foreign_alias}.domain" => { '-ident' => "$args->{self_alias}.domain" },
+            },
+            {
+                "$args->{foreign_alias}.username" => { '-ident' => "$args->{self_alias}.username" },
+                "$args->{self_alias}.domain" => undef,
+            }
+        ];
+    },
 );
 
 __PACKAGE__->belongs_to(
