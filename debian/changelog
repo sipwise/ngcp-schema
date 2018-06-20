@@ -1,3 +1,12 @@
+ngcp-schema (6.3.1.2+0~mr6.3.1.2) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [90f58ad] TT#39007 sms_journal: add smsc_peer field
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Wed, 20 Jun 2018 13:00:52 +0200
+
 ngcp-schema (6.3.1.1+0~mr6.3.1.1) unstable; urgency=medium
 
   * New release.
