@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ad0253b_c56f2f91",
+        "filename": "lib/NGCP/Schema/Result/billing_mappings_view.pm",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2018-07-03T11:00:46Z",
+      "side": 1,
+      "message": "I think if we moved away from the old table name it makes sense to name the view also according to the new tables it uses + to the purpose of it.",
+      "range": {
+        "startLine": 1,
+        "startChar": 30,
+        "endLine": 1,
+        "endChar": 51
+      },
+      "revId": "2c4978b2863242adcd8ac37b770a55be55c36386",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ad0253b_a56c339d",
+        "filename": "lib/NGCP/Schema/Result/billing_mappings_view.pm",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2018-07-03T11:00:46Z",
+      "side": 1,
+      "message": "what is the purpose of the view and of joining contracts_billing_profile_network_schedule ? \nas you are pretty much fetching only from contract_billing_profile_network and profile_network_id \u003d id anyway ? so select id ... instead of cbpns.profile_network_id does the same ?\nor with the view you need to fetch the amount of the effective_start_time records ?",
+      "range": {
+        "startLine": 106,
+        "startChar": 2,
+        "endLine": 106,
+        "endChar": 32
+      },
+      "revId": "2c4978b2863242adcd8ac37b770a55be55c36386",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
