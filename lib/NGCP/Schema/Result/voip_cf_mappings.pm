@@ -31,7 +31,7 @@ __PACKAGE__->add_columns(
   {
     data_type => "enum",
     default_value => "cfu",
-    extra => { list => ["cfu", "cfb", "cfna", "cft", "cfs"] },
+    extra => { list => ["cfu", "cfb", "cfna", "cft", "cfs", "cfr"] },
     is_nullable => 0,
   },
   "destination_set_id",
@@ -173,7 +173,7 @@ This module is a schema class for the NGCP database table "provisioning.voip_cf_
 
   data_type: 'enum'
   default_value: 'cfu'
-  extra: {list => ["cfu","cfb","cfna","cft","cfs"]}
+  extra: {list => ["cfu","cfb","cfna","cft","cfs","cfr"]}
   is_nullable: 0
 
 =head2 destination_set_id
