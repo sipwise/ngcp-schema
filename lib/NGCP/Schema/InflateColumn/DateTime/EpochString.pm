@@ -30,10 +30,12 @@ sub add_columns {
 
 sub _inflate_to_datetime {
     my( $self, $value, $info, @rest ) = @_;
+    #empty string makes DateTime to fail
+    return undef unless $value;
     return $self->next::method( $value, $info, @rest )
         unless $info->{ data_type } eq "varchar" ||  $info->{ data_type } eq "integer" 
-		|| (exists $info->{ inflate_datetime } 
-		&& $info->{ inflate_datetime } eq 'epoch_string');
+        || (exists $info->{ inflate_datetime } 
+            && $info->{ inflate_datetime } eq 'epoch_string');
     my $tz = DateTime::TimeZone->new( name => 'local' );
     return DateTime->from_epoch(epoch => $value, time_zone => $tz);
 }
@@ -42,8 +44,8 @@ sub _deflate_from_datetime {
     my( $self, $value, $info, @rest ) = @_;
     return $self->next::method( $value, $info, @rest )
         unless $info->{ data_type } eq "string" 
-		|| (exists $info->{ inflate_datetime } 
-		&& $info->{ inflate_datetime } eq 'epoch_string');
+        || (exists $info->{ inflate_datetime } 
+            && $info->{ inflate_datetime } eq 'epoch_string');
     return "".$value->epoch;
 }
 
