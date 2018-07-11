@@ -93,6 +93,30 @@
       "revId": "876a50181b2069e29de1072161b3388481516abe",
       "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ad0253b_fc3e41b7",
+        "filename": "lib/NGCP/Schema/InflateColumn/DateTime/EpochString.pm",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2018-07-11T13:54:11Z",
+      "side": 1,
+      "message": "right sorry,\n\n$value ||\u003d 0; \n\nthat will work",
+      "parentUuid": "5ad0253b_3c5cb924",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 25
+      },
+      "revId": "876a50181b2069e29de1072161b3388481516abe",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
     }
   ]
 }
