@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ad0253b_bc31e9ee",
+        "filename": "lib/NGCP/Schema/InflateColumn/DateTime/EpochString.pm",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2018-07-11T13:49:20Z",
+      "side": 1,
+      "message": "$value //\u003d 0; \n\ndoes the same.",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 29
+      },
+      "revId": "b898e92c650afa9fd636437b3d153d0e3bedae61",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
