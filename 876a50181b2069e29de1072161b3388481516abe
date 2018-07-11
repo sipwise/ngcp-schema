@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ad0253b_1978efc3",
+        "filename": "lib/NGCP/Schema/InflateColumn/DateTime/EpochString.pm",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2018-07-11T11:32:19Z",
+      "side": 1,
+      "message": "remove \"to\"\n\"to\" is omitted after modal verbs as well as words like \"make\"",
+      "range": {
+        "startLine": 33,
+        "startChar": 33,
+        "endLine": 33,
+        "endChar": 35
+      },
+      "revId": "876a50181b2069e29de1072161b3388481516abe",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ad0253b_f97413d0",
+        "filename": "lib/NGCP/Schema/InflateColumn/DateTime/EpochString.pm",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2018-07-11T11:32:19Z",
+      "side": 1,
+      "message": "return null introduces a possible silent bug + adds unneeded complexity and checks on other places where we inflate it (and count on it).\n\nlets do this as:\n\n$value //\u003d 0;\n\nso in case of NULL/empty strings they will be represented as \"Thu Jan  1 01:00:00 CET 1970\", which is more elegant and consistent in this case.",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 25
+      },
+      "revId": "876a50181b2069e29de1072161b3388481516abe",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
