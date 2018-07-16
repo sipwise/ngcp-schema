@@ -1,3 +1,12 @@
+ngcp-schema (5.5.5.3+0~mr5.5.5.3) unstable; urgency=medium
+
+  [ Irina Peshinskaya ]
+  * [85846f0] TT#40085 Treat empty epoch string as 0
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 16 Jul 2018 10:20:34 +0200
+
 ngcp-schema (5.5.5.2+0~mr5.5.5.2) unstable; urgency=medium
 
   [ Kirill Solomko ]
