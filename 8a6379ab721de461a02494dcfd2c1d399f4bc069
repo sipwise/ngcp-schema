@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3acd31a7_b49ec005",
+        "filename": "lib/NGCP/Schema/Result/billing_mappings_view.pm",
+        "patchSetId": 11
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2018-07-17T13:13:59Z",
+      "side": 1,
+      "message": "v_contracts_billing_profile_network ?\n\nimho if we do the focused approach of what we map we should stop naming it as \"billing_mappings\" as the moment we in the future create some new billing_profile profile relation (e.g. contract\u003c\u003ebilling_profile\u003c\u003elocation_station_id) - billing_mappings_view becomes ambiguous...",
+      "range": {
+        "startLine": 1,
+        "startChar": 30,
+        "endLine": 1,
+        "endChar": 51
+      },
+      "revId": "8a6379ab721de461a02494dcfd2c1d399f4bc069",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
