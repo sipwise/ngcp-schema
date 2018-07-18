@@ -22,6 +22,29 @@
       "revId": "8a6379ab721de461a02494dcfd2c1d399f4bc069",
       "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3acd31a7_f7879a10",
+        "filename": "lib/NGCP/Schema/Result/billing_mappings_view.pm",
+        "patchSetId": 11
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2018-07-18T10:54:56Z",
+      "side": 1,
+      "message": "https://paste.mgm.sipwise.com/show/4227/",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 62
+      },
+      "revId": "8a6379ab721de461a02494dcfd2c1d399f4bc069",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
     }
   ]
 }
