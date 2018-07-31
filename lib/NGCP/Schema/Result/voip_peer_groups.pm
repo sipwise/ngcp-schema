@@ -30,6 +30,8 @@ __PACKAGE__->add_columns(
   { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
   "has_inbound_rules",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "time_set_id",
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -62,6 +64,13 @@ __PACKAGE__->belongs_to(
   "NGCP::Schema::Result::contracts",
   { "foreign.id" => "self.peering_contract_id" },
   { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->belongs_to(
+  "time_set",
+  "NGCP::Schema::Result::voip_time_sets",
+  { 'foreign.id' => "self.time_set_id" },
+  { is_deferrable => 1, cascade_delete => 0, cascade_update => 0, join_type => "LEFT" },
 );
 
 sub TO_JSON {
