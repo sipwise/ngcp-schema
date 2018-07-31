@@ -39,6 +39,8 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 1, is_nullable => 0 },
   "stopper",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "time_set_id",
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -49,6 +51,14 @@ __PACKAGE__->belongs_to(
   { id => "group_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
+
+__PACKAGE__->belongs_to(
+  "time_set",
+  "NGCP::Schema::Result::voip_time_sets",
+  { 'foreign.id' => "self.time_set_id" },
+  { is_deferrable => 1, cascade_delete => 0, cascade_update => 0, join_type => "LEFT" },
+);
+
 
 sub TO_JSON {
     my ($self) = @_;
