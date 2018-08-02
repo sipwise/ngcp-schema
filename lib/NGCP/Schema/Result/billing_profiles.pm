@@ -33,6 +33,13 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 0, size => 31 },
   "prepaid",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "prepaid_library",
+  {
+    data_type => "enum",
+    default_value => "libswrate",
+    extra => { list => ["libswrate", "libinewrate"] },
+    is_nullable => 0,
+  },
   "advice_of_charge",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "interval_charge",
