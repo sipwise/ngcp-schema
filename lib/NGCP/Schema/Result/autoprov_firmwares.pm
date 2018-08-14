@@ -31,6 +31,8 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "filename",
   { data_type => "varchar", is_nullable => 1, size => 255 },
+  "tag",
+  { data_type => "varchar", is_nullable => 1, size => 255 },
 );
 
 __PACKAGE__->set_primary_key("id");
