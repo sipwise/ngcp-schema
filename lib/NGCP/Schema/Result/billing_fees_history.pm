@@ -92,6 +92,13 @@ __PACKAGE__->add_columns(
   },
   "use_free_time",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "match_mode",
+  {
+    data_type => "enum",
+    default_value => "regex_longest_pattern",
+    extra => { list => [ "regex_longest_pattern", "regex_longest_match", "prefix", "exact_destination", ] },
+    is_nullable => 0,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
