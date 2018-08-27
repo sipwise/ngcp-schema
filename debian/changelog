@@ -1,3 +1,15 @@
+ngcp-schema (6.3.2.1+0~mr6.3.2.1) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [f147639] TT#39007 sms_journal: add smsc_peer field
+
+  [ Irina Peshinskaya ]
+  * [ba120cc] TT#40085 Treat empty epoch string as 0
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 27 Aug 2018 16:12:55 +0200
+
 ngcp-schema (6.3.2.0+0~mr6.3.2.0) unstable; urgency=medium
 
   * New release.
