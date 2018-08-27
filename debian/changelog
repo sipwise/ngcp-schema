@@ -1,3 +1,19 @@
+ngcp-schema (5.5.7.0+0~mr5.5.7.0) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [4be1cf0] TT#21400 messages_custom: change COLLATE to utf8mb4_bin
+
+  [ Gerhard Jungwirth ]
+  * [c98aec1] TT#32963 create relationship from location to kamailio.subscriber
+  * [65b5ef2] TT#32963 TT#38607 fix relationship from location to kamailio.subscriber
+
+  [ Irina Peshinskaya ]
+  * [db3c009] TT#40085 Treat empty epoch string as 0
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 27 Aug 2018 19:29:22 +0200
+
 ngcp-schema (5.5.6.0+0~mr5.5.6.0) unstable; urgency=medium
 
   [ Rene Krenn ]
