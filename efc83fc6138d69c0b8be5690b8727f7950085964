@@ -1,0 +1,10 @@
+Verified+1: Jenkins Jenkins
+Code-Review+1: Irina Peshinskaya <ipeshinskaya@sipwise.com>
+Code-Review+1: Alexander Lutay <alutay@sipwise.com>
+Code-Review+2: Kirill Solomko <ksolomko@sipwise.com>
+Code-Review+2: Guillem Jover <gjover@sipwise.com>
+Submitted-by: Michael Prokop <mprokop@sipwise.com>
+Submitted-at: Tue, 11 Sep 2018 13:38:21 +0200
+Reviewed-on: http://gerrit.mgm.sipwise.com/23340
+Project: ngcp-schema
+Branch: refs/heads/master
