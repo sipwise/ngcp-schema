@@ -1,3 +1,19 @@
+ngcp-schema (6.5.1.0+0~mr6.5.1.0) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [0b0f320] TT#42261 prepaid_library col for billing_profiles
+  * [4c5507c] TT#41552 fee "match_mode" columns
+
+  [ Andreas Granig ]
+  * [92d82ac] TT#42767 Add tag column to autoprov firmwares table
+
+  [ Michael Prokop ]
+  * [efc83fc] TT#44118 Drop (Build-)Depends on libgtk2-gladexml-simple-perl
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 24 Sep 2018 18:57:39 +0200
+
 ngcp-schema (6.5.0.0+0~mr6.5.0.0) unstable; urgency=medium
 
   [ Kirill Solomko ]
