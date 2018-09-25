@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9af37de9_c3addf32",
+        "filename": "lib/NGCP/Schema/Result/voip_time_sets.pm",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2018-09-25T07:30:27Z",
+      "side": 1,
+      "message": "groups or rules?",
+      "range": {
+        "startLine": 50,
+        "startChar": 35,
+        "endLine": 50,
+        "endChar": 40
+      },
+      "revId": "40bda0624fc1fcd41c8e92a1520bb7bec7cf80de",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
