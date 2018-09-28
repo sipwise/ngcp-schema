@@ -52,6 +52,24 @@
       "revId": "273e5d8df9af0ca02457a3a4e9137c6b4971611f",
       "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9af37de9_6ea053f5",
+        "filename": "lib/NGCP/Schema/Result/resellers.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2018-09-28T13:35:27Z",
+      "side": 1,
+      "message": "I am not sure what you are about.\n\n- 1 reseller has one to many contacts\n- contacts belong_to resellers (already in contacts)\n- email templates has a relation to resellers \n\nso without resellers having a described in ngcp-schema relation to contacts and if I want to select email templates for instance with filtering by a subscriber\u0027s uuid I need to overcome that with avoiding using the native resultset I am primarily interested in and instead join it\n\ne.g.\n\nresultset(\u0027voip_subscribers\u0027)-\u003esearch({\n   uuid \u003d $uuid,\n},{\n  join \u003d\u003e { contracts \u003d\u003e { contacts \u003d\u003e { resellers \u003d\u003e \u0027email_templates\u0027 } } },\n  +select \u003d\u003e [qw(email_templates.name email_templates.body... )]\n  +as \u003d\u003e [qw(name body ...)]\n});\n\nbut with just providing ngcp-schema with the knowledge that a reseller can have one+ contacts solves it to:\n\nresultset(\u0027email_templates\u0027)-\u003esearch({\n   voip_subscribers.uuid \u003d $uuid\n},{\n  join \u003d\u003e { resellers \u003d\u003e { contacts \u003d\u003e { contracts \u003d\u003e \u0027voip_subscribers\u0027 } } \n});",
+      "parentUuid": "9af37de9_ae5f5b0d",
+      "revId": "273e5d8df9af0ca02457a3a4e9137c6b4971611f",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
     }
   ]
 }
