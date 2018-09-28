@@ -16,6 +16,24 @@
       "revId": "273e5d8df9af0ca02457a3a4e9137c6b4971611f",
       "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9af37de9_ce4bbf58",
+        "filename": "lib/NGCP/Schema/Result/resellers.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2018-09-28T13:15:13Z",
+      "side": 1,
+      "message": "that is not that comfortablel imho, because in that case I need to also state it with +select parts to fetch the joined emailtemplates rows and imho it\u0027s just complex for no apparent reason where with joining contacts we now have a straight forward way to do that, simple, easy and efficient.",
+      "parentUuid": "9af37de9_4b122164",
+      "revId": "273e5d8df9af0ca02457a3a4e9137c6b4971611f",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
     }
   ]
 }
