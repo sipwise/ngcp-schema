@@ -34,6 +34,24 @@
       "revId": "273e5d8df9af0ca02457a3a4e9137c6b4971611f",
       "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9af37de9_ae5f5b0d",
+        "filename": "lib/NGCP/Schema/Result/resellers.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2018-09-28T13:26:46Z",
+      "side": 1,
+      "message": "dont get the point. a basic idea of orms\u0027s is to use relation accessor chains in favour of spreading join queries across the code. in other words, a goal is to have zero of these out there:\n\n-\u003esearch_rs(..,{ join \u003d\u003e .. })\n\nother frameworks even enforce that, by making this way harder than dbix does.",
+      "parentUuid": "9af37de9_ce4bbf58",
+      "revId": "273e5d8df9af0ca02457a3a4e9137c6b4971611f",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
     }
   ]
 }
