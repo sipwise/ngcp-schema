@@ -66,6 +66,13 @@ __PACKAGE__->belongs_to(
 );
 
 __PACKAGE__->has_many(
+  "contacts",
+  "NGCP::Schema::Result::contacts",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
   "customers",
   "NGCP::Schema::Result::customers",
   { "foreign.reseller_id" => "self.id" },
@@ -164,7 +171,7 @@ __PACKAGE__->has_many(
 );
 __PACKAGE__->has_many(
   "email_templates",
-  "NGCP::Schema::Result::vouchers",
+  "NGCP::Schema::Result::email_templates",
   { "foreign.reseller_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
