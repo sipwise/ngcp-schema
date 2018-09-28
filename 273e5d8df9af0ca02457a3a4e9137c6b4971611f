@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9af37de9_4b122164",
+        "filename": "lib/NGCP/Schema/Result/resellers.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2018-09-28T12:04:38Z",
+      "side": 1,
+      "message": "seems it wasnt needed before; other option would be in faxserver\u0027s new get_emailtemplate to avoid the join and do the usual relation chain traversal starting with the uuid\n\nresultset(voip_subscribers\")-\u003esearch_rs({uuid \u003d\u003e $uuid})-\u003efirst-\u003econtract-\u003ereseller (-\u003etemplates)",
+      "revId": "273e5d8df9af0ca02457a3a4e9137c6b4971611f",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
