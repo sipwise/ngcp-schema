@@ -218,6 +218,13 @@ __PACKAGE__->might_have(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->has_many(
+  "time_sets",
+  "NGCP::Schema::Result::voip_time_sets",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
