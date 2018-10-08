@@ -22,6 +22,30 @@
       "revId": "875958c87f3947c2143bbf46afa673bdd241cec1",
       "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ad8896b_f149e28f",
+        "filename": "lib/NGCP/Schema/Result/resellers.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2018-10-08T15:46:07Z",
+      "side": 1,
+      "message": "sorry, nevermind that, I resellers-\u003evoip_time_sets \u003d has_many() of course.",
+      "parentUuid": "7ad8896b_517436ce",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 22
+      },
+      "revId": "875958c87f3947c2143bbf46afa673bdd241cec1",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
     }
   ]
 }
