@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ad8896b_517436ce",
+        "filename": "lib/NGCP/Schema/Result/resellers.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2018-10-08T15:45:09Z",
+      "side": 1,
+      "message": "I think that -\u003ebelongs_to() is more appropriate here instead.",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 22
+      },
+      "revId": "875958c87f3947c2143bbf46afa673bdd241cec1",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
