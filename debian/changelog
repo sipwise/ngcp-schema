@@ -1,3 +1,18 @@
+ngcp-schema (7.0.1.0+0~mr7.0.1.0) unstable; urgency=medium
+
+  [ Gerhard Jungwirth ]
+  * [376d953] TT#41627 add ical time_sets schema
+
+  [ Kirill Solomko ]
+  * [273e5d8] TT#33108 email_templates schema changes, resellers fix
+
+  [ Irina Peshinskaya ]
+  * [875958c] TT#41628 Add time_sets relation to resellers
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 12 Nov 2018 22:39:02 +0100
+
 ngcp-schema (7.0.0.0+0~mr7.0.0.0) unstable; urgency=medium
 
   [ Rene Krenn ]
