@@ -79,9 +79,13 @@ __PACKAGE__->add_columns(
   "bymonth",
   { data_type => "varchar", is_nullable => 1, size => 45 },
   "bysetpos",
-  { data_type => "integer", is_nullable => 1 },
+  { data_type => "varchar", is_nullable => 1, size => 45 },
   "comment",
   { data_type => "text", is_nullable => 1 },
+  "duration",
+  { data_type => "varchar", is_nullable => 1, size => 45 },
+  "wkst",
+  { data_type => "varchar", is_nullable => 1, size => 2 },
 );
 
 
@@ -91,6 +95,12 @@ __PACKAGE__->belongs_to(
   "time_set",
   "NGCP::Schema::Result::voip_time_sets",
   { id => "time_set_id" },
+);
+
+__PACKAGE__->has_one(
+  "periods_ical",
+  "NGCP::Schema::Result::v_time_periods_ical",
+  { "foreign.id" => "self.id" },
 );
 
 sub TO_JSON {
