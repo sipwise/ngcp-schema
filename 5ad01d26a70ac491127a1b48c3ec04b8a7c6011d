@@ -16,6 +16,47 @@
       "revId": "5ad01d26a70ac491127a1b48c3ec04b8a7c6011d",
       "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da1255d7_1eeeb9ec",
+        "filename": "lib/NGCP/Schema/Result/voip_numbers.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2019-01-28T10:13:57Z",
+      "side": 1,
+      "message": "We have other options, like using exists or separate query, or count, but this query from sql point of view is the most clear and efficient way to get necessary data.",
+      "parentUuid": "da1255d7_7e20154a",
+      "revId": "5ad01d26a70ac491127a1b48c3ec04b8a7c6011d",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da1255d7_feb9a5ed",
+        "filename": "lib/NGCP/Schema/Result/voip_numbers.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2019-01-28T10:13:57Z",
+      "side": 1,
+      "message": "Forgot to add join when moved from \"from\" implementation. Thank you!",
+      "range": {
+        "startLine": 106,
+        "startChar": 21,
+        "endLine": 106,
+        "endChar": 42
+      },
+      "revId": "5ad01d26a70ac491127a1b48c3ec04b8a7c6011d",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
     }
   ]
 }
