@@ -16,6 +16,24 @@
       "revId": "35da3031b54d6f00c86861ff6b0b11b77268b105",
       "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da1255d7_5e79d12e",
+        "filename": "lib/NGCP/Schema/Result/voip_numbers.pm",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2019-01-28T10:43:25Z",
+      "side": 1,
+      "message": "Because \n1. We can have (and it is ok) both terminated and active subscribers that use this number as primary number:\n\nhttps://paste.mgm.sipwise.com/show/4831/\n\nAnd in the same time we need full list of numbers both for showing and processing.\n\nThere is no correct way to select it with join on id\u003dprimary_number_id condition + where on status.\n\nOther correct way to select this data would be using exists, like:\n\nselect n.id,exists(select p.id from billing.voip_subscribers p where p.primary_number_id\u003dn.id and p.status !\u003d \u0027terminated\u0027) from billing.voip_numbers n;",
+      "parentUuid": "da1255d7_dea5c1b5",
+      "revId": "35da3031b54d6f00c86861ff6b0b11b77268b105",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
     }
   ]
 }
