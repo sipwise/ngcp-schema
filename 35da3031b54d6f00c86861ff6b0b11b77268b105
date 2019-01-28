@@ -34,6 +34,24 @@
       "revId": "35da3031b54d6f00c86861ff6b0b11b77268b105",
       "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da1255d7_de93814e",
+        "filename": "lib/NGCP/Schema/Result/voip_numbers.pm",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2019-01-28T11:21:59Z",
+      "side": 1,
+      "message": "\u003eThere is no correct way to select ..\n\nhis what i\u0027m trying to point out:\n\nselect\n ...\nfrom billing.voip_numbers n\nleft join billing subscribers s on n.susbcriber_id\u003ds.id\n(inner) join billing.contract c on s.contract_id \u003d c.id\n(inner) join ..\n(inner) join ..\nwhere\nc.id \u003d x\nand (\n  n.id \u003d s.primary_number_id\n  or s.status !\u003d \u0027terminated\"\n)",
+      "parentUuid": "da1255d7_5e79d12e",
+      "revId": "35da3031b54d6f00c86861ff6b0b11b77268b105",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
     }
   ]
 }
