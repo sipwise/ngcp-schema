@@ -87,9 +87,22 @@ __PACKAGE__->belongs_to(
 );
 
 __PACKAGE__->has_many(
-  "voip_subscribers",
+  "primary_number_owners",
   "NGCP::Schema::Result::voip_subscribers",
   { "foreign.primary_number_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
+  "primary_number_owners_active",
+  "NGCP::Schema::Result::voip_subscribers",
+  sub {
+    my ($self) = @_;
+    return { 
+        $self->{foreign_alias}.'.primary_number_id' => { -ident => $self->{self_alias}.'.id'},
+        $self->{foreign_alias}.'.status' => { '!=' => 'terminated' },
+    }; 
+  },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
