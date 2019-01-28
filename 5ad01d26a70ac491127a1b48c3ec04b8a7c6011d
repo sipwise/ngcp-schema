@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "da1255d7_fea085a7",
+        "filename": "lib/NGCP/Schema/Result/voip_numbers.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2019-01-28T10:25:47Z",
+      "side": 1,
+      "message": "it\u0027s not most clear as it seems.\n\ncan you state clearly, why the simple where-based query structure below *can\u0027t* be used?\n\nselect\n ...\nfrom billing.voip_numbers n\nleft join billing subscribers s on n.susbcriber_id\u003ds.id\n(inner) join billing.contract c on s.contract_id \u003d c.id\n(inner) join ..\n(inner) join ..\nwhere\nc.id \u003d x\ns.status !\u003d \u0027terminated\"\nn.id \u003d s.primary_number_id;",
+      "parentUuid": "da1255d7_1eeeb9ec",
+      "revId": "5ad01d26a70ac491127a1b48c3ec04b8a7c6011d",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da1255d7_feb9a5ed",
         "filename": "lib/NGCP/Schema/Result/voip_numbers.pm",
         "patchSetId": 1
