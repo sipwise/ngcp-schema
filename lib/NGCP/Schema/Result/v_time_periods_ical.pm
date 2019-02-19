@@ -14,8 +14,8 @@ __PACKAGE__->table_class("DBIx::Class::ResultSource::View");
 
 
 __PACKAGE__->table("provisioning.v_time_periods_ical");
-__PACKAGE__->result_source_instance->view_definition("SELECT p.`id`, p.`time_set_id`, p.`start`, p.`end`, p.`comment`,
-concat(
+__PACKAGE__->result_source_instance->view_definition("SELECT p.`id`, p.`time_set_id`, p.`start`, p.`end`, p.`comment`,\\n",
+"concat(
     \"DTSTART:\",DATE_FORMAT(p.start,'%Y%m%dT%H%i%s'),\"\\n\",
     \"RRULE:\",
     \"FREQ=\",p.freq,

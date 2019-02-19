@@ -13,8 +13,8 @@ __PACKAGE__->table_class("DBIx::Class::ResultSource::View");
 
 
 __PACKAGE__->table("provisioning.v_time_sets_ical");
-__PACKAGE__->result_source_instance->view_definition("SELECT s.id, s.name,\\n
-    concat (
+__PACKAGE__->result_source_instance->view_definition("SELECT s.id, s.name,\\n",
+    "concat (
         \"BEGIN:VCALENDAR\\n\",
         \"PRODID:-//Mozilla.org/NONSGML Mozilla Calendar V1.1//EN\\n\",
         IFNULL(CONCAT(\"NAME:\",s.name,\"\\n\"),''),
