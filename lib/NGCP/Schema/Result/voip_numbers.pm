@@ -106,6 +106,18 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0, join_type => "LEFT" },
 );
 
+__PACKAGE__->might_have(
+  "voip_dbalias",
+  "NGCP::Schema::Result::voip_dbaliases",
+  sub {
+    my ($self) = @_;
+    return { 
+        $self->{foreign_alias}.'.username' => { "=" => \["concat($$self{self_alias}.cc,$$self{self_alias}.ac,$$self{self_alias}.sn)"] }
+    }; 
+  },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
