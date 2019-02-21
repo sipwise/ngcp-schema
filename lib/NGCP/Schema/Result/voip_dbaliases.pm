@@ -40,6 +40,8 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "is_devid",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "devid_alias",
+  { data_type => "varchar", is_nullable => 1, size => 127 },
 );
 
 __PACKAGE__->set_primary_key("id");
