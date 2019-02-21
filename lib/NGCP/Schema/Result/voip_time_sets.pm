@@ -52,6 +52,13 @@ __PACKAGE__->has_many(
   # { cascade_copy => 0, cascade_delete => 0 }, # TODO: ??
 );
 
+__PACKAGE__->has_one(
+  "timeset_ical",
+  "NGCP::Schema::Result::v_time_sets_ical",
+  { "foreign.id" => "self.id" },
+  # { cascade_copy => 0, cascade_delete => 0 }, # TODO: ??
+);
+
 __PACKAGE__->belongs_to(
   "reseller",
   "NGCP::Schema::Result::resellers",
