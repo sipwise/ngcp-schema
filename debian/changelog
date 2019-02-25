@@ -1,3 +1,21 @@
+ngcp-schema (7.3.0.0+0~mr7.3.0.0) unstable; urgency=medium
+
+  [ Irina Peshinskaya ]
+  * [b635172] TT#50802 Access to the active primary numbers owners
+  * [26c8c9e] TT#49688 Generate ical format for events separately
+  * [424d60c] TT#47534 Add ical reference to timesets
+
+  [ Kirill Solomko ]
+  * [b6314f0] TT#51910 add voip_header_rules cf_inbound, cf_outbound direction
+
+  [ Andreas Granig ]
+  * [d36061b] TT#51168 Add dev_id column to voip_dbaliases
+  * [8ee9fb4] TT#52989 Add devid related fields and relations
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 25 Feb 2019 22:57:49 +0100
+
 ngcp-schema (7.2.0.0+0~mr7.2.0.0) unstable; urgency=medium
 
   [ Andreas Granig ]
