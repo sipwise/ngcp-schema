@@ -43,6 +43,8 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "peer_pref",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "reseller_pref",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "contract_pref",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "contract_location_pref",
@@ -92,6 +94,13 @@ __PACKAGE__->has_many(
 __PACKAGE__->has_many(
   "voip_peer_preferences",
   "NGCP::Schema::Result::voip_peer_preferences",
+  { "foreign.attribute_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
+  "reseller_preferences",
+  "NGCP::Schema::Result::reseller_preferences",
   { "foreign.attribute_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
