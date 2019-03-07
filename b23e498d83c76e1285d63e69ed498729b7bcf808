@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0c5dc1_df43766b",
+        "filename": "debian/control",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2019-03-07T20:47:06Z",
+      "side": 1,
+      "message": "Unsure about this one... if we rename this package and add the `replaces` for the old name, why is that old package name still listed below?",
+      "revId": "b23e498d83c76e1285d63e69ed498729b7bcf808",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
+    }
+  ]
+}
