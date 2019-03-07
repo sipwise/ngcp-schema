@@ -52,6 +52,24 @@
       "revId": "b23e498d83c76e1285d63e69ed498729b7bcf808",
       "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0c5dc1_9a3aaccc",
+        "filename": "debian/control",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2019-03-07T20:59:59Z",
+      "side": 1,
+      "message": "Ah ok. The Replaces field declares that a package will replace *files* from another one. It\u0027s not a way to declare that a package replaces another one completely.\n\nFor that, the way to declare it is to use Replaces + Breaks/Conflicts, which states that we take over all files and are booting out the other package.\n\nThe third case is Provides+Replaces+Conflicts on a virtual, which states that each instance doing that declares that it provides a singleton interface for that virtual package.",
+      "parentUuid": "9a0c5dc1_7f092a31",
+      "revId": "b23e498d83c76e1285d63e69ed498729b7bcf808",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
     }
   ]
 }
