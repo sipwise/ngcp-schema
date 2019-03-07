@@ -27,6 +27,13 @@ __PACKAGE__->add_columns(
     is_foreign_key => 1,
     is_nullable => 0,
   },
+  "subscriber_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 1,
+  },
   "name",
   { data_type => "varchar", is_nullable => 0, size => 32 },
   "description",
@@ -36,6 +43,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->add_unique_constraint("res_name_idx", ["name"]);
+
+__PACKAGE__->add_unique_constraint("vhrs_subscriber_idx", ["subscriber_id"]);
 
 __PACKAGE__->has_many(
   "voip_header_rules",
@@ -48,6 +57,13 @@ __PACKAGE__->belongs_to(
   "reseller",
   "NGCP::Schema::Result::resellers",
   { id => "reseller_id" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+__PACKAGE__->belongs_to(
+  "subscriber",
+  "NGCP::Schema::Result::provisioning_voip_subscribers",
+  { id => "subscriber_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
