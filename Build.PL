@@ -12,7 +12,6 @@ my $builder = Module::Build->new(
     dist_version_from => 'lib/NGCP/Schema.pm',
     share_dir         => 'share',
     requires          => {
-        'aliased'                     => 0,
         'DateTime'                    => 0,
         'DateTime::Format::MySQL'     => 0, #required by DBIx::Class
         'DBD::mysql'                  => 0,
@@ -28,7 +27,6 @@ my $builder = Module::Build->new(
         'Regexp::IPv6'                => 0,
         'Scalar::Util'                => 0,
         'Sipwise::Base'               => '1.002',
-        'Throwable::Error'            => 0,
         'XML::Simple'                 => 0,
     },
     test_requires => {
