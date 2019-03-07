@@ -16,6 +16,24 @@
       "revId": "b23e498d83c76e1285d63e69ed498729b7bcf808",
       "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0c5dc1_ff351af7",
+        "filename": "debian/control",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2019-03-07T20:49:41Z",
+      "side": 1,
+      "message": "The other package still provides a tool, I think for development, but it\u0027s not very clear, also perhaps the tool should be moved into a ngcp-schema-tools or similar.\n\n(And in any case when possible it\u0027s nicer to leave behind a transitional dummy package, so that the upgrade/transition is smoother. Which is not the case here currently.)",
+      "parentUuid": "9a0c5dc1_df43766b",
+      "revId": "b23e498d83c76e1285d63e69ed498729b7bcf808",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": false
     }
   ]
 }
