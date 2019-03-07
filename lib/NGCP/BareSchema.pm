@@ -59,14 +59,14 @@ __END__
 
 =head1 NAME
 
-NGCP::FaxSchema - Subset of NGCP::Schema loading only a few Result classes
+NGCP::BareSchema - Subset of NGCP::Schema loading only a few Result classes
 
 =head1 DESCRIPTION
 
 Use it like NGCP::Schema.
 
-    use NGCP::FaxSchema;
-    my $s = NGCP::FaxSchema->connect();
+    use NGCP::BareSchema;
+    my $s = NGCP::BareSchema->connect();
 
 =head1 AUTHOR
 
