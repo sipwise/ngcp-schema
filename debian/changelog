@@ -1,3 +1,15 @@
+ngcp-schema (7.2.2.0+0~mr7.2.2.0) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [178603c] TT#47010 add voip_header_rule_sets subscriber_id
+
+  [ Rene Krenn ]
+  * [00b6c4c] TT#46955 reseller preferences
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 11 Mar 2019 15:49:59 +0100
+
 ngcp-schema (7.2.1.0+0~mr7.2.1.0) unstable; urgency=medium
 
   [ Irina Peshinskaya ]
