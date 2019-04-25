@@ -1,3 +1,27 @@
+ngcp-schema (7.4.0.0+0~mr7.4.0.0) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [fb9d27b] TT#47010 add voip_header_rule_sets subscriber_id
+  * [74426db] TT#57701 add voip_header_rules direction "reply"
+
+  [ Rene Krenn ]
+  * [40d1ce6] TT#46955 reseller preferences
+
+  [ Guillem Jover ]
+  * [5493c29] TT#53701 Fix module name in NGCP::BareSchema POD
+  * [9928555] TT#53701 Remove unused perl dependencies
+  * [0b28dc8] TT#53701 Split package into tools and perl modules packages
+
+  [ Irina Peshinskaya ]
+  * [1f54025] TT#55503 Fix one-time event representation
+
+  [ Andreas Granig ]
+  * [3d53ca1] TT#55873 Only expose marked sound handles to customers
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Thu, 25 Apr 2019 14:30:54 +0200
+
 ngcp-schema (7.3.0.0+0~mr7.3.0.0) unstable; urgency=medium
 
   [ Irina Peshinskaya ]
