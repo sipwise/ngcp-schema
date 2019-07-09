@@ -141,7 +141,7 @@ __PACKAGE__->add_columns(
   {
     data_type => "enum",
     default_value => "call",
-    extra => { list => ["call", "cfu", "cft", "cfb", "cfna", "sms", "cfs", "cfr"] },
+    extra => { list => ["call", "cfu", "cft", "cfb", "cfna", "sms", "cfs", "cfr", "cfo"] },
     is_nullable => 0,
   },
   "call_status",
@@ -518,7 +518,7 @@ This module is a schema class for the NGCP database table "accounting.cdr".
 
   data_type: 'enum'
   default_value: 'call'
-  extra: {list => ["call","cfu","cft","cfb","cfna", "sms", "cfs", "cfr"]}
+  extra: {list => ["call","cfu","cft","cfb","cfna", "sms", "cfs", "cfr", "cfo"]}
   is_nullable: 0
 
 =head2 call_status
