@@ -36,6 +36,8 @@ __PACKAGE__->add_columns(
   },
   "description",
   { data_type => "text", is_nullable => 1 },
+  "pattern",
+  { data_type => "varchar", is_nullable => 0, size => 255 },
 );
 
 __PACKAGE__->set_primary_key("id");
