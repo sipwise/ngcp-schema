@@ -1,4 +1,4 @@
-package NGCP::Schema::Result::ncos_lnp_list;
+package NGCP::Schema::Result::ncos_lnp_pattern_list;
 
 use strict;
 use warnings;
@@ -10,7 +10,7 @@ our $VERSION = '2.007';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
-__PACKAGE__->table("billing.ncos_lnp_list");
+__PACKAGE__->table("billing.ncos_lnp_pattern_list");
 
 __PACKAGE__->add_columns(
   "id",
@@ -20,47 +20,28 @@ __PACKAGE__->add_columns(
     is_auto_increment => 1,
     is_nullable => 0,
   },
-  "ncos_level_id",
+  "ncos_lnp_list_id",
   {
     data_type => "integer",
     extra => { unsigned => 1 },
     is_foreign_key => 1,
     is_nullable => 0,
   },
-  "lnp_provider_id",
-  {
-    data_type => "integer",
-    extra => { unsigned => 1 },
-    is_foreign_key => 1,
-    is_nullable => 0,
-  },
+  "pattern",
+  { data_type => "varchar", is_nullable => 0, size => 255 },
   "description",
   { data_type => "text", is_nullable => 1 },
 );
 
 __PACKAGE__->set_primary_key("id");
 
-__PACKAGE__->add_unique_constraint("levpro_idx", ["ncos_level_id", "lnp_provider_id"]);
+__PACKAGE__->add_unique_constraint("listpat_idx", ["ncos_lnp_list_id", "pattern"]);
 
 __PACKAGE__->belongs_to(
-  "lnp_provider",
-  "NGCP::Schema::Result::lnp_providers",
-  { id => "lnp_provider_id" },
+  "ncos_lnp_lists",
+  "NGCP::Schema::Result::ncos_lnp_list",
+  { id => "ncos_lnp_list_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-__PACKAGE__->belongs_to(
-  "ncos_level",
-  "NGCP::Schema::Result::ncos_levels",
-  { id => "ncos_level_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-__PACKAGE__->has_many(
-  "ncos_lnp_pattern_lists",
-  "NGCP::Schema::Result::ncos_lnp_pattern_list",
-  { "foreign.ncos_lnp_list_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
 );
 
 sub TO_JSON {
@@ -77,11 +58,11 @@ __END__
 
 =head1 NAME
 
-NGCP::Schema::Result::ncos_lnp_list
+NGCP::Schema::Result::ncos_lnp_pattern_list
 
 =head1 DESCRIPTION
 
-This module is a schema class for the NGCP database table "billing.ncos_lnp_list".
+This module is a schema class for the NGCP database table "billing.ncos_lnp_pattern_list".
 
 =head1 COMPONENTS LOADED
 
@@ -93,7 +74,7 @@ This module is a schema class for the NGCP database table "billing.ncos_lnp_list
 
 =back
 
-=head1 TABLE: C<billing.ncos_lnp_list>
+=head1 TABLE: C<billing.ncos_lnp_pattern_list>
 
 =head1 ACCESSORS
 
@@ -104,18 +85,17 @@ This module is a schema class for the NGCP database table "billing.ncos_lnp_list
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 ncos_level_id
+=head2 ncos_lnp_list_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 lnp_provider_id
+=head2 pattern
 
-  data_type: 'integer'
-  extra: {unsigned => 1}
-  is_foreign_key: 1
+  data_type: 'varchar'
+  size: 255
   is_nullable: 0
 
 =head2 description
@@ -133,29 +113,23 @@ This module is a schema class for the NGCP database table "billing.ncos_lnp_list
 
 =head1 UNIQUE CONSTRAINTS
 
-=head2 C<levpro_idx>
+=head2 C<listpat_idx>
 
 =over 4
 
-=item * L</ncos_level_id>
+=item * L</ncos_lnp_list_id>
 
-=item * L</lnp_provider_id>
+=item * L</pattern>
 
 =back
 
 =head1 RELATIONS
 
-=head2 lnp_provider
+=head2 ncos_lnp_list
 
 Type: belongs_to
 
-Related object: L<NGCP::Schema::Result::lnp_providers>
-
-=head2 ncos_level
-
-Type: belongs_to
-
-Related object: L<NGCP::Schema::Result::ncos_levels>
+Related object: L<NGCP::Schema::Result::ncos_lnp_list>
 
 =head1 AUTHOR
 
