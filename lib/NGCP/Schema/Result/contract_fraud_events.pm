@@ -36,6 +36,12 @@ __PACKAGE__->add_columns(
     size      => 64,
     is_nullable => 0,
   },
+  "interval_date",
+  {
+    data_type => "varchar",
+    size      => 10,
+    is_nullable => 0,
+  },
   "type",
   {
     data_type => "varchar",
@@ -74,6 +80,18 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
     extra => { unsigned => 1 },
   },
+  "notify_status",
+  {
+    data_type => "enum",
+    default_value => "new",
+    extra => { list => ["new", "notified"] },
+    is_nullable => 0,
+  },
+  "notified_at",
+  {
+    data_type => "datetime",
+    is_nullable => 1,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -88,59 +106,56 @@ sub TO_JSON {
 __PACKAGE__->result_source_instance->is_virtual(1);
 
 __PACKAGE__->result_source_instance->view_definition(<<SQL);
-SELECT bpinfo.id, bpinfo.reseller_id, bpinfo.interval, bpinfo.type,
-       IF (bpinfo.fraud_use_reseller_rates > 0, SUM(cdr.source_reseller_cost),
-                                                SUM(cdr.source_customer_cost)) as interval_cost,
+SELECT bpinfo.id, bpinfo.reseller_id,
+       bpinfo.period as `interval`, bpinfo.period_date as 'interval_date', bpinfo.type,
+       IF (bpinfo.fraud_use_reseller_rates > 0, bpinfo.reseller_cost,
+                                                bpinfo.customer_cost) as interval_cost,
        bpinfo.interval_limit,
        bpinfo.interval_lock,
        bpinfo.interval_notify,
-       bpinfo.fraud_use_reseller_rates as use_reseller_rates
+       bpinfo.fraud_use_reseller_rates as use_reseller_rates,
+       bpinfo.notify_status,
+       bpinfo.notified_at
 FROM (
-  SELECT c.id, n.reseller_id, bp.fraud_use_reseller_rates, i.interval,
-    IF (i.interval = 'month',
+  SELECT c.id, n.reseller_id, bp.fraud_use_reseller_rates,
+         cpc.period, cpc.period_date,
+         cpc.reseller_cost, cpc.customer_cost,
+         cpc.notify_status, cpc.notified_at,
+    IF (cpc.period = 'month',
         IF (cfp.fraud_interval_limit > 0,
             'account_limit', 'profile_limit'),
         IF (cfp.fraud_daily_limit > 0,
             'account_limit', 'profile_limit')
        ) AS type,
-    IF (i.interval = 'month',
+    IF (cpc.period = 'month',
         IF (cfp.fraud_interval_limit > 0,
             cfp.fraud_interval_limit, bp.fraud_interval_limit),
         IF (cfp.fraud_daily_limit > 0,
             cfp.fraud_daily_limit, bp.fraud_daily_limit)
        ) AS interval_limit,
-    IF (i.interval = 'month',
+    IF (cpc.period = 'month',
         IF (cfp.fraud_interval_limit > 0,
             cfp.fraud_interval_lock, bp.fraud_interval_lock),
         IF (cfp.fraud_daily_limit > 0,
             cfp.fraud_daily_lock, bp.fraud_daily_lock)
        ) AS interval_lock,
-    IF (i.interval = 'month',
+    IF (cpc.period = 'month',
         IF (cfp.fraud_interval_limit > 0,
             cfp.fraud_interval_notify, bp.fraud_interval_notify),
         IF (cfp.fraud_daily_limit > 0,
             cfp.fraud_daily_notify, bp.fraud_daily_notify)
        ) AS interval_notify
-  FROM (SELECT IF(? = 'month','month','day') AS 'interval') i,
-       billing.contracts c
+  FROM billing.contracts c
   JOIN billing.v_actual_billing_profiles bp_actual ON bp_actual.contract_id = c.id
   JOIN billing.billing_profiles bp ON bp.id = bp_actual.billing_profile_id
   JOIN billing.contacts n ON n.id = c.contact_id
   JOIN billing.resellers r ON r.id = n.reseller_id
+  JOIN accounting.cdr_period_costs cpc ON cpc.contract_id = c.id
   LEFT JOIN billing.contract_fraud_preferences cfp ON cfp.contract_id = c.id
   WHERE c.status = 'active'
+   AND cpc.fraud_limit_exceeded = 1
   HAVING interval_limit > 0
 ) AS bpinfo
-JOIN accounting.cdr ON cdr.source_account_id = bpinfo.id
-WHERE CASE WHEN bpinfo.interval = 'month'
-  THEN cdr.start_time
-    BETWEEN UNIX_TIMESTAMP(DATE_FORMAT(NOW(), '%Y-%m-01 00:00:00'))
-        AND UNIX_TIMESTAMP(DATE_FORMAT(NOW() + INTERVAL 1 MONTH, '%Y-%m-01 00:00:00'))-1
-  ELSE cdr.start_time
-    BETWEEN UNIX_TIMESTAMP(DATE_FORMAT(NOW(), '%Y-%m-%d 00:00:00'))
-        AND UNIX_TIMESTAMP(DATE_FORMAT(NOW() + INTERVAL 1 DAY, '%Y-%m-%d 00:00:00'))-1
-  END
-GROUP BY bpinfo.id
 HAVING interval_cost >= interval_limit
 SQL
 
