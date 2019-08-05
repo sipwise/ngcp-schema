@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "d4f64570_b46268ca",
+        "filename": "lib/NGCP/Schema/Result/contract_fraud_events.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2019-08-05T00:15:06Z",
+      "side": 1,
+      "message": "this will affect data representation as the form fields need to be either renamed (affects customers) or mapped .... \none of reasons why I decided not to rework this view too much and preserve field names is to make it in the working state for now.\n\nthis rework is how I also had it in mind but this will go into mr7.5 as a separate backport this week, along with required modifications in the API to reflect that + tests.",
+      "range": {
+        "startLine": 21,
+        "startChar": 3,
+        "endLine": 21,
+        "endChar": 14
+      },
+      "revId": "b34b77c2ea38d0f4e1191ead5718002ab935c36d",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e55f7622_cc9e8683",
         "filename": "lib/NGCP/Schema/Result/contract_fraud_events.pm",
         "patchSetId": 1
