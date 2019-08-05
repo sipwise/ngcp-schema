@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e55f7622_cc9e8683",
+        "filename": "lib/NGCP/Schema/Result/contract_fraud_events.pm",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2019-08-05T00:11:20Z",
+      "side": 1,
+      "message": "day ?",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 51
+      },
+      "revId": "b34b77c2ea38d0f4e1191ead5718002ab935c36d",
+      "serverId": "85315e57-5f03-49c3-83f8-201ae2313a75",
+      "unresolved": true
+    }
+  ]
+}
