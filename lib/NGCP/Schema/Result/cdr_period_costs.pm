@@ -34,7 +34,7 @@ __PACKAGE__->add_columns(
   },
   "period_date",
   {
-    data_type => "datetime",
+    data_type => "date",
     is_nullable => 0,
   },
   "direction",
@@ -91,7 +91,7 @@ __PACKAGE__->add_columns(
     size => [13, 3],
     is_nullable => 0,
   },
-  "first_cdr_start_id",
+  "first_cdr_id",
   {
     data_type => "integer",
     extra => { unsigned => 1 },
@@ -102,7 +102,7 @@ __PACKAGE__->add_columns(
     size => [13, 3],
     is_nullable => 0,
   },
-  "last_cdr_start_id",
+  "last_cdr_id",
   {
     data_type => "integer",
     extra => { unsigned => 1 },
@@ -120,14 +120,14 @@ __PACKAGE__->belongs_to(
 );
 
 __PACKAGE__->belongs_to(
-  "first_cdr_start_id",
+  "first_cdr",
   "NGCP::Schema::Result::cdr",
   { id => "first_cdr_start_id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
 __PACKAGE__->belongs_to(
-  "last_cdr_start_id",
+  "last_cdr",
   "NGCP::Schema::Result::cdr",
   { id => "last_cdr_start_id" },
   { cascade_copy => 0, cascade_delete => 0 },
