@@ -51,13 +51,6 @@ __PACKAGE__->belongs_to(
 );
 
 __PACKAGE__->belongs_to(
-  "contract",
-  "NGCP::Schema::Result::contracts",
-  { id => "contract_id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->belongs_to(
   "contact",
   "NGCP::Schema::Result::contacts",
   { id => "contact_id" },
