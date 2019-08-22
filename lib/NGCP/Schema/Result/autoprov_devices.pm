@@ -41,6 +41,10 @@ __PACKAGE__->add_columns(
   { data_type => "mediumblob", is_nullable => 1 },
   "mac_image_type",
   { data_type => "varchar", is_nullable => 0, size => 32 },
+  "front_thumbnail",
+  { data_type => "mediumblob", is_nullable => 1 },
+  "front_thumbnail_type",
+  { data_type => "varchar", is_nullable => 0, size => 32 },
   "bootstrap_method",
   {
     data_type => "enum",
