@@ -45,6 +45,8 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "is_superuser",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "is_ccare",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "is_active",
   { data_type => "tinyint", default_value => 1, is_nullable => 0 },
   "read_only",
