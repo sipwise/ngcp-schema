@@ -32,10 +32,9 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 512 },
   "expires",
   {
-    data_type => "datetime",
-    datetime_undef_if_invalid => 1,
-    default_value => "2030-05-28 21:32:15",
+    data_type => "bigint",
     is_nullable => 0,
+    inflate_datetime => 'epoch',
   },
   "q",
   {
@@ -171,10 +170,9 @@ This module is a schema class for the NGCP database table "kamailio.location".
 
 =head2 expires
 
-  data_type: 'datetime'
-  datetime_undef_if_invalid: 1
-  default_value: '2030-05-28 21:32:15'
+  data_type: 'bigint'
   is_nullable: 0
+  inflate_datetime => 'epoch'
 
 =head2 q
 
