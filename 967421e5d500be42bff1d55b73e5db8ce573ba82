@@ -1,0 +1,7 @@
+Code-Review+2: Kirill Solomko <ksolomko@sipwise.com>
+Verified+1: Jenkins Jenkins
+Submitted-by: Kirill Solomko <ksolomko@sipwise.com>
+Submitted-at: Wed, 28 Aug 2019 17:11:40 +0200
+Reviewed-on: http://gerrit.mgm.sipwise.com/c/ngcp-schema/+/32781
+Project: ngcp-schema
+Branch: refs/heads/master
