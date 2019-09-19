@@ -62,6 +62,18 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
+__PACKAGE__->belongs_to(
+  "voip_number",
+  "NGCP::Schema::Result::voip_number",
+  sub {
+    my ($self) = @_;
+    return { 
+        $self->{self_alias}.'.username' => { "=" => \["concat($$self{foreign_alias}.cc,$$self{foreign_alias}.ac,$$self{foreign_alias}.sn)"] }
+    }; 
+  },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {

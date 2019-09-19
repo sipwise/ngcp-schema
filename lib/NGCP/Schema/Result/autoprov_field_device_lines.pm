@@ -56,6 +56,13 @@ __PACKAGE__->add_columns(
     default_value => 0,
     is_nullable => 0,
   },
+  "deviceid_alias_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 0,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -78,6 +85,12 @@ __PACKAGE__->belongs_to(
   "NGCP::Schema::Result::autoprov_device_line_ranges",
   { id => "linerange_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+__PACKAGE__->might_have(
+  "deviceid_alias",
+  'NGCP::Schema::Result::voip_dbaliases',
+  { 'foreign.id' => 'self.deviceid_alias_id' },
+  { cascade_copy => 0, cascade_delete => 0 },
 );
 
 sub TO_JSON {
