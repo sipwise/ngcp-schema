@@ -56,7 +56,7 @@ __PACKAGE__->add_columns(
     default_value => 0,
     is_nullable => 0,
   },
-  "deviceid_dbalias_id",
+  "deviceid_dbaliases_id",
   {
     data_type => "integer",
     extra => { unsigned => 1 },
@@ -89,7 +89,7 @@ __PACKAGE__->belongs_to(
 __PACKAGE__->might_have(
   "deviceid_alias",
   'NGCP::Schema::Result::voip_dbaliases',
-  { 'foreign.id' => 'self.deviceid_dbalias_id' },
+  { 'foreign.id' => 'self.deviceid_dbaliases_id' },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
