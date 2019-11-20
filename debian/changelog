@@ -1,3 +1,12 @@
+ngcp-schema (5.5.12.0+0~mr5.5.12.0) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [b483cde] TT#64661 drop nonexistend voip_subscriber_timezone.contract relation
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Wed, 20 Nov 2019 15:06:10 +0100
+
 ngcp-schema (5.5.11.0+0~mr5.5.11.0) unstable; urgency=medium
 
   * New release.
