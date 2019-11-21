@@ -97,6 +97,22 @@ __PACKAGE__->add_columns(
     extra => { list => [ "regex_longest_pattern", "regex_longest_match", "prefix", "exact_destination", ] },
     is_nullable => 0,
   },
+  "onpeak_extra_rate",
+  { data_type => "double precision", default_value => 0, is_nullable => 0 },
+  "onpeak_extra_second",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_nullable => 1,
+  },
+  "offpeak_extra_rate",
+  { data_type => "double precision", default_value => 0, is_nullable => 0 },
+  "offpeak_extra_second",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_nullable => 1,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
