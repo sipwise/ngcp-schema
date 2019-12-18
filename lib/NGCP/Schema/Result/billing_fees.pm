@@ -88,7 +88,9 @@ __PACKAGE__->add_columns(
     extra => { unsigned => 1 },
     is_nullable => 0,
   },
-  "use_free_time",
+  "onpeak_use_free_time",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "offpeak_use_free_time",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "match_mode",
   {
