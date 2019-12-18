@@ -115,6 +115,13 @@ __PACKAGE__->add_columns(
     extra => { unsigned => 1 },
     is_nullable => 1,
   },
+  "free_time_period",
+  {
+    data_type => "enum",
+    default_value => "both",
+    extra => { list => [ "onpeak", "offpeak", "both" ] },
+    is_nullable => 0,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
