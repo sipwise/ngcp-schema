@@ -89,7 +89,12 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
   },
   "use_free_time",
-  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  {
+    data_type => "enum",
+    default_value => "none",
+    extra => { list => [ "none", "onpeak", "offpeak", "both" ] },
+    is_nullable => 0,
+  },
   "match_mode",
   {
     data_type => "enum",
