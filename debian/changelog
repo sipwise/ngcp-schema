@@ -1,3 +1,13 @@
+ngcp-schema (8.3.0.0+0~mr8.3.0.0) unstable; urgency=medium
+
+  [ Flaviu Mates ]
+  * [84b9347] TT#70856 - Schema changes for one-time fee
+
+  [ Rene Krenn ]
+  * [73224eb] TT#72900 fee onoffpeak usefreetime
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 27 Jan 2020 12:24:00 +0100
+
 ngcp-schema (8.2.0.0+0~mr8.2.0.0) unstable; urgency=medium
 
   * New release.
