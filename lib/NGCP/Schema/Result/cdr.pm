@@ -305,6 +305,18 @@ __PACKAGE__->belongs_to(
 );
 
 __PACKAGE__->belongs_to(
+  "destination_account",
+  "NGCP::Schema::Result::contracts",
+  { "id" => "destination_account_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "SET NULL",
+    on_update     => "UPDATE",
+  },
+);
+
+__PACKAGE__->belongs_to(
   "destination_subscriber",
   "NGCP::Schema::Result::voip_subscribers",
   { uuid => "destination_user_id" },
