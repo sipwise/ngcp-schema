@@ -40,7 +40,7 @@ __PACKAGE__->add_columns(
   "webusername",
   { data_type => "varchar", is_nullable => 1, size => 127 },
   "webpassword",
-  { data_type => "varchar", is_nullable => 1, size => 40 },
+  { data_type => "char", is_nullable => 1, size => 54 },
   "pbx_hunt_policy",
   {
     data_type => "enum",
