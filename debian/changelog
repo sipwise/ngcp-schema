@@ -1,3 +1,10 @@
+ngcp-schema (8.3.1.2+0~mr8.3.1.2) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [53c8726] TT#78467 add cdr.destination_account relation
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Thu, 23 Apr 2020 10:44:48 +0200
+
 ngcp-schema (8.3.1.1+0~mr8.3.1.1) unstable; urgency=medium
 
   * New release.
