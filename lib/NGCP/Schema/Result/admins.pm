@@ -63,6 +63,10 @@ __PACKAGE__->add_columns(
   { data_type => "bigint", extra => { unsigned => 1 }, is_nullable => 1 },
   "ssl_client_certificate",
   { data_type => "text", is_nullable => 1 },
+  "email",
+  { data_type => "varchar", is_nullable => 1, size => 255 },
+  "can_reset_password",
+  { data_type => "tinyint", default_value => 1, is_nullable => 0 },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -70,6 +74,8 @@ __PACKAGE__->set_primary_key("id");
 __PACKAGE__->add_unique_constraint("login_idx", ["login"]);
 
 __PACKAGE__->add_unique_constraint("ssl_client_m_serial_UNIQUE", ["ssl_client_m_serial"]);
+
+__PACKAGE__->add_unique_constraint("email", ["email"]);
 
 __PACKAGE__->belongs_to(
   "reseller",
