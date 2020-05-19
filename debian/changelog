@@ -1,3 +1,14 @@
+ngcp-schema (8.5.0.0+0~mr8.5.0.0) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [91745b6] TT#78467 add cdr.destination_account relation
+  * [e3cf7db] TT#80152 provisioning_templates resultset
+
+  [ Flaviu Mates ]
+  * [0bbfaf9] TT#78557 - Change webpassword length to accept encrypted string
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Tue, 19 May 2020 11:10:56 +0200
+
 ngcp-schema (8.4.0.0+0~mr8.4.0.0) unstable; urgency=medium
 
   [ Flaviu Mates ]
