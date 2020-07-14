@@ -1,3 +1,11 @@
+ngcp-schema (8.5.1.0+0~mr8.5.1.0) unstable; urgency=medium
+
+  [ Flaviu Mates ]
+  * [e944e69] TT#76109 - Introduce email column from admins
+  * [9f68558] TT#76111 - Introduce 'is_system' column for admins schema
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Tue, 14 Jul 2020 11:53:47 +0200
+
 ngcp-schema (8.5.0.0+0~mr8.5.0.0) unstable; urgency=medium
 
   [ Rene Krenn ]
