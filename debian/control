@@ -23,8 +23,6 @@ Homepage: https://www.sipwise.com/
 
 Package: libngcp-schema-perl
 Architecture: all
-Replaces:
- ngcp-schema,
 Depends:
  ${misc:Depends},
  ${perl:Depends},
@@ -43,8 +41,6 @@ Description: NGCP DBIC-derived ORM schema classes
 Package: ngcp-schema-tools
 Architecture: all
 Section: devel
-Replaces:
- ngcp-schema,
 Depends:
  ${misc:Depends},
  ${perl:Depends},
@@ -55,12 +51,3 @@ Depends:
  perl-doc,
 Description: NGCP DBIC-derived ORM schema classes - development tools
  This package provides schema classes for the NGCP databases.
-
-Package: ngcp-schema
-Architecture: all
-Section: oldlibs
-Depends:
- ngcp-schema-tools,
-Description: transitional dummy package
- This package has been split into libngcp-schema-perl and ngcp-schema-tools.
- It can be safely removed once it is not depended on by other packages.

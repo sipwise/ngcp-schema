@@ -4,4 +4,5 @@
 /.debhelper/
 /debhelper-build-stamp
 /files
-/ngcp-schema/
+/libngcp-schema-perl
+/ngcp-schema-tools
