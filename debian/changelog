@@ -1,3 +1,10 @@
+ngcp-schema (8.4.2.1+0~mr8.4.2.1) unstable; urgency=medium
+
+  [ Flaviu Mates ]
+  * [2915984] TT#76109 - Introduce email column from admins
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Tue, 25 Aug 2020 16:50:05 +0200
+
 ngcp-schema (8.4.2.0+0~mr8.4.2.0) unstable; urgency=medium
 
   * New release.
