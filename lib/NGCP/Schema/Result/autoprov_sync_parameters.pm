@@ -30,7 +30,7 @@ __PACKAGE__->add_columns(
   "parameter_name",
   {
     data_type => "enum",
-    extra => { list => ["sync_uri","sync_method","sync_params","security_handler","profile","cid","key"] },
+    extra => { list => ["sync_uri","sync_method","sync_params","security_handler","profile","cid","key","product_family"] },
     is_nullable => 1,
   },
   "parameter_constraint",
