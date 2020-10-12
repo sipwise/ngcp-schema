@@ -24,9 +24,9 @@ __PACKAGE__->add_columns(
   {
     data_type => "enum",
     default_value => "http",
-    extra => { list => ["http","redirect_panasonic","redirect_yealink","redirect_polycom","redirect_snom","redirect_grandstream", "redirect_sipwise", "profile_sipwise"] },
+    extra => { list => ["http","redirect_panasonic","redirect_yealink","redirect_polycom","redirect_snom","redirect_grandstream"] },
     is_nullable => 0,
-  },   
+  },
   "parameter_name",
   {
     data_type => "enum",

@@ -49,9 +49,9 @@ __PACKAGE__->add_columns(
   {
     data_type => "enum",
     default_value => "http",
-    extra => { list => ["http","redirect_panasonic","redirect_yealink","redirect_polycom","redirect_snom","redirect_grandstream", "redirect_sipwise", "profile_sipwise", "redirect_ale", "none"] },
+    extra => { list => ["http","redirect_panasonic","redirect_yealink","redirect_polycom","redirect_snom","redirect_grandstream", "redirect_ale", "none"] },
     is_nullable => 1,
-  },   
+  },
   "bootstrap_uri",
   { data_type => "varchar", is_nullable => 0, size => 255 },
    "extensions_num",
