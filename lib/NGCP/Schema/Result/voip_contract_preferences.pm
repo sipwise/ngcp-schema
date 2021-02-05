@@ -68,6 +68,14 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
+__PACKAGE__->has_one(
+  "blob",
+  "NGCP::Schema::Result::voip_contract_preferences_blob",
+  { "foreign.preference_id" => "self.id" },
+  { join_type => 'LEFT OUTER' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {

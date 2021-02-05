@@ -1,4 +1,4 @@
-package NGCP::Schema::Result::voip_dom_preferences;
+package NGCP::Schema::Result::voip_usr_preferences_blob;
 
 use strict;
 use warnings;
@@ -10,7 +10,7 @@ our $VERSION = '2.007';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
-__PACKAGE__->table("provisioning.voip_dom_preferences");
+__PACKAGE__->table("provisioning.voip_usr_preferences_blob");
 
 __PACKAGE__->add_columns(
   "id",
@@ -20,53 +20,31 @@ __PACKAGE__->add_columns(
     is_auto_increment => 1,
     is_nullable => 0,
   },
-  "domain_id",
+  "preference_id",
   {
     data_type => "integer",
     extra => { unsigned => 1 },
     is_foreign_key => 1,
     is_nullable => 0,
   },
-  "attribute_id",
-  {
-    data_type => "integer",
-    extra => { unsigned => 1 },
-    is_foreign_key => 1,
-    is_nullable => 0,
-  },
-  "value",
+  "content_type",
   { data_type => "varchar", is_nullable => 0, size => 128 },
-  "modify_timestamp",
-  {
-    data_type => "timestamp",
-    datetime_undef_if_invalid => 1,
-    default_value => \"current_timestamp",
-    is_nullable => 0,
-  },
+  "value",
+  { data_type => "mediumblob", is_nullable => 1 },
 );
 
 __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->belongs_to(
-  "attribute",
-  "NGCP::Schema::Result::voip_preferences",
-  { id => "attribute_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-__PACKAGE__->belongs_to(
-  "domain",
-  "NGCP::Schema::Result::voip_domains",
-  { id => "domain_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-__PACKAGE__->has_one(
-  "blob",
-  "NGCP::Schema::Result::voip_dom_preferences_blob",
-  { "foreign.preference_id" => "self.id" },
-  { join_type => 'LEFT OUTER' },
-  { cascade_copy => 0, cascade_delete => 0 },
+  "voip_usr_preference",
+  "NGCP::Schema::Result::voip_usr_preferences",
+  { id => "preference_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
 );
 
 sub TO_JSON {
@@ -83,11 +61,11 @@ __END__
 
 =head1 NAME
 
-NGCP::Schema::Result::voip_dom_preferences
+NGCP::Schema::Result::voip_usr_preferences_blob
 
 =head1 DESCRIPTION
 
-This module is a schema class for the NGCP database table "provisioning.voip_dom_preferences".
+This module is a schema class for the NGCP database table "provisioning.voip_usr_preferences_blob".
 
 =head1 COMPONENTS LOADED
 
@@ -99,7 +77,7 @@ This module is a schema class for the NGCP database table "provisioning.voip_dom
 
 =back
 
-=head1 TABLE: C<provisioning.voip_dom_preferences>
+=head1 TABLE: C<provisioning.voip_usr_preferences_blob>
 
 =head1 ACCESSORS
 
@@ -110,31 +88,22 @@ This module is a schema class for the NGCP database table "provisioning.voip_dom
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 domain_id
+=head2 preference_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
-  is_foreign_key: 1
+  is_auto_increment: 1
   is_nullable: 0
 
-=head2 attribute_id
-
-  data_type: 'integer'
-  extra: {unsigned => 1}
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 value
+=head2 content_type
 
   data_type: 'varchar'
   is_nullable: 0
   size: 128
 
-=head2 modify_timestamp
+=head2 value
 
-  data_type: 'timestamp'
-  datetime_undef_if_invalid: 1
-  default_value: current_timestamp
+  data_type: 'mediumblob'
   is_nullable: 0
 
 =head1 PRIMARY KEY
@@ -145,19 +114,13 @@ This module is a schema class for the NGCP database table "provisioning.voip_dom
 
 =back
 
-=head1 RELATIONS
+=headhead1 RELATIONS
 
-=head2 attribute
-
-Type: belongs_to
-
-Related object: L<NGCP::Schema::Result::voip_preferences>
-
-=head2 domain
+=head2 voip_usr_preference
 
 Type: belongs_to
 
-Related object: L<NGCP::Schema::Result::voip_domains>
+Related object: L<NGCP::Schema::Result::voip_usr_preferences>
 
 =head1 AUTHOR
 
