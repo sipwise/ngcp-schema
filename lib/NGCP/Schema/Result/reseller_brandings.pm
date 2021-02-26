@@ -28,6 +28,10 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 32 },
   "css",
   { data_type => "mediumtext", is_nullable => 1 },
+  "csc_color_primary",
+  { data_type => "varchar", is_nullable => 1, size => 45 },
+  "csc_color_secondary",
+  { data_type => "varchar", is_nullable => 1, size => 45 },
 
 );
 
