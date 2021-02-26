@@ -117,6 +117,8 @@ __PACKAGE__->add_columns(
   },
   "offpeak_use_free_time",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "aoc_pulse_amount_per_message",
+  { data_type => "double precision", default_value => 0, is_nullable => 0 },  
 );
 
 __PACKAGE__->set_primary_key("id");
