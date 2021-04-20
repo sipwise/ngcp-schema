@@ -1,3 +1,14 @@
+ngcp-schema (9.4.1.0+0~mr9.4.1.0) unstable; urgency=medium
+
+  [ Flaviu Mates ]
+  * [59709e6] TT#109604 Add blob preferences tables to ngcp-schema
+  * [ed7a8f3] TT#108162 Add csc_color_primary and csc_color_secondary 	  columns to reseller branding table schema
+
+  [ Rene Krenn ]
+  * [d228433] TT#111305 add "aoc_pulse_amount_per_message" column
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Tue, 20 Apr 2021 11:58:58 +0200
+
 ngcp-schema (9.4.0.0+0~mr9.4.0.0) unstable; urgency=medium
 
   * New release.
