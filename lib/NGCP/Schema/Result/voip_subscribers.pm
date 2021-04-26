@@ -78,7 +78,7 @@ __PACKAGE__->belongs_to(
   "domain",
   "NGCP::Schema::Result::domains",
   { id => "domain_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+  { is_deferrable => 1, join_type => "LEFT", on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
 __PACKAGE__->belongs_to(
