@@ -1,3 +1,10 @@
+ngcp-schema (10.0.0.0+0~mr10.0.0.0) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [e1acb3a] TT#120651 susbcriber datatable performance: fix initial page load time
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 14 Jun 2021 16:37:52 +0200
+
 ngcp-schema (9.5.0.0+0~mr9.5.0.0) unstable; urgency=medium
 
   [ Flaviu Mates ]
