@@ -1,3 +1,10 @@
+ngcp-schema (10.0.1.0+0~mr10.0.1.0) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [b6a882c] TT#134806 add ignore_domain column
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Tue, 24 Aug 2021 16:52:44 +0200
+
 ngcp-schema (10.0.0.0+0~mr10.0.0.0) unstable; urgency=medium
 
   [ Rene Krenn ]
