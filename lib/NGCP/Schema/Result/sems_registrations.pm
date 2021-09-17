@@ -13,10 +13,33 @@ __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 __PACKAGE__->table("kamailio.sems_registrations");
 
 __PACKAGE__->add_columns(
+  "id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_auto_increment => 1,
+    is_nullable => 0,
+  },
   "subscriber_id",
-  { data_type => "integer", is_nullable => 0 },
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 1,
+  },
+  "peer_host_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 1,
+  },
   "registration_status",
-  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  {
+    data_type => "tinyint",
+    default_value => 0,
+    is_nullable => 0
+  },
   "last_registration",
   {
     data_type => "datetime",
@@ -37,7 +60,21 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 512 },
 );
 
-__PACKAGE__->set_primary_key("subscriber_id");
+__PACKAGE__->belongs_to(
+  "subscriber",
+  "NGCP::Schema::Result::subscriber",
+  { id => "subscriber_id" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+__PACKAGE__->belongs_to(
+  "lcr_gw",
+  "NGCP::Schema::Result::lcr_gw",
+  { id => "peer_host_id" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+__PACKAGE__->set_primary_key("id");
 
 sub TO_JSON {
     my ($self) = @_;

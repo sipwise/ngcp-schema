@@ -312,7 +312,7 @@ __PACKAGE__->belongs_to(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-__PACKAGE__->has_many(
+__PACKAGE__->has_one(
   "kamailio_subscriber",
   'NGCP::Schema::Result::subscriber',
   { 'foreign.uuid' => 'self.uuid' },

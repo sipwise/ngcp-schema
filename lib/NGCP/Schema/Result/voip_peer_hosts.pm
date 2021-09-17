@@ -67,6 +67,12 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->might_have(
+  "lcr_gw",
+  "NGCP::Schema::Result::lcr_gw",
+  { "foreign.flags" => "self.id" },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
