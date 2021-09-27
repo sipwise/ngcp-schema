@@ -8,7 +8,11 @@ use parent 'DBIx::Class::Core';
 
 our $VERSION = '2.007';
 
-__PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
+__PACKAGE__->load_components(
+  "InflateColumn::DateTime",
+  "Helper::Row::ToJSON",
+  "+NGCP::Schema::InflateColumn::DateTime::EpochString",
+);
 
 __PACKAGE__->table("kamailio.location");
 
@@ -34,7 +38,7 @@ __PACKAGE__->add_columns(
   {
     data_type => "bigint",
     is_nullable => 0,
-    inflate_datetime => 'epoch',
+    inflate_datetime => 'epoch_string',
   },
   "q",
   {
