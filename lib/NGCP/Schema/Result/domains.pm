@@ -20,6 +20,12 @@ __PACKAGE__->add_columns(
     is_auto_increment => 1,
     is_nullable => 0,
   },
+  "reseller_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_nullable => 0,
+  },
   "domain",
   { data_type => "varchar", is_nullable => 0, size => 127 },
 );
@@ -28,11 +34,16 @@ __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->add_unique_constraint("domain_idx", ["domain"]);
 
-__PACKAGE__->has_many(
-  "domain_resellers",
-  "NGCP::Schema::Result::domain_resellers",
-  { "foreign.domain_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
+__PACKAGE__->belongs_to(
+  "reseller",
+  "NGCP::Schema::Result::resellers",
+  { id => "reseller_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
 );
 
 __PACKAGE__->has_many(
@@ -122,12 +133,6 @@ This module is a schema class for the NGCP database table "billing.domains".
 =back
 
 =head1 RELATIONS
-
-=head2 domain_resellers
-
-Type: has_many
-
-Related object: L<NGCP::Schema::Result::domain_resellers>
 
 =head2 voip_subscribers
 

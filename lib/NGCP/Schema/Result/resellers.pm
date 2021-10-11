@@ -52,6 +52,13 @@ __PACKAGE__->has_many(
 );
 
 __PACKAGE__->has_many(
+  "domains",
+  "NGCP::Schema::Result::domains",
+  { "foreign.reseller_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
   "billing_profiles",
   "NGCP::Schema::Result::billing_profiles",
   { "foreign.reseller_id" => "self.id" },
@@ -75,13 +82,6 @@ __PACKAGE__->has_many(
 __PACKAGE__->has_many(
   "customers",
   "NGCP::Schema::Result::customers",
-  { "foreign.reseller_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "domain_resellers",
-  "NGCP::Schema::Result::domain_resellers",
   { "foreign.reseller_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -351,12 +351,6 @@ Related object: L<NGCP::Schema::Result::contracts>
 Type: has_many
 
 Related object: L<NGCP::Schema::Result::customers>
-
-=head2 domain_resellers
-
-Type: has_many
-
-Related object: L<NGCP::Schema::Result::domain_resellers>
 
 =head2 ncos_levels
 
