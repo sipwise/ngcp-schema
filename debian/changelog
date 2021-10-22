@@ -1,3 +1,10 @@
+ngcp-schema (7.5.4.2+0~mr7.5.4.2) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [ce13d50] TT#143151 fix inflating kamailio.location.expiry
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Fri, 22 Oct 2021 12:19:12 +0200
+
 ngcp-schema (7.5.4.1+0~mr7.5.4.1) unstable; urgency=medium
 
   * New release.
