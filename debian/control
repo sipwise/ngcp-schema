@@ -3,7 +3,7 @@ Section: perl
 Priority: optional
 Maintainer: Sipwise Development Team <support@sipwise.com>
 Build-Depends:
- debhelper-compat (= 12),
+ debhelper-compat (= 13),
  libdatetime-format-mysql-perl,
  libdbd-mysql-perl,
  libdbix-class-encodedcolumn-perl,
@@ -18,14 +18,12 @@ Build-Depends:
  libtest-fatal-perl,
  libxml-simple-perl,
  perl-doc,
-Standards-Version: 3.9.8
+Standards-Version: 4.5.1
 Homepage: https://www.sipwise.com/
 
 Package: libngcp-schema-perl
 Architecture: all
 Depends:
- ${misc:Depends},
- ${perl:Depends},
  libdatetime-format-mysql-perl,
  libdbd-mysql-perl,
  libdbix-class-encodedcolumn-perl,
@@ -35,6 +33,8 @@ Depends:
  libsipwise-base-perl (>= 1.004),
  libxml-simple-perl,
  perl-doc,
+ ${misc:Depends},
+ ${perl:Depends},
 Description: NGCP DBIC-derived ORM schema classes
  This package provides schema classes for the NGCP databases.
 
@@ -42,12 +42,12 @@ Package: ngcp-schema-tools
 Architecture: all
 Section: devel
 Depends:
- ${misc:Depends},
- ${perl:Depends},
  libdbix-class-schema-loader-perl,
  libngcp-schema-perl,
  libquantum-superpositions-perl,
  libsipwise-base-perl (>= 1.004),
  perl-doc,
+ ${misc:Depends},
+ ${perl:Depends},
 Description: NGCP DBIC-derived ORM schema classes - development tools
  This package provides schema classes for the NGCP databases.
