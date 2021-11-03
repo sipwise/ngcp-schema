@@ -116,7 +116,7 @@ __PACKAGE__->add_columns(
     is_nullable => 1
   },
   "vat_rate",
-  { data_type => "tinyint", extra => { unsigned => 1 }, default_value => 0, is_nullable => 0 },
+  { data_type => "decimal", is_nullable => 0, size => [14, 6] },
   "add_vat",
   { data_type => "tinyint", extra => { unsigned => 1 }, default_value => 0, is_nullable => 0 },
   "product_id",
