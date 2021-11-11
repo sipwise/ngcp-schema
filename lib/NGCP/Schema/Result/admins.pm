@@ -27,6 +27,13 @@ __PACKAGE__->add_columns(
     is_foreign_key => 1,
     is_nullable => 1,
   },
+  "role_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 0,
+  },
   "login",
   { data_type => "varchar", is_nullable => 0, size => 31 },
   "md5pass",
@@ -91,6 +98,13 @@ __PACKAGE__->belongs_to(
   },
 );
 
+__PACKAGE__->belongs_to(
+  "acl_role",
+  "NGCP::Schema::Result::acl_roles",
+  {id => "role_id"},
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
 sub TO_JSON {
     my ($self) = @_;
     return {
@@ -133,6 +147,13 @@ This module is a schema class for the NGCP database table "billing.admins".
   is_nullable: 0
 
 =head2 reseller_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_foreign_key: 1
+  is_nullable: 1
+
+=head2 role_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
