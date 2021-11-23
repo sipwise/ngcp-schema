@@ -1,3 +1,17 @@
+ngcp-schema (10.3.0.0+0~mr10.3.0.0) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [6438fc7] TT#143151 fix inflating kamailio.location.expiry
+  * [b74432f] TT#146800 support decimal VAT rates
+
+  [ Kirill Solomko ]
+  * [ac4bce2] TT#145300 remove billing.domain_resellers
+
+  [ Guillem Jover ]
+  * [b002e78] TT#124273 Update packaging for bullseye
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Tue, 23 Nov 2021 14:19:18 +0100
+
 ngcp-schema (10.2.0.0+0~mr10.2.0.0) unstable; urgency=medium
 
   [ Kirill Solomko ]
