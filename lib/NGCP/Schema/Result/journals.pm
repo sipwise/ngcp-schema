@@ -48,6 +48,8 @@ __PACKAGE__->add_columns(
     extra => { list => ["storable", "json", "json_deflate", "sereal"] },
     is_nullable => 0,
   },
+  "content",
+  { data_type => "longblob", is_nullable => 1 },
   "reseller_id",
   {
     data_type => "integer",
