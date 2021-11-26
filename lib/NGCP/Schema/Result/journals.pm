@@ -73,8 +73,6 @@ __PACKAGE__->add_columns(
 );
 
 __PACKAGE__->set_primary_key("id");
-__PACKAGE__->add_unique_constraint("tx_id_idx", ["tx_id"]);
-__PACKAGE__->set_primary_key("id");
 
 sub TO_JSON {
     my ($self) = @_;
