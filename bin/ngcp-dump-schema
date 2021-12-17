@@ -20,8 +20,23 @@ my %opt = (
     dump_directory => 'lib',
 );
 
-GetOptions(\%opt, 'dump_directory:s', 'overwrite_modifications', 'version=s', 'help|?', 'man')
-    or die 'could not process command-line options';
+# XXX: Remove after mr10.5.
+sub old_option {
+    my ($name, $value) = @_;
+    my $newname = $name =~ tr/_/-/r;
+    $opt{$name} = $value;
+    warn "$0: option --$name is deprecated; use --$newname instead\n";
+}
+
+GetOptions(\%opt,
+    'dump_directory:s' => \&old_option,
+    'dump-directory:s' => \$opt{dump_directory},
+    'overwrite_modifications' => \&old_option,
+    'overwrite-modifications' => \$opt{overwrite_modifications},
+    'version=s',
+    'help|?',
+    'man',
+) or die 'could not process command-line options';
 
 pod2usage(-exitval => 1) if $opt{help};
 pod2usage(-exitval => 0, -verbose => 2) if $opt{man};
@@ -108,11 +123,11 @@ definitions.
 
 =head1 OPTIONS
 
-=head2 B<--dump_directory>[=I<DIRECTORY>]
+=head2 B<--dump-directory>[=I<DIRECTORY>]
 
 Directory name for the output, default is F<lib>.
 
-=head2 B<--overwrite_modifications>
+=head2 B<--overwrite-modifications>
 
 (boolean) See L<DBIx::Class::Schema::Loader::Base/overwrite_modifications>,
 default is false. Use with care, since this is a potentially destructive
