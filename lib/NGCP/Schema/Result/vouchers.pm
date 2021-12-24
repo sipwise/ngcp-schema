@@ -44,7 +44,7 @@ __PACKAGE__->add_columns(
     extra => { unsigned => 1 },
     is_foreign_key => 1,
     is_nullable => 1,
-  },  
+  },
   "used_by_subscriber_id",
   {
     data_type => "integer",
@@ -137,6 +137,17 @@ sub TO_JSON {
     return {
         map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
     };
+}
+
+sub to_hash {
+  my $self = shift;
+
+  return (
+    $self->get_inflated_columns,
+    created_at  => $self->get_column('created_at'),
+    used_at     => $self->get_column('used_at'),
+    valid_until => $self->get_column('valid_until'),
+  );
 }
 
 1;
