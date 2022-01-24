@@ -1,3 +1,18 @@
+ngcp-schema (10.3.1.0+0~mr10.3.1.0) unstable; urgency=medium
+
+  [ Oleksandr Duts ]
+  * [37771ce] TT#149456 ACL roles mapping
+  * [5b8181a] TT#151250 Add journal DBIx model accessors: user_id, reseller_id, role_id, tx_id.
+
+  [ Kirill Solomko ]
+  * [be78127] TT#151250 restore removed journals content column
+  * [ebe5c8e] TT#151250 journals: remove tx_id unique key
+
+  [ Guillem Jover ]
+  * [21f6ce3] TT#156156 Switch to «-» as the word separator in CLI options
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 24 Jan 2022 16:57:08 +0100
+
 ngcp-schema (10.3.0.0+0~mr10.3.0.0) unstable; urgency=medium
 
   [ Rene Krenn ]
