@@ -37,7 +37,7 @@ __PACKAGE__->add_columns(
   {
     data_type => "enum",
     default_value => "replace",
-    extra => { list => ["add", "replace", "offline"] },
+    extra => { list => ["add", "replace", "offline", "forward"] },
     is_nullable => 0,
   },
   "to_username",
