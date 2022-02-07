@@ -1,3 +1,10 @@
+ngcp-schema (10.3.1.1+0~mr10.3.1.1) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [e7564fa] TT#158003 add subscriber_location_mappings mode 'forward'
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 07 Feb 2022 11:36:41 +0100
+
 ngcp-schema (10.3.1.0+0~mr10.3.1.0) unstable; urgency=medium
 
   [ Oleksandr Duts ]
