@@ -40,6 +40,13 @@ __PACKAGE__->add_columns(
   },
   "data",
   { data_type => "mediumblob", is_nullable => 1 },
+  "call_direction",
+  {
+    data_type => "enum",
+    default_value => "out",
+    extra => { list => [ "in", "out", "in_out" ] },
+    is_nullable => 0,
+  },  
 );
 
 
