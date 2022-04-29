@@ -41,7 +41,7 @@ __PACKAGE__->belongs_to(
 __PACKAGE__->belongs_to(
   "billing_profile",
   "NGCP::Schema::Result::billing_profiles",
-  { id => "contract_id" },
+  { id => "billing_profile_id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
