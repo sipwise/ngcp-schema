@@ -1,3 +1,10 @@
+ngcp-schema (8.5.10.0+0~mr8.5.10.0) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [8946c5d] TT#174405 actual_billing_profile fix billing_profile relation
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Thu, 02 Jun 2022 19:56:51 +0200
+
 ngcp-schema (8.5.9.0+0~mr8.5.9.0) unstable; urgency=medium
 
   * New release.
