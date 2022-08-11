@@ -24,6 +24,8 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 0, size => 31 },
   "prefix",
   { data_type => "varchar", is_nullable => 1, size => 31 },
+  "suffix",
+  { data_type => "varchar", is_nullable => 1, size => 31 },
   "emergency_container_id",
   {
     data_type => "integer",
