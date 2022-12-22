@@ -78,6 +78,8 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "description",
   { data_type => "text", is_nullable => 1 },
+  "expose_to_subscriber",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
 );
 
 __PACKAGE__->set_primary_key("id");
