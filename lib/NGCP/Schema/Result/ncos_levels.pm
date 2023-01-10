@@ -42,6 +42,13 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "description",
   { data_type => "text", is_nullable => 1 },
+  "time_set_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 1,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -66,6 +73,18 @@ __PACKAGE__->belongs_to(
   "reseller",
   "NGCP::Schema::Result::resellers",
   { id => "reseller_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
+);
+
+__PACKAGE__->belongs_to(
+  "timeset",
+  "NGCP::Schema::Result::voip_time_sets",
+  { id => "time_set_id" },
   {
     is_deferrable => 1,
     join_type     => "LEFT",
@@ -152,6 +171,13 @@ This module is a schema class for the NGCP database table "billing.ncos_levels".
   data_type: 'text'
   is_nullable: 1
 
+=head2 time_set_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_foreign_key: 1
+  is_nullable: 1
+
 =head1 PRIMARY KEY
 
 =over 4
@@ -191,6 +217,12 @@ Related object: L<NGCP::Schema::Result::ncos_pattern_list>
 Type: belongs_to
 
 Related object: L<NGCP::Schema::Result::resellers>
+
+=head2 timeset
+
+Type: belongs_to
+
+Related object: L<NGCP::Schema::Result::voip_time_sets>
 
 =head1 AUTHOR
 
