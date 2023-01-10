@@ -47,7 +47,7 @@ __PACKAGE__->add_columns(
   {
     data_type => "enum",
     default_value => "private",
-    extra => { list => ["private", "shared", "blf"] },
+    extra => { list => ["private", "shared", "blf", "speedial", "forward", "transfer"] },
     is_nullable => 1,
   },
   "extension_unit",
@@ -62,6 +62,12 @@ __PACKAGE__->add_columns(
     extra => { unsigned => 1 },
     is_foreign_key => 1,
     is_nullable => 0,
+  },
+  "target_number",
+  {
+    data_type => "varchar",
+    size => 100,
+    is_nullable => 1,
   },
 );
 
