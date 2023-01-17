@@ -1,3 +1,14 @@
+ngcp-schema (11.3.0.0+0~mr11.3.0.0) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [94693a3] MT#56234 add voip_preferences.expose_to_subscriber
+  * [56c4101] MT#55686 add support for billing.ncos_sets/ncos_set_levels
+
+  [ Marco Capetta ]
+  * [bbbc7ff] MT#55931 Add new speeddial, forward, transfer device buttons
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Tue, 17 Jan 2023 17:44:10 +0100
+
 ngcp-schema (11.2.0.0+0~mr11.2.0.0) unstable; urgency=medium
 
   * New release.
