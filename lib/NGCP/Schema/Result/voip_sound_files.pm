@@ -27,6 +27,8 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 0, is_nullable => 1 },
   "codec",
   { data_type => "varchar", default_value => "", is_nullable => 0, size => 16 },
+  "use_parent",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
 );
 
 __PACKAGE__->set_primary_key("id");

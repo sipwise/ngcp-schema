@@ -1,4 +1,4 @@
-package NGCP::Schema::Result::voip_sound_sets;
+package NGCP::Schema::Result::v_sound_set_files;
 
 use strict;
 use warnings;
@@ -10,11 +10,16 @@ our $VERSION = '2.007';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 
-__PACKAGE__->table("provisioning.voip_sound_sets");
+__PACKAGE__->table("provisioning.v_sound_set_files");
 
 __PACKAGE__->add_columns(
-  "id",
-  { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
+  "set_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 0,
+  },
   "reseller_id",
   {
     data_type => "integer",
@@ -32,54 +37,36 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 256 },
   "description",
   { data_type => "varchar", is_nullable => 1, size => 255 },
-  "contract_default",
-  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
-  "parent_id",
+  "handle_id",
   {
     data_type => "integer",
     extra => { unsigned => 1 },
     is_nullable => 1,
   },
-  "expose_to_customer",
+  "handle_name",
+  { data_type => "varchar", is_nullable => 1, size => 256 },
+  "file_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_nullable => 1,
+  },
+  "filename",
+  { data_type => "varchar", is_nullable => 1, size => 256 },
+  "loopplay",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "parent_chain",
+  { data_type => "varchar", is_nullable => 1, size => 256 },
+  "data_set_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_nullable => 1,
+  },
+  "data",
+  { data_type => "longblob", is_nullable => 1 },
 );
 
-__PACKAGE__->set_primary_key("id");
-
-__PACKAGE__->has_many(
-  "voip_sound_files",
-  "NGCP::Schema::Result::voip_sound_files",
-  { "foreign.set_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->belongs_to(
-  "reseller",
-  "NGCP::Schema::Result::resellers",
-  { id => "reseller_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-__PACKAGE__->belongs_to(
-  "contract",
-  "NGCP::Schema::Result::contracts",
-  { 'foreign.id' => 'self.contract_id' },
-  { 'join_type' => 'left', is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-__PACKAGE__->belongs_to(
-  "parent",
-  "NGCP::Schema::Result::voip_sound_sets",
-  { 'foreign.id' => 'self.parent_id' },
-  { 'join_type' => 'left', is_deferrable => 1, on_delete => "SET NULL", on_update => "SET NULL" },
-);
-
-sub TO_JSON {
-    my ($self) = @_;
-    return {
-        map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
-    };
-}
 
 1;
 __END__
@@ -88,11 +75,11 @@ __END__
 
 =head1 NAME
 
-NGCP::Schema::Result::voip_sound_sets
+NGCP::Schema::Result::v_sound_set_files
 
 =head1 DESCRIPTION
 
-This module is a schema class for the NGCP database table "provisioning.voip_sound_sets".
+This module is a schema class for the NGCP database view "provisioning.v_sound_set_files".
 
 =head1 COMPONENTS LOADED
 
@@ -104,11 +91,11 @@ This module is a schema class for the NGCP database table "provisioning.voip_sou
 
 =back
 
-=head1 TABLE: C<provisioning.voip_sound_sets>
+=head1 TABLE: C<provisioning.voip_sound_set_files>
 
 =head1 ACCESSORS
 
-=head2 id
+=head2 set_id
 
   data_type: 'integer'
   is_auto_increment: 1
@@ -135,12 +122,6 @@ This module is a schema class for the NGCP database table "provisioning.voip_sou
 =back
 
 =head1 RELATIONS
-
-=head2 voip_sound_files
-
-Type: has_many
-
-Related object: L<NGCP::Schema::Result::voip_sound_files>
 
 =head1 AUTHOR
 
