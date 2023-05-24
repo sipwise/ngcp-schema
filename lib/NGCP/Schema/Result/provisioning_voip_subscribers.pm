@@ -54,6 +54,13 @@ __PACKAGE__->add_columns(
     extra => { unsigned => 1 },
     is_nullable => 1,
   },
+  "pbx_hunt_cancel_mode",
+  {
+    data_type => "enum",
+    default_value => "cancel",
+    extra => { list => ["cancel", "bye"] },
+    is_nullable => 0,
+  },
   "pbx_extension",
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "profile_set_id",
