@@ -25,33 +25,21 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
     size => 256,
   },
-  "parent_chain",
-  {
-    data_type => "varchar",
-    is_nullable => 0,
-    size => 1024,
-  },
 );
 
 __PACKAGE__->set_primary_key("id");
 __PACKAGE__->result_source_instance->is_virtual(1);
 __PACKAGE__->result_source_instance->view_definition(<<'SQL');
 WITH RECURSIVE cte as (
-    SELECT id, name,
-           JSON_ARRAY(id) AS parent_chain
+    SELECT id, name
       FROM voip_sound_sets
      WHERE id = ?
     UNION ALL
-    SELECT s.id, s.name,
-           JSON_ARRAY_INSERT(cte.parent_chain, "$[0]", s.id) AS parent_chain
+    SELECT s.id, s.name
       FROM voip_sound_sets s
       JOIN cte ON cte.id = s.parent_id
 )
-SELECT cte.id, cte.name,
-       REPLACE(REPLACE(REPLACE(
-          JSON_REMOVE(cte.parent_chain, "$[0]"),
-          "[", ""), "]", ""), ", ", ":"
-       ) AS parent_chain
+SELECT cte.id, cte.name
   FROM cte
 SQL
 
