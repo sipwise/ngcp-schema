@@ -27,7 +27,7 @@ __PACKAGE__->add_columns(
     data_type => "integer",
     extra => { unsigned => 1 },
     is_foreign_key => 1,
-    is_nullable => 0,
+    is_nullable => 1,
   },
   "name",
   { data_type => "varchar", is_nullable => 0, size => 255 },
@@ -46,6 +46,13 @@ __PACKAGE__->add_columns(
     default_value => "out",
     extra => { list => [ "in", "out", "in_out" ] },
     is_nullable => 0,
+  },
+  "category",
+  {
+    data_type => "enum",
+    default_value => "customer",
+    extra => { list => [ "customer", "peer", "reseller", "did" ] },
+    is_nullable => 0,
   },  
 );
 
@@ -56,7 +63,12 @@ __PACKAGE__->belongs_to(
   "reseller",
   "NGCP::Schema::Result::resellers",
   { id => "reseller_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
 );
 
 sub TO_JSON {

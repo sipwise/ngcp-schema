@@ -286,6 +286,54 @@ __PACKAGE__->belongs_to(
 );
 
 __PACKAGE__->belongs_to(
+  "source_reseller_billing_zones_history",
+  "NGCP::Schema::Result::billing_zones_history",
+  { "id" => "source_reseller_billing_zone_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "SET NULL",
+    on_update     => "NO ACTION",
+  },
+);
+
+__PACKAGE__->belongs_to(
+  "destination_reseller_billing_zones_history",
+  "NGCP::Schema::Result::billing_zones_history",
+  { "id" => "destination_reseller_billing_zone_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "SET NULL",
+    on_update     => "NO ACTION",
+  },
+);
+
+__PACKAGE__->belongs_to(
+  "source_carrier_billing_zones_history",
+  "NGCP::Schema::Result::billing_zones_history",
+  { "id" => "source_carrier_billing_zone_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "SET NULL",
+    on_update     => "NO ACTION",
+  },
+);
+
+__PACKAGE__->belongs_to(
+  "destination_carrier_billing_zones_history",
+  "NGCP::Schema::Result::billing_zones_history",
+  { "id" => "destination_carrier_billing_zone_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "SET NULL",
+    on_update     => "NO ACTION",
+  },
+);
+
+__PACKAGE__->belongs_to(
   "source_account",
   "NGCP::Schema::Result::contracts",
   { "id" => "source_account_id" },
