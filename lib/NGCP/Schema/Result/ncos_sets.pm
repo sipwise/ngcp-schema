@@ -31,6 +31,8 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 0, size => 255 },
   "description",
   { data_type => "varchar", is_nullable => 1, size => 255 },
+  "expose_to_customer",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
 );
 
 __PACKAGE__->set_primary_key("id");
