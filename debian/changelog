@@ -1,3 +1,12 @@
+ngcp-schema (11.4.1.0+0~mr11.4.1.0) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [2910fd3] MT#57223 add virtual_child_sound_sets
+  * [0abc900] MT#57223 remove parent_chain from virtual_child_sound_sets
+  * [12fc61c] MT#57580 add expose_to_customer for NCOS
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 26 Jun 2023 14:11:24 +0200
+
 ngcp-schema (11.4.0.0+0~mr11.4.0.0) unstable; urgency=medium
 
   [ Kirill Solomko ]
