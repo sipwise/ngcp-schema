@@ -11,6 +11,7 @@ our $VERSION = '2.007';
 __PACKAGE__->load_components(
     "InflateColumn::DateTime",
     "Helper::Row::ToJSON",
+    "+NGCP::Schema::InflateColumn::DateTime::EpochMilli",
 );
 
 __PACKAGE__->table("provisioning.voip_fax_data");
@@ -29,6 +30,12 @@ __PACKAGE__->add_columns(
     extra => { unsigned => 1 },
     is_nullable => 0,
   },
+  "time",
+  { data_type => "decimal",
+    is_nullable => 0,
+    size => [13, 3],
+    inflate_datetime => 'epoch_milli'
+   },  
   "sid",
   {
     data_type => "varchar",
@@ -69,6 +76,13 @@ __PACKAGE__->belongs_to(
 );
 
 __PACKAGE__->set_primary_key("id");
+
+sub TO_JSON {
+    my ($self) = @_;
+    return {
+        map { blessed($_) && $_->isa('DateTime') ? $_->datetime : $_ } %{ $self->next::method }
+    };
+}
 
 1;
 __END__
