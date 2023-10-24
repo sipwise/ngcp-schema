@@ -70,7 +70,7 @@ __PACKAGE__->has_many(
 __PACKAGE__->might_have(
   "lcr_gw",
   "NGCP::Schema::Result::lcr_gw",
-  { "foreign.flags" => "self.id" },
+  { "foreign.id" => "self.id" },
 );
 
 sub TO_JSON {
