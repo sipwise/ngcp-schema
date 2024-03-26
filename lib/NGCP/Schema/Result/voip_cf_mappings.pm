@@ -69,6 +69,13 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
     default_value => 1,
   },
+  "use_redirection",
+  {
+    data_type => "tinyint",
+    extra => { unsigned => 1 },
+    is_nullable => 0,
+    default_value => 0,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
