@@ -1,3 +1,10 @@
+ngcp-schema (12.4.1.0+0~mr12.4.1.0) unstable; urgency=medium
+
+  [ Marco Capetta ]
+  * [a31bec2] MT#59749 Add 'use_redirection' column to 'cf_mappings'
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Wed, 22 May 2024 14:32:24 +0200
+
 ngcp-schema (12.4.0.0+0~mr12.4.0.0) unstable; urgency=medium
 
   * New release.
