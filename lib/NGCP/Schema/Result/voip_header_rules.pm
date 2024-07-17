@@ -41,7 +41,7 @@ __PACKAGE__->add_columns(
   "direction",
   {
     data_type => "enum",
-    extra => { list => ["inbound", "outbound", "local", "peer", "b_outbound", "cf_inbound", "cf_outbound", "reply"] },
+    extra => { list => ["a_inbound", "a_outbound", "local", "peer", "b_outbound", "cf_inbound", "cf_outbound", "reply"] },
     default_value => "inbound",
     is_nullable => 0,
   },
