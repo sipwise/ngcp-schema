@@ -76,6 +76,13 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 1, is_nullable => 0 },
   "is_system",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "saltedpass_modify_timestamp",
+  {
+    data_type => "timestamp",
+    datetime_undef_if_invalid => 1,
+    default_value => \"current_timestamp",
+    is_nullable => 0,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -103,6 +110,13 @@ __PACKAGE__->belongs_to(
   "NGCP::Schema::Result::acl_roles",
   {id => "role_id"},
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+__PACKAGE__->has_many(
+  "last_passwords",
+  "NGCP::Schema::Result::admin_password_journal",
+  { "foreign.admin_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
 );
 
 sub TO_JSON {
@@ -219,6 +233,13 @@ This module is a schema class for the NGCP database table "billing.admins".
   data_type: 'bigint'
   extra: {unsigned => 1}
   is_nullable: 1
+
+=head2 saltedpass_modify_timestamp
+
+  data_type: 'timestamp'
+  datetime_undef_if_invalid: 1
+  default_value: current_timestamp
+  is_nullable: 0
 
 =head1 PRIMARY KEY
 

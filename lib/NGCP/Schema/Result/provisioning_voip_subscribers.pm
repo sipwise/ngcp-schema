@@ -85,6 +85,20 @@ __PACKAGE__->add_columns(
     default_value => "0000-00-00 00:00:00",
     is_nullable => 0,
   },
+  "password_modify_timestamp",
+  {
+    data_type => "timestamp",
+    datetime_undef_if_invalid => 1,
+    default_value => \"current_timestamp",
+    is_nullable => 0,
+  },
+  "webpassword_modify_timestamp",
+  {
+    data_type => "timestamp",
+    datetime_undef_if_invalid => 1,
+    default_value => \"current_timestamp",
+    is_nullable => 0,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -274,6 +288,20 @@ __PACKAGE__->has_one(
   "voip_subscriber",
   'NGCP::Schema::Result::voip_subscribers',
   { 'foreign.uuid' => 'self.uuid' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
+  "last_passwords",
+  "NGCP::Schema::Result::voip_subscriber_password_journal",
+  { "foreign.subscriber_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
+  "last_webpasswords",
+  "NGCP::Schema::Result::voip_subscriber_webpassword_journal",
+  { "foreign.subscriber_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
@@ -482,6 +510,20 @@ This module is a schema class for the NGCP database table "provisioning.voip_sub
   default_value: '0000-00-00 00:00:00'
   is_nullable: 0
 
+=head2 password_modify_timestamp
+
+  data_type: 'timestamp'
+  datetime_undef_if_invalid: 1
+  default_value: current_timestamp
+  is_nullable: 0
+
+=head2 webpassword_modify_timestamp
+
+  data_type: 'timestamp'
+  datetime_undef_if_invalid: 1
+  default_value: current_timestamp
+  is_nullable: 0
+
 =head1 PRIMARY KEY
 
 =over 4
@@ -647,6 +689,18 @@ Related object: L<NGCP::Schema::Result::voip_usr_preferences>
 Type: might_have
 
 Related object: L<NGCP::Schema::Result::rtc_session>
+
+=head2 last_passwords
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::voip_subscriber_password_journal>
+
+=head2 last_webpasswords
+
+Type: has_many
+
+Related object: L<NGCP::Schema::Result::voip_subscriber_webpassword_journal>
 
 =head1 AUTHOR
 
