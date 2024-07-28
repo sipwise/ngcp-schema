@@ -1,3 +1,14 @@
+ngcp-schema (13.0.0.0+0~mr13.0.0.0) unstable; urgency=medium
+
+  [ Marco Capetta ]
+  * [4db51ba] MT#60511 add voip_header_rules direction "b_outbound"
+  * [a3710d3] MT#60515 rename hm inbound/outbound directions to a_inbound/a_outbound
+
+  [ Kirill Solomko ]
+  * [96c80b9] MT#59449 add password_journal tables
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Sun, 28 Jul 2024 12:03:41 +0200
+
 ngcp-schema (12.5.0.0+0~mr12.5.0.0) unstable; urgency=medium
 
   [ Marco Capetta ]
