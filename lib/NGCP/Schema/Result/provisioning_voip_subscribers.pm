@@ -99,6 +99,13 @@ __PACKAGE__->add_columns(
     default_value => \"current_timestamp",
     is_nullable => 0,
   },
+  "ban_increment_stage",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    default_value => 0,
+    is_nullable => 0,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -522,6 +529,13 @@ This module is a schema class for the NGCP database table "provisioning.voip_sub
   data_type: 'timestamp'
   datetime_undef_if_invalid: 1
   default_value: current_timestamp
+  is_nullable: 0
+
+=head2 ban_increment_stage
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  default_value: 0
   is_nullable: 0
 
 =head1 PRIMARY KEY
