@@ -1,3 +1,10 @@
+ngcp-schema (13.0.1.0+0~mr13.0.1.0) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [b88c4f8] MT#59449 add ban_increment_stage column
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Tue, 01 Oct 2024 10:00:52 +0200
+
 ngcp-schema (13.0.0.0+0~mr13.0.0.0) unstable; urgency=medium
 
   [ Marco Capetta ]
