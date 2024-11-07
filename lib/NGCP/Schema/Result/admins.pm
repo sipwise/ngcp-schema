@@ -90,6 +90,13 @@ __PACKAGE__->add_columns(
     default_value => 0,
     is_nullable => 0,
   },
+  "auth_mode",
+  {
+    data_type => "enum",
+    default_value => "local",
+    extra => { list => ["local", "ldap"] },
+    is_nullable => 0,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
