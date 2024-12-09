@@ -1,3 +1,10 @@
+ngcp-schema (13.1.1.0+0~mr13.1.1.0) unstable; urgency=medium
+
+  [ Rene Krenn ]
+  * [914cdb3] MT#59447 admins.auth_mode column
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 09 Dec 2024 11:27:49 +0100
+
 ngcp-schema (13.1.0.0+0~mr13.1.0.0) unstable; urgency=medium
 
   [ Kirill Solomko ]
