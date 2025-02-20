@@ -97,6 +97,16 @@ __PACKAGE__->add_columns(
     extra => { list => ["local", "ldap"] },
     is_nullable => 0,
   },
+  "enable_2fa",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "show_otp_registration_info",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },   
+  "otp_secret",
+  {
+    data_type => "char",
+    is_nullable => 1,
+    size => 32,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
