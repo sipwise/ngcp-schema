@@ -1,3 +1,13 @@
+ngcp-schema (13.4.0.0+0~mr13.4.0.0) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [6b6a40d] MT#61805 add phonebook views schema definitions
+
+  [ Rene Krenn ]
+  * [fff6067] MT#53706 OTP secret cols for admin records
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Thu, 10 Apr 2025 08:28:50 +0200
+
 ngcp-schema (13.3.0.0+0~mr13.3.0.0) unstable; urgency=medium
 
   * New release.
