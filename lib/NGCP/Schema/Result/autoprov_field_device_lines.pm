@@ -69,6 +69,12 @@ __PACKAGE__->add_columns(
     size => 100,
     is_nullable => 1,
   },
+  "label",
+  {
+    data_type => "varchar",
+    size => 100,
+    is_nullable => 1,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
