@@ -99,6 +99,19 @@ __PACKAGE__->add_columns(
     extra => { unsigned => 1 },
     is_nullable => 0,
   },
+  "transcript_status",
+  {
+    data_type => "enum",
+    default_value => "none",
+    extra => { list => ["none", "pending", "done"] },
+    is_nullable => 0,
+  },
+  "transcript",
+  {
+    data_type => "text",
+    default_value => "",
+    is_nullable => 0,
+  },  
 );
 
 __PACKAGE__->set_primary_key("id");
