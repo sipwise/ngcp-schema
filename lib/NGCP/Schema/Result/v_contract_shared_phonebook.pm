@@ -30,6 +30,8 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 0, size => 255 },
   "shared",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "own",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
 );
 
 __PACKAGE__->belongs_to(
