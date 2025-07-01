@@ -52,6 +52,19 @@ __PACKAGE__->add_columns(
   { data_type => "longblob", is_nullable => 1 },
   "call_id",
   { data_type => "varchar", is_nullable => 1, size => 255 },
+  "transcript_status",
+  {
+    data_type => "enum",
+    default_value => "none",
+    extra => { list => ["none", "pending", "done"] },
+    is_nullable => 0,
+  },
+  "transcript",
+  {
+    data_type => "text",
+    default_value => "",
+    is_nullable => 0,
+  },
 );
 
 __PACKAGE__->set_primary_key("id");
