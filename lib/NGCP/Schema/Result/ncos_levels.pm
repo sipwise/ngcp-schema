@@ -51,6 +51,8 @@ __PACKAGE__->add_columns(
   },
   "expose_to_customer",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
+  "time_set_invert",
+  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
 );
 
 __PACKAGE__->set_primary_key("id");
@@ -179,6 +181,18 @@ This module is a schema class for the NGCP database table "billing.ncos_levels".
   extra: {unsigned => 1}
   is_foreign_key: 1
   is_nullable: 1
+
+=head2 expose_to_customer
+
+  data_type: 'tinyint'
+  default_value: 0
+  is_nullable: 0
+
+=head2 time_set_invert
+
+  data_type: 'tinyint'
+  default_value: 0
+  is_nullable: 0
 
 =head1 PRIMARY KEY
 
