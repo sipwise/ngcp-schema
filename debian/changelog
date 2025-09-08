@@ -1,3 +1,18 @@
+ngcp-schema (13.5.1.0+0~mr13.5.1.0) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [4eb0cb5] MT#63047 phonebook views add 'own' field
+
+  [ Rene Krenn ]
+  * [8b956ab] MT#62987 add transcript info cols
+  * [0af4c94] MT#62987 add transcript info cols - voicemails
+
+  [ Marco Capetta ]
+  * [11b12bc] MT#60563 Add 'label' column to provisioning.autoprov_field_device_lines
+  * [ab85850] MT#63454 Add new time_set_invert column to billing.ncos_levels
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 08 Sep 2025 11:45:25 +0200
+
 ngcp-schema (13.5.0.0+0~mr13.5.0.0) unstable; urgency=medium
 
   * New release.
