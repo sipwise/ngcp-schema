@@ -368,31 +368,6 @@ __PACKAGE__->might_have(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-__PACKAGE__->has_many(
-  "sipwise_mam_user",
-  'NGCP::Schema::Result::sipwise_mam',
-  sub {
-    my $args = shift;
-    return {
-        "$args->{foreign_alias}.username" => { '=' => \"concat($args->{self_alias}.username,\"@\",domain.domain)" } ,
-    };
-  },
-  { join_type => 'inner' },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-__PACKAGE__->has_many(
-  "sipwise_mam_with",
-  'NGCP::Schema::Result::sipwise_mam',
-  sub {
-    my $args = shift;
-    return {
-        "$args->{foreign_alias}.with" => { '=' => \"concat($args->{self_alias}.username,\"@\",domain.domain)" } ,
-    };
-  },
-  { join_type => 'inner' },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
 
 __PACKAGE__->has_many(
   "location_mappings",
