@@ -1,8 +1,6 @@
 Source: ngcp-schema
 Section: perl
-Priority: optional
 Maintainer: Sipwise Development Team <support@sipwise.com>
-Rules-Requires-Root: no
 Build-Depends:
  debhelper-compat (= 13),
  libdatetime-format-mysql-perl,
@@ -19,7 +17,7 @@ Build-Depends:
  libtest-fatal-perl,
  libxml-simple-perl,
  perl-doc,
-Standards-Version: 4.6.2
+Standards-Version: 4.7.2
 Homepage: https://www.sipwise.com/
 
 Package: libngcp-schema-perl
