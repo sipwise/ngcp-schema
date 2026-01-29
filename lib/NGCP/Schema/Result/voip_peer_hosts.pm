@@ -47,6 +47,8 @@ __PACKAGE__->add_columns(
   { data_type => "tinyint", default_value => 1, is_nullable => 0 },
   "probe",
   { data_type => "tinyint", default_value => 1, is_nullable => 0 },
+  "site_id",
+  { data_type => "integer", extra => { unsigned => 1 }, is_nullable => 1 },
 );
 
 __PACKAGE__->set_primary_key("id");
