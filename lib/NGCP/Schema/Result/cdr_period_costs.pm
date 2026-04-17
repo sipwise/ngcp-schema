@@ -15,7 +15,7 @@ __PACKAGE__->table("accounting.cdr_period_costs");
 __PACKAGE__->add_columns(
   "id",
   {
-      data_type => "integer",
+      data_type => "bigint",
       extra => { unsigned => 1 },
       is_nullable => 0,
       is_auto_increment => 1,

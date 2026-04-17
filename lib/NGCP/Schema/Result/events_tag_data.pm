@@ -19,7 +19,7 @@ __PACKAGE__->table("accounting.events_tag_data");
 __PACKAGE__->add_columns(
   "event_id",
   {
-    data_type => "integer",
+    data_type => "bigint",
     extra => { unsigned => 1 },
     is_nullable => 0,
   },

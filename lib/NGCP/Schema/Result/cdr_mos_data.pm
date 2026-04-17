@@ -19,7 +19,7 @@ __PACKAGE__->table("accounting.cdr_mos_data");
 __PACKAGE__->add_columns(
   "cdr_id",
   {
-    data_type => "integer",
+    data_type => "bigint",
     extra => { unsigned => 1 },
     is_auto_increment => 0,
     is_nullable => 0,
