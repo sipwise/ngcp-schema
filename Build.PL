@@ -26,12 +26,11 @@ my $builder = Module::Build->new(
         'Regexp::Common'              => 0,
         'Regexp::IPv6'                => 0,
         'Scalar::Util'                => 0,
-        'Sipwise::Base'               => '1.002',
         'XML::Simple'                 => 0,
+        'perl'                        => '5.040',
     },
     test_requires => {
         'Module::Runtime' => 0,
-        'Sipwise::Base' => 0,
         'Test::Fatal' => 0,
         'Test::More' => 0,
     },

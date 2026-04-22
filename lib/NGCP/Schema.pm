@@ -1,6 +1,7 @@
 package NGCP::Schema;
 
-use Sipwise::Base '-skip'=>['TryCatch'];
+use v5.40;
+
 use NGCP::Schema::Config qw();
 use Regexp::Common qw(net);
 use Regexp::IPv6 qw($IPv6_re);

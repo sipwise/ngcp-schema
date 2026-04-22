@@ -1,8 +1,9 @@
 #!/usr/bin/perl
 
+use v5.40;
+
 use blib 'blib';
 
-use Sipwise::Base '-skip'=>['TryCatch'];
 use File::ShareDir qw(dist_file);
 use Module::Runtime qw(use_module);
 use Test::Fatal qw(exception);

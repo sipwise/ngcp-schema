@@ -1,6 +1,7 @@
 package NGCP::Schema::Config;
 
-use Sipwise::Base '-skip'=>['TryCatch'];
+use v5.40;
+
 use XML::Simple qw();
 
 my $_config;

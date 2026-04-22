@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 
-use Sipwise::Base;
+use v5.40;
+
 use DBIx::Class::Schema::Loader qw(make_schema_at);
 use File::Path qw(make_path);
 use Getopt::Long qw(GetOptions);
@@ -80,7 +81,7 @@ for my $db (qw(accounting billing carrier kamailio ngcp provisioning sipstats)) 
                 my $package = shift @source;
                 @source = (
                     $package,
-                    "use Sipwise::Base;\n",
+                    "use v5.40;\n",
                     ($package =~ /::Result::/ ? "use MooseX::NonMoose;\nuse Scalar::Util qw(blessed);\n" : ()),
                     "our \$VERSION = '$opt{version}';\n",
                     @source,
