@@ -1,11 +1,10 @@
-package NGCP::Schema::Result::messages_custom;
+package NGCP::Schema::Result::messages_custom 2.007;
 
 use v5.40;
 
 use Scalar::Util qw(blessed);
 use parent qw/DBIx::Class::Core/;
 
-our $VERSION = '2.007';
 
 __PACKAGE__->load_components(
   "InflateColumn::DateTime",

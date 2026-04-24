@@ -1,9 +1,8 @@
-package NGCP::Schema::Result::voip_pbx_autoattendants;
+package NGCP::Schema::Result::voip_pbx_autoattendants 2.007;
 
 use v5.40;
 
 use Scalar::Util qw(blessed);
-our $VERSION = '2.007';
 
 use parent 'DBIx::Class::Core';
 

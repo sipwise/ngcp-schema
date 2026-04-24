@@ -1,4 +1,4 @@
-package NGCP::Schema::Result::billing_network_blocks;
+package NGCP::Schema::Result::billing_network_blocks 2.007;
 
 use v5.40;
 
@@ -6,7 +6,6 @@ use Scalar::Util qw(blessed);
 use Math::BigInt;
 use parent 'DBIx::Class::Core';
 
-our $VERSION = '2.007';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 

@@ -1,11 +1,10 @@
-package NGCP::Schema::Result::contract_phonebook;
+package NGCP::Schema::Result::contract_phonebook 2.007;
 
 use v5.40;
 
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 
-our $VERSION = '2.007';
 
 __PACKAGE__->table("billing.contract_phonebook");
 

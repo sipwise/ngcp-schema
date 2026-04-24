@@ -1,11 +1,10 @@
-package NGCP::Schema::Result::virtual_child_sound_sets;
+package NGCP::Schema::Result::virtual_child_sound_sets 2.007;
 
 use v5.40;
 
 use Scalar::Util qw(blessed);
 use parent qw/DBIx::Class::Core/;
 
-our $VERSION = '2.007';
 
 __PACKAGE__->table_class('DBIx::Class::ResultSource::View');
 __PACKAGE__->table("virtual_child_sound_sets");

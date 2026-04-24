@@ -1,4 +1,4 @@
-package NGCP::Schema;
+package NGCP::Schema 2.007;
 
 use v5.40;
 
@@ -7,7 +7,6 @@ use Regexp::Common qw(net);
 use Regexp::IPv6 qw($IPv6_re);
 use parent 'DBIx::Class::Schema';
 
-our $VERSION = '2.007';
 
 __PACKAGE__->load_namespaces(
     default_resultset_class => 'ResultSet',

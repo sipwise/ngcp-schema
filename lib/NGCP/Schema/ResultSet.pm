@@ -1,10 +1,9 @@
-package NGCP::Schema::ResultSet;
+package NGCP::Schema::ResultSet 2.007;
 
 use v5.40;
 
 use parent 'DBIx::Class::ResultSet';
 
-our $VERSION = '2.007';
 
 __PACKAGE__->load_components(
    'Helper::ResultSet::IgnoreWantarray',

@@ -1,4 +1,4 @@
-package NGCP::BareSchema;
+package NGCP::BareSchema 2.007;
 
 use v5.40;
 
@@ -6,7 +6,6 @@ use NGCP::Schema::Config qw();
 
 use base 'DBIx::Class::Schema';
 
-our $VERSION = '2.007';
 
 # warning: NGCP::Schema::ResultSet is not loaded. Therefore the features Helper::ResultSet::IgnoreWantarray
 #   and Helper::ResultSet::SetOperations are not available here.

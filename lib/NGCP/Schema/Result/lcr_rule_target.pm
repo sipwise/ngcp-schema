@@ -1,11 +1,10 @@
-package NGCP::Schema::Result::lcr_rule_target;
+package NGCP::Schema::Result::lcr_rule_target 2.007;
 
 use v5.40;
 
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 
-our $VERSION = '2.007';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 

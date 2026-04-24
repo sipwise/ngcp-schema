@@ -1,4 +1,4 @@
-package NGCP::Schema::InflateColumn::DateTime::EpochString;
+package NGCP::Schema::InflateColumn::DateTime::EpochString 2.007;
 
 use v5.40;
 
@@ -6,7 +6,6 @@ use DateTime qw();
 
 use parent 'DBIx::Class';
 
-our $VERSION = '2.007';
 
 __PACKAGE__->load_components( qw( InflateColumn::DateTime ) );
 

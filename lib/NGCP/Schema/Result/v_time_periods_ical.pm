@@ -1,11 +1,10 @@
-package NGCP::Schema::Result::v_time_periods_ical;
+package NGCP::Schema::Result::v_time_periods_ical 2.007;
 
 use v5.40;
 
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 
-our $VERSION = '2.007';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 __PACKAGE__->table_class("DBIx::Class::ResultSource::View");

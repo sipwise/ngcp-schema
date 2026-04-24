@@ -1,10 +1,9 @@
-package NGCP::InterceptSchema;
+package NGCP::InterceptSchema 2.007;
 
 use v5.40;
 
 use parent 'NGCP::Schema';
 
-our $VERSION = '2.007';
 
 sub connection {
     my ($self) = @_;

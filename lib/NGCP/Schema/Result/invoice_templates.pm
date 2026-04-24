@@ -1,11 +1,9 @@
-package NGCP::Schema::Result::invoice_templates;
+package NGCP::Schema::Result::invoice_templates 2.009;
 
 use v5.40;
 
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
-
-our $VERSION = '2.009';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 

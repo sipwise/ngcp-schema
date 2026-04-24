@@ -1,11 +1,10 @@
-package NGCP::Schema::Result::prepaid_costs;
+package NGCP::Schema::Result::prepaid_costs 2.007;
 
 use v5.40;
 
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
 
-our $VERSION = '2.007';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Helper::Row::ToJSON");
 

@@ -1,11 +1,10 @@
-package NGCP::Schema::Result::lnp_numbers_actual;
+package NGCP::Schema::Result::lnp_numbers_actual 2.007;
 
 use v5.40;
 
 use Scalar::Util qw(blessed);
 use parent qw/DBIx::Class::Core/;
 
-our $VERSION = '2.007';
 
 __PACKAGE__->load_components(
   "InflateColumn::DateTime",
