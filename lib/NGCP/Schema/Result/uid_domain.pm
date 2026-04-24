@@ -1,7 +1,6 @@
 package NGCP::Schema::Result::uid_domain;
 
-use strict;
-use warnings;
+use v5.40;
 
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';

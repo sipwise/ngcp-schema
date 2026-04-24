@@ -1,7 +1,6 @@
 package NGCP::Schema::Storage::DateTime::Format::MySQL;
 
-use strict;
-use warnings;
+use v5.40;
 
 our $VERSION = '0.06';
 

@@ -1,7 +1,6 @@
 package NGCP::Schema::Result::voip_cf_source_sets;
 
-use strict;
-use warnings;
+use v5.40;
 
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';

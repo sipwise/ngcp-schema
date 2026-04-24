@@ -1,7 +1,6 @@
 package NGCP::Schema::Result::virtual_child_sound_sets;
 
-use strict;
-use warnings;
+use v5.40;
 
 use Scalar::Util qw(blessed);
 use parent qw/DBIx::Class::Core/;

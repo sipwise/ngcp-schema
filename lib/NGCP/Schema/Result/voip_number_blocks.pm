@@ -1,7 +1,6 @@
 package NGCP::Schema::Result::voip_number_blocks;
 
-use strict;
-use warnings;
+use v5.40;
 
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';

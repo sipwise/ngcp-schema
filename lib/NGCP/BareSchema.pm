@@ -1,7 +1,6 @@
 package NGCP::BareSchema;
 
-use warnings;
-use strict;
+use v5.40;
 
 use NGCP::Schema::Config qw();
 

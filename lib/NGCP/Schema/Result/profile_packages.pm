@@ -1,7 +1,6 @@
 package NGCP::Schema::Result::profile_packages;
 
-use strict;
-use warnings;
+use v5.40;
 
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';

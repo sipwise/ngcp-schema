@@ -58,6 +58,7 @@ for my $db (qw(accounting billing carrier kamailio ngcp provisioning sipstats)) 
                 my $in_pod = 0;
                 for my $line (split /(?<=\n)/, $text) {
                     next if $line eq any(
+                        "use v5.40;\n",
                         "use utf8;\n",
                         "use strict;\n",
                         "use warnings;\n",

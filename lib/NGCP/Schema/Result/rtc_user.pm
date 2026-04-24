@@ -1,7 +1,6 @@
 package NGCP::Schema::Result::rtc_user;
 
-use warnings;
-use strict;
+use v5.40;
 
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';

@@ -1,7 +1,6 @@
 package NGCP::Schema::Result::voip_contract_preferences_blob;
 
-use strict;
-use warnings;
+use v5.40;
 
 use Scalar::Util qw(blessed);
 use parent 'DBIx::Class::Core';
