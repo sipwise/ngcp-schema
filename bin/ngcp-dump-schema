@@ -21,18 +21,8 @@ my %opt = (
     dump_directory => 'lib',
 );
 
-# XXX: Remove after mr10.5.
-sub old_option {
-    my ($name, $value) = @_;
-    my $newname = $name =~ tr/_/-/r;
-    $opt{$name} = $value;
-    warn "$0: option --$name is deprecated; use --$newname instead\n";
-}
-
 GetOptions(\%opt,
-    'dump_directory:s' => \&old_option,
     'dump-directory:s' => \$opt{dump_directory},
-    'overwrite_modifications' => \&old_option,
     'overwrite-modifications' => \$opt{overwrite_modifications},
     'version=s',
     'help|?',
