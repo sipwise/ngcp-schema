@@ -1,3 +1,16 @@
+ngcp-schema (26.1.1.0+0~mr26.1.1.0) unstable; urgency=medium
+
+  [ Kirill Solomko ]
+  * [c6ca165] MT#59286 set accounting cdr, event id fields to bigint
+
+  [ Guillem Jover ]
+  * [71e3272] MT#61800 Switch code to «use v5.40» instead of Sipwise::Base
+  * [c79c174] MT#61800 Switch code to «use v5.40»
+  * [f2d011e] MT#61800 Move the module versions to the package directive
+  * [b14715c] MT#65090 ngcp-dump-schema: Remove obsolete backwards compatibility code
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 15 Jun 2026 15:32:47 +0200
+
 ngcp-schema (26.1.0.0+0~mr26.1.0.0) unstable; urgency=medium
 
   [ Kirill Solomko ]
